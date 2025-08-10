@@ -1,0 +1,43 @@
+sfc:
+  data_sources:
+    z1_source: Z1
+    fwtw_source: FWTW
+    cache_directory: ./data/cache
+    formulas_path: ./data/formulas/z1_formulas.json
+  series_selection:
+    max_series: 500
+    priority_sectors:
+    - 15
+    - 10
+    - 31
+    - 70
+    - 71
+    - 26
+    priority_instruments:
+    - '30641'
+    - '30611'
+    - '30650'
+    - '30200'
+    include_computed: true
+  constraints:
+    enforce_sfc: true
+    enforce_market_clearing: true
+    enforce_bilateral: true
+    enforce_hierarchical: true
+    enforce_formulas: true
+  numerical:
+    use_sparse: true
+    tolerance: 1.0e-10
+    max_iterations: 100
+    convergence_criterion: relative
+  kalman:
+    error_variance_ratio: 0.01
+    revaluation_variance_ratio: 0.1
+    bilateral_variance_ratio: 0.05
+    normalize_data: true
+    transformation: square
+  output:
+    save_matrices: true
+    save_filtered: true
+    save_diagnostics: true
+    output_format: parquet

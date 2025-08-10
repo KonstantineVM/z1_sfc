@@ -1,0 +1,336 @@
+# Sector-Aligned Instrument Grouping Configuration
+# Groups instruments by WHO can issue them and their economic function
+# Enables meaningful sector-instrument matrix construction
+
+instruments:
+  # ================================================================================
+  # INSTRUMENT GROUPS BY ISSUER TYPE
+  # ================================================================================
+  
+  by_issuer:
+    # Only Central Bank Can Issue
+    central_bank_only:
+      instruments:
+        "30130": "Depository institution reserves"
+        "30120": "Treasury currency"
+        "31130": "Depository institution reserves (liability)"
+      issuers: ["71"]
+      function: "monetary_base"
+      
+    # Only Federal Government Can Issue
+    federal_govt_only:
+      instruments:
+        "30611": "Treasury securities"
+        "31611": "Treasury securities (liability)"
+        "30613": "Nonmarketable Treasury securities"
+        "31613": "Nonmarketable Treasury securities (liability)"
+        "30614": "U.S. savings securities"
+        "31614": "U.S. savings securities (liability)"
+      issuers: ["31"]
+      function: "risk_free_assets"
+      
+    # Only State/Local Can Issue
+    state_local_only:
+      instruments:
+        "30620": "Municipal securities"
+        "31620": "Municipal securities (liability)"
+        "31622": "Long-term municipal securities"
+        "31624": "Short-term municipal securities"
+      issuers: ["21"]
+      function: "tax_exempt_debt"
+      
+    # Only GSEs Can Issue
+    gse_only:
+      instruments:
+        "30617": "Agency- and GSE-backed securities"
+        "31617": "Agency- and GSE-backed securities (liability)"
+        "30618": "Agency residential MBS pass-through"
+        "30619": "Agency MBS and other asset-backed"
+        "30693": "GSE loans"
+        "31693": "GSE loans (liability)"
+      issuers: ["40", "41"]
+      function: "mortgage_market"
+      
+    # Only Banks Can Create
+    bank_created:
+      instruments:
+        "30200": "Checkable deposits and currency"
+        "31200": "Checkable deposits (liability)"
+        "30270": "Checkable deposits"
+        "31270": "Checkable deposits (liability)"
+        "30300": "Time and savings deposits"
+        "31300": "Time and savings deposits (liability)"
+      issuers: ["70", "47", "76", "75"]
+      function: "money_supply"
+      
+    # Only Corporations Can Issue
+    corporate_only:
+      instruments:
+        "30641": "Corporate equities"
+        "31641": "Corporate equities (liability)"
+        "30630": "Corporate bonds"
+        "31630": "Corporate bonds (liability)"
+        "30691": "Commercial paper"
+        "31691": "Commercial paper (liability)"
+      issuers: ["10", "11"]  # Nonfinancial corps
+      function: "corporate_finance"
+      
+    # Shadow Banks Create
+    shadow_bank_instruments:
+      instruments:
+        "30657": "Private residential MBS"
+        "30659": "Private commercial MBS"
+        "31636": "Private CMOs"
+        "30636": "MBS and other asset-backed bonds"
+        "20500": "Fed funds and repos (asset)"
+        "21500": "Fed funds and repos (liability)"
+      issuers: ["66", "43", "67", "64"]
+      function: "shadow_credit"
+      
+    # Insurance/Pension Specific
+    insurance_pension:
+      instruments:
+        "31400": "Life insurance reserves"
+        "31500": "Pension entitlements"
+        "30400": "Life insurance reserves (asset)"
+        "30500": "Pension entitlements (asset)"
+        "30694": "Policy loans"
+        "31694": "Policy loans (liability)"
+      issuers: ["54", "51", "59", "57"]
+      function: "long_term_contracts"
+      
+    # Fund Shares (Pass-through vehicles)
+    fund_shares:
+      instruments:
+        "30340": "Money market fund shares"
+        "30642": "Mutual fund shares"
+        "31642": "Mutual fund shares (liability)"
+        "30643": "Variable annuity mutual fund shares"
+      issuers: ["63", "65", "56", "55"]
+      function: "collective_investment"
+
+  # ================================================================================
+  # INSTRUMENT GROUPS BY ECONOMIC FUNCTION
+  # ================================================================================
+  
+  by_function:
+    # Money and Near-Money
+    monetary_aggregates:
+      narrow_money:  # M1-like
+        "30250": "Currency"
+        "30270": "Checkable deposits"
+        "31250": "Currency (liability)"
+        "31270": "Checkable deposits (liability)"
+      broad_money:  # M2-like
+        "30300": "Time and savings deposits"
+        "30340": "Money market fund shares"
+        "31300": "Time and savings deposits (liability)"
+      reserve_money:  # Monetary base
+        "30130": "Bank reserves"
+        "30120": "Treasury currency"
+        
+    # Funding Markets (Critical for crisis)
+    funding_markets:
+      overnight:
+        "20520": "Federal funds"
+        "21520": "Federal funds (liability)"
+        "20511": "Overnight repos"
+        "21511": "Overnight repos (liability)"
+      term_funding:
+        "20510": "Security repurchase agreements"
+        "21510": "Security repurchase agreements (liability)"
+        "30691": "Commercial paper"
+        "31691": "Commercial paper (liability)"
+      secured_funding:
+        "20500": "Fed funds and repos combined"
+        "21500": "Fed funds and repos combined (liability)"
+        
+    # Credit Markets
+    credit_instruments:
+      household_credit:
+        "30651": "1-4 family mortgages"
+        "31651": "1-4 family mortgages (liability)"
+        "30652": "Home equity lines"
+        "30660": "Consumer credit"
+        "31660": "Consumer credit (liability)"
+      business_credit:
+        "30680": "Bank loans n.e.c."
+        "31680": "Bank loans n.e.c. (liability)"
+        "30681": "C&I loans"
+        "30698": "Syndicated loans"
+        "31698": "Syndicated loans (liability)"
+      real_estate_credit:
+        "30655": "Commercial mortgages"
+        "31655": "Commercial mortgages (liability)"
+        "30654": "Multifamily mortgages"
+        "30656": "Farm mortgages"
+        
+    # Securities Markets
+    securities_markets:
+      government_securities:
+        "30611": "Treasuries"
+        "30617": "Agencies"
+        "30620": "Municipals"
+      corporate_securities:
+        "30641": "Corporate equity"
+        "30630": "Corporate bonds"
+        "30632": "Foreign bonds"
+      structured_products:
+        "30657": "Private RMBS"
+        "30659": "Private CMBS"
+        "30636": "Other ABS"
+        
+    # International
+    cross_border:
+      foreign_claims:
+        "30920": "Direct investment"
+        "30921": "FDI equity"
+        "30922": "FDI reinvested earnings"
+      foreign_liabilities:
+        "31920": "Direct investment (liability)"
+        "31921": "FDI equity (liability)"
+        "30911": "Nonofficial foreign currencies"
+
+  # ================================================================================
+  # SECTOR-INSTRUMENT VALID COMBINATIONS
+  # ================================================================================
+  
+  valid_combinations:
+    # Who can issue what
+    can_issue:
+      "71": ["30130", "30120"]  # Fed: reserves, currency
+      "31": ["30611", "31611"]   # Federal: Treasuries
+      "21": ["30620", "31620"]   # State/Local: Munis
+      "70": ["31200", "31300"]   # Banks: deposits
+      "10": ["31641", "31630"]   # Corps: equity, bonds
+      "63": ["31340"]            # MMFs: shares
+      "65": ["31642"]            # Mutual funds: shares
+      
+    # Who typically holds what
+    typical_holdings:
+      "15":  # Households hold:
+        - ["30200", "70"]  # Deposits at banks
+        - ["30641", "10"]  # Corporate equity
+        - ["30642", "65"]  # Mutual fund shares
+        - ["30340", "63"]  # MMF shares
+      "70":  # Banks hold:
+        - ["30130", "71"]  # Reserves at Fed
+        - ["30611", "31"]  # Treasuries
+        - ["30651", "15"]  # Mortgages to households
+        - ["30680", "10"]  # Loans to business
+      "59":  # Pension funds hold:
+        - ["30641", "10"]  # Corporate equity
+        - ["30611", "31"]  # Treasuries
+        - ["30630", "10"]  # Corporate bonds
+      "26":  # Rest of World holds:
+        - ["30611", "31"]  # Treasuries (critical!)
+        - ["30641", "10"]  # US equity
+        - ["30617", "40"]  # Agencies
+
+  # ================================================================================
+  # CRITICAL INSTRUMENT-SECTOR MATRICES
+  # ================================================================================
+  
+  matrix_priorities:
+    # For each instrument, which sector relationships matter most
+    
+    treasury_matrix:  # Instrument 30611
+      critical_relationships:
+        - ["31", "issued_by"]     # Federal govt issues
+        - ["71", "QE_holdings"]    # Fed holds (monetary policy)
+        - ["26", "foreign_holds"]  # Foreign official (dollar recycling)
+        - ["70", "bank_holds"]     # Banks (HQLA)
+        - ["59", "pension_holds"]  # Pensions (duration matching)
+        
+    deposit_matrix:  # Instruments 30200, 30270, 30300
+      critical_relationships:
+        - ["70", "created_by"]     # Banks create
+        - ["15", "held_by"]        # Households hold
+        - ["10", "held_by"]        # Corporations hold
+        - ["63", "competes_with"]  # MMFs substitute
+        
+    repo_matrix:  # Instruments 20500, 21500
+      critical_relationships:
+        - ["70", "66", "interbank"]   # Bank-Dealer
+        - ["66", "62", "leverage"]    # Dealer-Hedge fund
+        - ["63", "66", "funding"]     # MMF-Dealer
+        - ["71", "70", "monetary"]    # Fed-Bank (OMO)
+        
+    equity_matrix:  # Instrument 30641
+      critical_relationships:
+        - ["10", "issued_by"]      # Corps issue
+        - ["15", "household"]      # Households own
+        - ["59", "pension"]        # Pensions own
+        - ["65", "mutual_fund"]    # Mutual funds own
+        - ["26", "foreign"]        # Foreign owns
+        - ["62", "hedge_short"]    # Hedge funds short
+
+  # ================================================================================
+  # AGGREGATION RULES
+  # ================================================================================
+  
+  aggregation_rules:
+    # When aggregating sectors, how to handle instruments
+    
+    combine_bank_sectors:  # If combining 70, 47, 76
+      keep_separate:
+        - "30130"  # Reserves (only commercial banks)
+        - "31300"  # Time deposits (different by institution)
+      combine:
+        - "31200"  # Checkable deposits (similar across)
+        
+    combine_shadow_banks:  # If combining 66, 62, 43, 67
+      keep_separate:
+        - "20500"  # Repos (very different uses)
+        - "30657"  # Private MBS (only some issue)
+      combine:
+        - "30641"  # Equity holdings (similar)
+        
+    combine_govt:  # NEVER DO THIS!
+      warning: "Federal (31) and State/Local (21) must stay separate"
+      reason: "Different default risk and constraints"
+
+  # ================================================================================
+  # INSTRUMENT RELATIONSHIPS
+  # ================================================================================
+  
+  substitutes:
+    # Instruments that compete/substitute
+    cash_substitutes:
+      - ["30270", "30340"]  # Checkable deposits vs MMF shares
+      - ["30300", "30340"]  # Savings deposits vs MMF shares
+      
+    funding_substitutes:
+      - ["20500", "30691"]  # Repo vs Commercial paper
+      - ["31680", "31630"]  # Bank loans vs Corporate bonds
+      
+  complements:
+    # Instruments used together
+    mortgage_chain:
+      - ["30651", "30657", "30618"]  # Mortgages → Private MBS → Agency MBS
+      
+    collateral_chain:
+      - ["30611", "20500"]  # Treasuries used as repo collateral
+      - ["30641", "30686"]  # Equities used for margin loans
+
+  # ================================================================================
+  # CRISIS INDICATORS
+  # ================================================================================
+  
+  stress_instruments:
+    # Instruments that show stress first
+    
+    funding_stress:
+      - ["20500", "repo_spread"]     # Repo-Fed funds spread
+      - ["30691", "cp_issuance"]     # CP market freeze
+      - ["30340", "mmf_flows"]       # MMF redemptions
+      
+    credit_stress:
+      - ["30698", "syndicated_halt"] # Syndicated loan market
+      - ["30657", "rmbs_spread"]     # Private MBS spreads
+      - ["31630", "corporate_spread"] # Corporate bond spreads
+      
+    systemic_stress:
+      - ["30130", "excess_reserves"]  # Banks hoarding reserves
+      - ["30980", "derivative_expo"]  # Derivative exposures
+      - ["90xxx", "discrepancies"]    # Growing discrepancies

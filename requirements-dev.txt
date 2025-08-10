@@ -1,0 +1,21 @@
+# Development dependencies
+-r requirements.txt
+
+# Additional development tools
+ipython>=8.0.0
+jupyterlab>=3.2.0
+notebook>=6.4.0
+nbconvert>=6.3.0
+
+# Code quality
+pylint>=2.12.0
+autopep8>=1.6.0
+isort>=5.10.0
+
+# Documentation
+sphinx-autodoc-typehints>=1.12.0
+nbsphinx>=0.8.0
+
+# Profiling
+memory-profiler>=0.60.0
+line-profiler>=3.4.0

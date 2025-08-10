@@ -1,0 +1,473 @@
+# Custom Aggregation-Focused Z1 Sectors Configuration
+# Designed for meaningful economic analysis, not Fed's convenience groupings
+# Each sector kept separate for custom aggregation based on economic function
+
+sectors:
+  # ================================================================================
+  # RAW SECTOR CODES - NO AGGREGATION
+  # ================================================================================
+  # Keep every sector separate - aggregate in code based on analysis needs
+  
+  raw_sectors:
+    # HOUSEHOLDS & PERSONAL
+    "15": 
+      name: "Households and nonprofit organizations"
+      function: "final_demand"
+      risk_type: "credit_risk"
+      
+    "16": 
+      name: "Nonprofit organizations"
+      function: "final_demand"
+      risk_type: "operational"
+      
+    "19": 
+      name: "Households (excluding nonprofits)"
+      function: "final_demand"
+      risk_type: "credit_risk"
+    
+    # NONFINANCIAL BUSINESS
+    "10": 
+      name: "Nonfinancial corporate business"
+      function: "production"
+      risk_type: "business_cycle"
+      leverage: "moderate"
+      
+    "11": 
+      name: "Nonfinancial noncorporate business"
+      function: "production"
+      risk_type: "business_cycle"
+      leverage: "low"
+      
+    "12": 
+      name: "Equity real estate investment trusts"
+      function: "real_estate"
+      risk_type: "asset_price"
+      leverage: "moderate"
+      
+    "13": 
+      name: "Farm business"
+      function: "production"
+      risk_type: "commodity"
+      
+    "18": 
+      name: "Corporate farm business"
+      function: "production"
+      risk_type: "commodity"
+      
+    "23": 
+      name: "Noncorporate farm business"
+      function: "production"
+      risk_type: "commodity"
+    
+    # GOVERNMENT - VERY DIFFERENT CONSTRAINTS!
+    "31": 
+      name: "Federal government"
+      function: "sovereign_issuer"
+      risk_type: "none"  # Can't default in own currency
+      constraint: "currency_issuer"
+      
+    "21": 
+      name: "State and local governments"
+      function: "public_services"
+      risk_type: "default_risk"  # CAN default!
+      constraint: "budget_constraint"
+      
+    "22": 
+      name: "State and local government employee retirement funds"
+      function: "long_term_investment"
+      risk_type: "underfunding"
+      constraint: "liability_driven"
+      
+    "34": 
+      name: "Federal government retirement funds"
+      function: "long_term_investment"
+      risk_type: "political"
+      
+    "35": 
+      name: "Social Security (OASDI)"
+      function: "social_insurance"
+      risk_type: "demographic"
+      constraint: "pay_as_you_go"
+    
+    # MONETARY AUTHORITIES - UNIQUE POWERS
+    "71": 
+      name: "Monetary authority (Federal Reserve)"
+      function: "money_creation"
+      risk_type: "none"
+      constraint: "none"  # Creates reserves ex nihilo
+      power: "unlimited_balance_sheet"
+    
+    # TRADITIONAL DEPOSITORY - MONEY MULTIPLIERS
+    "70": 
+      name: "Private depository institutions"
+      function: "money_multiplication"
+      risk_type: "bank_run"
+      leverage: "high"
+      regulation: "heavy"
+      
+    "47": 
+      name: "Credit unions"
+      function: "cooperative_banking"
+      risk_type: "credit"
+      leverage: "moderate"
+      regulation: "moderate"
+      
+    "74": 
+      name: "Banks in U.S.-affiliated areas"
+      function: "territorial_banking"
+      risk_type: "sovereign"
+      
+    "75": 
+      name: "Foreign banking offices in U.S."
+      function: "international_banking"
+      risk_type: "home_country"
+      regulation: "home_country"
+      
+    "76": 
+      name: "U.S.-chartered depository institutions"
+      function: "domestic_banking"
+      risk_type: "credit"
+      regulation: "heavy"
+    
+    # GSEs - QUASI-GOVERNMENT (CRITICAL!)
+    "40": 
+      name: "Government-sponsored enterprises"
+      function: "mortgage_guarantee"
+      risk_type: "political"
+      implicit_guarantee: true
+      systemic: "critical"
+      
+    "41": 
+      name: "Agency- and GSE-backed mortgage pools"
+      function: "mortgage_securitization"
+      risk_type: "prepayment"
+      guarantee: "explicit"
+      size: "$7_trillion"
+    
+    # SHADOW BANKING - EACH VERY DIFFERENT!
+    "66": 
+      name: "Security brokers and dealers"
+      function: "market_making"
+      risk_type: "liquidity"
+      leverage: "extreme"  # 30:1 common
+      regulation: "light"
+      interconnected: "critical"
+      
+    "62": 
+      name: "Hedge funds"
+      function: "speculation"
+      risk_type: "market"
+      leverage: "extreme"
+      regulation: "none"
+      opacity: "high"
+      
+    "61": 
+      name: "Finance companies"
+      function: "credit_provision"
+      risk_type: "credit"
+      leverage: "moderate"
+      regulation: "light"
+      
+    "43": 
+      name: "Securitization SPVs"
+      function: "risk_transformation"
+      risk_type: "structural"
+      leverage: "embedded"
+      regulation: "none"
+      opacity: "high"
+      
+    "67": 
+      name: "Issuers of asset-backed securities"
+      function: "securitization"
+      risk_type: "tail_risk"
+      leverage: "structured"
+      regulation: "light"
+      
+    "64": 
+      name: "Mortgage real estate investment trusts"
+      function: "mortgage_arbitrage"
+      risk_type: "interest_rate"
+      leverage: "extreme"  # 8:1 typical
+      regulation: "light"
+      
+    "73": 
+      name: "Holding companies"
+      function: "control"
+      risk_type: "contagion"
+      leverage: "layered"
+      
+    "77": 
+      name: "Captive financial institutions"
+      function: "internal_finance"
+      risk_type: "parent_company"
+      regulation: "none"
+    
+    # MONEY-LIKE INSTRUMENTS - RUN RISK!
+    "63": 
+      name: "Money market funds"
+      function: "cash_management"
+      risk_type: "run_risk"
+      leverage: "none"
+      regulation: "2a-7"
+      systemic: "critical"  # 2008 Reserve Primary
+    
+    # LONG-TERM INSTITUTIONAL INVESTORS
+    "54": 
+      name: "Life insurance companies"
+      function: "risk_pooling"
+      risk_type: "duration"
+      leverage: "moderate"
+      regulation: "state"
+      liability_duration: "long"
+      
+    "51": 
+      name: "Property-casualty insurance companies"
+      function: "risk_pooling"
+      risk_type: "catastrophe"
+      leverage: "low"
+      regulation: "state"
+      liability_duration: "short"
+      
+    "59": 
+      name: "Pension funds"
+      function: "retirement_security"
+      risk_type: "underfunding"
+      leverage: "none"
+      regulation: "ERISA"
+      liability_duration: "very_long"
+      
+    "57": 
+      name: "Private pension funds"
+      function: "retirement_security"
+      risk_type: "sponsor_default"
+      regulation: "ERISA"
+    
+    # ASSET MANAGERS - AGENCY BUSINESS
+    "65": 
+      name: "Mutual funds"
+      function: "asset_management"
+      risk_type: "market"
+      leverage: "none"  # Pass-through
+      regulation: "1940_Act"
+      agency_model: true
+      
+    "56": 
+      name: "Exchange-traded funds"
+      function: "passive_investment"
+      risk_type: "tracking"
+      leverage: "none"
+      regulation: "1940_Act"
+      liquidity_mismatch: true  # Key risk!
+      
+    "55": 
+      name: "Closed-end funds"
+      function: "asset_management"
+      risk_type: "discount"
+      leverage: "allowed"
+      regulation: "1940_Act"
+    
+    # EXTERNAL - CRITICAL FOR DOLLAR SYSTEM
+    "26": 
+      name: "Rest of the world"
+      function: "external_balance"
+      risk_type: "currency"
+      dollar_recycling: "critical"
+      size: "$15_trillion_US_assets"
+      
+    "27": 
+      name: "IBFs of U.S.-chartered depositories"
+      function: "offshore_banking"
+      risk_type: "regulatory_arbitrage"
+      
+    "28": 
+      name: "IBFs of foreign banking offices"
+      function: "offshore_banking"
+      risk_type: "home_country"
+    
+    # STATISTICAL & AGGREGATES
+    "90": 
+      name: "Instrument discrepancies"
+      function: "validation"
+      meaning: "measurement_error_or_hidden_positions"
+      critical: true  # Large = problem!
+    
+    # Keep other Fed aggregates for reference but DON'T USE
+    "89": {name: "All sectors", avoid: true, reason: "meaningless_total"}
+    "88": {name: "All domestic sectors", avoid: true}
+    "79": {name: "Domestic financial sectors", avoid: true, reason: "mixes_banks_and_hedge_funds"}
+    "80": {name: "Other financial intermediaries", avoid: true, reason: "nonsense_grouping"}
+
+  # ================================================================================
+  # MEANINGFUL CUSTOM AGGREGATIONS
+  # ================================================================================
+  
+  custom_aggregations:
+    # By Economic Function
+    money_creators:
+      sectors: ["71"]  # Only Fed creates reserves
+      function: "reserve_creation"
+      
+    money_multipliers:
+      sectors: ["70", "47", "76"]  # Banks create deposits
+      function: "deposit_creation"
+      
+    shadow_banks:
+      sectors: ["66", "62", "61", "43", "67", "64", "73"]
+      function: "credit_without_deposits"
+      
+    quasi_banks:
+      sectors: ["63"]  # MMFs - deposit substitutes
+      function: "cash_like_instruments"
+      
+    sovereign_issuers:
+      sectors: ["31"]  # Only federal can't default
+      function: "risk_free_asset_creation"
+      
+    budget_constrained_govt:
+      sectors: ["21"]  # State/local CAN default
+      function: "public_services"
+      
+    households_pure:
+      sectors: ["19"]  # Excluding nonprofits
+      function: "final_consumption"
+      
+    production_sectors:
+      sectors: ["10", "11", "13", "18", "23"]
+      function: "goods_services_creation"
+      
+    long_term_investors:
+      sectors: ["54", "59", "57", "22", "34"]
+      function: "duration_matching"
+      
+    market_funds:
+      sectors: ["65", "56", "55"]
+      function: "market_risk_pass_through"
+    
+    # By Leverage Level
+    extreme_leverage:
+      sectors: ["66", "62", "64"]  # 10:1 to 40:1
+      risk: "systemic"
+      
+    high_leverage:
+      sectors: ["70", "76"]  # 8:1 to 12:1
+      risk: "bank_runs"
+      
+    moderate_leverage:
+      sectors: ["10", "11", "47", "61", "54"]  # 2:1 to 5:1
+      risk: "manageable"
+      
+    no_leverage:
+      sectors: ["65", "56", "63", "59"]  # Pass-through
+      risk: "market_only"
+    
+    # By Regulatory Regime
+    heavy_regulation:
+      sectors: ["70", "47", "76", "71"]
+      regulators: ["Fed", "FDIC", "OCC", "NCUA"]
+      
+    light_regulation:
+      sectors: ["66", "61", "64"]
+      regulators: ["SEC", "FINRA"]
+      
+    state_regulation:
+      sectors: ["54", "51"]
+      regulators: ["State_Insurance_Commissions"]
+      
+    no_regulation:
+      sectors: ["62", "43", "67", "77"]
+      regulators: []
+    
+    # By Systemic Importance (for stress testing)
+    systemically_critical:
+      sectors: ["71", "70", "40", "41", "66", "63", "31"]
+      reason: "failure_causes_system_collapse"
+      
+    systemically_important:
+      sectors: ["65", "54", "59", "26"]
+      reason: "failure_causes_major_disruption"
+      
+    non_systemic:
+      sectors: ["11", "16", "55"]
+      reason: "failure_contained"
+    
+    # By Crisis Transmission Channel
+    funding_channel:
+      sectors: ["63", "66", "62"]  # MMF → Broker → Hedge
+      mechanism: "repo_chain"
+      
+    credit_channel:
+      sectors: ["70", "61", "43"]  # Bank → Finance Co → Securitization
+      mechanism: "lending_chain"
+      
+    collateral_channel:
+      sectors: ["66", "62", "64"]  # Securities lending/repo
+      mechanism: "rehypothecation"
+      
+    confidence_channel:
+      sectors: ["63", "65", "56"]  # Run-prone
+      mechanism: "redemption_runs"
+    
+  # ================================================================================
+  # BILATERAL RELATIONSHIP PRIORITIES
+  # ================================================================================
+  
+  critical_relationships:
+    # Format: [holder_sector, issuer_sector, instrument, description]
+    tier_1_monetary_plumbing:
+      - ["70", "71", "30130", "Bank reserves at Fed"]
+      - ["71", "31", "30611", "Fed holds Treasuries (QE)"]
+      - ["63", "70", "20500", "MMF repo to banks"]
+      - ["70", "66", "20500", "Bank repo to dealers"]
+      
+    tier_2_shadow_banking:
+      - ["66", "62", "20500", "Prime broker → hedge fund"]
+      - ["66", "62", "30680", "Margin loans"]
+      - ["54", "66", "30641", "Securities lending"]
+      - ["62", "10", "30641", "Hedge funds short corps"]
+      
+    tier_3_household_interface:
+      - ["15", "70", "30200", "Household deposits"]
+      - ["15", "65", "30642", "Household mutual funds"]
+      - ["15", "63", "30340", "Household MMF shares"]
+      - ["70", "15", "30651", "Mortgages to households"]
+      
+    tier_4_foreign_flows:
+      - ["26", "31", "30611", "Foreign holds Treasuries"]
+      - ["26", "10", "30641", "Foreign holds US equity"]
+      - ["26", "70", "30200", "Foreign deposits in US"]
+      - ["26", "40", "30617", "Foreign holds agencies"]
+    
+    tier_5_long_term:
+      - ["59", "10", "30641", "Pensions hold equity"]
+      - ["54", "10", "30630", "Insurance holds corp bonds"]
+      - ["59", "31", "30611", "Pensions hold Treasuries"]
+      
+  # ================================================================================
+  # ANALYSIS-SPECIFIC GROUPINGS
+  # ================================================================================
+  
+  analysis_groups:
+    # For QE Analysis
+    qe_transmission:
+      fed: ["71"]
+      primary_dealers: ["66"]
+      banks: ["70"]
+      asset_managers: ["65", "56"]
+      end_holders: ["15", "59", "54"]
+      
+    # For Crisis Analysis
+    crisis_vulnerable:
+      run_prone: ["63", "65", "56"]
+      leverage_vulnerable: ["66", "62", "64"]
+      credit_exposed: ["70", "61", "43"]
+      
+    # For Monetary Policy
+    rate_sensitive:
+      assets_sensitive: ["70", "64", "61"]
+      liability_sensitive: ["54", "59"]
+      pass_through: ["65", "56"]
+      
+    # For Financial Stability
+    interconnection_hubs:
+      central: ["70", "66", "71"]
+      peripheral: ["47", "55", "16"]
