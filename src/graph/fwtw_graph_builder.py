@@ -88,72 +88,52 @@ class FWTWGraphBuilder:
     
     def _add_sector_nodes(self, fwtw_df: pd.DataFrame) -> None:
         """Add sector nodes from FWTW data."""
-        # Get unique sectors
-        holder_sectors = fwtw_df[['Holder Code', 'Holder Name']].drop_duplicates()
-        issuer_sectors = fwtw_df[['Issuer Code', 'Issuer Name']].drop_duplicates()
+        # Get unique holders and issuers
+        holders = fwtw_df[['Holder Code', 'Holder Name']].drop_duplicates()
+        issuers = fwtw_df[['Issuer Code', 'Issuer Name']].drop_duplicates()
         
         # Combine and deduplicate
-        all_sectors = {}
+        sectors = pd.concat([
+            holders.rename(columns={'Holder Code': 'Code', 'Holder Name': 'Name'}),
+            issuers.rename(columns={'Issuer Code': 'Code', 'Issuer Name': 'Name'})
+        ]).drop_duplicates()
         
-        for _, row in holder_sectors.iterrows():
-            code = str(row['Holder Code']).zfill(2)
-            name = row.get('Holder Name', f'Sector_{code}')
-            all_sectors[code] = name
-        
-        for _, row in issuer_sectors.iterrows():
-            code = str(row['Issuer Code']).zfill(2)
-            name = row.get('Issuer Name', f'Sector_{code}')
-            all_sectors[code] = name
-        
-        # Add sector nodes
-        for code, name in all_sectors.items():
+        for _, row in sectors.iterrows():
             node = SFCNode(
-                id=f"SECTOR_{code}",
+                id=f"SECTOR_{row['Code']}",
                 node_type=NodeType.SECTOR,
                 metadata={
-                    'code': code,
-                    'name': name,
-                    'sector_type': self._classify_sector(code)
+                    'code': row['Code'],
+                    'name': row.get('Name', f"Sector {row['Code']}")
                 }
             )
             self.graph.add_node(node)
-        
-        logger.info(f"Added {len(all_sectors)} sector nodes")
+            logger.debug(f"Added sector node: {node.id}")
     
     def _add_instrument_nodes(self, fwtw_df: pd.DataFrame) -> None:
         """Add instrument nodes from FWTW data."""
-        # Get unique instruments
         instruments = fwtw_df[['Instrument Code', 'Instrument Name']].drop_duplicates()
         
         for _, row in instruments.iterrows():
-            code = str(row['Instrument Code']).zfill(5)
-            name = row.get('Instrument Name', f'Instrument_{code}')
-            
             node = SFCNode(
-                id=f"INST_{code}",
+                id=f"INST_{row['Instrument Code']}",
                 node_type=NodeType.INSTRUMENT,
                 metadata={
-                    'code': code,
-                    'name': name,
-                    'instrument_type': self._classify_instrument(code)
+                    'code': row['Instrument Code'],
+                    'name': row.get('Instrument Name', f"Instrument {row['Instrument Code']}")
                 }
             )
             self.graph.add_node(node)
-        
-        logger.info(f"Added {len(instruments)} instrument nodes")
+            logger.debug(f"Added instrument node: {node.id}")
     
     def _add_bilateral_positions(self, fwtw_df: pd.DataFrame) -> None:
         """Add bilateral position nodes and edges."""
-        for _, row in fwtw_df.iterrows():
-            holder = str(row['Holder Code']).zfill(2)
-            issuer = str(row['Issuer Code']).zfill(2)
-            instrument = str(row['Instrument Code']).zfill(5)
-            date = row['Date']
-            level = float(row['Level'])
-            
+        # Group by unique bilateral positions
+        position_groups = fwtw_df.groupby(['Holder Code', 'Issuer Code', 'Instrument Code'])
+        
+        for (holder, issuer, instrument), group in position_groups:
             # Create bilateral position node
-            bilateral_id = f"BILATERAL_{holder}_{issuer}_{instrument}_{date}"
-            
+            bilateral_id = f"BILATERAL_{holder}_{issuer}_{instrument}"
             node = SFCNode(
                 id=bilateral_id,
                 node_type=NodeType.BILATERAL,
@@ -161,137 +141,363 @@ class FWTWGraphBuilder:
                     'holder': holder,
                     'issuer': issuer,
                     'instrument': instrument,
-                    'date': date,
-                    'level': level,
-                    'holder_name': row.get('Holder Name', ''),
-                    'issuer_name': row.get('Issuer Name', ''),
-                    'instrument_name': row.get('Instrument Name', '')
+                    'dates': group['Date'].unique().tolist(),
+                    'levels': group.set_index('Date')['Level'].to_dict()
                 }
             )
             self.graph.add_node(node)
             
-            # Store for quick lookup
-            self.bilateral_positions[(holder, issuer, instrument, date)] = level
+            # Store bilateral position data
+            for _, row in group.iterrows():
+                key = (holder, issuer, instrument, row['Date'])
+                self.bilateral_positions[key] = row['Level']
             
-            # Create edges
-            # Holder holds this position
-            self.graph.add_edge(SFCEdge(
+            # Add edges: Holder -> Bilateral (asset)
+            holder_edge = SFCEdge(
                 source=f"SECTOR_{holder}",
                 target=bilateral_id,
-                edge_type=EdgeType.HOLDS,
-                weight=level,
-                metadata={'instrument': instrument, 'date': date}
-            ))
+                edge_type=EdgeType.BILATERAL_ASSET,
+                metadata={'instrument': instrument}
+            )
+            self.graph.add_edge(holder_edge)
             
-            # Issuer issued this position
-            self.graph.add_edge(SFCEdge(
-                source=f"SECTOR_{issuer}",
-                target=bilateral_id,
-                edge_type=EdgeType.ISSUES,
-                weight=-level,  # Negative for liability
-                metadata={'instrument': instrument, 'date': date}
-            ))
+            # Add edges: Bilateral -> Issuer (liability)
+            issuer_edge = SFCEdge(
+                source=bilateral_id,
+                target=f"SECTOR_{issuer}",
+                edge_type=EdgeType.BILATERAL_LIABILITY,
+                metadata={'instrument': instrument}
+            )
+            self.graph.add_edge(issuer_edge)
             
-            # Link to instrument
-            self.graph.add_edge(SFCEdge(
+            # Add edge: Bilateral -> Instrument
+            inst_edge = SFCEdge(
                 source=bilateral_id,
                 target=f"INST_{instrument}",
                 edge_type=EdgeType.REPRESENTS,
-                weight=level,
-                metadata={'date': date}
-            ))
+                metadata={'holder': holder, 'issuer': issuer}
+            )
+            self.graph.add_edge(inst_edge)
         
         self.stats['n_bilateral_positions'] = len(self.bilateral_positions)
-        logger.info(f"Added {len(self.bilateral_positions)} bilateral positions")
+        logger.info(f"Added {len(position_groups)} bilateral position nodes")
     
-    def add_z1_series(self, series_codes: List[str]) -> None:
+    def add_z1_series(self, z1_series: List[str]) -> None:
         """
-        Add Z1 series nodes and map to bilateral positions.
+        Add Z1 series to the graph and map to FWTW positions.
         
         Parameters:
         -----------
-        series_codes : List[str]
-            List of Z1 series codes (e.g., 'FL154090005.Q')
+        z1_series : List[str]
+            List of Z1 series codes
         """
-        logger.info(f"Adding {len(series_codes)} Z1 series")
-        self.stats['n_z1_series'] = len(series_codes)
+        logger.info(f"Adding {len(z1_series)} Z1 series to graph")
+        self.stats['n_z1_series'] = len(z1_series)
         
-        for code in series_codes:
-            parsed = self._parse_z1_code(code)
+        for series_code in z1_series:
+            # Parse series code
+            parsed = self._parse_z1_series(series_code)
             if not parsed:
-                self.stats['n_unmapped_series'] += 1
+                logger.warning(f"Could not parse series: {series_code}")
                 continue
             
-            # Store parsed info
-            self.z1_series_map[code] = parsed
+            self.z1_series_map[series_code] = parsed
             
             # Add series node
             node = SFCNode(
-                id=f"SERIES_{code}",
+                id=series_code,
                 node_type=NodeType.SERIES,
                 metadata=parsed
             )
             self.graph.add_node(node)
             
-            # Map to bilateral positions
-            self._map_series_to_bilateral(code, parsed)
-        
-        # Identify stock-flow pairs
-        self._identify_stock_flow_pairs()
-        
-        logger.info(f"Mapped {len(self.z1_series_map)} series, "
-                   f"found {len(self.stock_flow_pairs)} stock-flow pairs")
+            # Try to map to FWTW bilateral position
+            self._map_series_to_bilateral(series_code, parsed)
     
-    def _parse_z1_code(self, code: str) -> Optional[Dict]:
-        """Parse Z1 series code into components."""
-        # Remove .Q or .A suffix
-        base = code[:-2] if code.endswith(('.Q', '.A')) else code
-        freq = code[-1] if code.endswith(('.Q', '.A')) else None
+    def _parse_z1_series(self, series_code: str) -> Optional[Dict]:
+        """
+        Parse Z1 series code into components.
         
-        # Parse: FL1530641005 -> FL 15 30641 005
-        match = re.match(r'^([A-Z]{2})(\d{2})(\d{5})(\d{3})', base)
+        Z1 Format: PPSSIIIIICCC.F
+        PP = Prefix (FL, FU, FR, FV, FA, LA)
+        SS = Sector (2 digits)
+        IIIII = Instrument (5 digits)
+        CCC = Calculation suffix (3 digits, digit 9 is key)
+        F = Frequency (Q or A)
+        """
+        # Remove frequency suffix
+        if series_code.endswith('.Q'):
+            base_code = series_code[:-2]
+            freq = 'Q'
+        elif series_code.endswith('.A'):
+            base_code = series_code[:-2]
+            freq = 'A'
+        else:
+            base_code = series_code
+            freq = None
+        
+        # Match pattern
+        pattern = r'^([A-Z]{2})(\d{2})(\d{5})(\d{3})$'
+        match = re.match(pattern, base_code)
+        
         if not match:
             return None
         
+        prefix, sector, instrument, suffix = match.groups()
+        
+        # Determine series type
+        series_type = self._get_series_type(prefix)
+        
+        # Check if it's a base series (digit 9 = 0 or 3)
+        is_base = suffix[0] in ['0', '3']
+        
         return {
-            'code': code,
-            'prefix': match.group(1),
-            'sector': match.group(2),
-            'instrument': match.group(3),
-            'suffix': match.group(4),
+            'prefix': prefix,
+            'sector': sector,
+            'instrument': instrument,
+            'suffix': suffix,
             'frequency': freq,
-            'is_level': match.group(1) == 'FL',
-            'is_flow': match.group(1) == 'FU',
-            'is_reval': match.group(1) == 'FR',
-            'is_other': match.group(1) == 'FV'
+            'series_type': series_type,
+            'is_base': is_base,
+            'digit_9': suffix[0] if len(suffix) > 0 else None
         }
     
+    def _get_series_type(self, prefix: str) -> str:
+        """Get series type from prefix."""
+        type_map = {
+            'FL': 'level',           # Stock/Level
+            'FU': 'transaction',     # Flow/Transaction
+            'FR': 'revaluation',     # Revaluation
+            'FV': 'other_change',    # Other volume change
+            'FA': 'flow_saar',       # Flow, seasonally adjusted
+            'LA': 'level_sa',        # Level, seasonally adjusted
+            'FC': 'change',          # Change in level
+            'FG': 'growth_rate'      # Growth rate
+        }
+        return type_map.get(prefix, 'unknown')
+    
     def _map_series_to_bilateral(self, series_code: str, parsed: Dict) -> None:
-        """Map Z1 series to corresponding bilateral positions."""
+        """Map Z1 series to FWTW bilateral positions."""
         sector = parsed['sector']
         instrument = parsed['instrument']
-        prefix = parsed['prefix']
-        
-        mapped_count = 0
         
         # Find matching bilateral positions
+        # This is where holder = sector for assets
+        # or issuer = sector for liabilities
+        
+        matches = []
         for (h, i, inst, date), level in self.bilateral_positions.items():
-            if inst != instrument:
+            # Check if this series could represent this bilateral position
+            if inst == instrument:
+                if h == sector:  # This sector holds the instrument
+                    matches.append(('asset', h, i, inst))
+                elif i == sector:  # This sector issued the instrument
+                    matches.append(('liability', h, i, inst))
+        
+        if matches:
+            # Create mapping edges
+            for position_type, holder, issuer, inst in matches:
+                bilateral_id = f"BILATERAL_{holder}_{issuer}_{inst}"
+                if bilateral_id in self.graph._node_index:
+                    edge = SFCEdge(
+                        source=series_code,
+                        target=bilateral_id,
+                        edge_type=EdgeType.REPRESENTS,
+                        metadata={
+                            'position_type': position_type,
+                            'mapping_confidence': 0.8  # Could be improved with better matching
+                        }
+                    )
+                    self.graph.add_edge(edge)
+                    logger.debug(f"Mapped {series_code} to {bilateral_id}")
+        else:
+            self.stats['n_unmapped_series'] += 1
+    
+    def identify_stock_flow_pairs(self) -> List[Dict]:
+        """
+        Identify stock-flow pairs in the graph.
+        Only works for base series (digit 9 = 0 or 3).
+        """
+        logger.info("Identifying stock-flow pairs")
+        pairs = []
+        
+        # Find all FL (stock) series that are base series
+        fl_series = [
+            code for code, parsed in self.z1_series_map.items()
+            if parsed['prefix'] == 'FL' and parsed['is_base']
+        ]
+        
+        for fl in fl_series:
+            parsed = self.z1_series_map[fl]
+            base = f"{parsed['prefix']}{parsed['sector']}{parsed['instrument']}{parsed['suffix']}"
+            
+            # Look for corresponding flows
+            fu = base.replace('FL', 'FU') + (f".{parsed['frequency']}" if parsed['frequency'] else "")
+            fr = base.replace('FL', 'FR') + (f".{parsed['frequency']}" if parsed['frequency'] else "")
+            fv = base.replace('FL', 'FV') + (f".{parsed['frequency']}" if parsed['frequency'] else "")
+            
+            # Check which exist
+            existing_flows = {}
+            for flow_type, flow_code in [('FU', fu), ('FR', fr), ('FV', fv)]:
+                if flow_code in self.z1_series_map:
+                    existing_flows[flow_type] = flow_code
+                    
+                    # Add stock-flow edge
+                    edge = SFCEdge(
+                        source=flow_code,
+                        target=fl,
+                        edge_type=EdgeType.STOCK_FLOW,
+                        metadata={'flow_type': flow_type}
+                    )
+                    self.graph.add_edge(edge)
+            
+            if existing_flows:
+                pair = {
+                    'stock': fl,
+                    'flows': existing_flows,
+                    'sector': parsed['sector'],
+                    'instrument': parsed['instrument']
+                }
+                pairs.append(pair)
+                self.stock_flow_pairs.append(pair)
+        
+        self.stats['n_stock_flow_pairs'] = len(pairs)
+        logger.info(f"Found {len(pairs)} stock-flow pairs")
+        return pairs
+    
+    def add_formula_relationships(self, formulas: Dict) -> None:
+        """
+        Add formula-based aggregation relationships.
+        
+        Parameters:
+        -----------
+        formulas : Dict
+            Dictionary of formulas from Z1 documentation
+        """
+        logger.info(f"Adding formula relationships from {len(formulas)} formulas")
+        
+        for target_series, formula in formulas.items():
+            if 'derived_from' not in formula:
                 continue
             
-            bilateral_id = f"BILATERAL_{h}_{i}_{inst}_{date}"
+            # Ensure target series exists
+            if target_series not in self.graph._series_index:
+                parsed = self._parse_z1_series(target_series)
+                if parsed:
+                    node = SFCNode(
+                        id=target_series,
+                        node_type=NodeType.AGGREGATE,
+                        metadata=parsed
+                    )
+                    self.graph.add_node(node)
             
-            # Map based on series type and sector match
-            if prefix == 'FL':  # Level series
-                if h == sector:  # Holder's asset position
-                    self.graph.add_edge(SFCEdge(
-                        source=f"SERIES_{series_code}",
-                        target=bilateral_id,
-                        edge_type=EdgeType.BILATERAL_ASSET,
-                        weight=1.0,
-                        metadata={'date': date}
-                    ))
-                    mapped_count += 1
+            # Add edges from components to target
+            for component in formula['derived_from']:
+                comp_series = component.get('code', '')
+                operator = component.get('operator', '+')
+                weight = 1.0 if operator == '+' else -1.0
+                
+                if comp_series:
+                    # Ensure component exists
+                    if comp_series not in self.graph._series_index:
+                        parsed = self._parse_z1_series(comp_series)
+                        if parsed:
+                            node = SFCNode(
+                                id=comp_series,
+                                node_type=NodeType.SERIES,
+                                metadata=parsed
+                            )
+                            self.graph.add_node(node)
                     
-                elif i == sector:  # Issuer's liability position
-                    self.graph.add_edge(SFCEdge(
+                    # Add aggregation edge
+                    edge = SFCEdge(
+                        source=comp_series,
+                        target=target_series,
+                        edge_type=EdgeType.AGGREGATES_TO,
+                        weight=weight,
+                        metadata={'formula_id': formula.get('id')}
+                    )
+                    self.graph.add_edge(edge)
+    
+    def build_market_clearing_constraints(self) -> List[Dict]:
+        """
+        Build market clearing constraints from bilateral positions.
+        For each instrument: Σ(Assets) = Σ(Liabilities)
+        """
+        constraints = []
+        
+        # Group bilateral positions by instrument
+        instrument_positions = defaultdict(list)
+        for (holder, issuer, instrument, date), level in self.bilateral_positions.items():
+            instrument_positions[instrument].append({
+                'holder': holder,
+                'issuer': issuer,
+                'date': date,
+                'level': level
+            })
+        
+        for instrument, positions in instrument_positions.items():
+            # For each date, assets should equal liabilities
+            dates = set(p['date'] for p in positions)
+            
+            for date in dates:
+                constraint = {
+                    'type': 'market_clearing',
+                    'instrument': instrument,
+                    'date': date,
+                    'positions': []
+                }
+                
+                for pos in positions:
+                    if pos['date'] == date:
+                        # This represents an asset for holder, liability for issuer
+                        constraint['positions'].append({
+                            'asset_holder': pos['holder'],
+                            'liability_issuer': pos['issuer'],
+                            'level': pos['level']
+                        })
+                
+                constraints.append(constraint)
+        
+        logger.info(f"Built {len(constraints)} market clearing constraints")
+        return constraints
+    
+    def export_to_graphml(self, filepath: str) -> None:
+        """Export graph to GraphML format for visualization."""
+        import networkx as nx
+        
+        # Convert to format suitable for export
+        export_graph = nx.MultiDiGraph()
+        
+        # Add nodes with attributes
+        for node_id, node in self.graph._node_index.items():
+            attrs = {
+                'node_type': node.node_type.value,
+                **node.metadata
+            }
+            export_graph.add_node(node_id, **attrs)
+        
+        # Add edges with attributes
+        for u, v, data in self.graph.G.edges(data=True):
+            attrs = {
+                'edge_type': data.get('edge_type', 'unknown'),
+                'weight': data.get('weight', 1.0),
+                **data.get('metadata', {})
+            }
+            export_graph.add_edge(u, v, **attrs)
+        
+        # Write to file
+        nx.write_graphml(export_graph, filepath)
+        logger.info(f"Exported graph to {filepath}")
+    
+    def get_statistics(self) -> Dict:
+        """Get graph building statistics."""
+        self.stats.update({
+            'n_nodes': self.graph.G.number_of_nodes(),
+            'n_edges': self.graph.G.number_of_edges(),
+            'n_sectors': len(self.graph.get_nodes_by_type(NodeType.SECTOR)),
+            'n_instruments': len(self.graph.get_nodes_by_type(NodeType.INSTRUMENT)),
+            'n_bilateral': len(self.graph.get_nodes_by_type(NodeType.BILATERAL)),
+            'n_series': len(self.graph.get_nodes_by_type(NodeType.SERIES))
+        })
+        return self.stats
