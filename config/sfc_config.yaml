@@ -1,43 +1,303 @@
+# Z1_SFC Configuration File
+# Updated for complete model with Z1 + FWTW + Discrepancy support
+
+data_paths:
+  z1_root: "data/fed_data/FRB_Z1"
+  cache_root: "data/cache"
+  formulas: "data/fof_formulas_extracted.json"
+  fwtw_data: "data/fwtw_data.parquet"  # Added for bilateral positions
+  sectors_config: "config/sectors.yaml"
+  instruments_config: "config/instruments.yaml"
+
+# Z1 file configuration
+z1_files:
+  data_xml: "Z1_data.xml"
+  struct_xml: "Z1_struct.xml"
+  schema_xsd: "Z1_Z1.xsd"
+  common_xsd: "frb_common.xsd"
+
+# Main SFC settings
 sfc:
-  data_sources:
-    z1_source: Z1
-    fwtw_source: FWTW
-    cache_directory: ./data/cache
-    formulas_path: ./data/formulas/z1_formulas.json
-  series_selection:
-    max_series: 500
-    priority_sectors:
-    - 15
-    - 10
-    - 31
-    - 70
-    - 71
-    - 26
-    priority_instruments:
-    - '30641'
-    - '30611'
-    - '30650'
-    - '30200'
-    include_computed: true
-  constraints:
-    enforce_sfc: true
-    enforce_market_clearing: true
-    enforce_bilateral: true
-    enforce_hierarchical: true
-    enforce_formulas: true
+  enforce_sfc: true
+  enforce_aggregation: true
+  enforce_market_clearing: true
+  enforce_bilateral: false  # Set to true when FWTW data available
+  
+  # Critical: leaf-only flow attachment
+  flow_attachment: "leaf_only"  # leaf_only | any
+  
+  # FWTW integration
+  use_fwtw: false  # Enable when FWTW data available
+  bilateral_coverage_threshold: 0.7  # Min coverage to enforce bilateral constraints
+  
+  tolerance: 1.0e-10
+  max_iterations: 100
+  use_sparse: true
+  
+  # Constraint method
+  constraint_method: "soft"  # hard | soft | adaptive
+
+# Constraint configuration
+constraints:
+  # Constraint weights (for soft constraints)
+  weights:
+    stock_flow: 1.0        # Hard constraint (essential)
+    aggregation: 1.0       # Hard constraint (from formulas)
+    market_clearing: 0.9   # Nearly hard
+    bilateral: 0.5         # Soft (FWTW may be incomplete)
+    godley: 0.3           # Soft (includes discrepancy)
+    seasonal: 0.1         # Very soft (FA/FU relationship)
+    revaluation: 0.2      # Soft (when price data available)
+    bilateral_flows: 0.7  # Weight for derived flow constraints
+    
+  # Tolerances for each constraint type
+  tolerances:
+    stock_flow: 1.0e-10
+    aggregation: 1.0e-10
+    market_clearing: 1.0e-6
+    bilateral: 1.0e-4
+    godley: 1.0e-3
+    seasonal: 1.0e-2
+    
+  # Validation settings
+  validation:
+    enforce_leaf_only: true          # Strict enforcement of leaf-only flows
+    check_series_format: true        # Validate series name format
+    validate_bilateral_symmetry: true # Check FB position symmetry
+    validate_market_clearing: true    # Check market clearing before/after
+    tolerance: 1.0e-8
+    report_violations: true
+    max_violations_shown: 20
+  
+  use_bilateral_flows: false  # Set to true when deriving flows
+
+# Discrepancy modeling
+discrepancy:
+  include: false  # Set to true to model sector discrepancies
+  
+  # Which sectors to model discrepancies for
+  sectors: ['15', '10', '31', '70']  # HH, NFC, Govt, Banks
+  
+  # Model parameters
+  persistence: 0.8      # AR(1) coefficient for discrepancy dynamics
+  variance_ratio: 0.1   # Relative to other state variances
+  
+  # Granularity
+  by_sector: true              # One discrepancy per sector
+  by_instrument: false         # More granular (experimental)
+  instrument_buckets:          # If by_instrument is true
+    - deposits: ['30000', '30200']
+    - securities: ['31611', '31620', '31641']
+    - loans: ['40000', '41000']
+    - other: []
+  
+  # Constraint handling
+  enforce_godley: false  # Don't force exact identity
+  godley_weight: 0.5    # Soft constraint weight if enabled
+
+# Kalman filter parameters
+kalman:
+  max_lag: 2
+  
+  # Variance parameters
+  variance:
+    measurement: 1.0
+    state_level: 0.05
+    state_trend: 0.01
+    discrepancy: 0.1  # For discrepancy states
+    
+  # Initial state handling
+  initialization:
+    method: "diffuse"  # diffuse | stationary | custom
+    variance_scale: 1000.0
+    
+  # Numerical stability
   numerical:
-    use_sparse: true
-    tolerance: 1.0e-10
-    max_iterations: 100
-    convergence_criterion: relative
-  kalman:
-    error_variance_ratio: 0.01
-    revaluation_variance_ratio: 0.1
-    bilateral_variance_ratio: 0.05
-    normalize_data: true
-    transformation: square
-  output:
-    save_matrices: true
-    save_filtered: true
-    save_diagnostics: true
-    output_format: parquet
+    condition_threshold: 1.0e12
+    regularization: 1.0e-8
+    use_square_root: false
+
+# Godley flow derivation settings
+godley:
+  derive_flows: false  # Set to true to derive bilateral flows
+  
+  # Flow derivation parameters
+  flow_derivation:
+    confidence_threshold: 0.8
+    use_optimization: true
+    enforce_aggregates: true
+    
+  # Instrument classification for revaluation
+  instrument_types:
+    low_revaluation:  # No price changes
+      - '30000'  # Checkable deposits
+      - '30200'  # Time deposits
+      - '40000'  # Loans
+      - '30120'  # Currency
+      
+    high_revaluation:  # Significant price changes
+      - '31630'  # Corporate equities
+      - '31641'  # Corporate bonds
+      - '31611'  # Treasury securities
+      - '31642'  # Mutual fund shares
+  
+  # Validation thresholds
+  validation:
+    aggregate_tolerance: 0.1  # 10% tolerance for flow validation
+    market_clearing_tolerance: 1.0e-6
+    
+  # Visualization
+  visualization:
+    flow_threshold: 100  # Minimum flow to show in network
+    create_network_plots: true
+    create_html_report: true
+
+# Sectors configuration (inline for simplicity)
+sectors:
+  "15": 
+    name: "Households and NPISH"
+    can_issue: []
+  "10": 
+    name: "Nonfinancial Corporate"
+    can_issue: ['31641', '31630']  # Corp bonds, equities
+  "31": 
+    name: "Federal Government"
+    can_issue: ['31611']  # Treasuries
+  "21": 
+    name: "State and Local Govts"
+    can_issue: ['31620']  # Municipal securities
+  "70": 
+    name: "Commercial Banks"
+    can_issue: ['30000', '30200']  # Deposits
+  "71": 
+    name: "Federal Reserve"
+    can_issue: ['30130', '30120']  # Reserves, currency
+  "26": 
+    name: "Rest of the World"
+    can_issue: []
+
+# Instruments configuration (subset)
+instruments:
+  "30130": 
+    name: "Reserves"
+    issuers: ['71']
+  "30120": 
+    name: "Currency"
+    issuers: ['71']
+  "30000": 
+    name: "Checkable deposits"
+    issuers: ['70']
+  "30200": 
+    name: "Time deposits"
+    issuers: ['70']
+  "40000": 
+    name: "Loans n.e.c."
+    issuers: ['70', '65']
+  "31611": 
+    name: "Treasury securities"
+    issuers: ['31']
+  "31620": 
+    name: "Municipal securities"
+    issuers: ['21']
+  "31641": 
+    name: "Corporate bonds"
+    issuers: ['10']
+  "31630": 
+    name: "Corporate equities"
+    issuers: ['10']
+
+# Output configuration
+output:
+  root: "output/z1_sfc"
+  
+  # What to save
+  save_graphml: true
+  save_constraints_report: true
+  save_filtered_states: true
+  save_smoothed_states: true
+  save_discrepancies: true
+  save_diagnostics: true
+  save_godley_matrix: true
+  
+  # Diagnostics and reporting
+  generate_diagnostics: true
+  diagnostic_frequency: 10  # Report every N periods
+  
+  # Visualization
+  create_plots: true
+  plot_formats: ['png', 'pdf']
+  plot_series: ['FL154090005', 'FL104090005']  # Example series to plot
+  
+  # File formats
+  state_format: 'parquet'  # parquet | csv | hdf5
+  compress_output: true
+
+# Run mode overrides (can be set via command line)
+run_modes:
+  test:
+    kalman:
+      max_lag: 1
+    constraints:
+      weights:
+        bilateral: 0.0  # Disable for testing
+    output:
+      create_plots: false
+      
+  development:
+    sfc:
+      use_fwtw: false
+    discrepancy:
+      include: false
+    output:
+      save_diagnostics: true
+      diagnostic_frequency: 1
+      
+  production:
+    sfc:
+      use_fwtw: true
+      enforce_bilateral: true
+    discrepancy:
+      include: true
+    constraints:
+      weights:
+        bilateral: 0.8
+    output:
+      compress_output: true
+      
+  full:
+    sfc:
+      use_fwtw: true
+      enforce_bilateral: true
+    discrepancy:
+      include: true
+      by_instrument: true
+    constraints:
+      validation:
+        enforce_leaf_only: true
+        validate_bilateral_symmetry: true
+    output:
+      save_graphml: true
+      save_godley_matrix: true
+      create_plots: true
+
+# Logging configuration
+logging:
+  level: INFO  # DEBUG | INFO | WARNING | ERROR
+  file: "logs/sfc_model.log"
+  console: true
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+# Performance settings
+performance:
+  parallel:
+    enabled: false
+    n_workers: 4
+    backend: 'threading'  # threading | multiprocessing
+    
+  memory:
+    max_series: null  # Limit for testing (null = no limit)
+    chunk_size: 1000  # Process in chunks
+    
+  cache:
+    enabled: true
+    ttl: 3600  # Cache TTL in seconds

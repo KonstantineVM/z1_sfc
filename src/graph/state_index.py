@@ -6,7 +6,7 @@ Maps series names and lags to state vector indices.
 Critical for building constraint matrices that align with Kalman filter states.
 """
 
-from typing import Dict, List, Tuple, Optional, Set, Iterable
+from typing import Dict, List, Tuple, Optional, Set
 import numpy as np
 import logging
 
@@ -42,7 +42,8 @@ class StateIndex:
         self.index: Dict[Tuple[str, int], int] = {}
         self.reverse_index: Dict[int, Tuple[str, int]] = {}
         
-        self._allowed_flow_bases: Optional[Set[str]] = None
+        # Leaf-only flow policy support
+        self.allowed_flow_bases: Set[str] = set()
         
         # Build the index
         self._build_index()
@@ -54,63 +55,6 @@ class StateIndex:
         logger.info(f"StateIndex created: {self.n_series} series, "
                    f"max_lag={max_lag}, state_size={self.size}")
     
-    def set_allowed_flow_bases(self, bases: Iterable[str]) -> None:
-        """
-        bases: iterable of strings like '1530641005.Q' (sector+instrument+suffix)
-        indicating which FL bases are true sources (leaves).
-        """
-        self._allowed_flow_bases = set(bases)
-        
-    def _is_flow(self, code: str) -> bool:
-        """Return True if code starts with FU/FR/FV."""
-        return len(code) >= 2 and code[:2] in {"FU", "FR", "FV"}
-
-    def apply_allowed_flow_bases(self, strict: bool = True) -> None:
-        """
-        Enforce that FU/FR/FV appear only when their base FL is a true source (leaf).
-        If strict=True, raise on violations. If strict=False, drop offending flows.
-
-        Call this AFTER set_allowed_flow_bases(...) and BEFORE using the index.
-        It will rebuild the index if it removed anything.
-        """
-        if self._allowed_flow_bases is None:
-            # Nothing to enforce
-            return
-
-        def _flow_base(code: str) -> str:
-            # FU1530641005.Q -> '1530641005.Q'
-            return code[2:] if self._is_flow(code) else ""
-
-        offenders = []
-        for name in self.series_names:
-            if self._is_flow(name) and _flow_base(name) not in self._allowed_flow_bases:
-                offenders.append(name)
-
-        if not offenders:
-            return
-
-        if strict:
-            raise ValueError(
-                "Refusing to index flows attached to non‑source FL:\n"
-                + "\n".join(offenders[:20]) + ("\n..." if len(offenders) > 20 else "")
-            )
-
-        # Soft mode: drop offending flows, then rebuild the mapping
-        keep = []
-        for name in self.series_names:
-            if self._is_flow(name) and _flow_base(name) not in self._allowed_flow_bases:
-                continue
-            keep.append(name)
-
-        # Rebuild internal structures
-        self.series_names = keep
-        self.index.clear()
-        self.reverse_index.clear()
-        self._build_index()
-        self.n_series = len(self.series_names)
-        self.size = len(self.index)
-        
-
     def _build_index(self) -> None:
         """Build the index mapping."""
         idx = 0
@@ -129,6 +73,48 @@ class StateIndex:
                 self.index[key] = idx
                 self.reverse_index[idx] = key
                 idx += 1
+    
+    def set_allowed_flow_bases(self, base_series: List[str]) -> None:
+        """
+        Set whitelist of FL series that can have FU/FR/FV attached.
+        
+        This is critical for the Z1_SFC correctness: only base series
+        (digit 9 = 0 or 3) should have flow constraints attached.
+        Computed/aggregated series (digit 9 = 5) get their consistency
+        through aggregation formulas, not direct flow attachment.
+        
+        Parameters:
+        -----------
+        base_series : List[str]
+            List of base FL series codes that should have flows
+        """
+        self.allowed_flow_bases = set(base_series)
+        logger.info(f"Set {len(self.allowed_flow_bases)} allowed flow bases")
+        
+        # Log some examples for verification
+        if self.allowed_flow_bases:
+            examples = list(self.allowed_flow_bases)[:5]
+            logger.debug(f"Example allowed flow bases: {examples}")
+    
+    def is_flow_allowed(self, fl_series: str) -> bool:
+        """
+        Check if a FL series is allowed to have FU/FR/FV flows attached.
+        
+        Parameters:
+        -----------
+        fl_series : str
+            FL series code
+            
+        Returns:
+        --------
+        bool
+            True if flows can be attached (base series), False otherwise
+        """
+        if not self.allowed_flow_bases:
+            # If no whitelist set, allow all (backward compatibility)
+            logger.warning("No flow base whitelist set - allowing all series")
+            return True
+        return fl_series in self.allowed_flow_bases
     
     def get(self, name: str, lag: int = 0) -> int:
         """
@@ -236,7 +222,7 @@ class StateIndex:
         Parameters:
         -----------
         series_name : str
-            Series name
+            Name of the series
         
         Returns:
         --------
@@ -244,94 +230,43 @@ class StateIndex:
             Mapping of lag to state index
         """
         indices = {}
-        
-        # Current
-        if self.has(series_name, 0):
-            indices[0] = self.get(series_name, 0)
-        
-        # Lags
-        for lag in range(1, self.max_lag + 1):
-            if self.has(series_name, -lag):
-                indices[-lag] = self.get(series_name, -lag)
-        
+        for lag in range(0, -(self.max_lag + 1), -1):
+            if self.has(series_name, lag):
+                indices[lag] = self.get(series_name, lag)
         return indices
-    
-    def build_selection_vector(self, selections: List[Tuple[str, int]],
-                              value: float = 1.0) -> np.ndarray:
-        """
-        Build a selection vector for specific series/lag combinations.
-        
-        Parameters:
-        -----------
-        selections : List[Tuple[str, int]]
-            List of (series_name, lag) pairs to select
-        value : float
-            Value to place at selected indices
-        
-        Returns:
-        --------
-        np.ndarray
-            Selection vector of size self.size
-        """
-        vector = np.zeros(self.size)
-        
-        for name, lag in selections:
-            idx = self.get_safe(name, lag)
-            if idx is not None:
-                vector[idx] = value
-        
-        return vector
-    
-    def build_constraint_row(self, 
-                            coefficients: Dict[Tuple[str, int], float]) -> np.ndarray:
-        """
-        Build a constraint matrix row from coefficients.
-        
-        Parameters:
-        -----------
-        coefficients : Dict[Tuple[str, int], float]
-            Mapping of (series_name, lag) to coefficient
-        
-        Returns:
-        --------
-        np.ndarray
-            Constraint row of size self.size
-        """
-        row = np.zeros(self.size)
-        
-        for (name, lag), coef in coefficients.items():
-            idx = self.get_safe(name, lag)
-            if idx is not None:
-                row[idx] = coef
-        
-        return row
     
     def get_series_block(self, lag: int = 0) -> Tuple[int, int]:
         """
-        Get the start and end indices for a lag block.
+        Get start and end indices for all series at a specific lag.
+        
+        This is useful for block operations on the state vector.
         
         Parameters:
         -----------
         lag : int
-            Lag value (0, -1, -2, etc.)
+            Lag value (0 for current, negative for lags)
         
         Returns:
         --------
         Tuple[int, int]
             (start_index, end_index) for the block
         """
+        if lag > 0:
+            raise ValueError("Lag should be 0 or negative")
+        
         if lag == 0:
-            return (0, self.n_series)
-        elif abs(lag) <= self.max_lag:
-            block_start = self.n_series * abs(lag)
-            block_end = self.n_series * (abs(lag) + 1)
-            return (block_start, block_end)
+            return 0, self.n_series
         else:
-            raise ValueError(f"Lag {lag} exceeds max_lag {self.max_lag}")
+            abs_lag = abs(lag)
+            if abs_lag > self.max_lag:
+                raise ValueError(f"Lag {lag} exceeds max_lag {self.max_lag}")
+            start = self.n_series * abs_lag
+            end = self.n_series * (abs_lag + 1)
+            return start, end
     
-    def create_lag_transition_matrix(self) -> np.ndarray:
+    def build_lag_transition_matrix(self) -> np.ndarray:
         """
-        Create transition matrix for lag structure.
+        Build transition matrix for lagged values.
         
         This creates a matrix that shifts lagged values:
         x[t-1] becomes x[t-2], etc.
@@ -389,16 +324,45 @@ class StateIndex:
             'state_size': self.size,
             'current_block_size': self.n_series,
             'lag_blocks': self.max_lag,
-            'total_entries': len(self.index)
+            'total_entries': len(self.index),
+            'n_flow_allowed': len(self.allowed_flow_bases)
         }
     
     def __repr__(self) -> str:
         return (f"StateIndex(n_series={self.n_series}, "
-                f"max_lag={self.max_lag}, size={self.size})")
+                f"max_lag={self.max_lag}, size={self.size}, "
+                f"flow_allowed={len(self.allowed_flow_bases)})")
     
     def __len__(self) -> int:
         return self.size
 
+    def apply_allowed_flow_bases(self, strict: bool = False):
+        """
+        Apply the allowed flow bases policy.
+        
+        Parameters:
+        -----------
+        strict : bool
+            If True, raise error if non-base series would have flows
+        """
+        if not self.allowed_flow_bases:
+            logger.warning("No allowed flow bases set - all flows will be allowed")
+            return
+        
+        if strict:
+            # Check that only allowed bases are used for flows
+            for series in self.series_names:
+                if series.startswith('FL') and series not in self.allowed_flow_bases:
+                    # This is a computed FL - ensure no flows are attached
+                    for flow_prefix in ['FU', 'FR', 'FV']:
+                        flow_series = series.replace('FL', flow_prefix)
+                        if flow_series in self.series_names:
+                            raise ValueError(
+                                f"Computed series {series} has flow {flow_series} - "
+                                f"only base series should have flows"
+                            )
+        
+        logger.info(f"Applied flow bases policy: {len(self.allowed_flow_bases)} bases allowed")
 
 class HierarchicalStateIndex(StateIndex):
     """
@@ -484,3 +448,222 @@ class HierarchicalStateIndex(StateIndex):
             except KeyError:
                 pass
         return indices
+    
+    def build_component_selection_matrix(self, component: str) -> np.ndarray:
+        """
+        Build selection matrix for a specific component.
+        
+        Parameters:
+        -----------
+        component : str
+            Component name
+        
+        Returns:
+        --------
+        np.ndarray
+            Selection matrix
+        """
+        if component not in self.components:
+            raise ValueError(f"Component {component} not in {self.components}")
+        
+        comp_idx = self.components.index(component)
+        n_original = len(self.original_series)
+        
+        # Selection matrix to extract component
+        S = np.zeros((n_original, self.n_series))
+        for i, series in enumerate(self.original_series):
+            # Map to expanded index
+            expanded_idx = i * self.n_components + comp_idx
+            S[i, expanded_idx] = 1.0
+        
+        return S
+    
+    def build_component_transition_matrix(self) -> np.ndarray:
+        """
+        Build transition matrix for component model.
+        
+        Handles level-trend decomposition:
+        - Level[t] = Level[t-1] + Trend[t-1]
+        - Trend[t] = Trend[t-1]
+        
+        Returns:
+        --------
+        np.ndarray
+            Transition matrix
+        """
+        T = np.zeros((self.size, self.size))
+        
+        # Current period dynamics
+        for i, series in enumerate(self.original_series):
+            if 'level' in self.components and 'trend' in self.components:
+                level_idx = self.get_component(series, 'level', 0)
+                trend_idx = self.get_component(series, 'trend', 0)
+                
+                # Level[t] = Level[t-1] + Trend[t-1]
+                if self.max_lag >= 1:
+                    level_lag_idx = self.get_component(series, 'level', -1)
+                    trend_lag_idx = self.get_component(series, 'trend', -1)
+                    T[level_idx, level_lag_idx] = 1.0
+                    T[level_idx, trend_lag_idx] = 1.0
+                
+                # Trend[t] = Trend[t-1]
+                if self.max_lag >= 1:
+                    trend_lag_idx = self.get_component(series, 'trend', -1)
+                    T[trend_idx, trend_lag_idx] = 1.0
+        
+        # Lag shifting (similar to parent class)
+        if self.max_lag > 1:
+            for lag in range(1, self.max_lag):
+                source_start, source_end = self.get_series_block(-lag)
+                target_start, target_end = self.get_series_block(-(lag + 1))
+                T[target_start:target_end, source_start:source_end] = np.eye(
+                    source_end - source_start
+                )
+        
+        return T
+    
+    def get_component_statistics(self) -> Dict[str, Any]:
+        """Get statistics about component structure."""
+        stats = self.get_statistics()
+        stats.update({
+            'n_original_series': len(self.original_series),
+            'n_components': self.n_components,
+            'components': self.components,
+            'expanded_series': self.n_series // (self.max_lag + 1)
+        })
+        return stats
+
+
+class AugmentedStateIndex(StateIndex):
+    """
+    State index with additional augmentation for auxiliary variables.
+    
+    This supports adding auxiliary state variables like:
+    - Latent factors
+    - Unobserved components
+    - Auxiliary AR processes
+    """
+    
+    def __init__(self, series_names: List[str], 
+                 max_lag: int = 2,
+                 n_factors: int = 0,
+                 n_auxiliary: int = 0):
+        """
+        Initialize augmented state index.
+        
+        Parameters:
+        -----------
+        series_names : List[str]
+            Observable series names
+        max_lag : int
+            Maximum lag for observables
+        n_factors : int
+            Number of latent factors
+        n_auxiliary : int
+            Number of auxiliary state variables
+        """
+        # Store augmentation dimensions
+        self.n_factors = n_factors
+        self.n_auxiliary = n_auxiliary
+        
+        # Create names for augmented variables
+        augmented_names = list(series_names)
+        
+        # Add factor names
+        for i in range(n_factors):
+            augmented_names.append(f"__factor_{i}")
+        
+        # Add auxiliary names
+        for i in range(n_auxiliary):
+            augmented_names.append(f"__aux_{i}")
+        
+        # Initialize with augmented series list
+        super().__init__(augmented_names, max_lag)
+        
+        # Store original series info
+        self.n_observable = len(series_names)
+        self.observable_names = series_names
+        
+    def get_factor_indices(self, lag: int = 0) -> List[int]:
+        """
+        Get indices for factor variables.
+        
+        Parameters:
+        -----------
+        lag : int
+            Lag value
+        
+        Returns:
+        --------
+        List[int]
+            Factor state indices
+        """
+        indices = []
+        for i in range(self.n_factors):
+            factor_name = f"__factor_{i}"
+            if self.has(factor_name, lag):
+                indices.append(self.get(factor_name, lag))
+        return indices
+    
+    def get_auxiliary_indices(self, lag: int = 0) -> List[int]:
+        """
+        Get indices for auxiliary variables.
+        
+        Parameters:
+        -----------
+        lag : int
+            Lag value
+        
+        Returns:
+        --------
+        List[int]
+            Auxiliary state indices
+        """
+        indices = []
+        for i in range(self.n_auxiliary):
+            aux_name = f"__aux_{i}"
+            if self.has(aux_name, lag):
+                indices.append(self.get(aux_name, lag))
+        return indices
+    
+    def build_factor_loading_matrix(self, loadings: np.ndarray) -> np.ndarray:
+        """
+        Build loading matrix for factors.
+        
+        Parameters:
+        -----------
+        loadings : np.ndarray
+            Factor loadings of shape (n_observable, n_factors)
+        
+        Returns:
+        --------
+        np.ndarray
+            Full loading matrix for state vector
+        """
+        if loadings.shape != (self.n_observable, self.n_factors):
+            raise ValueError(f"Loadings shape {loadings.shape} doesn't match "
+                           f"expected ({self.n_observable}, {self.n_factors})")
+        
+        # Full loading matrix
+        Lambda = np.zeros((self.n_observable, self.n_series))
+        
+        # Identity for observables
+        Lambda[:self.n_observable, :self.n_observable] = np.eye(self.n_observable)
+        
+        # Factor loadings
+        factor_start = self.n_observable
+        factor_end = factor_start + self.n_factors
+        Lambda[:, factor_start:factor_end] = loadings
+        
+        return Lambda
+    
+    def get_augmented_statistics(self) -> Dict[str, Any]:
+        """Get statistics about augmented structure."""
+        stats = self.get_statistics()
+        stats.update({
+            'n_observable': self.n_observable,
+            'n_factors': self.n_factors,
+            'n_auxiliary': self.n_auxiliary,
+            'total_augmented': self.n_factors + self.n_auxiliary
+        })
+        return stats

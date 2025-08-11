@@ -439,6 +439,44 @@ class SFCGraph:
                 'orphans': len(orphans)
             }
         }
+
+    def add_series_node(self, series_code: str, metadata: dict = None):
+        """Add a series node to the graph."""
+        node = SFCNode(
+            id=series_code,
+            node_type=NodeType.SERIES,
+            metadata=metadata or {}
+        )
+        self.add_node(node)
+
+    def get_series_node(self, series_code: str):
+        """Get the node ID for a series."""
+        return self._series_index.get(series_code, series_code)
+
+    def tag_source_vs_computed(self):
+        """Tag nodes as source or computed based on aggregation edges."""
+        for node_id in self.get_nodes_by_type(NodeType.SERIES):
+            node = self.get_node(node_id)
+            # If node has incoming AGGREGATES_TO edges, it's computed
+            has_incoming = any(
+                edge_data.get('edge_type') == 'AGGREGATES_TO'
+                for _, _, edge_data in self.G.in_edges(node_id, data=True)
+            )
+            node.metadata['is_source'] = not has_incoming
+            node.metadata['is_computed'] = has_incoming
+
+    def find_computed_with_flows(self) -> list:
+        """Find computed FL series that incorrectly have flow series."""
+        offenders = []
+        for node_id in self.get_nodes_by_type(NodeType.SERIES):
+            node = self.get_node(node_id)
+            if node.metadata.get('is_computed') and node.metadata.get('prefix') == 'FL':
+                # Check for flow edges
+                for _, _, edge_data in self.G.in_edges(node_id, data=True):
+                    if edge_data.get('edge_type') == EdgeType.STOCK_FLOW.value:
+                        offenders.append(node_id)
+                        break
+        return offenders
     
     def to_networkx(self) -> nx.MultiDiGraph:
         """Return the underlying NetworkX graph."""

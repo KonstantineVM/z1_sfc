@@ -22,12 +22,12 @@ logger = logging.getLogger(__name__)
 
 class ConstraintType(Enum):
     """Types of constraints in the SFC system."""
-    STOCK_FLOW = "stock_flow"              # FL[t] - FL[t-1] - FU - FR - FV = 0
-    AGGREGATION = "aggregation"            # Parent = Sum(Children)
-    MARKET_CLEARING = "market_clearing"    # Sum(Assets) = Sum(Liabilities)
-    BILATERAL = "bilateral"                # FWTW position consistency
-    FORMULA = "formula"                    # User-defined formulas
-    IDENTITY = "identity"                  # Accounting identities
+    STOCK_FLOW = "stock_flow"
+    AGGREGATION = "aggregation"
+    MARKET_CLEARING = "market_clearing"
+    BILATERAL = "bilateral"
+    FORMULA = "formula"
+    IDENTITY = "identity"
 
 
 @dataclass
@@ -50,42 +50,47 @@ class ConstraintExtractor:
     A and b such that Ax = b represents all SFC constraints.
     """
     
-    def __init__(self, graph: SFCGraph, state_index: StateIndex):
+    def __init__(self, graph: SFCGraph, state_index: StateIndex, 
+                 config: Optional[Dict] = None):
         """
         Initialize constraint extractor.
         
         Parameters:
         -----------
         graph : SFCGraph
-            The SFC graph containing all relationships
+            The SFC graph structure
         state_index : StateIndex
-            Mapping from series/lag to state vector indices
+            Mapping from series to state indices
+        config : Optional[Dict]
+            Configuration for constraint extraction
         """
         self.graph = graph
         self.state_index = state_index
-        self.constraint_metadata = []
+        self.config = config or {}
         
-        # Tolerance levels for different constraint types
-        self.tolerances = {
-            ConstraintType.STOCK_FLOW: 1e-10,
-            ConstraintType.AGGREGATION: 1e-8,
-            ConstraintType.MARKET_CLEARING: 1e-6,
-            ConstraintType.BILATERAL: 1e-4,
-            ConstraintType.FORMULA: 1e-8,
-            ConstraintType.IDENTITY: 1e-10
-        }
+        # Get constraint settings
+        self.enforce_sfc = self.config.get('enforce_sfc', True)
+        self.enforce_aggregation = self.config.get('enforce_aggregation', True)
+        self.enforce_market_clearing = self.config.get('enforce_market_clearing', True)
+        self.enforce_bilateral = self.config.get('enforce_bilateral', False)
         
-        # Weights for soft constraints
-        self.weights = {
-            ConstraintType.STOCK_FLOW: 1.0,       # Hard constraint
-            ConstraintType.AGGREGATION: 1.0,      # Hard constraint
-            ConstraintType.MARKET_CLEARING: 0.8,  # Slightly soft
-            ConstraintType.BILATERAL: 0.5,        # Soft initially
-            ConstraintType.FORMULA: 0.9,          # Mostly hard
-            ConstraintType.IDENTITY: 1.0          # Hard constraint
-        }
+        # Get weights
+        weights = self.config.get('constraints', {}).get('weights', {})
+        self.weight_stock_flow = weights.get('stock_flow', 1.0)
+        self.weight_aggregation = weights.get('aggregation', 1.0)
+        self.weight_market_clearing = weights.get('market_clearing', 0.8)
+        self.weight_bilateral = weights.get('bilateral', 0.1)
+        
+        # Get tolerances
+        tolerances = self.config.get('constraints', {}).get('tolerances', {})
+        self.tol_stock_flow = tolerances.get('stock_flow', 1e-10)
+        self.tol_aggregation = tolerances.get('aggregation', 1e-10)
+        self.tol_market_clearing = tolerances.get('market_clearing', 1e-6)
+        self.tol_bilateral = tolerances.get('bilateral', 1e-4)
+        
+        logger.info(f"ConstraintExtractor initialized with {len(graph.G.nodes)} nodes")
     
-    def extract_at_time(self, t: int) -> Tuple[csr_matrix, np.ndarray, List[ConstraintMetadata]]:
+    def extract_at_time(self, t: int) -> Tuple[sparse.csr_matrix, np.ndarray, List[ConstraintMetadata]]:
         """
         Extract all constraints at time t.
         
@@ -93,47 +98,41 @@ class ConstraintExtractor:
         -----------
         t : int
             Time period
-        
+            
         Returns:
         --------
-        A : csr_matrix
-            Constraint matrix (n_constraints x state_size)
+        A : sparse.csr_matrix
+            Constraint matrix
         b : np.ndarray
-            Constraint values (n_constraints,)
+            Right-hand side vector
         metadata : List[ConstraintMetadata]
-            Metadata for each constraint row
+            Metadata for each constraint
         """
-        logger.info(f"Extracting constraints at t={t}")
-        
-        # Clear metadata
-        self.constraint_metadata = []
-        
-        # Extract each type of constraint
         constraints = []
         
         # Stock-flow constraints
-        A_sf, b_sf, meta_sf = self._extract_stock_flow_constraints(t)
-        if A_sf is not None:
-            constraints.append((A_sf, b_sf, meta_sf))
-            logger.info(f"  Stock-flow: {A_sf.shape[0]} constraints")
+        if self.enforce_sfc:
+            A_sf, b_sf, meta_sf = self.extract_stock_flow(t)
+            if A_sf.shape[0] > 0:
+                constraints.append((A_sf, b_sf, meta_sf))
         
         # Aggregation constraints
-        A_agg, b_agg, meta_agg = self._extract_aggregation_constraints(t)
-        if A_agg is not None:
-            constraints.append((A_agg, b_agg, meta_agg))
-            logger.info(f"  Aggregation: {A_agg.shape[0]} constraints")
+        if self.enforce_aggregation:
+            A_agg, b_agg, meta_agg = self.extract_aggregation(t)
+            if A_agg.shape[0] > 0:
+                constraints.append((A_agg, b_agg, meta_agg))
         
         # Market clearing constraints
-        A_mc, b_mc, meta_mc = self._extract_market_clearing_constraints(t)
-        if A_mc is not None:
-            constraints.append((A_mc, b_mc, meta_mc))
-            logger.info(f"  Market clearing: {A_mc.shape[0]} constraints")
+        if self.enforce_market_clearing:
+            A_mc, b_mc, meta_mc = self.extract_market_clearing(t)
+            if A_mc.shape[0] > 0:
+                constraints.append((A_mc, b_mc, meta_mc))
         
         # Bilateral constraints
-        A_bil, b_bil, meta_bil = self._extract_bilateral_constraints(t)
-        if A_bil is not None:
-            constraints.append((A_bil, b_bil, meta_bil))
-            logger.info(f"  Bilateral: {A_bil.shape[0]} constraints")
+        if self.enforce_bilateral:
+            A_bi, b_bi, meta_bi = self.extract_bilateral(t)
+            if A_bi.shape[0] > 0:
+                constraints.append((A_bi, b_bi, meta_bi))
         
         # Combine all constraints
         if constraints:
@@ -145,360 +144,326 @@ class ConstraintExtractor:
                 metadata.extend(meta_group)
         else:
             # No constraints
-            A = csr_matrix((0, self.state_index.size))
+            A = sparse.csr_matrix((0, self.state_index.size))
             b = np.array([])
             metadata = []
         
-        logger.info(f"Total constraints: {A.shape[0]} x {A.shape[1]}")
-        logger.info(f"Sparsity: {A.nnz / (A.shape[0] * A.shape[1]) if A.shape[0] > 0 else 0:.2%}")
-        
+        logger.debug(f"Extracted {A.shape[0]} constraints at t={t}")
         return A, b, metadata
     
-    def _extract_stock_flow_constraints(self, t: int):
-        data = []; rows = []; cols = []; metadata = []
-
-        # Leaf-only: graph.find_stock_flow_pairs() already filters to is_source=True.
-        for pair in self.graph.find_stock_flow_pairs():
-            fl = pair.get("FL")
-            if not fl:
-                continue
-
-            # indices for FL_t and FL_{t-1}
-            i_fl_t   = self.state_index.get(fl, 0)
-            i_fl_tm1 = self.state_index.get(fl, -1)
-            if i_fl_t is None or i_fl_tm1 is None:
-                continue
-
-            r = len(metadata)
-            # +1 * FL_t
-            rows.append(r); cols.append(i_fl_t);   data.append(1.0)
-            # -1 * FL_{t-1}
-            rows.append(r); cols.append(i_fl_tm1); data.append(-1.0)
-
-            # -1 * FU/FR/FV (if present)
-            for key in ("FU","FR","FV"):
-                s = pair.get(key)
-                if s is None:
-                    continue
-                idx = self.state_index.get(s, 0)
-                if idx is None:
-                    continue
-                rows.append(r); cols.append(idx); data.append(-1.0)
-
-            metadata.append(ConstraintMetadata(
-                type=ConstraintType.STOCK_FLOW,
-                description=f"Δ{fl} = FU+FR+FV",
-                time=t,
-            ))
-
-        n_rows = len(metadata)  # <<< correct row count
-        A = coo_matrix((data, (rows, cols)), shape=(n_rows, self.state_index.size)).tocsr()
-        b = np.zeros(A.shape[0])
-        return A, b, metadata
-
-    
-    def _extract_aggregation_constraints(self, t: int) -> Tuple[Optional[csr_matrix],
-                                                                Optional[np.ndarray],
-                                                                List[ConstraintMetadata]]:
+    def extract_stock_flow(self, t: int) -> Tuple[sparse.csr_matrix, np.ndarray, List[ConstraintMetadata]]:
         """
-        Extract aggregation constraints: Parent = Sum(Children)
-        """
-        aggregations = self.graph.find_aggregation_relationships()
-        if not aggregations:
-            return None, None, []
+        Extract stock-flow constraints.
+        FL[t] - FL[t-1] - FU[t] - FR[t] - FV[t] = 0
         
-        rows, cols, data = [], [], []
-        rhs = []
+        Only for base series (leaf nodes), not computed/aggregated series.
+        """
+        rows = []
+        cols = []
+        data = []
         metadata = []
-        row_idx = len(self.constraint_metadata)
+        row_idx = 0
         
-        for agg in aggregations:
-            parent_node = agg['parent_node']
-            if parent_node.node_type != NodeType.SERIES:
+        # Find all FL series nodes
+        fl_nodes = [
+            (node_id, attrs) for node_id, attrs in self.graph.G.nodes(data=True)
+            if attrs.get('node_type') == NodeType.SERIES.value
+            and (attrs.get('code', node_id).startswith('FL') or 
+                 attrs.get('prefix') == 'FL')
+        ]
+        
+        for node_id, attrs in fl_nodes:
+            series_code = attrs.get('code', node_id)
+            
+            # Check if this is a leaf FL that can have flows
+            if not self.state_index.is_flow_allowed(series_code):
+                logger.debug(f"Skipping flows for computed series {series_code}")
                 continue
             
-            parent_code = parent_node.metadata.get('code')
-            if not parent_code or not self.state_index.has(parent_code, 0):
+            # FL[t] coefficient
+            try:
+                idx = self.state_index.get(series_code, 0)
+                cols.append(idx)
+                data.append(1.0)
+                rows.append(row_idx)
+            except KeyError:
+                logger.warning(f"Series {series_code} not in state index")
                 continue
             
-            # Parent coefficient
-            parent_idx = self.state_index.get(parent_code, 0)
-            rows.append(row_idx)
-            cols.append(parent_idx)
-            data.append(1.0)
+            # FL[t-1] coefficient (if t > 0)
+            if t > 0 and self.state_index.has(series_code, -1):
+                idx = self.state_index.get(series_code, -1)
+                cols.append(idx)
+                data.append(-1.0)
+                rows.append(row_idx)
             
-            # Children coefficients
-            children_codes = []
-            for child_node in agg['child_nodes']:
-                if child_node.node_type == NodeType.SERIES:
-                    child_code = child_node.metadata.get('code')
-                    if child_code and self.state_index.has(child_code, 0):
-                        child_idx = self.state_index.get(child_code, 0)
+            # Find flow components (FU, FR, FV)
+            series_involved = [series_code]
+            
+            # Look for incoming stock-flow edges
+            for src, dst, edge_data in self.graph.G.in_edges(node_id, data=True):
+                if edge_data.get('edge_type') == EdgeType.STOCK_FLOW.value:
+                    src_attrs = self.graph.G.nodes[src]
+                    src_code = src_attrs.get('code', src)
+                    
+                    # Add flow with negative coefficient
+                    if self.state_index.has(src_code, 0):
+                        idx = self.state_index.get(src_code, 0)
+                        weight = float(edge_data.get('weight', 1.0))
+                        cols.append(idx)
+                        data.append(-weight)
                         rows.append(row_idx)
-                        cols.append(child_idx)
-                        data.append(-1.0)
-                        children_codes.append(child_code)
+                        series_involved.append(src_code)
             
-            if children_codes:
-                rhs.append(0.0)
-                
-                # Add metadata
-                meta = ConstraintMetadata(
-                    row_index=row_idx,
-                    constraint_type=ConstraintType.AGGREGATION,
-                    description=f"Aggregation: {parent_code} = Sum({len(children_codes)} children)",
-                    series_involved=[parent_code] + children_codes,
-                    tolerance=self.tolerances[ConstraintType.AGGREGATION],
-                    weight=self.weights[ConstraintType.AGGREGATION],
-                    metadata={'parent': parent_code, 'children': children_codes, 'time': t}
-                )
-                metadata.append(meta)
-                self.constraint_metadata.append(meta)
-                row_idx += 1
-        
-        if not rows:
-            return None, None, []
-        
-        A = coo_matrix((data, (rows, cols)),
-                      shape=(len(metadata), self.state_index.size)).tocsr()
-        b = np.array(rhs)
-        
-        return A, b, metadata
-    
-    def _extract_market_clearing_constraints(self, t: int) -> Tuple[Optional[csr_matrix],
-                                                                   Optional[np.ndarray],
-                                                                   List[ConstraintMetadata]]:
-        """
-        Extract market clearing constraints: Sum(Assets) = Sum(Liabilities) per instrument
-        """
-        # Group series by instrument
-        instrument_groups = {}
-        
-        for node_id in self.graph.get_nodes_by_type(NodeType.SERIES):
-            node = self.graph.get_node(node_id)
-            instrument = node.metadata.get('instrument')
-            prefix = node.metadata.get('prefix')
-            code = node.metadata.get('code')
-            
-            if instrument and prefix == 'FL' and code:
-                if instrument not in instrument_groups:
-                    instrument_groups[instrument] = {'assets': [], 'liabilities': []}
-                
-                # Determine if asset or liability based on instrument code
-                inst_code = int(instrument)
-                if inst_code < 31000:  # Asset codes
-                    instrument_groups[instrument]['assets'].append(code)
-                else:  # Liability codes
-                    instrument_groups[instrument]['liabilities'].append(code)
-        
-        if not instrument_groups:
-            return None, None, []
-        
-        rows, cols, data = [], [], []
-        rhs = []
-        metadata = []
-        row_idx = len(self.constraint_metadata)
-        
-        for instrument, groups in instrument_groups.items():
-            if not groups['assets'] or not groups['liabilities']:
-                continue
-            
-            # Assets (positive coefficients)
-            for asset_code in groups['assets']:
-                if self.state_index.has(asset_code, 0):
-                    idx = self.state_index.get(asset_code, 0)
-                    rows.append(row_idx)
-                    cols.append(idx)
-                    data.append(1.0)
-            
-            # Liabilities (negative coefficients)
-            for liability_code in groups['liabilities']:
-                if self.state_index.has(liability_code, 0):
-                    idx = self.state_index.get(liability_code, 0)
-                    rows.append(row_idx)
-                    cols.append(idx)
-                    data.append(-1.0)
-            
-            rhs.append(0.0)
-            
-            # Add metadata
+            # Create metadata
             meta = ConstraintMetadata(
                 row_index=row_idx,
-                constraint_type=ConstraintType.MARKET_CLEARING,
-                description=f"Market clearing: Instrument {instrument}",
-                series_involved=groups['assets'] + groups['liabilities'],
-                tolerance=self.tolerances[ConstraintType.MARKET_CLEARING],
-                weight=self.weights[ConstraintType.MARKET_CLEARING],
-                metadata={'instrument': instrument, 'time': t}
+                constraint_type=ConstraintType.STOCK_FLOW,
+                description=f"Stock-flow for {series_code} at t={t}",
+                series_involved=series_involved,
+                tolerance=self.tol_stock_flow,
+                weight=self.weight_stock_flow,
+                metadata={'time': t, 'series': series_code}
             )
             metadata.append(meta)
-            self.constraint_metadata.append(meta)
             row_idx += 1
         
-        if not rows:
-            return None, None, []
+        # Build sparse matrix
+        if rows:
+            A = coo_matrix((data, (rows, cols)), 
+                          shape=(row_idx, self.state_index.size)).tocsr()
+            b = np.zeros(row_idx)
+        else:
+            A = sparse.csr_matrix((0, self.state_index.size))
+            b = np.array([])
         
-        A = coo_matrix((data, (rows, cols)),
-                      shape=(len(metadata), self.state_index.size)).tocsr()
-        b = np.array(rhs)
-        
+        logger.debug(f"Extracted {row_idx} stock-flow constraints")
         return A, b, metadata
     
-    def _extract_bilateral_constraints(self, t: int) -> Tuple[Optional[csr_matrix],
-                                                             Optional[np.ndarray],
-                                                             List[ConstraintMetadata]]:
+    def extract_aggregation(self, t: int) -> Tuple[sparse.csr_matrix, np.ndarray, List[ConstraintMetadata]]:
         """
-        Extract bilateral constraints from FWTW positions
+        Extract aggregation constraints from formulas.
+        Parent = Sum(Children * weights)
         """
-        bilateral_constraints = self.graph.find_bilateral_constraints()
-        if not bilateral_constraints:
-            return None, None, []
-        
-        rows, cols, data = [], [], []
-        rhs = []
+        rows = []
+        cols = []
+        data = []
         metadata = []
-        row_idx = len(self.constraint_metadata)
+        row_idx = 0
         
-        for constraint in bilateral_constraints:
-            # For each bilateral position, asset series should match liability series
-            asset_series = constraint.get('asset_series', [])
-            liability_series = constraint.get('liability_series', [])
-            
-            if not asset_series or not liability_series:
+        # Find aggregation edges
+        for src, dst, edge_data in self.graph.G.edges(data=True):
+            if edge_data.get('edge_type') != EdgeType.AGGREGATES_TO.value:
                 continue
             
-            # Create constraint: Sum(assets) - Sum(liabilities) = 0
-            has_terms = False
+            # Get destination (parent) series
+            dst_attrs = self.graph.G.nodes[dst]
+            parent_code = dst_attrs.get('code', dst)
             
-            for asset_code in asset_series:
-                if self.state_index.has(asset_code, 0):
-                    idx = self.state_index.get(asset_code, 0)
-                    rows.append(row_idx)
+            if not self.state_index.has(parent_code, 0):
+                continue
+            
+            # Collect all components for this parent
+            components = []
+            for s, d, ed in self.graph.G.in_edges(dst, data=True):
+                if ed.get('edge_type') == EdgeType.AGGREGATES_TO.value:
+                    src_attrs = self.graph.G.nodes[s]
+                    comp_code = src_attrs.get('code', s)
+                    weight = float(ed.get('weight', 1.0))
+                    components.append((comp_code, weight))
+            
+            if not components:
+                continue
+            
+            # Build constraint: parent - sum(components) = 0
+            series_involved = [parent_code]
+            
+            # Parent coefficient
+            idx = self.state_index.get(parent_code, 0)
+            cols.append(idx)
+            data.append(1.0)
+            rows.append(row_idx)
+            
+            # Component coefficients
+            for comp_code, weight in components:
+                if self.state_index.has(comp_code, 0):
+                    idx = self.state_index.get(comp_code, 0)
                     cols.append(idx)
-                    data.append(1.0)
-                    has_terms = True
-            
-            for liability_code in liability_series:
-                if self.state_index.has(liability_code, 0):
-                    idx = self.state_index.get(liability_code, 0)
+                    data.append(-weight)
                     rows.append(row_idx)
-                    cols.append(idx)
-                    data.append(1.0)  # Note: positive because liability series already negative
-                    has_terms = True
+                    series_involved.append(comp_code)
             
-            if has_terms:
-                rhs.append(0.0)
-                
-                # Add metadata
-                meta = ConstraintMetadata(
-                    row_index=row_idx,
-                    constraint_type=ConstraintType.BILATERAL,
-                    description=f"Bilateral: {constraint['holder']}→{constraint['issuer']} {constraint['instrument']}",
-                    series_involved=asset_series + liability_series,
-                    tolerance=self.tolerances[ConstraintType.BILATERAL],
-                    weight=self.weights[ConstraintType.BILATERAL],
-                    metadata=constraint
-                )
-                metadata.append(meta)
-                self.constraint_metadata.append(meta)
-                row_idx += 1
+            # Create metadata
+            meta = ConstraintMetadata(
+                row_index=row_idx,
+                constraint_type=ConstraintType.AGGREGATION,
+                description=f"Aggregation for {parent_code}",
+                series_involved=series_involved,
+                tolerance=self.tol_aggregation,
+                weight=self.weight_aggregation,
+                metadata={'parent': parent_code, 'n_components': len(components)}
+            )
+            metadata.append(meta)
+            row_idx += 1
         
-        if not rows:
-            return None, None, []
+        # Build sparse matrix
+        if rows:
+            A = coo_matrix((data, (rows, cols)), 
+                          shape=(row_idx, self.state_index.size)).tocsr()
+            b = np.zeros(row_idx)
+        else:
+            A = sparse.csr_matrix((0, self.state_index.size))
+            b = np.array([])
         
-        A = coo_matrix((data, (rows, cols)),
-                      shape=(len(metadata), self.state_index.size)).tocsr()
-        b = np.array(rhs)
-        
+        logger.debug(f"Extracted {row_idx} aggregation constraints")
         return A, b, metadata
     
-    def build_weight_matrix(self, metadata: List[ConstraintMetadata]) -> csr_matrix:
+    def extract_market_clearing(self, t: int) -> Tuple[sparse.csr_matrix, np.ndarray, List[ConstraintMetadata]]:
         """
-        Build diagonal weight matrix for weighted constraints.
-        
-        Parameters:
-        -----------
-        metadata : List[ConstraintMetadata]
-            Constraint metadata with weights
-        
-        Returns:
-        --------
-        W : csr_matrix
-            Diagonal weight matrix
+        Extract market clearing constraints.
+        For each instrument: Sum(Assets) - Sum(Liabilities) = 0
         """
-        n = len(metadata)
-        weights = np.array([meta.weight for meta in metadata])
-        W = sparse.diags(weights, format='csr')
-        return W
+        rows = []
+        cols = []
+        data = []
+        metadata = []
+        row_idx = 0
+        
+        # Get instrument nodes
+        instrument_nodes = [
+            (node_id, attrs) for node_id, attrs in self.graph.G.nodes(data=True)
+            if attrs.get('node_type') == NodeType.INSTRUMENT.value
+        ]
+        
+        for inst_node_id, inst_attrs in instrument_nodes:
+            instrument_code = inst_attrs.get('code', inst_node_id)
+            
+            # Find all series for this instrument
+            assets = []
+            liabilities = []
+            
+            # Look through series nodes
+            for node_id, attrs in self.graph.G.nodes(data=True):
+                if attrs.get('node_type') != NodeType.SERIES.value:
+                    continue
+                
+                series_code = attrs.get('code', node_id)
+                series_instrument = attrs.get('instrument')
+                
+                if series_instrument == instrument_code:
+                    # Determine if asset or liability based on prefix or metadata
+                    if attrs.get('is_liability'):
+                        liabilities.append(series_code)
+                    else:
+                        assets.append(series_code)
+            
+            if not assets and not liabilities:
+                continue
+            
+            # Build constraint: Sum(Assets) - Sum(Liabilities) = 0
+            series_involved = []
+            
+            # Asset coefficients (+1)
+            for asset_code in assets:
+                if self.state_index.has(asset_code, 0):
+                    idx = self.state_index.get(asset_code, 0)
+                    cols.append(idx)
+                    data.append(1.0)
+                    rows.append(row_idx)
+                    series_involved.append(asset_code)
+            
+            # Liability coefficients (-1)
+            for liab_code in liabilities:
+                if self.state_index.has(liab_code, 0):
+                    idx = self.state_index.get(liab_code, 0)
+                    cols.append(idx)
+                    data.append(-1.0)
+                    rows.append(row_idx)
+                    series_involved.append(liab_code)
+            
+            if series_involved:
+                # Create metadata
+                meta = ConstraintMetadata(
+                    row_index=row_idx,
+                    constraint_type=ConstraintType.MARKET_CLEARING,
+                    description=f"Market clearing for instrument {instrument_code}",
+                    series_involved=series_involved,
+                    tolerance=self.tol_market_clearing,
+                    weight=self.weight_market_clearing,
+                    metadata={
+                        'instrument': instrument_code,
+                        'n_assets': len(assets),
+                        'n_liabilities': len(liabilities)
+                    }
+                )
+                metadata.append(meta)
+                row_idx += 1
+        
+        # Build sparse matrix
+        if rows:
+            A = coo_matrix((data, (rows, cols)), 
+                          shape=(row_idx, self.state_index.size)).tocsr()
+            b = np.zeros(row_idx)
+        else:
+            A = sparse.csr_matrix((0, self.state_index.size))
+            b = np.array([])
+        
+        logger.debug(f"Extracted {row_idx} market clearing constraints")
+        return A, b, metadata
     
-    def get_constraint_summary(self) -> Dict[str, int]:
-        """Get summary of constraints by type."""
-        summary = {}
-        for constraint_type in ConstraintType:
-            count = sum(1 for meta in self.constraint_metadata 
-                       if meta.constraint_type == constraint_type)
-            if count > 0:
-                summary[constraint_type.value] = count
-        return summary
+    def extract_bilateral(self, t: int) -> Tuple[sparse.csr_matrix, np.ndarray, List[ConstraintMetadata]]:
+        """
+        Extract bilateral consistency constraints.
+        FWTW positions should sum to Z1 aggregates.
+        """
+        # Placeholder for bilateral constraints
+        # This would be implemented based on FWTW data structure
+        A = sparse.csr_matrix((0, self.state_index.size))
+        b = np.array([])
+        metadata = []
+        
+        logger.debug("Bilateral constraints not yet implemented")
+        return A, b, metadata
     
-    def validate_constraints(self, x: np.ndarray, 
-                           A: csr_matrix, 
-                           b: np.ndarray,
-                           metadata: List[ConstraintMetadata]) -> Dict[str, Any]:
-        """
-        Validate constraint satisfaction.
-        
-        Parameters:
-        -----------
-        x : np.ndarray
-            State vector
-        A : csr_matrix
-            Constraint matrix
-        b : np.ndarray
-            Constraint values
-        metadata : List[ConstraintMetadata]
-            Constraint metadata
-        
-        Returns:
-        --------
-        Dict[str, Any]
-            Validation report
-        """
-        residuals = A @ x - b
-        
-        violations = []
-        for i, (res, meta) in enumerate(zip(residuals, metadata)):
-            if abs(res) > meta.tolerance:
-                violations.append({
-                    'index': i,
-                    'type': meta.constraint_type.value,
-                    'description': meta.description,
-                    'residual': float(res),
-                    'tolerance': meta.tolerance,
-                    'violation_ratio': abs(res) / meta.tolerance
-                })
-        
-        # Summary by constraint type
-        type_summary = {}
-        for constraint_type in ConstraintType:
-            type_residuals = [
-                abs(res) for res, meta in zip(residuals, metadata)
-                if meta.constraint_type == constraint_type
-            ]
-            if type_residuals:
-                type_summary[constraint_type.value] = {
-                    'count': len(type_residuals),
-                    'max_violation': max(type_residuals),
-                    'mean_violation': np.mean(type_residuals),
-                    'satisfied': sum(1 for r in type_residuals if r < self.tolerances[constraint_type])
-                }
-        
-        return {
-            'valid': len(violations) == 0,
-            'n_constraints': len(metadata),
-            'n_violations': len(violations),
-            'violations': violations[:10],  # First 10 violations
-            'max_violation': float(np.max(np.abs(residuals))) if len(residuals) > 0 else 0.0,
-            'mean_violation': float(np.mean(np.abs(residuals))) if len(residuals) > 0 else 0.0,
-            'type_summary': type_summary
+    def get_constraint_summary(self) -> Dict[str, Any]:
+        """Get summary statistics about constraints."""
+        summary = {
+            'n_nodes': len(self.graph.G.nodes),
+            'n_edges': len(self.graph.G.edges),
+            'state_size': self.state_index.size,
+            'n_series': self.state_index.n_series,
+            'max_lag': self.state_index.max_lag,
+            'enforcement': {
+                'stock_flow': self.enforce_sfc,
+                'aggregation': self.enforce_aggregation,
+                'market_clearing': self.enforce_market_clearing,
+                'bilateral': self.enforce_bilateral
+            },
+            'weights': {
+                'stock_flow': self.weight_stock_flow,
+                'aggregation': self.weight_aggregation,
+                'market_clearing': self.weight_market_clearing,
+                'bilateral': self.weight_bilateral
+            }
         }
+        
+        # Count constraint types
+        n_fl_base = len([
+            s for s in self.state_index.series_names
+            if s.startswith('FL') and self.state_index.is_flow_allowed(s)
+        ])
+        n_fl_computed = len([
+            s for s in self.state_index.series_names
+            if s.startswith('FL') and not self.state_index.is_flow_allowed(s)
+        ])
+        
+        summary['constraint_counts'] = {
+            'potential_stock_flow': n_fl_base,
+            'potential_aggregation': n_fl_computed,
+            'potential_market_clearing': len([
+                n for n, d in self.graph.G.nodes(data=True)
+                if d.get('node_type') == NodeType.INSTRUMENT.value
+            ])
+        }
+        
+        return summary

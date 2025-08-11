@@ -1,336 +1,762 @@
-# Sector-Aligned Instrument Grouping Configuration
-# Groups instruments by WHO can issue them and their economic function
-# Enables meaningful sector-instrument matrix construction
+# Complete Instrument Configuration for Z1_SFC
+# Defines all financial instruments, their properties, and valid combinations
 
 instruments:
-  # ================================================================================
-  # INSTRUMENT GROUPS BY ISSUER TYPE
-  # ================================================================================
+  # ==========================================
+  # CATEGORIZATION BY ISSUER AUTHORITY
+  # ==========================================
   
   by_issuer:
-    # Only Central Bank Can Issue
+    # ------------------------------------------
+    # Central Bank Only Instruments
+    # ------------------------------------------
     central_bank_only:
+      description: "Instruments that can only be issued by the Federal Reserve"
       instruments:
-        "30130": "Depository institution reserves"
-        "30120": "Treasury currency"
-        "31130": "Depository institution reserves (liability)"
-      issuers: ["71"]
+        "30130":
+          name: "Depository institution reserves"
+          type: "reserve"
+          is_liability: false
+          maturity: "overnight"
+          risk_weight: 0.0
+          liquidity: "high"
+        "30120":
+          name: "Treasury currency"
+          type: "currency"
+          is_liability: false
+          maturity: "perpetual"
+          risk_weight: 0.0
+          liquidity: "high"
+        "31130":
+          name: "Depository institution reserves (liability)"
+          type: "reserve"
+          is_liability: true
+          maturity: "overnight"
+          risk_weight: 0.0
+          liquidity: "high"
+        "31120":
+          name: "Treasury currency (liability)"
+          type: "currency"
+          is_liability: true
+          maturity: "perpetual"
+          risk_weight: 0.0
+          liquidity: "high"
+      issuers: ["71"]  # Federal Reserve only
       function: "monetary_base"
+      market_clearing: true
       
-    # Only Federal Government Can Issue
+    # ------------------------------------------
+    # Federal Government Only
+    # ------------------------------------------
     federal_govt_only:
+      description: "Instruments that can only be issued by the Federal Government"
       instruments:
-        "30611": "Treasury securities"
-        "31611": "Treasury securities (liability)"
-        "30613": "Nonmarketable Treasury securities"
-        "31613": "Nonmarketable Treasury securities (liability)"
-        "30614": "U.S. savings securities"
-        "31614": "U.S. savings securities (liability)"
-      issuers: ["31"]
+        "30611":
+          name: "Treasury securities (asset)"
+          type: "bond"
+          is_liability: false
+          maturity: "mixed"
+          risk_weight: 0.0
+          liquidity: "high"
+        "31611":
+          name: "Treasury securities (liability)"
+          type: "bond"
+          is_liability: true
+          maturity: "mixed"
+          risk_weight: 0.0
+          liquidity: "high"
+        "30613":
+          name: "Nonmarketable Treasury securities (asset)"
+          type: "bond"
+          is_liability: false
+          maturity: "long"
+          risk_weight: 0.0
+          liquidity: "low"
+        "31613":
+          name: "Nonmarketable Treasury securities (liability)"
+          type: "bond"
+          is_liability: true
+          maturity: "long"
+          risk_weight: 0.0
+          liquidity: "low"
+        "30614":
+          name: "U.S. savings securities (asset)"
+          type: "savings_bond"
+          is_liability: false
+          maturity: "long"
+          risk_weight: 0.0
+          liquidity: "low"
+        "31614":
+          name: "U.S. savings securities (liability)"
+          type: "savings_bond"
+          is_liability: true
+          maturity: "long"
+          risk_weight: 0.0
+          liquidity: "low"
+        "30615":
+          name: "Budget agency securities (asset)"
+          type: "agency_bond"
+          is_liability: false
+          maturity: "mixed"
+          risk_weight: 0.0
+          liquidity: "medium"
+        "31615":
+          name: "Budget agency securities (liability)"
+          type: "agency_bond"
+          is_liability: true
+          maturity: "mixed"
+          risk_weight: 0.0
+          liquidity: "medium"
+      issuers: ["31"]  # Federal government only
       function: "risk_free_assets"
+      market_clearing: true
       
-    # Only State/Local Can Issue
+    # ------------------------------------------
+    # State and Local Government Only
+    # ------------------------------------------
     state_local_only:
+      description: "Instruments that can only be issued by state and local governments"
       instruments:
-        "30620": "Municipal securities"
-        "31620": "Municipal securities (liability)"
-        "31622": "Long-term municipal securities"
-        "31624": "Short-term municipal securities"
-      issuers: ["21"]
-      function: "tax_exempt_debt"
+        "30620":
+          name: "Municipal securities (asset)"
+          type: "muni_bond"
+          is_liability: false
+          maturity: "long"
+          risk_weight: 0.2
+          liquidity: "medium"
+        "31620":
+          name: "Municipal securities (liability)"
+          type: "muni_bond"
+          is_liability: true
+          maturity: "long"
+          risk_weight: 0.2
+          liquidity: "medium"
+        "30622":
+          name: "Short-term municipal securities (asset)"
+          type: "muni_note"
+          is_liability: false
+          maturity: "short"
+          risk_weight: 0.2
+          liquidity: "medium"
+        "31622":
+          name: "Short-term municipal securities (liability)"
+          type: "muni_note"
+          is_liability: true
+          maturity: "short"
+          risk_weight: 0.2
+          liquidity: "medium"
+        "30624":
+          name: "Long-term municipal securities (asset)"
+          type: "muni_bond"
+          is_liability: false
+          maturity: "long"
+          risk_weight: 0.2
+          liquidity: "low"
+        "31624":
+          name: "Long-term municipal securities (liability)"
+          type: "muni_bond"
+          is_liability: true
+          maturity: "long"
+          risk_weight: 0.2
+          liquidity: "low"
+      issuers: ["21", "22"]  # State and local governments
+      function: "subnational_debt"
+      market_clearing: true
       
-    # Only GSEs Can Issue
-    gse_only:
+    # ------------------------------------------
+    # Depository Institutions Only
+    # ------------------------------------------
+    depository_only:
+      description: "Instruments that can only be issued by depository institutions"
       instruments:
-        "30617": "Agency- and GSE-backed securities"
-        "31617": "Agency- and GSE-backed securities (liability)"
-        "30618": "Agency residential MBS pass-through"
-        "30619": "Agency MBS and other asset-backed"
-        "30693": "GSE loans"
-        "31693": "GSE loans (liability)"
-      issuers: ["40", "41"]
-      function: "mortgage_market"
+        "31200":
+          name: "Checkable deposits and currency"
+          type: "deposit"
+          is_liability: true
+          maturity: "demand"
+          risk_weight: 0.0
+          liquidity: "high"
+        "30200":
+          name: "Checkable deposits and currency (asset)"
+          type: "deposit"
+          is_liability: false
+          maturity: "demand"
+          risk_weight: 0.0
+          liquidity: "high"
+        "31300":
+          name: "Time and savings deposits"
+          type: "deposit"
+          is_liability: true
+          maturity: "short"
+          risk_weight: 0.0
+          liquidity: "medium"
+        "30300":
+          name: "Time and savings deposits (asset)"
+          type: "deposit"
+          is_liability: false
+          maturity: "short"
+          risk_weight: 0.0
+          liquidity: "medium"
+        "31310":
+          name: "Small time and savings deposits"
+          type: "deposit"
+          is_liability: true
+          maturity: "short"
+          risk_weight: 0.0
+          liquidity: "medium"
+        "31320":
+          name: "Large time deposits"
+          type: "deposit"
+          is_liability: true
+          maturity: "short"
+          risk_weight: 0.0
+          liquidity: "low"
+      issuers: ["70", "72", "73", "74"]  # All depositories
+      function: "payment_system"
+      market_clearing: true
       
-    # Only Banks Can Create
-    bank_created:
-      instruments:
-        "30200": "Checkable deposits and currency"
-        "31200": "Checkable deposits (liability)"
-        "30270": "Checkable deposits"
-        "31270": "Checkable deposits (liability)"
-        "30300": "Time and savings deposits"
-        "31300": "Time and savings deposits (liability)"
-      issuers: ["70", "47", "76", "75"]
-      function: "money_supply"
-      
-    # Only Corporations Can Issue
+    # ------------------------------------------
+    # Corporate Issuers Only
+    # ------------------------------------------
     corporate_only:
+      description: "Instruments that can only be issued by corporate entities"
       instruments:
-        "30641": "Corporate equities"
-        "31641": "Corporate equities (liability)"
-        "30630": "Corporate bonds"
-        "31630": "Corporate bonds (liability)"
-        "30691": "Commercial paper"
-        "31691": "Commercial paper (liability)"
-      issuers: ["10", "11"]  # Nonfinancial corps
+        "31641":
+          name: "Corporate equities (liability)"
+          type: "equity"
+          is_liability: true
+          maturity: "perpetual"
+          risk_weight: 1.0
+          liquidity: "medium"
+        "30641":
+          name: "Corporate equities (asset)"
+          type: "equity"
+          is_liability: false
+          maturity: "perpetual"
+          risk_weight: 1.0
+          liquidity: "medium"
+        "31630":
+          name: "Corporate bonds"
+          type: "bond"
+          is_liability: true
+          maturity: "long"
+          risk_weight: 0.5
+          liquidity: "medium"
+        "30630":
+          name: "Corporate bonds (asset)"
+          type: "bond"
+          is_liability: false
+          maturity: "long"
+          risk_weight: 0.5
+          liquidity: "medium"
+        "31691":
+          name: "Commercial paper"
+          type: "short_term_debt"
+          is_liability: true
+          maturity: "short"
+          risk_weight: 0.2
+          liquidity: "medium"
+        "30691":
+          name: "Commercial paper (asset)"
+          type: "short_term_debt"
+          is_liability: false
+          maturity: "short"
+          risk_weight: 0.2
+          liquidity: "medium"
+        "31693":
+          name: "Bankers acceptances"
+          type: "short_term_debt"
+          is_liability: true
+          maturity: "short"
+          risk_weight: 0.2
+          liquidity: "low"
+      issuers: ["10", "11", "12"]  # Nonfinancial and financial corporations
       function: "corporate_finance"
+      market_clearing: true
       
-    # Shadow Banks Create
-    shadow_bank_instruments:
-      instruments:
-        "30657": "Private residential MBS"
-        "30659": "Private commercial MBS"
-        "31636": "Private CMOs"
-        "30636": "MBS and other asset-backed bonds"
-        "20500": "Fed funds and repos (asset)"
-        "21500": "Fed funds and repos (liability)"
-      issuers: ["66", "43", "67", "64"]
-      function: "shadow_credit"
-      
-    # Insurance/Pension Specific
-    insurance_pension:
-      instruments:
-        "31400": "Life insurance reserves"
-        "31500": "Pension entitlements"
-        "30400": "Life insurance reserves (asset)"
-        "30500": "Pension entitlements (asset)"
-        "30694": "Policy loans"
-        "31694": "Policy loans (liability)"
-      issuers: ["54", "51", "59", "57"]
-      function: "long_term_contracts"
-      
-    # Fund Shares (Pass-through vehicles)
+    # ------------------------------------------
+    # Fund Shares
+    # ------------------------------------------
     fund_shares:
+      description: "Shares issued by investment funds"
       instruments:
-        "30340": "Money market fund shares"
-        "30642": "Mutual fund shares"
-        "31642": "Mutual fund shares (liability)"
-        "30643": "Variable annuity mutual fund shares"
-      issuers: ["63", "65", "56", "55"]
+        "31340":
+          name: "Money market fund shares"
+          type: "fund_share"
+          is_liability: true
+          maturity: "demand"
+          risk_weight: 0.1
+          liquidity: "high"
+        "30340":
+          name: "Money market fund shares (asset)"
+          type: "fund_share"
+          is_liability: false
+          maturity: "demand"
+          risk_weight: 0.1
+          liquidity: "high"
+        "31642":
+          name: "Mutual fund shares"
+          type: "fund_share"
+          is_liability: true
+          maturity: "perpetual"
+          risk_weight: 0.8
+          liquidity: "medium"
+        "30642":
+          name: "Mutual fund shares (asset)"
+          type: "fund_share"
+          is_liability: false
+          maturity: "perpetual"
+          risk_weight: 0.8
+          liquidity: "medium"
+        "31644":
+          name: "ETF shares"
+          type: "fund_share"
+          is_liability: true
+          maturity: "perpetual"
+          risk_weight: 0.8
+          liquidity: "high"
+        "30644":
+          name: "ETF shares (asset)"
+          type: "fund_share"
+          is_liability: false
+          maturity: "perpetual"
+          risk_weight: 0.8
+          liquidity: "high"
+      issuers: ["63", "65", "66", "67"]  # Various fund types
       function: "collective_investment"
+      market_clearing: true
+      
+    # ------------------------------------------
+    # Insurance and Pension
+    # ------------------------------------------
+    insurance_pension:
+      description: "Insurance and pension related instruments"
+      instruments:
+        "31500":
+          name: "Pension entitlements"
+          type: "pension"
+          is_liability: true
+          maturity: "long"
+          risk_weight: 0.0
+          liquidity: "none"
+        "30500":
+          name: "Pension entitlements (asset)"
+          type: "pension"
+          is_liability: false
+          maturity: "long"
+          risk_weight: 0.0
+          liquidity: "none"
+        "31540":
+          name: "Life insurance reserves"
+          type: "insurance"
+          is_liability: true
+          maturity: "long"
+          risk_weight: 0.0
+          liquidity: "none"
+        "30540":
+          name: "Life insurance reserves (asset)"
+          type: "insurance"
+          is_liability: false
+          maturity: "long"
+          risk_weight: 0.0
+          liquidity: "none"
+        "31543":
+          name: "Annuity reserves"
+          type: "insurance"
+          is_liability: true
+          maturity: "long"
+          risk_weight: 0.0
+          liquidity: "none"
+      issuers: ["54", "55", "59"]  # Insurance companies and pension funds
+      function: "long_term_savings"
+      market_clearing: true
+      
+    # ------------------------------------------
+    # Loans
+    # ------------------------------------------
+    loans:
+      description: "Various types of loans"
+      instruments:
+        "40000":
+          name: "Loans (aggregate)"
+          type: "loan"
+          is_liability: false
+          maturity: "mixed"
+          risk_weight: 0.5
+          liquidity: "low"
+        "34000":
+          name: "Loans (liability)"
+          type: "loan"
+          is_liability: true
+          maturity: "mixed"
+          risk_weight: 0.5
+          liquidity: "low"
+        "40100":
+          name: "Consumer credit"
+          type: "loan"
+          is_liability: false
+          maturity: "medium"
+          risk_weight: 0.75
+          liquidity: "low"
+        "34100":
+          name: "Consumer credit (liability)"
+          type: "loan"
+          is_liability: true
+          maturity: "medium"
+          risk_weight: 0.75
+          liquidity: "low"
+        "40200":
+          name: "Bank loans n.e.c."
+          type: "loan"
+          is_liability: false
+          maturity: "short"
+          risk_weight: 0.5
+          liquidity: "low"
+        "40300":
+          name: "Mortgages"
+          type: "mortgage"
+          is_liability: false
+          maturity: "long"
+          risk_weight: 0.35
+          liquidity: "low"
+        "34300":
+          name: "Mortgages (liability)"
+          type: "mortgage"
+          is_liability: true
+          maturity: "long"
+          risk_weight: 0.35
+          liquidity: "low"
+      issuers: ["70", "72", "73", "10", "15"]  # Banks and borrowers
+      function: "credit_intermediation"
+      market_clearing: true
 
-  # ================================================================================
-  # INSTRUMENT GROUPS BY ECONOMIC FUNCTION
-  # ================================================================================
-  
-  by_function:
-    # Money and Near-Money
-    monetary_aggregates:
-      narrow_money:  # M1-like
-        "30250": "Currency"
-        "30270": "Checkable deposits"
-        "31250": "Currency (liability)"
-        "31270": "Checkable deposits (liability)"
-      broad_money:  # M2-like
-        "30300": "Time and savings deposits"
-        "30340": "Money market fund shares"
-        "31300": "Time and savings deposits (liability)"
-      reserve_money:  # Monetary base
-        "30130": "Bank reserves"
-        "30120": "Treasury currency"
-        
-    # Funding Markets (Critical for crisis)
-    funding_markets:
-      overnight:
-        "20520": "Federal funds"
-        "21520": "Federal funds (liability)"
-        "20511": "Overnight repos"
-        "21511": "Overnight repos (liability)"
-      term_funding:
-        "20510": "Security repurchase agreements"
-        "21510": "Security repurchase agreements (liability)"
-        "30691": "Commercial paper"
-        "31691": "Commercial paper (liability)"
-      secured_funding:
-        "20500": "Fed funds and repos combined"
-        "21500": "Fed funds and repos combined (liability)"
-        
-    # Credit Markets
-    credit_instruments:
-      household_credit:
-        "30651": "1-4 family mortgages"
-        "31651": "1-4 family mortgages (liability)"
-        "30652": "Home equity lines"
-        "30660": "Consumer credit"
-        "31660": "Consumer credit (liability)"
-      business_credit:
-        "30680": "Bank loans n.e.c."
-        "31680": "Bank loans n.e.c. (liability)"
-        "30681": "C&I loans"
-        "30698": "Syndicated loans"
-        "31698": "Syndicated loans (liability)"
-      real_estate_credit:
-        "30655": "Commercial mortgages"
-        "31655": "Commercial mortgages (liability)"
-        "30654": "Multifamily mortgages"
-        "30656": "Farm mortgages"
-        
-    # Securities Markets
-    securities_markets:
-      government_securities:
-        "30611": "Treasuries"
-        "30617": "Agencies"
-        "30620": "Municipals"
-      corporate_securities:
-        "30641": "Corporate equity"
-        "30630": "Corporate bonds"
-        "30632": "Foreign bonds"
-      structured_products:
-        "30657": "Private RMBS"
-        "30659": "Private CMBS"
-        "30636": "Other ABS"
-        
-    # International
-    cross_border:
-      foreign_claims:
-        "30920": "Direct investment"
-        "30921": "FDI equity"
-        "30922": "FDI reinvested earnings"
-      foreign_liabilities:
-        "31920": "Direct investment (liability)"
-        "31921": "FDI equity (liability)"
-        "30911": "Nonofficial foreign currencies"
-
-  # ================================================================================
-  # SECTOR-INSTRUMENT VALID COMBINATIONS
-  # ================================================================================
+  # ==========================================
+  # VALID SECTOR-INSTRUMENT COMBINATIONS
+  # ==========================================
   
   valid_combinations:
-    # Who can issue what
+    # ------------------------------------------
+    # What each sector can hold as ASSETS
+    # ------------------------------------------
+    can_hold:
+      "15":  # Households
+        - "30000"  # Currency
+        - "30200"  # Checkable deposits
+        - "30300"  # Time deposits
+        - "30340"  # Money market fund shares
+        - "30641"  # Corporate equities
+        - "30642"  # Mutual fund shares
+        - "30611"  # Treasury securities
+        - "30620"  # Municipal securities
+        - "30500"  # Pension entitlements
+        - "30540"  # Life insurance reserves
+        
+      "10":  # Nonfinancial corporate business
+        - "30000"  # Currency
+        - "30200"  # Checkable deposits
+        - "30300"  # Time deposits
+        - "30611"  # Treasury securities
+        - "30641"  # Corporate equities (cross-holdings)
+        - "30691"  # Commercial paper
+        - "40200"  # Trade credit
+        
+      "31":  # Federal government
+        - "30200"  # Deposits at Fed
+        - "30120"  # Gold and SDRs
+        - "40100"  # Student loans
+        - "40200"  # Other loans
+        
+      "70":  # Commercial banks
+        - "30130"  # Reserves at Fed
+        - "30611"  # Treasury securities
+        - "30620"  # Municipal securities
+        - "30630"  # Corporate bonds
+        - "30641"  # Corporate equities
+        - "30691"  # Commercial paper
+        - "40000"  # Loans (all types)
+        - "40300"  # Mortgages
+        
+      "71":  # Federal Reserve
+        - "30611"  # Treasury securities
+        - "30615"  # Agency securities
+        - "30630"  # Corporate bonds (crisis facilities)
+        - "30691"  # Commercial paper (crisis facilities)
+        - "40200"  # Loans to banks
+        - "30120"  # Gold and SDRs
+        
+      "63":  # Money market funds
+        - "30611"  # Treasury securities
+        - "30691"  # Commercial paper
+        - "30200"  # Bank deposits
+        - "30613"  # Agency securities
+        
+      "65":  # Mutual funds
+        - "30641"  # Corporate equities
+        - "30630"  # Corporate bonds
+        - "30611"  # Treasury securities
+        - "30620"  # Municipal securities
+        - "30644"  # ETF shares
+        
+      "59":  # Pension funds
+        - "30641"  # Corporate equities
+        - "30630"  # Corporate bonds
+        - "30611"  # Treasury securities
+        - "30642"  # Mutual fund shares
+        - "40300"  # Mortgages
+        
+      "26":  # Rest of the world
+        - "30611"  # Treasury securities
+        - "30641"  # Corporate equities
+        - "30630"  # Corporate bonds
+        - "30200"  # U.S. bank deposits
+        - "30691"  # Commercial paper
+        
+    # ------------------------------------------
+    # What each sector can issue as LIABILITIES
+    # ------------------------------------------
     can_issue:
-      "71": ["30130", "30120"]  # Fed: reserves, currency
-      "31": ["30611", "31611"]   # Federal: Treasuries
-      "21": ["30620", "31620"]   # State/Local: Munis
-      "70": ["31200", "31300"]   # Banks: deposits
-      "10": ["31641", "31630"]   # Corps: equity, bonds
-      "63": ["31340"]            # MMFs: shares
-      "65": ["31642"]            # Mutual funds: shares
-      
-    # Who typically holds what
-    typical_holdings:
-      "15":  # Households hold:
-        - ["30200", "70"]  # Deposits at banks
-        - ["30641", "10"]  # Corporate equity
-        - ["30642", "65"]  # Mutual fund shares
-        - ["30340", "63"]  # MMF shares
-      "70":  # Banks hold:
-        - ["30130", "71"]  # Reserves at Fed
-        - ["30611", "31"]  # Treasuries
-        - ["30651", "15"]  # Mortgages to households
-        - ["30680", "10"]  # Loans to business
-      "59":  # Pension funds hold:
-        - ["30641", "10"]  # Corporate equity
-        - ["30611", "31"]  # Treasuries
-        - ["30630", "10"]  # Corporate bonds
-      "26":  # Rest of World holds:
-        - ["30611", "31"]  # Treasuries (critical!)
-        - ["30641", "10"]  # US equity
-        - ["30617", "40"]  # Agencies
+      "31":  # Federal government
+        - "31611"  # Treasury securities
+        - "31613"  # Nonmarketable treasuries
+        - "31614"  # Savings bonds
+        - "31615"  # Agency securities
+        
+      "21":  # State and local governments
+        - "31620"  # Municipal securities
+        - "31622"  # Short-term munis
+        - "31624"  # Long-term munis
+        
+      "10":  # Nonfinancial corporate business
+        - "31641"  # Corporate equities
+        - "31630"  # Corporate bonds
+        - "31691"  # Commercial paper
+        - "34000"  # Loans (borrowing)
+        - "34300"  # Mortgages (commercial)
+        
+      "15":  # Households
+        - "34100"  # Consumer credit
+        - "34300"  # Home mortgages
+        - "34200"  # Other loans
+        
+      "70":  # Commercial banks
+        - "31200"  # Checkable deposits
+        - "31300"  # Time and savings deposits
+        - "31320"  # Large time deposits
+        - "31641"  # Bank equity
+        - "31630"  # Bank bonds
+        - "31691"  # Bank commercial paper
+        
+      "71":  # Federal Reserve
+        - "31130"  # Reserve balances
+        - "31120"  # Currency in circulation
+        
+      "63":  # Money market funds
+        - "31340"  # MMF shares
+        
+      "65":  # Mutual funds
+        - "31642"  # Mutual fund shares
+        
+      "59":  # Pension funds
+        - "31500"  # Pension entitlements
+        
+      "54":  # Life insurance companies
+        - "31540"  # Life insurance reserves
+        - "31543"  # Annuity reserves
 
-  # ================================================================================
-  # CRITICAL INSTRUMENT-SECTOR MATRICES
-  # ================================================================================
+  # ==========================================
+  # INSTRUMENT PROPERTIES
+  # ==========================================
   
-  matrix_priorities:
-    # For each instrument, which sector relationships matter most
+  properties:
+    # ------------------------------------------
+    # Zero-sum instruments
+    # ------------------------------------------
+    zero_sum:
+      description: "Instruments where global assets must equal global liabilities"
+      instruments:
+        - "31200"  # Checkable deposits
+        - "31300"  # Time and savings deposits
+        - "31641"  # Corporate equities
+        - "31630"  # Corporate bonds
+        - "31611"  # Treasury securities
+        - "31620"  # Municipal securities
+        - "31340"  # MMF shares
+        - "31642"  # Mutual fund shares
+        - "31500"  # Pension entitlements
+        - "31540"  # Life insurance reserves
+        - "31691"  # Commercial paper
+        - "40000"  # Loans
+        - "40300"  # Mortgages
+      enforcement: "hard"
+      tolerance: 1.0e-10
+      
+    # ------------------------------------------
+    # Non-zero-sum instruments
+    # ------------------------------------------
+    non_zero_sum:
+      description: "Instruments that can have net positive or negative amounts"
+      instruments:
+        - "30000"  # Currency (net asset for private sector)
+        - "30130"  # Reserves (net asset for banks)
+        - "90000"  # Net worth
+        - "80000"  # Miscellaneous
+      enforcement: "none"
+      
+    # ------------------------------------------
+    # Special handling instruments
+    # ------------------------------------------
+    special_handling:
+      "30130":  # Reserves at Fed
+        constraint: "must_equal_fed_liability"
+        counterpart: "31130"
+        tolerance: 1.0e-12
+        
+      "30120":  # Treasury currency
+        constraint: "must_equal_treasury_liability"
+        counterpart: "31120"
+        tolerance: 1.0e-12
+        
+      "31641":  # Corporate equities
+        constraint: "market_value_adjustment"
+        revaluation_series: "FR.*31641.*"
+        tolerance: 1.0e-6
+        
+      "31500":  # Pension entitlements
+        constraint: "actuarial_consistency"
+        formula_series: "FL.*31500.*"
+        tolerance: 1.0e-8
+        
+      "40300":  # Mortgages
+        constraint: "sectoral_balance"
+        holder_sectors: ["70", "54", "59", "65"]
+        issuer_sectors: ["15", "10", "11"]
+        tolerance: 1.0e-8
+
+  # ==========================================
+  # AGGREGATION HIERARCHIES
+  # ==========================================
+  
+  aggregation:
+    # ------------------------------------------
+    # Asset categories
+    # ------------------------------------------
+    financial_assets:
+      code: "90000"
+      components:
+        - liquid_assets:
+            code: "90100"
+            components:
+              - "30000"  # Currency
+              - "30200"  # Checkable deposits
+              - "30300"  # Time deposits
+              - "30340"  # MMF shares
+        - debt_securities:
+            code: "90200"
+            components:
+              - "30611"  # Treasuries
+              - "30620"  # Munis
+              - "30630"  # Corporate bonds
+              - "30691"  # Commercial paper
+        - equity_securities:
+            code: "90300"
+            components:
+              - "30641"  # Corporate equities
+              - "30642"  # Mutual fund shares
+              - "30644"  # ETF shares
+        - loans_and_mortgages:
+            code: "90400"
+            components:
+              - "40000"  # Loans
+              - "40300"  # Mortgages
+              
+    # ------------------------------------------
+    # Liability categories
+    # ------------------------------------------
+    financial_liabilities:
+      code: "95000"
+      components:
+        - deposits:
+            code: "95100"
+            components:
+              - "31200"  # Checkable
+              - "31300"  # Time and savings
+              - "31320"  # Large time
+        - debt_securities_issued:
+            code: "95200"
+            components:
+              - "31611"  # Treasuries (if govt)
+              - "31620"  # Munis (if state/local)
+              - "31630"  # Corporate bonds
+              - "31691"  # Commercial paper
+        - loans_borrowed:
+            code: "95300"
+            components:
+              - "34000"  # Loans
+              - "34100"  # Consumer credit
+              - "34300"  # Mortgages
+
+  # ==========================================
+  # MAPPING TO Z1 SERIES
+  # ==========================================
+  
+  z1_mapping:
+    # Pattern to identify instrument from Z1 series code
+    # Z1 format: PP SS IIIII C .F
+    # PP = prefix (FL, FU, FR, FV)
+    # SS = sector (2 digits)
+    # IIIII = instrument (5 digits)
+    # C = calculation type (0,1,3,5,6)
+    # F = frequency (Q or A)
     
-    treasury_matrix:  # Instrument 30611
-      critical_relationships:
-        - ["31", "issued_by"]     # Federal govt issues
-        - ["71", "QE_holdings"]    # Fed holds (monetary policy)
-        - ["26", "foreign_holds"]  # Foreign official (dollar recycling)
-        - ["70", "bank_holds"]     # Banks (HQLA)
-        - ["59", "pension_holds"]  # Pensions (duration matching)
-        
-    deposit_matrix:  # Instruments 30200, 30270, 30300
-      critical_relationships:
-        - ["70", "created_by"]     # Banks create
-        - ["15", "held_by"]        # Households hold
-        - ["10", "held_by"]        # Corporations hold
-        - ["63", "competes_with"]  # MMFs substitute
-        
-    repo_matrix:  # Instruments 20500, 21500
-      critical_relationships:
-        - ["70", "66", "interbank"]   # Bank-Dealer
-        - ["66", "62", "leverage"]    # Dealer-Hedge fund
-        - ["63", "66", "funding"]     # MMF-Dealer
-        - ["71", "70", "monetary"]    # Fed-Bank (OMO)
-        
-    equity_matrix:  # Instrument 30641
-      critical_relationships:
-        - ["10", "issued_by"]      # Corps issue
-        - ["15", "household"]      # Households own
-        - ["59", "pension"]        # Pensions own
-        - ["65", "mutual_fund"]    # Mutual funds own
-        - ["26", "foreign"]        # Foreign owns
-        - ["62", "hedge_short"]    # Hedge funds short
+    patterns:
+      currency: "F[LU]\\d{2}30000[0-9]\\.Q"
+      checkable_deposits: "F[LU]\\d{2}3(0|1)200[0-9]\\.Q"
+      time_deposits: "F[LU]\\d{2}3(0|1)300[0-9]\\.Q"
+      treasuries: "F[LU]\\d{2}3(0|1)611[0-9]\\.Q"
+      munis: "F[LU]\\d{2}3(0|1)62[0-9][0-9]\\.Q"
+      corporate_bonds: "F[LU]\\d{2}3(0|1)630[0-9]\\.Q"
+      corporate_equities: "F[LU]\\d{2}3(0|1)641[0-9]\\.Q"
+      commercial_paper: "F[LU]\\d{2}3(0|1)691[0-9]\\.Q"
+      loans: "F[LU]\\d{2}(3|4)4[0-9]{3}[0-9]\\.Q"
+      mortgages: "F[LU]\\d{2}(3|4)4300[0-9]\\.Q"
+      mmf_shares: "F[LU]\\d{2}3(0|1)340[0-9]\\.Q"
+      mutual_fund_shares: "F[LU]\\d{2}3(0|1)642[0-9]\\.Q"
+      pension_entitlements: "F[LU]\\d{2}3(0|1)500[0-9]\\.Q"
+      insurance_reserves: "F[LU]\\d{2}3(0|1)54[0-9][0-9]\\.Q"
 
-  # ================================================================================
-  # AGGREGATION RULES
-  # ================================================================================
+  # ==========================================
+  # VALIDATION RULES
+  # ==========================================
   
-  aggregation_rules:
-    # When aggregating sectors, how to handle instruments
-    
-    combine_bank_sectors:  # If combining 70, 47, 76
-      keep_separate:
-        - "30130"  # Reserves (only commercial banks)
-        - "31300"  # Time deposits (different by institution)
-      combine:
-        - "31200"  # Checkable deposits (similar across)
+  validation:
+    # Rules for data quality checks
+    rules:
+      - name: "deposits_positive"
+        description: "Deposits should be non-negative"
+        instruments: ["31200", "31300"]
+        condition: "value >= 0"
+        severity: "error"
         
-    combine_shadow_banks:  # If combining 66, 62, 43, 67
-      keep_separate:
-        - "20500"  # Repos (very different uses)
-        - "30657"  # Private MBS (only some issue)
-      combine:
-        - "30641"  # Equity holdings (similar)
+      - name: "equity_consistency"
+        description: "Equity assets and liabilities should balance globally"
+        asset_instruments: ["30641"]
+        liability_instruments: ["31641"]
+        condition: "sum(assets) == sum(liabilities)"
+        tolerance: 1.0e-6
+        severity: "warning"
         
-    combine_govt:  # NEVER DO THIS!
-      warning: "Federal (31) and State/Local (21) must stay separate"
-      reason: "Different default risk and constraints"
-
-  # ================================================================================
-  # INSTRUMENT RELATIONSHIPS
-  # ================================================================================
-  
-  substitutes:
-    # Instruments that compete/substitute
-    cash_substitutes:
-      - ["30270", "30340"]  # Checkable deposits vs MMF shares
-      - ["30300", "30340"]  # Savings deposits vs MMF shares
-      
-    funding_substitutes:
-      - ["20500", "30691"]  # Repo vs Commercial paper
-      - ["31680", "31630"]  # Bank loans vs Corporate bonds
-      
-  complements:
-    # Instruments used together
-    mortgage_chain:
-      - ["30651", "30657", "30618"]  # Mortgages → Private MBS → Agency MBS
-      
-    collateral_chain:
-      - ["30611", "20500"]  # Treasuries used as repo collateral
-      - ["30641", "30686"]  # Equities used for margin loans
-
-  # ================================================================================
-  # CRISIS INDICATORS
-  # ================================================================================
-  
-  stress_instruments:
-    # Instruments that show stress first
-    
-    funding_stress:
-      - ["20500", "repo_spread"]     # Repo-Fed funds spread
-      - ["30691", "cp_issuance"]     # CP market freeze
-      - ["30340", "mmf_flows"]       # MMF redemptions
-      
-    credit_stress:
-      - ["30698", "syndicated_halt"] # Syndicated loan market
-      - ["30657", "rmbs_spread"]     # Private MBS spreads
-      - ["31630", "corporate_spread"] # Corporate bond spreads
-      
-    systemic_stress:
-      - ["30130", "excess_reserves"]  # Banks hoarding reserves
-      - ["30980", "derivative_expo"]  # Derivative exposures
-      - ["90xxx", "discrepancies"]    # Growing discrepancies
+      - name: "reserve_balance"
+        description: "Bank reserves must equal Fed liabilities"
+        asset_instruments: ["30130"]
+        liability_instruments: ["31130"]
+        condition: "sum(assets) == sum(liabilities)"
+        tolerance: 1.0e-10
+        severity: "error"
+        
+      - name: "loan_symmetry"
+        description: "Loans made should equal loans taken"
+        asset_pattern: "40.*"
+        liability_pattern: "34.*"
+        condition: "category_sum(assets) == category_sum(liabilities)"
+        tolerance: 1.0e-8
+        severity: "warning"

@@ -1,473 +1,1025 @@
-# Custom Aggregation-Focused Z1 Sectors Configuration
-# Designed for meaningful economic analysis, not Fed's convenience groupings
-# Each sector kept separate for custom aggregation based on economic function
+# Complete Sector Configuration for Z1_SFC
+# Defines all economic sectors, their properties, and relationships
 
 sectors:
-  # ================================================================================
-  # RAW SECTOR CODES - NO AGGREGATION
-  # ================================================================================
-  # Keep every sector separate - aggregate in code based on analysis needs
+  # ==========================================
+  # HOUSEHOLD SECTOR
+  # ==========================================
   
-  raw_sectors:
-    # HOUSEHOLDS & PERSONAL
-    "15": 
-      name: "Households and nonprofit organizations"
-      function: "final_demand"
-      risk_type: "credit_risk"
-      
-    "16": 
-      name: "Nonprofit organizations"
-      function: "final_demand"
-      risk_type: "operational"
-      
-    "19": 
-      name: "Households (excluding nonprofits)"
-      function: "final_demand"
-      risk_type: "credit_risk"
+  "15":
+    name: "Households and Nonprofit Organizations Serving Households"
+    short_name: "HH"
+    kind: "private"
+    category: "nonfinancial"
+    description: "Individual households and NPOs serving them"
     
-    # NONFINANCIAL BUSINESS
-    "10": 
-      name: "Nonfinancial corporate business"
-      function: "production"
-      risk_type: "business_cycle"
-      leverage: "moderate"
-      
-    "11": 
-      name: "Nonfinancial noncorporate business"
-      function: "production"
-      risk_type: "business_cycle"
-      leverage: "low"
-      
-    "12": 
-      name: "Equity real estate investment trusts"
-      function: "real_estate"
-      risk_type: "asset_price"
-      leverage: "moderate"
-      
-    "13": 
-      name: "Farm business"
-      function: "production"
-      risk_type: "commodity"
-      
-    "18": 
-      name: "Corporate farm business"
-      function: "production"
-      risk_type: "commodity"
-      
-    "23": 
-      name: "Noncorporate farm business"
-      function: "production"
-      risk_type: "commodity"
+    # Instrument capabilities
+    can_issue: []  # Households don't issue financial instruments
+    can_hold_assets: true
+    can_have_liabilities: true
     
-    # GOVERNMENT - VERY DIFFERENT CONSTRAINTS!
-    "31": 
-      name: "Federal government"
-      function: "sovereign_issuer"
-      risk_type: "none"  # Can't default in own currency
-      constraint: "currency_issuer"
-      
-    "21": 
-      name: "State and local governments"
-      function: "public_services"
-      risk_type: "default_risk"  # CAN default!
-      constraint: "budget_constraint"
-      
-    "22": 
-      name: "State and local government employee retirement funds"
-      function: "long_term_investment"
-      risk_type: "underfunding"
-      constraint: "liability_driven"
-      
-    "34": 
-      name: "Federal government retirement funds"
-      function: "long_term_investment"
-      risk_type: "political"
-      
-    "35": 
-      name: "Social Security (OASDI)"
-      function: "social_insurance"
-      risk_type: "demographic"
-      constraint: "pay_as_you_go"
+    # Grouping and consolidation
+    consolidated_group: "HH"
+    parent_sector: null
+    subsectors: []
     
-    # MONETARY AUTHORITIES - UNIQUE POWERS
-    "71": 
-      name: "Monetary authority (Federal Reserve)"
-      function: "money_creation"
-      risk_type: "none"
-      constraint: "none"  # Creates reserves ex nihilo
-      power: "unlimited_balance_sheet"
+    # Properties
+    is_financial: false
+    is_domestic: true
+    is_government: false
+    is_private: true
     
-    # TRADITIONAL DEPOSITORY - MONEY MULTIPLIERS
-    "70": 
-      name: "Private depository institutions"
-      function: "money_multiplication"
-      risk_type: "bank_run"
-      leverage: "high"
-      regulation: "heavy"
-      
-    "47": 
-      name: "Credit unions"
-      function: "cooperative_banking"
-      risk_type: "credit"
-      leverage: "moderate"
-      regulation: "moderate"
-      
-    "74": 
-      name: "Banks in U.S.-affiliated areas"
-      function: "territorial_banking"
-      risk_type: "sovereign"
-      
-    "75": 
-      name: "Foreign banking offices in U.S."
-      function: "international_banking"
-      risk_type: "home_country"
-      regulation: "home_country"
-      
-    "76": 
-      name: "U.S.-chartered depository institutions"
-      function: "domestic_banking"
-      risk_type: "credit"
-      regulation: "heavy"
+    # Aggregation
+    aggregates_to: null
+    aggregation_weight: 1.0
     
-    # GSEs - QUASI-GOVERNMENT (CRITICAL!)
-    "40": 
-      name: "Government-sponsored enterprises"
-      function: "mortgage_guarantee"
-      risk_type: "political"
-      implicit_guarantee: true
-      systemic: "critical"
-      
-    "41": 
-      name: "Agency- and GSE-backed mortgage pools"
-      function: "mortgage_securitization"
-      risk_type: "prepayment"
-      guarantee: "explicit"
-      size: "$7_trillion"
+    # Special flags
+    requires_special_handling: false
+    is_residual_sector: false
     
-    # SHADOW BANKING - EACH VERY DIFFERENT!
-    "66": 
-      name: "Security brokers and dealers"
-      function: "market_making"
-      risk_type: "liquidity"
-      leverage: "extreme"  # 30:1 common
-      regulation: "light"
-      interconnected: "critical"
-      
-    "62": 
-      name: "Hedge funds"
-      function: "speculation"
-      risk_type: "market"
-      leverage: "extreme"
-      regulation: "none"
-      opacity: "high"
-      
-    "61": 
-      name: "Finance companies"
-      function: "credit_provision"
-      risk_type: "credit"
-      leverage: "moderate"
-      regulation: "light"
-      
-    "43": 
-      name: "Securitization SPVs"
-      function: "risk_transformation"
-      risk_type: "structural"
-      leverage: "embedded"
-      regulation: "none"
-      opacity: "high"
-      
-    "67": 
-      name: "Issuers of asset-backed securities"
-      function: "securitization"
-      risk_type: "tail_risk"
-      leverage: "structured"
-      regulation: "light"
-      
-    "64": 
-      name: "Mortgage real estate investment trusts"
-      function: "mortgage_arbitrage"
-      risk_type: "interest_rate"
-      leverage: "extreme"  # 8:1 typical
-      regulation: "light"
-      
-    "73": 
-      name: "Holding companies"
-      function: "control"
-      risk_type: "contagion"
-      leverage: "layered"
-      
-    "77": 
-      name: "Captive financial institutions"
-      function: "internal_finance"
-      risk_type: "parent_company"
-      regulation: "none"
+  # ==========================================
+  # CORPORATE SECTORS
+  # ==========================================
+  
+  "10":
+    name: "Nonfinancial Corporate Business"
+    short_name: "NFC"
+    kind: "corporate"
+    category: "nonfinancial"
+    description: "All nonfinancial corporations"
     
-    # MONEY-LIKE INSTRUMENTS - RUN RISK!
-    "63": 
-      name: "Money market funds"
-      function: "cash_management"
-      risk_type: "run_risk"
-      leverage: "none"
-      regulation: "2a-7"
-      systemic: "critical"  # 2008 Reserve Primary
+    can_issue:
+      - "31641"  # Corporate equities
+      - "31630"  # Corporate bonds
+      - "31691"  # Commercial paper
+      - "34000"  # Loans (as borrower)
+      - "34300"  # Mortgages (commercial)
+    can_hold_assets: true
+    can_have_liabilities: true
     
-    # LONG-TERM INSTITUTIONAL INVESTORS
-    "54": 
-      name: "Life insurance companies"
-      function: "risk_pooling"
-      risk_type: "duration"
-      leverage: "moderate"
-      regulation: "state"
-      liability_duration: "long"
-      
-    "51": 
-      name: "Property-casualty insurance companies"
-      function: "risk_pooling"
-      risk_type: "catastrophe"
-      leverage: "low"
-      regulation: "state"
-      liability_duration: "short"
-      
-    "59": 
-      name: "Pension funds"
-      function: "retirement_security"
-      risk_type: "underfunding"
-      leverage: "none"
-      regulation: "ERISA"
-      liability_duration: "very_long"
-      
-    "57": 
-      name: "Private pension funds"
-      function: "retirement_security"
-      risk_type: "sponsor_default"
-      regulation: "ERISA"
+    consolidated_group: "NFC"
+    parent_sector: null
+    subsectors: ["11", "12"]  # Includes noncorporate business
     
-    # ASSET MANAGERS - AGENCY BUSINESS
-    "65": 
-      name: "Mutual funds"
-      function: "asset_management"
-      risk_type: "market"
-      leverage: "none"  # Pass-through
-      regulation: "1940_Act"
-      agency_model: true
-      
-    "56": 
-      name: "Exchange-traded funds"
-      function: "passive_investment"
-      risk_type: "tracking"
-      leverage: "none"
-      regulation: "1940_Act"
-      liquidity_mismatch: true  # Key risk!
-      
-    "55": 
-      name: "Closed-end funds"
-      function: "asset_management"
-      risk_type: "discount"
-      leverage: "allowed"
-      regulation: "1940_Act"
+    is_financial: false
+    is_domestic: true
+    is_government: false
+    is_private: true
     
-    # EXTERNAL - CRITICAL FOR DOLLAR SYSTEM
-    "26": 
-      name: "Rest of the world"
-      function: "external_balance"
-      risk_type: "currency"
-      dollar_recycling: "critical"
-      size: "$15_trillion_US_assets"
-      
-    "27": 
-      name: "IBFs of U.S.-chartered depositories"
-      function: "offshore_banking"
-      risk_type: "regulatory_arbitrage"
-      
-    "28": 
-      name: "IBFs of foreign banking offices"
-      function: "offshore_banking"
-      risk_type: "home_country"
+    aggregates_to: null
+    aggregation_weight: 1.0
     
-    # STATISTICAL & AGGREGATES
-    "90": 
-      name: "Instrument discrepancies"
-      function: "validation"
-      meaning: "measurement_error_or_hidden_positions"
-      critical: true  # Large = problem!
+    requires_special_handling: false
+    is_residual_sector: false
     
-    # Keep other Fed aggregates for reference but DON'T USE
-    "89": {name: "All sectors", avoid: true, reason: "meaningless_total"}
-    "88": {name: "All domestic sectors", avoid: true}
-    "79": {name: "Domestic financial sectors", avoid: true, reason: "mixes_banks_and_hedge_funds"}
-    "80": {name: "Other financial intermediaries", avoid: true, reason: "nonsense_grouping"}
+  "11":
+    name: "Nonfinancial Noncorporate Business"
+    short_name: "NFNC"
+    kind: "noncorporate"
+    category: "nonfinancial"
+    description: "Partnerships, sole proprietorships"
+    
+    can_issue:
+      - "34000"  # Loans
+      - "34300"  # Mortgages
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "NFC"
+    parent_sector: "10"
+    subsectors: []
+    
+    is_financial: false
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "10"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  # ==========================================
+  # GOVERNMENT SECTORS
+  # ==========================================
+  
+  "31":
+    name: "Federal Government"
+    short_name: "FedGov"
+    kind: "government"
+    category: "government"
+    description: "U.S. Federal Government"
+    
+    can_issue:
+      - "31611"  # Treasury securities
+      - "31613"  # Nonmarketable Treasury securities
+      - "31614"  # U.S. savings securities
+      - "31615"  # Budget agency securities
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "FG"
+    parent_sector: "30"
+    subsectors: []
+    
+    is_financial: false
+    is_domestic: true
+    is_government: true
+    is_private: false
+    
+    aggregates_to: "30"  # General government
+    aggregation_weight: 1.0
+    
+    requires_special_handling: true  # Special Treasury/Fed relationship
+    is_residual_sector: false
+    
+  "21":
+    name: "State and Local Governments, excluding employee retirement funds"
+    short_name: "S&L"
+    kind: "government"
+    category: "government"
+    description: "All U.S. state and local government entities"
+    
+    can_issue:
+      - "31620"  # Municipal securities
+      - "31622"  # Short-term munis
+      - "31624"  # Long-term munis
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "SLG"
+    parent_sector: "30"
+    subsectors: ["22"]
+    
+    is_financial: false
+    is_domestic: true
+    is_government: true
+    is_private: false
+    
+    aggregates_to: "30"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "22":
+    name: "State and Local Government Employee Retirement Funds"
+    short_name: "S&L Pension"
+    kind: "government"
+    category: "government"
+    description: "Public employee pension funds"
+    
+    can_issue:
+      - "31500"  # Pension entitlements
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "SLG"
+    parent_sector: "21"
+    subsectors: []
+    
+    is_financial: true  # Quasi-financial
+    is_domestic: true
+    is_government: true
+    is_private: false
+    
+    aggregates_to: "21"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "30":
+    name: "General Government"
+    short_name: "GenGov"
+    kind: "government"
+    category: "government"
+    description: "Consolidated government sector"
+    
+    can_issue: []  # Aggregation only
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "GOV"
+    parent_sector: null
+    subsectors: ["31", "21"]
+    
+    is_financial: false
+    is_domestic: true
+    is_government: true
+    is_private: false
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  # ==========================================
+  # FINANCIAL SECTORS - DEPOSITORY
+  # ==========================================
+  
+  "70":
+    name: "Private Depository Institutions"
+    short_name: "Banks"
+    kind: "depository"
+    category: "financial"
+    description: "Commercial banks and thrifts"
+    
+    can_issue:
+      - "31200"  # Checkable deposits
+      - "31300"  # Time and savings deposits
+      - "31320"  # Large time deposits
+      - "31641"  # Bank equity
+      - "31630"  # Bank bonds
+      - "31691"  # Bank commercial paper
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "BANKS"
+    parent_sector: "79"
+    subsectors: ["72", "73", "74"]
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "79"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: true  # Reserve requirements
+    is_residual_sector: false
+    
+  "71":
+    name: "Monetary Authority (Federal Reserve)"
+    short_name: "Fed"
+    kind: "central_bank"
+    category: "monetary_authority"
+    description: "Federal Reserve System"
+    
+    can_issue:
+      - "31130"  # Reserve balances
+      - "31120"  # Currency in circulation
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "FED"
+    parent_sector: null
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: true  # Quasi-governmental
+    is_private: false
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: true  # Monetary policy operations
+    is_residual_sector: false
+    
+  "72":
+    name: "U.S.-Chartered Depository Institutions"
+    short_name: "US Banks"
+    kind: "depository"
+    category: "financial"
+    description: "Banks chartered in the United States"
+    
+    can_issue:
+      - "31200"
+      - "31300"
+      - "31641"
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "BANKS"
+    parent_sector: "70"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "70"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "73":
+    name: "Foreign Banking Offices in U.S."
+    short_name: "Foreign Banks"
+    kind: "depository"
+    category: "financial"
+    description: "Branches and agencies of foreign banks"
+    
+    can_issue:
+      - "31200"
+      - "31300"
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "BANKS"
+    parent_sector: "70"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true  # Operating in U.S.
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "70"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "74":
+    name: "Credit Unions"
+    short_name: "CU"
+    kind: "depository"
+    category: "financial"
+    description: "Member-owned financial cooperatives"
+    
+    can_issue:
+      - "31200"
+      - "31300"
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "BANKS"
+    parent_sector: "70"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true  # Member-owned
+    
+    aggregates_to: "70"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "79":
+    name: "All Depository Institutions"
+    short_name: "All Depositories"
+    kind: "depository"
+    category: "financial"
+    description: "Consolidated depository sector"
+    
+    can_issue: []  # Aggregation only
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "DEP"
+    parent_sector: null
+    subsectors: ["70", "71"]
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  # ==========================================
+  # FINANCIAL SECTORS - FUNDS
+  # ==========================================
+  
+  "63":
+    name: "Money Market Funds"
+    short_name: "MMF"
+    kind: "fund"
+    category: "financial"
+    description: "Money market mutual funds"
+    
+    can_issue:
+      - "31340"  # MMF shares
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "MMF"
+    parent_sector: "60"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "60"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "65":
+    name: "Mutual Funds"
+    short_name: "MF"
+    kind: "fund"
+    category: "financial"
+    description: "Open-end investment companies"
+    
+    can_issue:
+      - "31642"  # Mutual fund shares
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "MF"
+    parent_sector: "60"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "60"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "66":
+    name: "Closed-End Funds"
+    short_name: "CEF"
+    kind: "fund"
+    category: "financial"
+    description: "Closed-end investment companies"
+    
+    can_issue:
+      - "31643"  # CEF shares
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "CEF"
+    parent_sector: "60"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "60"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "67":
+    name: "Exchange-Traded Funds"
+    short_name: "ETF"
+    kind: "fund"
+    category: "financial"
+    description: "Exchange-traded funds"
+    
+    can_issue:
+      - "31644"  # ETF shares
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "ETF"
+    parent_sector: "60"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "60"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "60":
+    name: "All Investment Funds"
+    short_name: "All Funds"
+    kind: "fund"
+    category: "financial"
+    description: "Consolidated investment fund sector"
+    
+    can_issue: []  # Aggregation only
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "FUNDS"
+    parent_sector: null
+    subsectors: ["63", "65", "66", "67"]
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  # ==========================================
+  # FINANCIAL SECTORS - INSURANCE & PENSION
+  # ==========================================
+  
+  "54":
+    name: "Life Insurance Companies"
+    short_name: "Life Ins"
+    kind: "insurance"
+    category: "financial"
+    description: "Life insurance carriers"
+    
+    can_issue:
+      - "31540"  # Life insurance reserves
+      - "31543"  # Annuity reserves
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "LIFE"
+    parent_sector: "58"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "58"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "55":
+    name: "Property-Casualty Insurance Companies"
+    short_name: "P&C Ins"
+    kind: "insurance"
+    category: "financial"
+    description: "Property and casualty insurance carriers"
+    
+    can_issue:
+      - "31550"  # P&C reserves
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "PC"
+    parent_sector: "58"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "58"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "59":
+    name: "Private Pension Funds"
+    short_name: "Pension"
+    kind: "pension"
+    category: "financial"
+    description: "Private defined benefit and contribution plans"
+    
+    can_issue:
+      - "31500"  # Pension entitlements
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "PENSION"
+    parent_sector: "58"
+    subsectors: ["591", "592"]
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "58"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: true  # Actuarial consistency
+    is_residual_sector: false
+    
+  "591":
+    name: "Defined Benefit Pension Plans"
+    short_name: "DB Plans"
+    kind: "pension"
+    category: "financial"
+    description: "Traditional pension plans"
+    
+    can_issue:
+      - "31500"
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "PENSION"
+    parent_sector: "59"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "59"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: true
+    is_residual_sector: false
+    
+  "592":
+    name: "Defined Contribution Plans"
+    short_name: "DC Plans"
+    kind: "pension"
+    category: "financial"
+    description: "401(k) and similar plans"
+    
+    can_issue:
+      - "31500"
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "PENSION"
+    parent_sector: "59"
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: "59"
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "58":
+    name: "Insurance and Pension Sector"
+    short_name: "Ins & Pension"
+    kind: "insurance_pension"
+    category: "financial"
+    description: "Consolidated insurance and pension sector"
+    
+    can_issue: []  # Aggregation only
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "INS_PEN"
+    parent_sector: null
+    subsectors: ["54", "55", "59", "22"]
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  # ==========================================
+  # FINANCIAL SECTORS - OTHER
+  # ==========================================
+  
+  "61":
+    name: "Finance Companies"
+    short_name: "FinCo"
+    kind: "finance_company"
+    category: "financial"
+    description: "Non-depository lenders"
+    
+    can_issue:
+      - "31691"  # Commercial paper
+      - "31630"  # Corporate bonds
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "FINCO"
+    parent_sector: null
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "62":
+    name: "Real Estate Investment Trusts"
+    short_name: "REITs"
+    kind: "reit"
+    category: "financial"
+    description: "Equity and mortgage REITs"
+    
+    can_issue:
+      - "31645"  # REIT shares
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "REIT"
+    parent_sector: null
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  "64":
+    name: "Security Brokers and Dealers"
+    short_name: "Brokers"
+    kind: "broker_dealer"
+    category: "financial"
+    description: "Investment banks and broker-dealers"
+    
+    can_issue:
+      - "31691"  # Commercial paper
+      - "31692"  # Repo liabilities
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "BD"
+    parent_sector: null
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: true  # Leverage constraints
+    is_residual_sector: false
+    
+  "68":
+    name: "Holding Companies"
+    short_name: "HoldCo"
+    kind: "holding_company"
+    category: "financial"
+    description: "Financial holding companies"
+    
+    can_issue:
+      - "31641"  # Equity
+      - "31630"  # Bonds
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "HC"
+    parent_sector: null
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: false
+    
+  # ==========================================
+  # FOREIGN SECTOR
+  # ==========================================
+  
+  "26":
+    name: "Rest of the World"
+    short_name: "RoW"
+    kind: "foreign"
+    category: "foreign"
+    description: "All foreign entities"
+    
+    can_issue: []  # Modeled as counterparty
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "ROW"
+    parent_sector: null
+    subsectors: []
+    
+    is_financial: false
+    is_domestic: false
+    is_government: false
+    is_private: false
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: true  # Balance of payments
+    is_residual_sector: false
+    
+  # ==========================================
+  # SPECIAL/RESIDUAL SECTORS
+  # ==========================================
+  
+  "99":
+    name: "Financial Business, not elsewhere classified"
+    short_name: "Other Fin"
+    kind: "other"
+    category: "financial"
+    description: "Residual financial sector"
+    
+    can_issue: []
+    can_hold_assets: true
+    can_have_liabilities: true
+    
+    consolidated_group: "OTHER"
+    parent_sector: null
+    subsectors: []
+    
+    is_financial: true
+    is_domestic: true
+    is_government: false
+    is_private: true
+    
+    aggregates_to: null
+    aggregation_weight: 1.0
+    
+    requires_special_handling: false
+    is_residual_sector: true  # Catches unmapped items
 
-  # ================================================================================
-  # MEANINGFUL CUSTOM AGGREGATIONS
-  # ================================================================================
-  
-  custom_aggregations:
-    # By Economic Function
-    money_creators:
-      sectors: ["71"]  # Only Fed creates reserves
-      function: "reserve_creation"
-      
-    money_multipliers:
-      sectors: ["70", "47", "76"]  # Banks create deposits
-      function: "deposit_creation"
-      
-    shadow_banks:
-      sectors: ["66", "62", "61", "43", "67", "64", "73"]
-      function: "credit_without_deposits"
-      
-    quasi_banks:
-      sectors: ["63"]  # MMFs - deposit substitutes
-      function: "cash_like_instruments"
-      
-    sovereign_issuers:
-      sectors: ["31"]  # Only federal can't default
-      function: "risk_free_asset_creation"
-      
-    budget_constrained_govt:
-      sectors: ["21"]  # State/local CAN default
-      function: "public_services"
-      
-    households_pure:
-      sectors: ["19"]  # Excluding nonprofits
-      function: "final_consumption"
-      
-    production_sectors:
-      sectors: ["10", "11", "13", "18", "23"]
-      function: "goods_services_creation"
-      
-    long_term_investors:
-      sectors: ["54", "59", "57", "22", "34"]
-      function: "duration_matching"
-      
-    market_funds:
-      sectors: ["65", "56", "55"]
-      function: "market_risk_pass_through"
+# ==========================================
+# SECTOR GROUPINGS FOR ANALYSIS
+# ==========================================
+
+groupings:
+  # Major institutional sectors
+  major_sectors:
+    - "15"  # Households
+    - "10"  # Nonfinancial corporate
+    - "31"  # Federal government
+    - "70"  # Banks
+    - "71"  # Federal Reserve
+    - "26"  # Rest of world
     
-    # By Leverage Level
-    extreme_leverage:
-      sectors: ["66", "62", "64"]  # 10:1 to 40:1
-      risk: "systemic"
-      
-    high_leverage:
-      sectors: ["70", "76"]  # 8:1 to 12:1
-      risk: "bank_runs"
-      
-    moderate_leverage:
-      sectors: ["10", "11", "47", "61", "54"]  # 2:1 to 5:1
-      risk: "manageable"
-      
-    no_leverage:
-      sectors: ["65", "56", "63", "59"]  # Pass-through
-      risk: "market_only"
+  # Domestic nonfinancial
+  domestic_nonfinancial:
+    - "15"  # Households
+    - "10"  # Nonfinancial corporate
+    - "11"  # Noncorporate business
+    - "31"  # Federal government
+    - "21"  # State and local
     
-    # By Regulatory Regime
-    heavy_regulation:
-      sectors: ["70", "47", "76", "71"]
-      regulators: ["Fed", "FDIC", "OCC", "NCUA"]
-      
-    light_regulation:
-      sectors: ["66", "61", "64"]
-      regulators: ["SEC", "FINRA"]
-      
-    state_regulation:
-      sectors: ["54", "51"]
-      regulators: ["State_Insurance_Commissions"]
-      
-    no_regulation:
-      sectors: ["62", "43", "67", "77"]
-      regulators: []
+  # Domestic financial
+  domestic_financial:
+    - "70"  # Banks
+    - "71"  # Federal Reserve
+    - "63"  # Money market funds
+    - "65"  # Mutual funds
+    - "59"  # Pension funds
+    - "54"  # Life insurance
+    - "55"  # P&C insurance
+    - "61"  # Finance companies
+    - "64"  # Broker-dealers
     
-    # By Systemic Importance (for stress testing)
-    systemically_critical:
-      sectors: ["71", "70", "40", "41", "66", "63", "31"]
-      reason: "failure_causes_system_collapse"
-      
-    systemically_important:
-      sectors: ["65", "54", "59", "26"]
-      reason: "failure_causes_major_disruption"
-      
-    non_systemic:
-      sectors: ["11", "16", "55"]
-      reason: "failure_contained"
+  # Government (all levels)
+  government:
+    - "31"  # Federal
+    - "21"  # State and local
+    - "22"  # State/local pensions
+    - "71"  # Federal Reserve (quasi)
     
-    # By Crisis Transmission Channel
-    funding_channel:
-      sectors: ["63", "66", "62"]  # MMF → Broker → Hedge
-      mechanism: "repo_chain"
-      
-    credit_channel:
-      sectors: ["70", "61", "43"]  # Bank → Finance Co → Securitization
-      mechanism: "lending_chain"
-      
-    collateral_channel:
-      sectors: ["66", "62", "64"]  # Securities lending/repo
-      mechanism: "rehypothecation"
-      
-    confidence_channel:
-      sectors: ["63", "65", "56"]  # Run-prone
-      mechanism: "redemption_runs"
+  # Private sector
+  private:
+    - "15"  # Households
+    - "10"  # NFC
+    - "11"  # Noncorporate
+    - "70"  # Banks
+    - "63"  # MMF
+    - "65"  # Mutual funds
+    - "59"  # Private pensions
+    - "54"  # Life insurance
+    - "55"  # P&C insurance
     
-  # ================================================================================
-  # BILATERAL RELATIONSHIP PRIORITIES
-  # ================================================================================
-  
-  critical_relationships:
-    # Format: [holder_sector, issuer_sector, instrument, description]
-    tier_1_monetary_plumbing:
-      - ["70", "71", "30130", "Bank reserves at Fed"]
-      - ["71", "31", "30611", "Fed holds Treasuries (QE)"]
-      - ["63", "70", "20500", "MMF repo to banks"]
-      - ["70", "66", "20500", "Bank repo to dealers"]
-      
-    tier_2_shadow_banking:
-      - ["66", "62", "20500", "Prime broker → hedge fund"]
-      - ["66", "62", "30680", "Margin loans"]
-      - ["54", "66", "30641", "Securities lending"]
-      - ["62", "10", "30641", "Hedge funds short corps"]
-      
-    tier_3_household_interface:
-      - ["15", "70", "30200", "Household deposits"]
-      - ["15", "65", "30642", "Household mutual funds"]
-      - ["15", "63", "30340", "Household MMF shares"]
-      - ["70", "15", "30651", "Mortgages to households"]
-      
-    tier_4_foreign_flows:
-      - ["26", "31", "30611", "Foreign holds Treasuries"]
-      - ["26", "10", "30641", "Foreign holds US equity"]
-      - ["26", "70", "30200", "Foreign deposits in US"]
-      - ["26", "40", "30617", "Foreign holds agencies"]
+  # Depository institutions
+  depositories:
+    - "70"  # Commercial banks
+    - "72"  # U.S.-chartered
+    - "73"  # Foreign banking offices
+    - "74"  # Credit unions
     
-    tier_5_long_term:
-      - ["59", "10", "30641", "Pensions hold equity"]
-      - ["54", "10", "30630", "Insurance holds corp bonds"]
-      - ["59", "31", "30611", "Pensions hold Treasuries"]
+  # Investment funds
+  funds:
+    - "63"  # Money market
+    - "65"  # Mutual funds
+    - "66"  # Closed-end
+    - "67"  # ETFs
+    
+  # Insurance and pension
+  insurance_pension:
+    - "54"  # Life insurance
+    - "55"  # P&C insurance
+    - "59"  # Private pensions
+    - "22"  # Public pensions
+    
+  # Shadow banking
+  shadow_banking:
+    - "63"  # MMF
+    - "61"  # Finance companies
+    - "64"  # Broker-dealers
+    - "62"  # REITs
+    
+# ==========================================
+# CONSOLIDATION RULES
+# ==========================================
+
+consolidation:
+  # Rules for sector consolidation
+  rules:
+    - name: "general_government"
+      parent: "30"
+      children: ["31", "21", "22"]
+      method: "sum"
       
-  # ================================================================================
-  # ANALYSIS-SPECIFIC GROUPINGS
-  # ================================================================================
-  
-  analysis_groups:
-    # For QE Analysis
-    qe_transmission:
-      fed: ["71"]
-      primary_dealers: ["66"]
-      banks: ["70"]
-      asset_managers: ["65", "56"]
-      end_holders: ["15", "59", "54"]
+    - name: "all_depositories"
+      parent: "79"
+      children: ["70", "71"]
+      method: "sum"
       
-    # For Crisis Analysis
-    crisis_vulnerable:
-      run_prone: ["63", "65", "56"]
-      leverage_vulnerable: ["66", "62", "64"]
-      credit_exposed: ["70", "61", "43"]
+    - name: "all_funds"
+      parent: "60"
+      children: ["63", "65", "66", "67"]
+      method: "sum"
       
-    # For Monetary Policy
-    rate_sensitive:
-      assets_sensitive: ["70", "64", "61"]
-      liability_sensitive: ["54", "59"]
-      pass_through: ["65", "56"]
+    - name: "insurance_pension"
+      parent: "58"
+      children: ["54", "55", "59", "22"]
+      method: "sum"
       
-    # For Financial Stability
-    interconnection_hubs:
-      central: ["70", "66", "71"]
-      peripheral: ["47", "55", "16"]
+  # Elimination of intra-group positions
+  eliminations:
+    - group: "government"
+      eliminate: ["31611"]  # Intra-government Treasury holdings
+      
+    - group: "depositories"
+      eliminate: ["31200"]  # Inter-bank deposits
+
+# ==========================================
+# SPECIAL HANDLING RULES
+# ==========================================
+
+special_handling:
+  # Federal Reserve
+  "71":
+    rules:
+      - "Reserve balances must equal bank reserves"
+      - "Currency issued must equal currency in circulation"
+      - "Special treatment for QE operations"
+    constraints:
+      - "FL713013005 == sum(FL*30130*)"  # Reserve consistency
+      
+  # Federal Government
+  "31":
+    rules:
+      - "Treasury securities must be consistently valued"
+      - "Special treatment for trust funds"
+    constraints:
+      - "FL313161105 == sum(FL*30611*)"  # Treasury consistency
+      
+  # Pension funds
+  "59":
+    rules:
+      - "Actuarial consistency required"
+      - "Entitlements must match household claims"
+    constraints:
+      - "FL593150005 == FL153050005"  # Pension entitlement consistency
+      
+  # Rest of World
+  "26":
+    rules:
+      - "Current account + capital account + errors = 0"
+      - "U.S. assets = RoW liabilities and vice versa"
+    constraints:
+      - "Balance of payments identity"

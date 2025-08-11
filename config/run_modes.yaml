@@ -1,26 +1,32 @@
 modes:
   test:
     max_series: 50
+    max_periods: 20
     enforce_bilateral: false
     enforce_hierarchical: false
-    max_periods: 20
-    description: Quick test mode with minimal data
+    use_sparse: true
+    description: "Quick test mode"
+
   development:
     max_series: 200
+    max_periods: 100
     enforce_bilateral: false
     enforce_hierarchical: true
-    max_periods: 100
-    description: Development mode with moderate data
+    use_sparse: true
+    description: "Development mode"
+
   production:
     max_series: 500
+    max_periods: null
     enforce_bilateral: true
     enforce_hierarchical: true
-    max_periods: null
-    description: Production mode with full constraints
+    use_sparse: true
+    description: "Production mode"
+
   full:
     max_series: 2000
+    max_periods: null
     enforce_bilateral: true
     enforce_hierarchical: true
-    max_periods: null
     use_sparse: true
-    description: Full mode with all available series
+    description: "Full analysis"
