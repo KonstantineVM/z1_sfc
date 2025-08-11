@@ -6,7 +6,7 @@ Maps series names and lags to state vector indices.
 Critical for building constraint matrices that align with Kalman filter states.
 """
 
-from typing import Dict, List, Tuple, Optional, Set
+from typing import Dict, List, Tuple, Optional, Set, Iterable
 import numpy as np
 import logging
 
@@ -42,6 +42,8 @@ class StateIndex:
         self.index: Dict[Tuple[str, int], int] = {}
         self.reverse_index: Dict[int, Tuple[str, int]] = {}
         
+        self._allowed_flow_bases: Optional[Set[str]] = None
+        
         # Build the index
         self._build_index()
         
@@ -52,6 +54,63 @@ class StateIndex:
         logger.info(f"StateIndex created: {self.n_series} series, "
                    f"max_lag={max_lag}, state_size={self.size}")
     
+    def set_allowed_flow_bases(self, bases: Iterable[str]) -> None:
+        """
+        bases: iterable of strings like '1530641005.Q' (sector+instrument+suffix)
+        indicating which FL bases are true sources (leaves).
+        """
+        self._allowed_flow_bases = set(bases)
+        
+    def _is_flow(self, code: str) -> bool:
+        """Return True if code starts with FU/FR/FV."""
+        return len(code) >= 2 and code[:2] in {"FU", "FR", "FV"}
+
+    def apply_allowed_flow_bases(self, strict: bool = True) -> None:
+        """
+        Enforce that FU/FR/FV appear only when their base FL is a true source (leaf).
+        If strict=True, raise on violations. If strict=False, drop offending flows.
+
+        Call this AFTER set_allowed_flow_bases(...) and BEFORE using the index.
+        It will rebuild the index if it removed anything.
+        """
+        if self._allowed_flow_bases is None:
+            # Nothing to enforce
+            return
+
+        def _flow_base(code: str) -> str:
+            # FU1530641005.Q -> '1530641005.Q'
+            return code[2:] if self._is_flow(code) else ""
+
+        offenders = []
+        for name in self.series_names:
+            if self._is_flow(name) and _flow_base(name) not in self._allowed_flow_bases:
+                offenders.append(name)
+
+        if not offenders:
+            return
+
+        if strict:
+            raise ValueError(
+                "Refusing to index flows attached to non‑source FL:\n"
+                + "\n".join(offenders[:20]) + ("\n..." if len(offenders) > 20 else "")
+            )
+
+        # Soft mode: drop offending flows, then rebuild the mapping
+        keep = []
+        for name in self.series_names:
+            if self._is_flow(name) and _flow_base(name) not in self._allowed_flow_bases:
+                continue
+            keep.append(name)
+
+        # Rebuild internal structures
+        self.series_names = keep
+        self.index.clear()
+        self.reverse_index.clear()
+        self._build_index()
+        self.n_series = len(self.series_names)
+        self.size = len(self.index)
+        
+
     def _build_index(self) -> None:
         """Build the index mapping."""
         idx = 0

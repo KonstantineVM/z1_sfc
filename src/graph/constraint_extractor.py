@@ -154,74 +154,48 @@ class ConstraintExtractor:
         
         return A, b, metadata
     
-    def _extract_stock_flow_constraints(self, t: int) -> Tuple[Optional[csr_matrix], 
-                                                               Optional[np.ndarray], 
-                                                               List[ConstraintMetadata]]:
-        """
-        Extract stock-flow constraints: FL[t] - FL[t-1] - FU - FR - FV = 0
-        """
-        pairs = self.graph.find_stock_flow_pairs()
-        if not pairs:
-            return None, None, []
-        
-        rows, cols, data = [], [], []
-        rhs = []
-        metadata = []
-        row_idx = len(self.constraint_metadata)
-        
-        for pair in pairs:
-            fl_code = pair.get('FL')
-            if not fl_code or not self.state_index.has(fl_code, 0):
+    def _extract_stock_flow_constraints(self, t: int):
+        data = []; rows = []; cols = []; metadata = []
+
+        # Leaf-only: graph.find_stock_flow_pairs() already filters to is_source=True.
+        for pair in self.graph.find_stock_flow_pairs():
+            fl = pair.get("FL")
+            if not fl:
                 continue
-            
-            # Build constraint coefficients
-            coefficients = {}
-            
-            # FL[t] term
-            coefficients[(fl_code, 0)] = 1.0
-            
-            # FL[t-1] term (if t > 0)
-            if t > 0 and self.state_index.has(fl_code, -1):
-                coefficients[(fl_code, -1)] = -1.0
-            
-            # Flow terms
-            for prefix in ['FU', 'FR', 'FV']:
-                flow_code = pair.get(prefix)
-                if flow_code and self.state_index.has(flow_code, 0):
-                    coefficients[(flow_code, 0)] = -1.0
-            
-            # Build sparse row
-            for (series, lag), coef in coefficients.items():
-                idx = self.state_index.get(series, lag)
-                rows.append(row_idx)
-                cols.append(idx)
-                data.append(coef)
-            
-            rhs.append(0.0)
-            
-            # Add metadata
-            meta = ConstraintMetadata(
-                row_index=row_idx,
-                constraint_type=ConstraintType.STOCK_FLOW,
-                description=f"Stock-flow: {fl_code}",
-                series_involved=list(pair.values()),
-                tolerance=self.tolerances[ConstraintType.STOCK_FLOW],
-                weight=self.weights[ConstraintType.STOCK_FLOW],
-                metadata={'pair': pair, 'time': t}
-            )
-            metadata.append(meta)
-            self.constraint_metadata.append(meta)
-            row_idx += 1
-        
-        if not rows:
-            return None, None, []
-        
-        A = coo_matrix((data, (rows, cols)), 
-                      shape=(row_idx - len(self.constraint_metadata) + len(metadata), 
-                            self.state_index.size)).tocsr()
-        b = np.array(rhs)
-        
+
+            # indices for FL_t and FL_{t-1}
+            i_fl_t   = self.state_index.get(fl, 0)
+            i_fl_tm1 = self.state_index.get(fl, -1)
+            if i_fl_t is None or i_fl_tm1 is None:
+                continue
+
+            r = len(metadata)
+            # +1 * FL_t
+            rows.append(r); cols.append(i_fl_t);   data.append(1.0)
+            # -1 * FL_{t-1}
+            rows.append(r); cols.append(i_fl_tm1); data.append(-1.0)
+
+            # -1 * FU/FR/FV (if present)
+            for key in ("FU","FR","FV"):
+                s = pair.get(key)
+                if s is None:
+                    continue
+                idx = self.state_index.get(s, 0)
+                if idx is None:
+                    continue
+                rows.append(r); cols.append(idx); data.append(-1.0)
+
+            metadata.append(ConstraintMetadata(
+                type=ConstraintType.STOCK_FLOW,
+                description=f"Δ{fl} = FU+FR+FV",
+                time=t,
+            ))
+
+        n_rows = len(metadata)  # <<< correct row count
+        A = coo_matrix((data, (rows, cols)), shape=(n_rows, self.state_index.size)).tocsr()
+        b = np.zeros(A.shape[0])
         return A, b, metadata
+
     
     def _extract_aggregation_constraints(self, t: int) -> Tuple[Optional[csr_matrix],
                                                                 Optional[np.ndarray],

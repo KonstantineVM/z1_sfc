@@ -114,6 +114,21 @@ class SFCGraph:
         self._series_index = {}  # Map series codes to nodes
         self._bilateral_index = {}  # Map (holder, issuer, instrument) to nodes
         
+    def tag_source_vs_computed(self) -> None:
+        """
+        Mark SERIES nodes with metadata['is_source'] = True iff they have
+        NO incoming AGGREGATES_TO edges (i.e., they are leaves/sources).
+        Parents (computed aggregates) get is_source=False.
+        """
+        for n in self.get_nodes_by_type(NodeType.SERIES):
+            node = self.get_node(n)
+            is_computed = False
+            for pred, _, edata in self.G.in_edges(n, data=True):
+                if edata.get("edge_type") == EdgeType.AGGREGATES_TO.value:
+                    is_computed = True
+                    break
+            node.metadata["is_source"] = not is_computed
+        
     def add_node(self, node: SFCNode) -> None:
         """
         Add a node to the graph.
@@ -231,39 +246,39 @@ class SFCGraph:
                             break
         
         return list(set(neighbors))  # Remove duplicates
-    
-    def find_stock_flow_pairs(self) -> List[Dict[str, str]]:
+
+    def find_stock_flow_pairs(self) -> list[dict[str, str]]:
         """
-        Find all stock-flow relationships in the graph.
-        
-        Returns:
-        --------
-        List[Dict[str, str]]
-            List of stock-flow pairs with FL, FU, FR, FV series
+        Return dicts with available members among {'FL','FU','FR','FV'} for
+        series that look related. **Only returns pairs for source (leaf) FL**.
+        Uses code synthesis for FU/FR/FV and keeps only those present.
         """
-        pairs = []
-        
-        # Find all FL series nodes
+        self.tag_source_vs_computed()
+        pairs: list[dict[str, str]] = []
         for node_id in self.get_nodes_by_type(NodeType.SERIES):
             node = self.get_node(node_id)
-            if node.metadata.get('prefix') == 'FL':
-                fl_code = node.metadata.get('code')
-                sector = node.metadata.get('sector')
-                instrument = node.metadata.get('instrument')
-                
-                # Look for corresponding flow series
-                pair = {'FL': fl_code}
-                
-                for prefix in ['FU', 'FR', 'FV']:
-                    flow_code = f"{prefix}{sector}{instrument}005.Q"
-                    if self.get_series_node(flow_code):
-                        pair[prefix] = flow_code
-                
-                if len(pair) > 1:  # Has at least one flow series
-                    pairs.append(pair)
-        
+            md = node.metadata or {}
+            if md.get("prefix") != "FL":
+                continue
+            # Skip computed (aggregate) FL entirely
+            if md.get("is_source") is False:
+                continue
+            sector = md.get("sector")
+            inst = md.get("instrument")
+            if not sector or not inst:
+                continue
+            fl = md.get("code")
+            base = f"{sector}{inst}005.Q"
+            out = {"FL": fl}
+            for c in (f"FU{base}", f"FR{base}", f"FV{base}"):
+                if self._series_index.get(c):
+                    if   c.startswith("FU"): out["FU"] = c
+                    elif c.startswith("FR"): out["FR"] = c
+                    elif c.startswith("FV"): out["FV"] = c
+            if len(out) > 1:
+                pairs.append(out)
         return pairs
-    
+
     def find_aggregation_relationships(self) -> List[Dict[str, Any]]:
         """
         Find all aggregation relationships (parent = sum of children).
