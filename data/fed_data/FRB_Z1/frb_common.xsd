@@ -1,0 +1,3667 @@
+<?xml version="1.0"?>
+<!DOCTYPE xs:schema>
+<xs:schema xmlns="http://www.federalreserve.gov/structure/compact/common" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/message" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/compact" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" targetNamespace="http://www.federalreserve.gov/structure/compact/common" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/message" schemaLocation="SDMXMessage.xsd"/>
+  <xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/compact" schemaLocation="SDMXCompactData.xsd"/>
+  <xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" schemaLocation="SDMXCommon.xsd"/>
+  <xs:element name="DataSet" type="DataSetType" substitutionGroup="compact:DataSet"/>
+  <xs:complexType name="DataSetType">
+    <xs:complexContent>
+      <xs:extension base="compact:DataSetType">
+        <xs:sequence>
+          <xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+          <xs:element ref="Series" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Series" type="SeriesType" substitutionGroup="compact:Series"/>
+  <xs:complexType name="SeriesType">
+    <xs:complexContent>
+      <xs:extension base="compact:SeriesType">
+        <xs:sequence>
+          <xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+          <xs:element name="Attributes" type="AttributesType" minOccurs="0">
+            <xs:unique name="AttributeUniqueness">
+              <xs:selector xpath="Value"/>
+              <xs:field xpath="@name"/>
+            </xs:unique>
+          </xs:element>
+          <xs:element ref="Obs" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="FREQ" type="CL_FREQ" use="required"/>
+        <xs:attribute name="SERIES_NAME" type="xs:string" use="required"/>
+        <xs:attribute name="UNIT" type="CL_UNIT" use="required"/>
+        <xs:attribute name="UNIT_MULT" type="CL_UNIT_MULT" use="required"/>
+        <xs:attribute name="CURRENCY" type="CL_CURRENCY" use="optional"/>
+        <xs:attribute name="TABLE" type="xs:string" use="optional"/>
+        <xs:attribute name="QUERYABLE" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Obs" type="ObsType" substitutionGroup="compact:Obs"/>
+  <xs:complexType name="ObsType">
+    <xs:complexContent>
+      <xs:extension base="compact:ObsType">
+        <xs:attribute name="TIME_PERIOD" type="common:TimePeriodType" use="required"/>
+        <xs:attribute name="OBS_VALUE" type="xs:double" use="optional"/>
+        <xs:attribute name="OBS_STATUS" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AttributesType">
+    <xs:sequence>
+      <xs:element name="Value" type="ValueType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ValueType">
+    <xs:attribute name="name" type="xs:NCName"/>
+    <xs:attribute name="value" type="xs:string"/>
+  </xs:complexType>
+  <xs:simpleType name="CL_OBS_STATUS">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="A">
+        <xs:annotation>
+          <xs:documentation>Normal</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NA">
+        <xs:annotation>
+          <xs:documentation>Not available</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ND">
+        <xs:annotation>
+          <xs:documentation>No data</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NC">
+        <xs:annotation>
+          <xs:documentation>Not calculable</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CL_FREQ">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation>Undefined</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="8">
+        <xs:annotation>
+          <xs:documentation>Daily</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="9">
+        <xs:annotation>
+          <xs:documentation>Business day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="16">
+        <xs:annotation>
+          <xs:documentation>Weekly (Sunday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="17">
+        <xs:annotation>
+          <xs:documentation>Weekly (Monday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="18">
+        <xs:annotation>
+          <xs:documentation>Weekly (Tuesday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="19">
+        <xs:annotation>
+          <xs:documentation>Weekly (Wednesday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="20">
+        <xs:annotation>
+          <xs:documentation>Weekly (Thursday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="21">
+        <xs:annotation>
+          <xs:documentation>Weekly (Friday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="22">
+        <xs:annotation>
+          <xs:documentation>Weekly (Saturday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="32">
+        <xs:annotation>
+          <xs:documentation>Tenday</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="64">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (ASunday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="65">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (AMonday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="66">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (ATuesday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="67">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (AWednesday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="68">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (AThursday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="69">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (AFriday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="70">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (ASaturday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="71">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (BSunday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="72">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (BMonday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="73">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (BTuesday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="74">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (BWednesday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="75">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (BThursday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="76">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (BFriday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="77">
+        <xs:annotation>
+          <xs:documentation>Bi-Weekly (BSaturday)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="128">
+        <xs:annotation>
+          <xs:documentation>Twice Monthly</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="129">
+        <xs:annotation>
+          <xs:documentation>Monthly</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="144">
+        <xs:annotation>
+          <xs:documentation>Bi-Monthly (Nov)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="145">
+        <xs:annotation>
+          <xs:documentation>Bi-Monthly</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="160">
+        <xs:annotation>
+          <xs:documentation>Quarterly (Oct)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="161">
+        <xs:annotation>
+          <xs:documentation>Quarterly (Nov)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="162">
+        <xs:annotation>
+          <xs:documentation>Quarterly</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="192">
+        <xs:annotation>
+          <xs:documentation>Annual (Jan)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="193">
+        <xs:annotation>
+          <xs:documentation>Annual (Feb)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="194">
+        <xs:annotation>
+          <xs:documentation>Annual (Mar)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="195">
+        <xs:annotation>
+          <xs:documentation>Annual (Apr)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="196">
+        <xs:annotation>
+          <xs:documentation>Annual (May)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="197">
+        <xs:annotation>
+          <xs:documentation>Annual (Jun)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="198">
+        <xs:annotation>
+          <xs:documentation>Annual (Jul)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="199">
+        <xs:annotation>
+          <xs:documentation>Annual (Aug)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="200">
+        <xs:annotation>
+          <xs:documentation>Annual (Sep)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="201">
+        <xs:annotation>
+          <xs:documentation>Annual (Oct)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="202">
+        <xs:annotation>
+          <xs:documentation>Annual (Nov)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="203">
+        <xs:annotation>
+          <xs:documentation>Annual</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="204">
+        <xs:annotation>
+          <xs:documentation>Semi-Annual (Jul)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="205">
+        <xs:annotation>
+          <xs:documentation>Semi-Annual (Aug)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="206">
+        <xs:annotation>
+          <xs:documentation>Semi-Annual (Sep)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="207">
+        <xs:annotation>
+          <xs:documentation>Semi-Annual (Oct)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="208">
+        <xs:annotation>
+          <xs:documentation>Semi-Annual (Nov)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="209">
+        <xs:annotation>
+          <xs:documentation>Semi-Annual</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CL_UNIT">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Acres">
+        <xs:annotation>
+          <xs:documentation>Acres</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Bales">
+        <xs:annotation>
+          <xs:documentation>Bales</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Barrels">
+        <xs:annotation>
+          <xs:documentation>Barrels</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Barrels:_Per_Day">
+        <xs:annotation>
+          <xs:documentation>Barrels: Per Day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Barrels:_Per_Month">
+        <xs:annotation>
+          <xs:documentation>Barrels: Per Month</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BTUs:_Per_Quarter">
+        <xs:annotation>
+          <xs:documentation>BTUs: Per Quarter</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BTUs:_Per_Barrel">
+        <xs:annotation>
+          <xs:documentation>BTUs: Per Barrel</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BTUs:_Per_Short_Ton">
+        <xs:annotation>
+          <xs:documentation>BTUs: Per Short Ton</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BTU">
+        <xs:annotation>
+          <xs:documentation>BTU</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Boolean">
+        <xs:annotation>
+          <xs:documentation>Boolean</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Bushels">
+        <xs:annotation>
+          <xs:documentation>Bushels</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Board_Feet">
+        <xs:annotation>
+          <xs:documentation>Board Feet</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cubic_Feet">
+        <xs:annotation>
+          <xs:documentation>Cubic Feet</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cubic_Feet:_Per_day">
+        <xs:annotation>
+          <xs:documentation>Cubic Feet: Per day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cubic_Feet:_1_000_000_Per_day">
+        <xs:annotation>
+          <xs:documentation>Cubic Feet: 1,000,000 Per day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cubic_Feet:_Per_month">
+        <xs:annotation>
+          <xs:documentation>Cubic Feet: Per month</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CWT">
+        <xs:annotation>
+          <xs:documentation>CWT</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency">
+        <xs:annotation>
+          <xs:documentation>Currency</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1968">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1968</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1969">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1969</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1970">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1970</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1975">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1975</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1976">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1976</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1977">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1977</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1978">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1978</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1980">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1980</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1981">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1981</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1982">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1982</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1983">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1983</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1984">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1984</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1984-1985">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1984-1985</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1985">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1985</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1986">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1986</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1987">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1987</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1988">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1988</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1989-1990">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1989-1990</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1990">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1990</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1991">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1991</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1991-1992">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1991-1992</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1992">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1992</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1993">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1993</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1993-1994">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1993-1994</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1994">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1994</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1995">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1995</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1995-1996">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1995-1996</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1996">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1996</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1996-1997">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1996-1997</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1997">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1997</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1999">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1999</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_1999-2000">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 1999-2000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2000">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2002_Apr_30">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2002 Apr 30</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2002">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2002</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2003">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2003</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2005">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2005</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2006">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2006</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2008">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2008</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2009">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2009</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2010">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2010</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2011">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2011</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2012">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2012</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2013">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2013</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2014">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2014</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2015">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2015</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2016">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2016</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Base_2017">
+        <xs:annotation>
+          <xs:documentation>Currency: Base = 2017</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_1982">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 1982</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_1992">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 1992</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_1995-1996">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 1995-1996</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_1995">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 1995</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_1996">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 1996</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_1997">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 1997</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2000">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2001">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2001</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2002">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2002</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2001-2002">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2001-2002</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2002-2003">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2002-2003</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2003">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2003</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2003Q3-2004Q2">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2003Q3-2004Q2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2005Q3-2006Q2">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2005Q3-2006Q2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2006Q3-2007Q2">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2006Q3-2007Q2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2007Q3-2008Q2">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2007Q3-2008Q2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2009Q3-2010Q2">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2009Q3-2010Q2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2004">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2004</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2005">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2005</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2006">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2006</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2004Q3-2005Q2">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2004Q3-2005Q2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2007">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2007</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2008">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2008</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2009">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2009</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2009-2010">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2009-2010</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2011Q3-2012Q2">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2011Q3-2012Q2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2010Q3-2011Q2">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2010Q3-2011Q2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2010">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2010</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2011">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2011</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2012">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2012</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2013">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2013</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2014">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2014</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2015">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2015</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2016">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2016</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Chain-weighted_Base_2017">
+        <xs:annotation>
+          <xs:documentation>Currency: Chain-weighted, Base = 2017</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_BEF">
+        <xs:annotation>
+          <xs:documentation>Currency: Per BEF</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_ECU">
+        <xs:annotation>
+          <xs:documentation>Currency: Per ECU</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_EUR">
+        <xs:annotation>
+          <xs:documentation>Currency: Per EUR</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_GBP">
+        <xs:annotation>
+          <xs:documentation>Currency: Per GBP</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_USD">
+        <xs:annotation>
+          <xs:documentation>Currency: Per USD</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_AUD">
+        <xs:annotation>
+          <xs:documentation>Currency: Per AUD</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_NZD">
+        <xs:annotation>
+          <xs:documentation>Currency: Per NZD</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_1_000_000_BTU">
+        <xs:annotation>
+          <xs:documentation>Currency: Per 1,000,000 BTU</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_1_000_Cubic_Feet">
+        <xs:annotation>
+          <xs:documentation>Currency: Per 1,000 Cubic Feet</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_1_000_Board_Feet">
+        <xs:annotation>
+          <xs:documentation>Currency: Per 1,000 Board Feet</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_1_000_Square_Feet">
+        <xs:annotation>
+          <xs:documentation>Currency: Per 1,000 Square Feet</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Acre">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Acre</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Bale">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Bale</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Barrel">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Barrel</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Bushel">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Bushel</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_BTU">
+        <xs:annotation>
+          <xs:documentation>Currency: Per BTU</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_CWT">
+        <xs:annotation>
+          <xs:documentation>Currency: Per CWT</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Dozen">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Dozen</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Gallon">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Gallon</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Hour">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Hour</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Hour_Base_1982">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Hour, Base = 1982</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Kilogram">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Kilogram</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Kilowatt_hour">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Kilowatt hour</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Megawatt_hour">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Megawatt hour</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Month">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Month</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Piece">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Piece</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Ounce_Troy">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Ounce, Troy</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Pound">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Pound</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Square_Foot">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Square Foot</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Square_Foot_Base_2002">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Square Foot, Base = 2002</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Ton_Metric">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Ton, Metric</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Week">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Week</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency:_Per_Yard">
+        <xs:annotation>
+          <xs:documentation>Currency: Per Yard</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Dates">
+        <xs:annotation>
+          <xs:documentation>Dates</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Days">
+        <xs:annotation>
+          <xs:documentation>Days</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Degree_Days">
+        <xs:annotation>
+          <xs:documentation>Degree Days</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Degree_Days_Prior_10_year_average">
+        <xs:annotation>
+          <xs:documentation>Degree Days, Prior 10 year average</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Dozens">
+        <xs:annotation>
+          <xs:documentation>Dozens</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Feet">
+        <xs:annotation>
+          <xs:documentation>Feet</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Gallons">
+        <xs:annotation>
+          <xs:documentation>Gallons</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Gigawatts">
+        <xs:annotation>
+          <xs:documentation>Gigawatts</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Hours">
+        <xs:annotation>
+          <xs:documentation>Hours</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Hours:_Per_Month">
+        <xs:annotation>
+          <xs:documentation>Hours: Per Month</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Hours:_Per_Week">
+        <xs:annotation>
+          <xs:documentation>Hours: Per Week</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Indicator">
+        <xs:annotation>
+          <xs:documentation>Indicator</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index">
+        <xs:annotation>
+          <xs:documentation>Index</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_Base_1992">
+        <xs:annotation>
+          <xs:documentation>Index: Base = 1992</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_Base_1997">
+        <xs:annotation>
+          <xs:documentation>Index: Base = 1997</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1935_Jul_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1935 Jul 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1924_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1924 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1937_Feb_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1937 Feb 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1941-1943_10">
+        <xs:annotation>
+          <xs:documentation>Index: 1941-1943 = 10</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1948_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1948 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1949_May_16_176.21">
+        <xs:annotation>
+          <xs:documentation>Index: 1949 May 16 = 176.21</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1953_Dec_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1953 Dec 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1956_Dec_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1956 Dec 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1957_Jan_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1957 Jan 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1958_Dec_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1958 Dec 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1962_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1962 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1963_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1963 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1964_Jul_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1964 Jul 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1966_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1966 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1967_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1967 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1968_Jan_4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1968 Jan 4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1970_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1970 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1970_10">
+        <xs:annotation>
+          <xs:documentation>Index: 1970 = 10</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1970_Dec_1">
+        <xs:annotation>
+          <xs:documentation>Index: 1970 Dec = 1</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1970_Dec_31_830.27">
+        <xs:annotation>
+          <xs:documentation>Index: 1970 Dec 31 = 830.27</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1971_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1971 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1972_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1972 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1973_Mar_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1973 Mar = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1975_Jan_2_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1975 Jan 2 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1975_Apr_30_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1975 Apr 30 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1975_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1975 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1975_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1975 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1977_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1977 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1977_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1977 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1977_Dec_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1977 Dec 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1978_Sep_9_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1978 Sep 9 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1978_Oct_30_0.78">
+        <xs:annotation>
+          <xs:documentation>Index: 1978 Oct 30 = 0.78</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1978_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1978 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1978_Q1_1100">
+        <xs:annotation>
+          <xs:documentation>Index: 1978 Q1 = 1100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1978-1979_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1978-1979 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1979_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1979 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1979_500">
+        <xs:annotation>
+          <xs:documentation>Index: 1979 = 500</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1979_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1979 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Jan_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Jan 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Jan_4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Jan 4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Mar_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Mar = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Jul_2_60">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Jul 2 = 60</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Dec_30_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Dec 30 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Dec_31_1404.6">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Dec 31 = 1404.6</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1980_Q4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1980 Q4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1981_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1981 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1981_Apr_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1981 Apr = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1981_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1981 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1981_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1981 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982_Aug_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982 Aug = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982_Aug_10_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982 Aug 10 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982_Oct_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982 Oct 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982_Dec_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982 Dec 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982_Q4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982 Q4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982-1983_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982-1983 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1982-1984_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1982-1984 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1983_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1983 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1983_Jan_3_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1983 Jan 3 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1983_Feb_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1983 Feb 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1983_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1983 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1983_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1983 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1983_Dec_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1983 Dec 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1984_Jan_3_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1984 Jan 3 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1984_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1984 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1984_Aug_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1984 Aug = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1984_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1984 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1984_Dec_30_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1984 Dec 30 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1984-1985_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1984-1985 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1985_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1985 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1985_0.1">
+        <xs:annotation>
+          <xs:documentation>Index: 1985 = 0.1</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1985_Apr_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1985 Apr 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1985_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1985 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1985_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1985 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1985_Dec_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1985 Dec 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1985_Dec_31_682.94">
+        <xs:annotation>
+          <xs:documentation>Index: 1985 Dec 31 = 682.94</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1985_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1985 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1985_Q4_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1985 Q4 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1986_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1986 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1986_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1986 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1986_Jun_30_0.01_USD">
+        <xs:annotation>
+          <xs:documentation>Index: 1986 Jun 30 = 0.01 USD</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1986_Jul_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1986 Jul 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1986_Jul_1_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1986 Jul 1 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1986_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1986 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1986_Dec_31_135">
+        <xs:annotation>
+          <xs:documentation>Index: 1986 Dec 31 = 135</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1987_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1987 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1987_Jan_1_2434.95">
+        <xs:annotation>
+          <xs:documentation>Index: 1987 Jan 1 = 2434.95</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1987_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1987 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1987_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1987 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1987_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1987 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1987_Jun_1_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1987 Jun 1 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1987_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1987 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1987_Dec_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1987 Dec 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1987_Dec_31_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1987 Dec 31 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_Jan_4_1_000">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 Jan 4 = 1,000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_Jan_5_1_000">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 Jan 5 = 1,000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_Feb_1_210.75">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 Feb 1 = 210.75</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_Apr_-_1999_Mar_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 Apr - 1999 Mar = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_Apr_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 Apr 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_Q4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 Q4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1988_Q4_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1988 Q4 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1989_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1989 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1989_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1989 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1989_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1989 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1989-1990_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1989-1990 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Jan_1_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Jan 1 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Mar_16_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Mar 16 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Jul_16_10000">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Jul 16 = 10000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Dec_19_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Dec 19 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Dec_28_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Dec 28 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990_Jul_-_1991_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1990 Jul - 1991 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1990-1992_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1990-1992 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_1000000000">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 = 1000000000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_Jan_1_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 Jan 1 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_Apr_3_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 Apr 3 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_Dec_31_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 Dec 31 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1991_Apr_-_1992_Mar_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1991 Apr - 1992 Mar = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_Feb_21_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 Feb 21 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_Feb_28_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 Feb 28 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_Dec_30_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 Dec 30 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_Oct_-_1993_Sep_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 Oct - 1993 Sep = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_Q4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 Q4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1992_Q4_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1992 Q4 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1993_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1993 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1993_Apr_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1993 Apr = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1993_May_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1993 May = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1993_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1993 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1993_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1993 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1993_Dec_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1993 Dec = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1993_Q4_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1993 Q4 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1993-1994_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1993-1994 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1994_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1994 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1994_Jul_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1994 Jul = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1994_Sep_30_2922.21">
+        <xs:annotation>
+          <xs:documentation>Index: 1994 Sep 30 = 2922.21</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1994_Nov_18_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1994 Nov 18 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1994_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1994 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1994_Q4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1994 Q4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1995_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1995 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1995_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1995 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1995_Nov_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1995 Nov = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1995_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1995 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1995_Sep_20_300">
+        <xs:annotation>
+          <xs:documentation>Index: 1995 Sep 20 = 300</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1995_Dec_29_550">
+        <xs:annotation>
+          <xs:documentation>Index: 1995 Dec 29 = 550</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2011_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2011 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1995_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1995 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1995_Q3_-_1996_Q2_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1995 Q3 - 1996 Q2 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1995-1996_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1995-1996 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1996_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1996 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1996_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1996 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1996_Feb_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1996 Feb = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1996_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1996 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1996_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1996 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1996-1997_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1996-1997 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1997_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1997 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1997_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1997 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1997_May_5_9993.57">
+        <xs:annotation>
+          <xs:documentation>Index: 1997 May 5 = 9993.57</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1997_Jun_1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1997 Jun 1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1997_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1997 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1997_Nov_-_1998_Oct_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1997 Nov - 1998 Oct = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1997_Q4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1997 Q4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1997_Q4_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1997 Q4 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1998_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1998 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1998_Aug_28_885.26">
+        <xs:annotation>
+          <xs:documentation>Index: 1998 Aug 28 = 885.26</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1998_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1998 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1998_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1998 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1998_Q4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1998 Q4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1999_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1999 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1999_Q2_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 1999 Q2 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1999_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1999 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1999_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1999 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1999_Jul_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1999 Jul = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1999_Oct_-_2000_Sep_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1999 Oct - 2000 Sep = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_1999-2000_100">
+        <xs:annotation>
+          <xs:documentation>Index: 1999-2000 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2000_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2000 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2000_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2000 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2000_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2000 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2000_May_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2000 May = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2000_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2000 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2000_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2000 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2001_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2001 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2001_Q2_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 2001 Q2 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2001_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2001 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2001_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2001 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2001-2002_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2001-2002 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2002_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2002 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2002_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2002 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2002_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2002 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2002_Dec_31_5000">
+        <xs:annotation>
+          <xs:documentation>Index: 2002 Dec 31 = 5000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2002-2003_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2002-2003 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2003_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2003 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2003_May_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2003 May = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2003_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2003 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2010_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2010 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2010_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2010 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2009_Nov_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2009 Nov = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2003_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2003 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2003_Q3_-_2004_Q2_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2003 Q3 - 2004 Q2 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2004_Q3_-_2005_Q2_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2004 Q3 - 2005 Q2 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2005_Q3_-_2006_Q2_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2005 Q3 - 2006 Q2 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2006_Q3_-_2007_Q2_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2006 Q3 - 2007 Q2 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2004_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2004 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2004_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2004 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2005_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2005 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2005_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2005 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2010_Apr_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2010 Apr = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2005_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2005 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2006_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2006 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2006_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2006 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2006_Jan_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2006 Jan = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2006_Q2_1000">
+        <xs:annotation>
+          <xs:documentation>Index: 2006 Q2 = 1000</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2006_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2006 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2007_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2007 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2007_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2007 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2009_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2009 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2011_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2011 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2012_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2012 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2009_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2009 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2007_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2007 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2008_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2008 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2008_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2008 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2008_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2008 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2009_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2009 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2009_Apr_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2009 Apr = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2009_Mar_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2009 Mar = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2010_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2010 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2010_Q1_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2010 Q1 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2011_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2011 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2012_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2012 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2017_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2017 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2012_Mar_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2012 Mar = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2012_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2012 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2013_Oct_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2013 Oct = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2013_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2013 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2015_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2015 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2015-2016_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2015-2016 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2015_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2015 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2015_SEP_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2015 SEP = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2016_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2016 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2016_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2016 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2014_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2014 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2014_Jun_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2014 Jun = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2014_Dec_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2014 Dec = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2008_Q4_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2008 Q4 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2009_-_2010_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2009 - 2010 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2014_Oct_-_2015_Sep_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2014 Oct - 2015 Sep = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2017_-_2018_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2017 - 2018 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2019_-_2020_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2019 - 2020 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2020_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2020 = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2019_DEC_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2019 DEC = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2022_DEC_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2022 DEC = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Index:_2023_FEB_100">
+        <xs:annotation>
+          <xs:documentation>Index: 2023 FEB = 100</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Kilowatt_Hours">
+        <xs:annotation>
+          <xs:documentation>Kilowatt Hours</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Kilowatt_Hours:_per_day">
+        <xs:annotation>
+          <xs:documentation>Kilowatt Hours: per day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Length">
+        <xs:annotation>
+          <xs:documentation>Length</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Megawatt_Hours:_per_day">
+        <xs:annotation>
+          <xs:documentation>Megawatt Hours: per day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Miles">
+        <xs:annotation>
+          <xs:documentation>Miles</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Miles:_Per_Day">
+        <xs:annotation>
+          <xs:documentation>Miles: Per Day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Months">
+        <xs:annotation>
+          <xs:documentation>Months</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Number">
+        <xs:annotation>
+          <xs:documentation>Number</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ounces">
+        <xs:annotation>
+          <xs:documentation>Ounces</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ounces_Troy">
+        <xs:annotation>
+          <xs:documentation>Ounces, Troy</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Percent">
+        <xs:annotation>
+          <xs:documentation>Percent</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Percent:_Per_Month">
+        <xs:annotation>
+          <xs:documentation>Percent: Per Month</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Percent:_Per_Quarter">
+        <xs:annotation>
+          <xs:documentation>Percent: Per Quarter</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Percent:_Per_Year">
+        <xs:annotation>
+          <xs:documentation>Percent: Per Year</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Percentage">
+        <xs:annotation>
+          <xs:documentation>Percentage</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Percentage_of_Industrial_Production_in_2012">
+        <xs:annotation>
+          <xs:documentation>Percentage of Industrial Production in 2012</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Pounds">
+        <xs:annotation>
+          <xs:documentation>Pounds</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Square_Feet">
+        <xs:annotation>
+          <xs:documentation>Square Feet</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ton_Metric">
+        <xs:annotation>
+          <xs:documentation>Ton, Metric</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ton_Metric:_Per_Hour">
+        <xs:annotation>
+          <xs:documentation>Ton, Metric: Per Hour</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ton_Metric:_Per_Month">
+        <xs:annotation>
+          <xs:documentation>Ton, Metric: Per Month</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ton-miles">
+        <xs:annotation>
+          <xs:documentation>Ton-miles</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ton-miles:_Per_Day">
+        <xs:annotation>
+          <xs:documentation>Ton-miles: Per Day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ton_Short">
+        <xs:annotation>
+          <xs:documentation>Ton, Short</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ton_Short:_Per_Day">
+        <xs:annotation>
+          <xs:documentation>Ton, Short: Per Day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ton_Short:_1_000_Per_Day">
+        <xs:annotation>
+          <xs:documentation>Ton, Short: 1,000 Per Day</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Ton_Short:_Per_Month">
+        <xs:annotation>
+          <xs:documentation>Ton, Short: Per Month</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Weeks">
+        <xs:annotation>
+          <xs:documentation>Weeks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Yards">
+        <xs:annotation>
+          <xs:documentation>Yards</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Years">
+        <xs:annotation>
+          <xs:documentation>Years</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CL_UNIT_MULT">
+    <xs:restriction base="xs:float">
+      <xs:enumeration value=".01">
+        <xs:annotation>
+          <xs:documentation>Hundredths</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value=".1">
+        <xs:annotation>
+          <xs:documentation>Tenths</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>One</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1000">
+        <xs:annotation>
+          <xs:documentation>Thousands</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1000000">
+        <xs:annotation>
+          <xs:documentation>Millions</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="100000000">
+        <xs:annotation>
+          <xs:documentation>Hundred millions</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1000000000">
+        <xs:annotation>
+          <xs:documentation>Billions</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1000000000000">
+        <xs:annotation>
+          <xs:documentation>Trillions</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1000000000000000">
+        <xs:annotation>
+          <xs:documentation>Quadrillions</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CL_CURRENCY">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NA">
+        <xs:annotation>
+          <xs:documentation>Not Applicable</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="USD">
+        <xs:annotation>
+          <xs:documentation>United States / United States Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="USN">
+        <xs:annotation>
+          <xs:documentation>United States / United States Dollar (Next day)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="USS">
+        <xs:annotation>
+          <xs:documentation>United States / United States Dollar (Same day)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AFA">
+        <xs:annotation>
+          <xs:documentation>Afghanistan / Afghani</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ALL">
+        <xs:annotation>
+          <xs:documentation>Albania / Lek</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DZD">
+        <xs:annotation>
+          <xs:documentation>Algeria / Algerian Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AOK">
+        <xs:annotation>
+          <xs:documentation>Angola / Kwanza</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AON">
+        <xs:annotation>
+          <xs:documentation>Angola / New Kwanza</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ARS">
+        <xs:annotation>
+          <xs:documentation>Argentina / Argentinian Nuevo Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ARP">
+        <xs:annotation>
+          <xs:documentation>Argentina / Argentinian Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ARA">
+        <xs:annotation>
+          <xs:documentation>Argentina / Austral</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AMD">
+        <xs:annotation>
+          <xs:documentation>Armenia / Dram</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AWG">
+        <xs:annotation>
+          <xs:documentation>Aruba / Aruban Guilder</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AUD">
+        <xs:annotation>
+          <xs:documentation>Australia / Australian Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ATS">
+        <xs:annotation>
+          <xs:documentation>Austria / Austrian Schilling</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AZM">
+        <xs:annotation>
+          <xs:documentation>Azerbaijan / Azerbaijani Manat</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BSD">
+        <xs:annotation>
+          <xs:documentation>Bahamas / Bahamian Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BHD">
+        <xs:annotation>
+          <xs:documentation>Bahrain / Bahraini Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BDT">
+        <xs:annotation>
+          <xs:documentation>Bangladesh / Taka</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BBD">
+        <xs:annotation>
+          <xs:documentation>Barbados / Barbados Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BYR">
+        <xs:annotation>
+          <xs:documentation>Belarus / Belarussian Rouble</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BEF">
+        <xs:annotation>
+          <xs:documentation>Belgium / Belgian Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BZD">
+        <xs:annotation>
+          <xs:documentation>Belize / Belize Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BMD">
+        <xs:annotation>
+          <xs:documentation>Bermuda / Bermudian Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BTN">
+        <xs:annotation>
+          <xs:documentation>Bhutan / Ngultrum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BOP">
+        <xs:annotation>
+          <xs:documentation>Bolivia / Bolivian Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BOB">
+        <xs:annotation>
+          <xs:documentation>Bolivia / Boliviano</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BAD">
+        <xs:annotation>
+          <xs:documentation>Bosnia / Bosnian Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BWP">
+        <xs:annotation>
+          <xs:documentation>Botswana / Pula</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BRC">
+        <xs:annotation>
+          <xs:documentation>Brazil / Cruzeiro</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BRR">
+        <xs:annotation>
+          <xs:documentation>Brazil / Cruzeiro Real</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BRL">
+        <xs:annotation>
+          <xs:documentation>Brazil / Real</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BND">
+        <xs:annotation>
+          <xs:documentation>Brunei / Brunei Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BGL">
+        <xs:annotation>
+          <xs:documentation>Bulgaria / Lev</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BFF">
+        <xs:annotation>
+          <xs:documentation>Burkina Faso / Burkina Faso Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BIF">
+        <xs:annotation>
+          <xs:documentation>Burundi / Burundi Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KHR">
+        <xs:annotation>
+          <xs:documentation>Cambodia / Riel</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CAD">
+        <xs:annotation>
+          <xs:documentation>Canada / Canadian Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CVE">
+        <xs:annotation>
+          <xs:documentation>Cape Verde Islands / Escudo Caboverdiano</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KYD">
+        <xs:annotation>
+          <xs:documentation>Cayman Islands / Cayman Islands Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CLP">
+        <xs:annotation>
+          <xs:documentation>Chile / Chilean Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CLF">
+        <xs:annotation>
+          <xs:documentation>Chile / Unidades de Fomento</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CNY">
+        <xs:annotation>
+          <xs:documentation>China / Yuan Renminbi</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="COP">
+        <xs:annotation>
+          <xs:documentation>Colombia / Colombian Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KMF">
+        <xs:annotation>
+          <xs:documentation>Comoros / Comorian Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CRC">
+        <xs:annotation>
+          <xs:documentation>Costa Rica / Costa Rican Colon</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HRD">
+        <xs:annotation>
+          <xs:documentation>Croatia / Croatian Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HRK">
+        <xs:annotation>
+          <xs:documentation>Croatia / Croatian Kuna</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CUP">
+        <xs:annotation>
+          <xs:documentation>Cuba / Cuban Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CYP">
+        <xs:annotation>
+          <xs:documentation>Cyprus / Cypriot Pound</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CZK">
+        <xs:annotation>
+          <xs:documentation>Czech Republic / Czech Koruna</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DKK">
+        <xs:annotation>
+          <xs:documentation>Denmark / Danish Krone</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DJF">
+        <xs:annotation>
+          <xs:documentation>Djibouti / Djibouti Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DOP">
+        <xs:annotation>
+          <xs:documentation>Dominican Republic / Dominican Republic Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TPE">
+        <xs:annotation>
+          <xs:documentation>East Timor / Timorian Escudo</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EGP">
+        <xs:annotation>
+          <xs:documentation>Egypt / Egyptian Pound</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SVC">
+        <xs:annotation>
+          <xs:documentation>El Salvador / El Salvadorian Colon</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GQE">
+        <xs:annotation>
+          <xs:documentation>Equatorial Guinea / Ekwele</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ERN">
+        <xs:annotation>
+          <xs:documentation>Eritrea / Eritrean Nakfa</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EEK">
+        <xs:annotation>
+          <xs:documentation>Estonia / Kroon</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ETB">
+        <xs:annotation>
+          <xs:documentation>Ethiopia / Ethiopian Birr</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="XEU">
+        <xs:annotation>
+          <xs:documentation>Euro Area / ECU</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EUR">
+        <xs:annotation>
+          <xs:documentation>Euro Area / Euro (replacement name for the ECU)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FKP">
+        <xs:annotation>
+          <xs:documentation>Falkland Islands / Falkland Pound</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FJD">
+        <xs:annotation>
+          <xs:documentation>Fiji Islands / Fiji Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FIM">
+        <xs:annotation>
+          <xs:documentation>Finland / Marka</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FRF">
+        <xs:annotation>
+          <xs:documentation>France / French Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GMD">
+        <xs:annotation>
+          <xs:documentation>Gambia / Dalasi</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GEL">
+        <xs:annotation>
+          <xs:documentation>Georgia / Lari</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DEM">
+        <xs:annotation>
+          <xs:documentation>Germany / Mark</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GHC">
+        <xs:annotation>
+          <xs:documentation>Ghana / Cedi</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GIP">
+        <xs:annotation>
+          <xs:documentation>Gibraltar / Gibraltar Pound</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GRD">
+        <xs:annotation>
+          <xs:documentation>Greece / Drachma</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GTQ">
+        <xs:annotation>
+          <xs:documentation>Guatemala / Quetzal</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GNS">
+        <xs:annotation>
+          <xs:documentation>Guinea / Syli (also known as Guinea Franc)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GWP">
+        <xs:annotation>
+          <xs:documentation>Guinea-Bissau / Guinea-Bissau Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GYD">
+        <xs:annotation>
+          <xs:documentation>Guyana / Guyana Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HTG">
+        <xs:annotation>
+          <xs:documentation>Haiti / Gourde</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HNL">
+        <xs:annotation>
+          <xs:documentation>Honduras / Lempira</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HKD">
+        <xs:annotation>
+          <xs:documentation>Hong Kong / Hong Kong Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HUF">
+        <xs:annotation>
+          <xs:documentation>Hungary / Forint</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ISK">
+        <xs:annotation>
+          <xs:documentation>Iceland / Icelandic Krona</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="INR">
+        <xs:annotation>
+          <xs:documentation>India / Indian Rupee</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IDR">
+        <xs:annotation>
+          <xs:documentation>Indonesia / Rupiah</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IRR">
+        <xs:annotation>
+          <xs:documentation>Iran / Iranian Rial</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IQD">
+        <xs:annotation>
+          <xs:documentation>Iraq / Iraqi Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IEP">
+        <xs:annotation>
+          <xs:documentation>Ireland / Punt</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ILS">
+        <xs:annotation>
+          <xs:documentation>Israel / Shekel</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ITL">
+        <xs:annotation>
+          <xs:documentation>Italy / Italian Lira</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="JMD">
+        <xs:annotation>
+          <xs:documentation>Jamaica / Jamaican Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="JPY">
+        <xs:annotation>
+          <xs:documentation>Japan / Yen</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="JOD">
+        <xs:annotation>
+          <xs:documentation>Jordan / Jordanian Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KZT">
+        <xs:annotation>
+          <xs:documentation>Kazakstan / Tenge</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KES">
+        <xs:annotation>
+          <xs:documentation>Kenya / Kenyan Shilling</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KGS">
+        <xs:annotation>
+          <xs:documentation>Krygyzstan / Kyrgyzstani Som</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KWD">
+        <xs:annotation>
+          <xs:documentation>Kuwait / Kuwaiti Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LAK">
+        <xs:annotation>
+          <xs:documentation>Laos / Kip</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LVL">
+        <xs:annotation>
+          <xs:documentation>Latvia / Lat</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LBP">
+        <xs:annotation>
+          <xs:documentation>Lebanon / Lebanese Pound</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LSL">
+        <xs:annotation>
+          <xs:documentation>Lesotho / Loti</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LSM">
+        <xs:annotation>
+          <xs:documentation>Lesotho / Maloti</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LRD">
+        <xs:annotation>
+          <xs:documentation>Liberia / Liberian Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LYD">
+        <xs:annotation>
+          <xs:documentation>Libya / Libyan Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LTL">
+        <xs:annotation>
+          <xs:documentation>Lithuania / Litas</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LUF">
+        <xs:annotation>
+          <xs:documentation>Luxembourg / Luxembourg Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MOP">
+        <xs:annotation>
+          <xs:documentation>Macau / Pataca</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MKD">
+        <xs:annotation>
+          <xs:documentation>Macedonia / Macedonian Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MGF">
+        <xs:annotation>
+          <xs:documentation>Madagascar / Malagasy Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MWK">
+        <xs:annotation>
+          <xs:documentation>Malawi / Malawian Kwacha</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MYR">
+        <xs:annotation>
+          <xs:documentation>Malaysia / Ringgit (also known as Malaysian Dollar)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MVR">
+        <xs:annotation>
+          <xs:documentation>Maldives / Rufiyaa</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MLF">
+        <xs:annotation>
+          <xs:documentation>Mali / Malian Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MTL">
+        <xs:annotation>
+          <xs:documentation>Malta / Maltese Lira</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MRO">
+        <xs:annotation>
+          <xs:documentation>Mauritania / Ouguiya</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MUR">
+        <xs:annotation>
+          <xs:documentation>Mauritius / Mauritius Rupee</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MXN">
+        <xs:annotation>
+          <xs:documentation>Mexico / Mexican New Peso (replacement for Mexican Peso)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MDL">
+        <xs:annotation>
+          <xs:documentation>Moldova / Moldavian Leu</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MNT">
+        <xs:annotation>
+          <xs:documentation>Mongolia / Tugrik</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MAD">
+        <xs:annotation>
+          <xs:documentation>Morocco / Moroccan Dirham</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MZM">
+        <xs:annotation>
+          <xs:documentation>Mozambique / Metical</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MMK">
+        <xs:annotation>
+          <xs:documentation>Myanmar / Kyat</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NAD">
+        <xs:annotation>
+          <xs:documentation>Namibia / Namibian Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NPR">
+        <xs:annotation>
+          <xs:documentation>Nepal / Nepalese Rupee</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NLG">
+        <xs:annotation>
+          <xs:documentation>Netherlands / Netherlands Guilder</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ANG">
+        <xs:annotation>
+          <xs:documentation>Netherlands / Netherlands Antilles Guilder</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NZD">
+        <xs:annotation>
+          <xs:documentation>New Zealand / New Zealand Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NIC">
+        <xs:annotation>
+          <xs:documentation>Nicaragua / Cordoba</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NGN">
+        <xs:annotation>
+          <xs:documentation>Nigeria / Naira</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KPW">
+        <xs:annotation>
+          <xs:documentation>North Korea / Democratic People's Republic of Korean Won</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NOK">
+        <xs:annotation>
+          <xs:documentation>Norway / Norwegian Krone</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OMR">
+        <xs:annotation>
+          <xs:documentation>Oman / Omani Rial</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PKR">
+        <xs:annotation>
+          <xs:documentation>Pakistan / Pakistani Rupee</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PAB">
+        <xs:annotation>
+          <xs:documentation>Panama / Balboa</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PGK">
+        <xs:annotation>
+          <xs:documentation>Papua New Guinea / Kina</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PYG">
+        <xs:annotation>
+          <xs:documentation>Paraguay / Guarani</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PEI">
+        <xs:annotation>
+          <xs:documentation>Peru / Inti</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PEN">
+        <xs:annotation>
+          <xs:documentation>Peru / New Sol</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PHP">
+        <xs:annotation>
+          <xs:documentation>Philippines / Philippines Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PLN">
+        <xs:annotation>
+          <xs:documentation>Poland / New Zloty</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PTE">
+        <xs:annotation>
+          <xs:documentation>Portugal / Portuguese Escudo</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="QAR">
+        <xs:annotation>
+          <xs:documentation>Qatar / Qatari Riyal</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ROL">
+        <xs:annotation>
+          <xs:documentation>Romania / Romanian Leu</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RUR">
+        <xs:annotation>
+          <xs:documentation>Russia / Russian Federation Rouble</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RWF">
+        <xs:annotation>
+          <xs:documentation>Rwanda / Rwandan Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SHP">
+        <xs:annotation>
+          <xs:documentation>Saint Helena / St Helena Pound</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="WST">
+        <xs:annotation>
+          <xs:documentation>Samoa / Tala</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="STD">
+        <xs:annotation>
+          <xs:documentation>Sao Tome and Principe / Dobra</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SAR">
+        <xs:annotation>
+          <xs:documentation>Saudi Arabia / Saudi Riyal</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SCR">
+        <xs:annotation>
+          <xs:documentation>Seychelles / Seychelles Rupee</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SLL">
+        <xs:annotation>
+          <xs:documentation>Sierra Leone / Leone</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SGD">
+        <xs:annotation>
+          <xs:documentation>Singapore / Singapore Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SKK">
+        <xs:annotation>
+          <xs:documentation>Slovakia / Slovak Koruna</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SIT">
+        <xs:annotation>
+          <xs:documentation>Slovenia / Tolar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SBD">
+        <xs:annotation>
+          <xs:documentation>Solomon Islands / Solomon Islands Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SOS">
+        <xs:annotation>
+          <xs:documentation>Somalia / Somali Shilling</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ZAR">
+        <xs:annotation>
+          <xs:documentation>South Africa / Rand</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ZAL">
+        <xs:annotation>
+          <xs:documentation>South Africa / Rand (financial)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KRW">
+        <xs:annotation>
+          <xs:documentation>South Korea / Republic of Korean Won</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SUR">
+        <xs:annotation>
+          <xs:documentation>Soviet Union / Union of Soviet Socialist Republics Rouble</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ESP">
+        <xs:annotation>
+          <xs:documentation>Spain / Peseta</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LKR">
+        <xs:annotation>
+          <xs:documentation>Sri Lanka / Sri Lankan Rupee</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SDD">
+        <xs:annotation>
+          <xs:documentation>Sudan / Sudanese Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SDP">
+        <xs:annotation>
+          <xs:documentation>Sudan / Sudanese Pound</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SRG">
+        <xs:annotation>
+          <xs:documentation>Suriname / Surinam Guilder</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SZL">
+        <xs:annotation>
+          <xs:documentation>Swaziland / Lilangeni</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SEK">
+        <xs:annotation>
+          <xs:documentation>Sweden / Swedish Krona</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CHF">
+        <xs:annotation>
+          <xs:documentation>Switzerland / Swiss Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SYP">
+        <xs:annotation>
+          <xs:documentation>Syria / Syrian Pound</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TWD">
+        <xs:annotation>
+          <xs:documentation>Taiwan / Taiwan Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TJR">
+        <xs:annotation>
+          <xs:documentation>Tajikistan / Tajik Rouble</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TZS">
+        <xs:annotation>
+          <xs:documentation>Tanzania / Tanzanian Shilling</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="THB">
+        <xs:annotation>
+          <xs:documentation>Thailand / Baht</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TOP">
+        <xs:annotation>
+          <xs:documentation>Tonga / Pa'anga</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TTD">
+        <xs:annotation>
+          <xs:documentation>Trinidad and Tobago / Trinidad and Tobago Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TND">
+        <xs:annotation>
+          <xs:documentation>Tunisia / Tunisian Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TRL">
+        <xs:annotation>
+          <xs:documentation>Turkey / Turkish Lira</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TMM">
+        <xs:annotation>
+          <xs:documentation>Turkmenistan / Turkmenistani Manat</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UGS">
+        <xs:annotation>
+          <xs:documentation>Uganda / Ugandan Shilling</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UAH">
+        <xs:annotation>
+          <xs:documentation>Ukraine / Hryvna</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UAK">
+        <xs:annotation>
+          <xs:documentation>Ukraine / Karbovanet</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AED">
+        <xs:annotation>
+          <xs:documentation>United Arab Emirates / United Arab Emirates Dirham</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GBP">
+        <xs:annotation>
+          <xs:documentation>United Kingdom / Pound Sterling (United Kingdom Pound)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UYU">
+        <xs:annotation>
+          <xs:documentation>Uruguay / Uruguayan New Peso</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UZS">
+        <xs:annotation>
+          <xs:documentation>Uzbekistan / Uzbekistani Som</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="VUV">
+        <xs:annotation>
+          <xs:documentation>Vanuatu / Vatu</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="VEB">
+        <xs:annotation>
+          <xs:documentation>Venezuela / Bolivar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="VND">
+        <xs:annotation>
+          <xs:documentation>Vietnam / Viet Nam Dong</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="XOF">
+        <xs:annotation>
+          <xs:documentation>West Africa / West African Franc</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="YDD">
+        <xs:annotation>
+          <xs:documentation>Yemen / South Yemeni Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="YER">
+        <xs:annotation>
+          <xs:documentation>Yemen / Yemeni Riyal</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="YUD">
+        <xs:annotation>
+          <xs:documentation>Yugoslavia / Yugoslavian New Dinar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CDZ">
+        <xs:annotation>
+          <xs:documentation>Zaire / New Zaire</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ZMK">
+        <xs:annotation>
+          <xs:documentation>Zambia / Zambian Kwacha</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ZWD">
+        <xs:annotation>
+          <xs:documentation>Zimbabwe / Zimbabwe Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="XCD">
+        <xs:annotation>
+          <xs:documentation>East Caribbean Dollar</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="XAF">
+        <xs:annotation>
+          <xs:documentation>Franc de la Communaute financiere africaine</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="XPF">
+        <xs:annotation>
+          <xs:documentation>Franc des Comptoirs francais du Pacifique</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="XAU">
+        <xs:annotation>
+          <xs:documentation>Gold</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="XDR">
+        <xs:annotation>
+          <xs:documentation>International Monetary Fund Special Drawing Rights</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -33,9 +33,7 @@ FA 15 30611 0 5 . Q
 └───────────────────── Prefix (FL=Level, FU=Flow, FR=Revaluation, etc.)
 """
 
-import argparse
-import json
-import sys
+import argparse, json, sys
 from pathlib import Path
 import yaml
 import pandas as pd
@@ -47,10 +45,9 @@ from src.data.data_processor import DataProcessor
 from src.utils.z1_series_interpreter import Z1Series
 from src.alloc.graph_flow_allocator import allocate_flows_from_graph
 
-# ========== CONFIG LOADING ==========
+# ---------- config & IO ----------
 
 def load_cfg(path: str) -> dict:
-    """Load configuration from YAML file."""
     cfg_path = Path(path)
     with cfg_path.open("r", encoding="utf-8") as f:
         raw = yaml.safe_load(f) or {}
@@ -62,13 +59,6 @@ def load_cfg(path: str) -> dict:
     if missing:
         raise ValueError(f"sfc config missing: {missing}")
     return sfc
-
-def load_json(path: str):
-    """Load JSON file."""
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-# ========== SERIES PARSING ==========
 
 # Correct regex pattern based on Fed documentation
 _SERIES_RE = re.compile(
@@ -100,7 +90,11 @@ _SERIES_RE_SHORT = re.compile(
 _ALLOWED_PREFIXES = {"FA","FL","FU","FV","FR","FC","FG","FI","FS","LA","LM","PC"}
 
 def parse_z1_series(series_str: str):
-    """Parse Z1 series mnemonic according to Fed documentation."""
+    """
+    Parse Z1 series mnemonic according to Fed documentation.
+    Returns (prefix, sector, instrument) or None.
+    """
+    # Clean the series string
     series_str = str(series_str).strip().upper()
     
     # Try main pattern first
@@ -132,10 +126,8 @@ def parse_z1_series(series_str: str):
     
     return None
 
-# ========== DATA LOADING ==========
-
 def load_z1_panel(sfc: dict) -> pd.DataFrame:
-    """Load and parse Z1 data."""
+    """Load and parse Z1 data with comprehensive debugging."""
     print("\n" + "="*60)
     print("LOADING Z1 DATA")
     print("="*60)
@@ -144,7 +136,7 @@ def load_z1_panel(sfc: dict) -> pd.DataFrame:
         base_directory=sfc["base_dir"],
         cache_directory=sfc["cache_dir"],
         start_year=1959,
-        end_year=2025,  # Extended to get latest data
+        end_year=2025,  # Changed from default 2024 to 2025
         cache_expiry_days=30
     )
     
@@ -157,6 +149,17 @@ def load_z1_panel(sfc: dict) -> pd.DataFrame:
     z1 = DataProcessor().process_fed_data(z1_raw, 'Z1')
     print(f"✓ Processed Z1 shape: {z1.shape}")
     
+    # Sample series names for analysis
+    print("\nSample series names from data:")
+    sample_cols = list(z1.columns)[:20]
+    for i, col in enumerate(sample_cols):
+        parsed = parse_z1_series(col)
+        if parsed:
+            prefix, sector, instrument = parsed
+            print(f"  {col:20} → {prefix} | Sector:{sector} | Instr:{instrument}")
+        else:
+            print(f"  {col:20} → [FAILED TO PARSE]")
+    
     # Ensure index is named for melt
     if z1.index.name is None:
         z1.index.name = "date"
@@ -165,7 +168,7 @@ def load_z1_panel(sfc: dict) -> pd.DataFrame:
     df = z1.reset_index().melt(id_vars=["date"], var_name="series", value_name="value")
     df["date"] = pd.to_datetime(df["date"])
     
-    print(f"✓ Long format: {df.shape[0]:,} rows")
+    print(f"\n✓ Long format: {df.shape[0]:,} rows")
     print(f"✓ Unique series: {df['series'].nunique():,}")
     
     # Parse all series
@@ -174,10 +177,23 @@ def load_z1_panel(sfc: dict) -> pd.DataFrame:
     
     # Count successful parses
     success_mask = parsed_results.notnull()
+    print(f"\nParsing Results:")
     print(f"  ✓ Successful: {success_mask.sum():,} rows ({100*success_mask.mean():.1f}%)")
+    print(f"  ✗ Failed: {(~success_mask).sum():,} rows ({100*(~success_mask).mean():.1f}%)")
     
-    if (~success_mask).sum() > 0:
-        print(f"  ✗ Failed: {(~success_mask).sum():,} rows")
+    # Analyze failed parses
+    if (~success_mask).any():
+        failed_series = df.loc[~success_mask, "series"].unique()
+        print(f"\nFailed series examples (first 10):")
+        for s in failed_series[:10]:
+            print(f"  - {s}")
+        
+        # Save debug info
+        outdir = Path(sfc["output_dir"])
+        outdir.mkdir(parents=True, exist_ok=True)
+        debug_file = outdir / f"debug_unparsed_{pd.Timestamp.now():%Y%m%d_%H%M%S}.csv"
+        pd.DataFrame({"series": failed_series}).to_csv(debug_file, index=False)
+        print(f"\nComplete list saved to: {debug_file}")
     
     # Expand parsed tuples
     expanded = parsed_results.apply(
@@ -189,83 +205,74 @@ def load_z1_panel(sfc: dict) -> pd.DataFrame:
     tidy = pd.concat([df, expanded], axis=1)
     tidy = tidy.dropna(subset=["kind", "sector", "instrument"])
     
-    # Summary
-    print(f"\nSeries breakdown:")
+    # Analysis by series type
+    print(f"\n" + "-"*40)
+    print("SERIES BREAKDOWN BY TYPE:")
+    print("-"*40)
+    
+    type_counts = tidy.groupby("kind").agg({
+        "series": ["nunique", "count"]
+    }).round(0).astype(int)
+    type_counts.columns = ["Unique Series", "Total Rows"]
+    
     for kind in sorted(tidy["kind"].unique()):
-        count = (tidy["kind"] == kind).sum()
-        print(f"  {kind}: {count:,} rows")
+        unique = type_counts.loc[kind, "Unique Series"]
+        total = type_counts.loc[kind, "Total Rows"]
+        print(f"  {kind:3} : {unique:5,} series, {total:8,} rows")
+    
+    # Check specific date
+    qdate = pd.to_datetime(sfc["date"])
+    date_data = tidy[tidy["date"] == qdate]
+    
+    print(f"\n" + "-"*40)
+    print(f"DATA AT ANALYSIS DATE: {qdate.date()}")
+    print("-"*40)
+    
+    if len(date_data) == 0:
+        print(f"⚠ WARNING: No data found for {qdate.date()}")
+        available_dates = sorted(tidy["date"].unique())
+        print(f"\nAvailable dates:")
+        print(f"  First: {available_dates[0].date()}")
+        print(f"  Last:  {available_dates[-1].date()}")
+        print(f"\nRecent dates:")
+        for d in available_dates[-5:]:
+            count = len(tidy[tidy["date"] == d])
+            print(f"    {d.date()}: {count:,} rows")
+    else:
+        for kind in ["FL", "FU", "FR", "FV", "FA"]:
+            count = len(date_data[date_data["kind"] == kind])
+            if count > 0:
+                print(f"  {kind}: {count:,} rows")
     
     return tidy[["date", "series", "value", "kind", "sector", "instrument"]]
 
-# ========== HELPER FUNCTIONS ==========
+def load_json(path: str):
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-def get_all_sectors(tidy: pd.DataFrame, qdate: pd.Timestamp) -> list:
-    """Get all unique sectors for the specific date and relevant series types."""
-    mask = (tidy['date'] == qdate) & (tidy['kind'].isin(['FL', 'FU']))
-    sectors = sorted(tidy.loc[mask, 'sector'].unique().tolist())
-    return sectors
-
-def ensure_all_sectors(matrix: pd.DataFrame, all_sectors: list) -> pd.DataFrame:
-    """
-    Ensure matrix has columns for all sectors, filling missing with 0.
-    ALWAYS computes the Total column.
-    """
-    special_cols = ['label', 'Total']
-    current_special = [col for col in special_cols if col in matrix.columns]
-    current_sectors = [col for col in matrix.columns if col not in special_cols]
-    
-    # Add missing sector columns
-    added = [s for s in all_sectors if s not in current_sectors]
-    if added:
-        print(f"    Adding sectors: {', '.join(sorted(added)[:5])}...")
-    
-    for sector in all_sectors:
-        if sector not in matrix.columns:
-            matrix[sector] = 0.0
-    
-    # Build column order
-    new_cols = []
-    if 'label' in current_special:
-        new_cols.append('label')
-    
-    # Add all sectors in sorted order
-    new_cols.extend(sorted(all_sectors))
-    
-    # ALWAYS compute and add Total
-    matrix['Total'] = matrix[all_sectors].sum(axis=1)
-    new_cols.append('Total')
-    
-    return matrix[new_cols]
+# ---------- SFC primitives ----------
 
 def sfc_sign(instr: str, imap: dict) -> int:
     """Get sign for instrument based on side classification."""
-    side = imap.get(instr, {}).get('side', 'macro')
+    side = imap.get(instr, {}).get('side', 'asset')
+    
+    # Default unmapped to asset
+    if instr not in imap:
+        return -1
+    
     if side == 'asset':
         return -1
     elif side == 'liability':
         return +1
-    else:  # 'macro' or unknown
+    else:  # 'macro' or other
         return 0
 
-def prep_save_matrix(mat: pd.DataFrame) -> pd.DataFrame:
-    """Prepare matrix for saving to CSV with proper formatting."""
-    out = mat.copy()
-    
-    if out.index.name != 'instrument':
-        out.index.name = 'instrument'
-    
-    out = out.reset_index()
-    out['instrument'] = out['instrument'].astype(str).str.zfill(5)
-    
-    return out
-
-# ========== MATRIX BUILDERS ==========
-
-def build_balance_sheet(tidy: pd.DataFrame, imap: dict, qdate: pd.Timestamp, all_sectors: list = None) -> pd.DataFrame:
+def build_balance_sheet(tidy: pd.DataFrame, imap: dict, qdate: pd.Timestamp) -> pd.DataFrame:
     """Build balance sheet matrix from FL (level) series."""
     z = tidy[(tidy['kind'] == 'FL') & (tidy['date'] == qdate)].copy()
     
     print(f"\nBuilding Balance Sheet:")
+    print(f"  Date: {qdate.date()}")
     print(f"  FL entries: {len(z):,}")
     
     if len(z) == 0:
@@ -280,35 +287,52 @@ def build_balance_sheet(tidy: pd.DataFrame, imap: dict, qdate: pd.Timestamp, all
     ).fillna(0.0)
     
     mat.insert(0, 'label', mat.index.map(lambda k: imap.get(k, {}).get('label', '')))
-    
-    if all_sectors:
-        mat = ensure_all_sectors(mat, all_sectors)
-    else:
-        sector_cols = [c for c in mat.columns if c != 'label']
-        mat['Total'] = mat[sector_cols].sum(axis=1)
+    mat['Total'] = mat.drop(columns=['label']).sum(axis=1)
     
     print(f"  Matrix shape: {mat.shape}")
     return mat.sort_index()
 
-def build_transactions_financial(tidy: pd.DataFrame, imap: dict, qdate: pd.Timestamp, all_sectors: list = None) -> pd.DataFrame:
+def build_transactions_financial(tidy: pd.DataFrame, imap: dict, qdate: pd.Timestamp) -> pd.DataFrame:
     """Build financial transactions matrix from FU (flow) series."""
     z = tidy[(tidy['kind'] == 'FU') & (tidy['date'] == qdate)].copy()
     
     print(f"\nBuilding Transaction Matrix:")
+    print(f"  Date: {qdate.date()}")
     print(f"  FU entries: {len(z):,}")
     
     if len(z) == 0:
         print("  ⚠ No FU data found!")
+        
+        # Additional debugging
+        all_fu = tidy[tidy['kind'] == 'FU']
+        if len(all_fu) > 0:
+            print(f"\n  FU data exists in other periods:")
+            fu_dates = all_fu['date'].value_counts().head(5)
+            for date, count in fu_dates.items():
+                print(f"    {date.date()}: {count:,} rows")
+        
         return pd.DataFrame()
     
+    # Check instrument mapping
+    print(f"  Unique instruments: {z['instrument'].nunique()}")
+    unmapped = z[~z['instrument'].isin(imap.keys())]['instrument'].unique()
+    
+    if len(unmapped) > 0:
+        print(f"  ⚠ Unmapped instruments: {len(unmapped)}")
+        print(f"    Examples: {list(unmapped[:5])}")
+    
+    # Apply signs
     z['signed_value'] = z.apply(
         lambda row: sfc_sign(row['instrument'], imap) * row['value'],
         axis=1
     )
     
+    # Check sign application
     non_zero = (z['signed_value'] != 0).sum()
     zeros = (z['signed_value'] == 0).sum()
-    print(f"  Non-zero values: {non_zero:,}, Zero values: {zeros:,}")
+    print(f"  Sign application:")
+    print(f"    Non-zero: {non_zero:,}")
+    print(f"    Zero: {zeros:,}")
     
     mat = z.pivot_table(
         index='instrument',
@@ -318,17 +342,12 @@ def build_transactions_financial(tidy: pd.DataFrame, imap: dict, qdate: pd.Times
     ).fillna(0.0)
     
     mat.insert(0, 'label', mat.index.map(lambda k: imap.get(k, {}).get('label', '')))
-    
-    if all_sectors:
-        mat = ensure_all_sectors(mat, all_sectors)
-    else:
-        sector_cols = [c for c in mat.columns if c != 'label']
-        mat['Total'] = mat[sector_cols].sum(axis=1)
+    mat['Total'] = mat.drop(columns=['label']).sum(axis=1)
     
     print(f"  Matrix shape: {mat.shape}")
     return mat
 
-def add_macro_flows(trans_mat: pd.DataFrame, tidy: pd.DataFrame, fmap: dict, qdate: pd.Timestamp, all_sectors: list = None) -> pd.DataFrame:
+def add_macro_flows(trans_mat: pd.DataFrame, tidy: pd.DataFrame, fmap: dict, qdate: pd.Timestamp) -> pd.DataFrame:
     """Add macro flows to transaction matrix."""
     if trans_mat.empty:
         print("\n⚠ Cannot add macro flows to empty transaction matrix")
@@ -336,63 +355,48 @@ def add_macro_flows(trans_mat: pd.DataFrame, tidy: pd.DataFrame, fmap: dict, qda
     
     print(f"\nAdding Macro Flows:")
     
-    if all_sectors:
-        sector_cols = all_sectors
-        trans_mat = ensure_all_sectors(trans_mat, all_sectors)
-    else:
-        sector_cols = [c for c in trans_mat.columns if c not in ('label', 'Total')]
-    
+    sector_cols = [c for c in trans_mat.columns if c not in ('label', 'Total')]
     rows = []
-    added_count = 0
     
     for code, meta in fmap.items():
         blk = tidy[(tidy['date'] == qdate) & (tidy['instrument'] == code)]
         if blk.empty:
             continue
-        
+            
         val = blk['value'].sum()
         row = {c: 0.0 for c in sector_cols}
         
         sbs = meta.get('sign_by_sector', {})
         if sbs:
-            for sec, sign in sbs.items():
+            for sec, s in sbs.items():
                 if sec in row:
-                    row[sec] += sign * val
+                    row[sec] += s * val
         else:
             tos = [s for s in meta.get('to', []) if s in row]
             frs = [s for s in meta.get('from', []) if s in row]
-            
-            n_to = len(tos) if tos else 1
-            n_fr = len(frs) if frs else 1
-            
+            n_to = len(tos) or 1
+            n_fr = len(frs) or 1
             for sec in tos:
                 row[sec] += val / n_to
             for sec in frs:
                 row[sec] -= val / n_fr
-        
+                
         row['label'] = meta.get('label', f'Flow {code}')
         rows.append((code, row))
-        added_count += 1
     
-    print(f"  Added {added_count} macro flows")
+    print(f"  Added {len(rows)} macro flows")
     
     if not rows:
         return trans_mat
     
     add_df = pd.DataFrame.from_dict({k: v for k, v in rows}, orient='index')
-    
     for c in sector_cols:
         if c not in add_df.columns:
             add_df[c] = 0.0
-    
-    ordered_cols = ['label'] + sorted(sector_cols)
-    add_df = add_df[ordered_cols]
+    add_df = add_df[['label'] + sector_cols]
     add_df['Total'] = add_df[sector_cols].sum(axis=1)
     
-    result = pd.concat([trans_mat, add_df], axis=0)
-    print(f"  Final shape: {result.shape}")
-    
-    return result
+    return pd.concat([trans_mat, add_df], axis=0)
 
 def recon_stock_flow(tidy: pd.DataFrame, qdate: pd.Timestamp) -> pd.DataFrame:
     """Reconcile stocks and flows."""
@@ -412,11 +416,13 @@ def recon_stock_flow(tidy: pd.DataFrame, qdate: pd.Timestamp) -> pd.DataFrame:
     
     recon = []
     for (sector, instrument) in t[['sector', 'instrument']].drop_duplicates().values:
+        # Current and previous levels
         fl_curr = t[(t['kind'] == 'FL') & (t['sector'] == sector) & 
                    (t['instrument'] == instrument)]['value'].sum()
         fl_prev = prev[(prev['kind'] == 'FL') & (prev['sector'] == sector) & 
                        (prev['instrument'] == instrument)]['value'].sum()
         
+        # Flows
         fu = t[(t['kind'] == 'FU') & (t['sector'] == sector) & 
                (t['instrument'] == instrument)]['value'].sum()
         fr = t[(t['kind'] == 'FR') & (t['sector'] == sector) & 
@@ -439,14 +445,21 @@ def recon_stock_flow(tidy: pd.DataFrame, qdate: pd.Timestamp) -> pd.DataFrame:
             })
     
     result = pd.DataFrame(recon)
-    print(f"  Entries: {len(result):,}")
+    print(f"  Reconciliation entries: {len(result):,}")
+    
+    if len(result) > 0:
+        gap_stats = result['Gap'].abs()
+        print(f"  Gap statistics:")
+        print(f"    Mean: {gap_stats.mean():.2f}")
+        print(f"    Max:  {gap_stats.max():.2f}")
+        print(f"    >1e-6: {(gap_stats > 1e-6).sum():,} entries")
     
     return result
 
-# ========== EXECUTION MODES ==========
+# ---------- execution modes ----------
 
 def run_baseline(sfc: dict, tidy: pd.DataFrame):
-    """Run baseline mode with consistent sector columns and proper formatting."""
+    """Run baseline mode."""
     print("\n" + "="*60)
     print("BASELINE MODE EXECUTION")
     print("="*60)
@@ -459,39 +472,21 @@ def run_baseline(sfc: dict, tidy: pd.DataFrame):
     
     print(f"\nConfiguration:")
     print(f"  Analysis date: {qdate.date()}")
-    print(f"  Instruments: {len(imap)}")
+    print(f"  Output directory: {outdir}")
+    print(f"  Instruments mapped: {len(imap)}")
     print(f"  Flow mappings: {len(fmap)}")
     
-    # Get all sectors for this date
-    all_sectors = get_all_sectors(tidy, qdate)
-    
-    if not all_sectors:
-        print("\n⚠ ERROR: No sectors found for this date!")
-        return
-    
-    print(f"  Sectors: {len(all_sectors)} total")
-    
-    # Build matrices with consistent sectors
-    bs = build_balance_sheet(tidy, imap, qdate, all_sectors)
-    tf_fin = build_transactions_financial(tidy, imap, qdate, all_sectors)
+    # Build matrices
+    bs = build_balance_sheet(tidy, imap, qdate)
+    tf_fin = build_transactions_financial(tidy, imap, qdate)
     
     if not tf_fin.empty:
-        tf_full = add_macro_flows(tf_fin, tidy, fmap, qdate, all_sectors)
+        tf_full = add_macro_flows(tf_fin, tidy, fmap, qdate)
     else:
         tf_full = tf_fin
-        print("\n⚠ Transaction matrix is empty")
+        print("\n⚠ Transaction matrix is empty - skipping macro flows")
     
     rc = recon_stock_flow(tidy, qdate)
-    
-    # Verify consistency
-    if not bs.empty and not tf_full.empty:
-        bs_sectors = set(c for c in bs.columns if c not in ['label', 'Total'])
-        tf_sectors = set(c for c in tf_full.columns if c not in ['label', 'Total'])
-        
-        if bs_sectors == tf_sectors:
-            print(f"\n✓ Sectors match: {len(bs_sectors)} sectors in both matrices")
-        else:
-            print(f"\n⚠ Sector mismatch!")
     
     # Save outputs
     tag = qdate.date().isoformat()
@@ -502,41 +497,32 @@ def run_baseline(sfc: dict, tidy: pd.DataFrame):
     
     if not bs.empty:
         bs_file = outdir / f'sfc_balance_sheet_{tag}.csv'
-        bs_out = prep_save_matrix(bs)
-        bs_out.to_csv(bs_file, index=False)
-        print(f"  ✓ Balance sheet: {bs_file.name}")
+        bs.to_csv(bs_file)
+        print(f"  ✓ Balance sheet: {bs.shape} → {bs_file.name}")
     
     if not tf_full.empty:
         tf_file = outdir / f'sfc_transactions_{tag}.csv'
-        tf_out = prep_save_matrix(tf_full)
-        tf_out.to_csv(tf_file, index=False)
-        print(f"  ✓ Transactions: {tf_file.name}")
+        tf_full.to_csv(tf_file)
+        print(f"  ✓ Transactions: {tf_full.shape} → {tf_file.name}")
     
     if not rc.empty:
         rc_file = outdir / f'sfc_recon_{tag}.csv'
-        if 'instrument' in rc.columns:
-            rc['instrument'] = rc['instrument'].astype(str).str.zfill(5)
         rc.to_csv(rc_file, index=False)
-        print(f"  ✓ Reconciliation: {rc_file.name}")
+        print(f"  ✓ Reconciliation: {rc.shape} → {rc_file.name}")
     
-    print(f"\n✅ Complete!")
+    print(f"\nAnalysis complete!")
 
+# Stub functions for other modes (implement as needed)
 def run_fwtw(sfc: dict, tidy: pd.DataFrame):
-    """FWTW mode - placeholder."""
-    print("\nFWTW mode not yet implemented")
-    print("This will integrate From-Whom-To-Whom bilateral data")
+    print("FWTW mode not yet implemented")
 
 def run_graph(sfc: dict, tidy: pd.DataFrame):
-    """Graph mode - placeholder."""
-    print("\nGraph mode not yet implemented")
-    print("This will use graph-based allocation methods")
+    print("Graph mode not yet implemented")
 
 def run_refined(sfc: dict, tidy: pd.DataFrame):
-    """Refined mode - placeholder."""
-    print("\nRefined mode not yet implemented")
-    print("This will apply temporal priors and instrument subgroups")
+    print("Refined mode not yet implemented")
 
-# ========== MAIN ==========
+# ---------- main ----------
 
 def main():
     ap = argparse.ArgumentParser(description="SFC core runner")
