@@ -1,0 +1,813 @@
+{
+  "69010": {
+    "label": "Consumption expenditures",
+    "class": "Consumption",
+    "from": [
+      "15"
+    ],
+    "to": [
+      "10",
+      "11"
+    ],
+    "sign_by_sector": {
+      "15": -1,
+      "10": 1,
+      "11": 1
+    },
+    "allocation": "exact"
+  },
+  "50190": {
+    "label": "Gross fixed investment",
+    "class": "Investment",
+    "from": [
+      "10",
+      "11"
+    ],
+    "to": [
+      "10",
+      "11"
+    ],
+    "sign_by_sector": {
+      "10": -1,
+      "11": -1
+    },
+    "allocation": "exact"
+  },
+  "50198": {
+    "label": "Gross fixed investment, current cost basis",
+    "class": "Investment",
+    "from": [
+      "10",
+      "11"
+    ],
+    "to": [
+      "10",
+      "11"
+    ],
+    "sign_by_sector": {
+      "10": -1,
+      "11": -1
+    },
+    "allocation": "exact_or_proxy"
+  },
+  "50192": {
+    "label": "Gross fixed investment, equipment",
+    "class": "Investment",
+    "from": [
+      "10",
+      "11"
+    ],
+    "to": [
+      "10",
+      "11"
+    ],
+    "sign_by_sector": {
+      "10": -1,
+      "11": -1
+    },
+    "allocation": "shares_within_investment"
+  },
+  "50196": {
+    "label": "Gross fixed investment, structures",
+    "class": "Investment",
+    "from": [
+      "10",
+      "11"
+    ],
+    "to": [
+      "10",
+      "11"
+    ],
+    "sign_by_sector": {
+      "10": -1,
+      "11": -1
+    },
+    "allocation": "shares_within_investment"
+  },
+  "50200": {
+    "label": "Inventories (change)",
+    "class": "Inventories",
+    "from": [
+      "10",
+      "11"
+    ],
+    "to": [
+      "10",
+      "11"
+    ],
+    "sign_by_sector": {
+      "10": -1,
+      "11": -1
+    },
+    "allocation": "exact_or_proxy"
+  },
+  "50206": {
+    "label": "Inventory valuation adjustment (IVA)",
+    "class": "InventoriesAdj",
+    "from": [
+      "macro"
+    ],
+    "to": [
+      "macro"
+    ],
+    "sign_by_sector": {},
+    "allocation": "adjustment"
+  },
+  "60250": {
+    "label": "Compensation of employees paid",
+    "class": "Wages",
+    "from": [
+      "10",
+      "21",
+      "31"
+    ],
+    "to": [
+      "15"
+    ],
+    "sign_by_sector": {
+      "10": -1,
+      "21": -1,
+      "31": -1,
+      "15": 1
+    },
+    "allocation": "by_sector_paid_series"
+  },
+  "60251": {
+    "label": "Compensation of employees received",
+    "class": "Wages",
+    "from": [
+      "10",
+      "21",
+      "31"
+    ],
+    "to": [
+      "15"
+    ],
+    "sign_by_sector": {
+      "15": 1
+    },
+    "allocation": "mirror_60250"
+  },
+  "60600": {
+    "label": "Corporate profits",
+    "class": "Profits",
+    "from": [
+      "10"
+    ],
+    "to": [
+      "10"
+    ],
+    "sign_by_sector": {},
+    "allocation": "informational"
+  },
+  "61104": {
+    "label": "Retained earnings (FSIs)",
+    "class": "RetainedEarnings",
+    "from": [
+      "10"
+    ],
+    "to": [
+      "10"
+    ],
+    "sign_by_sector": {},
+    "allocation": "balancing"
+  },
+  "61210": {
+    "label": "Dividends paid (IMA)",
+    "class": "Dividends",
+    "from": [
+      "10"
+    ],
+    "to": [
+      "15",
+      "26",
+      "65",
+      "63",
+      "56",
+      "55",
+      "48",
+      "68",
+      "57",
+      "22",
+      "34",
+      "54",
+      "51"
+    ],
+    "sign_by_sector": {
+      "10": -1
+    },
+    "allocation": "w2w_or_shares"
+  },
+  "61211": {
+    "label": "Dividends received (IMA)",
+    "class": "Dividends",
+    "from": [
+      "10"
+    ],
+    "to": [
+      "15",
+      "26",
+      "65",
+      "63",
+      "56",
+      "55",
+      "48",
+      "68",
+      "57",
+      "22",
+      "34",
+      "54",
+      "51"
+    ],
+    "sign_by_sector": {
+      "15": 1
+    },
+    "allocation": "mirror_61210"
+  },
+  "61220": {
+    "label": "Withdrawals from income of quasi-corporations, paid (IMA)",
+    "class": "DistributedIncomeQuasiCorp",
+    "from": [
+      "11"
+    ],
+    "to": [
+      "15"
+    ],
+    "sign_by_sector": {
+      "11": -1,
+      "15": 1
+    },
+    "allocation": "exact"
+  },
+  "61221": {
+    "label": "Withdrawals from income of quasi-corporations, received (IMA)",
+    "class": "DistributedIncomeQuasiCorp",
+    "from": [
+      "11"
+    ],
+    "to": [
+      "15"
+    ],
+    "sign_by_sector": {
+      "15": 1
+    },
+    "allocation": "mirror_61220"
+  },
+  "61120": {
+    "label": "Rents paid (IMA)",
+    "class": "Rents",
+    "from": [
+      "15",
+      "10",
+      "11",
+      "21",
+      "31"
+    ],
+    "to": [
+      "any"
+    ],
+    "sign_by_sector": {},
+    "allocation": "shares_or_proxy"
+  },
+  "61121": {
+    "label": "Rents received (IMA)",
+    "class": "Rents",
+    "from": [
+      "any"
+    ],
+    "to": [
+      "15",
+      "10",
+      "11",
+      "21",
+      "31"
+    ],
+    "sign_by_sector": {},
+    "allocation": "shares_or_proxy"
+  },
+  "61300": {
+    "label": "Interest paid (IMA)",
+    "class": "Interest",
+    "from": [
+      "15",
+      "10",
+      "11",
+      "21",
+      "31",
+      "26",
+      "70",
+      "76",
+      "65",
+      "63",
+      "56",
+      "55",
+      "48",
+      "68",
+      "57",
+      "22",
+      "34",
+      "54",
+      "51",
+      "66",
+      "40",
+      "41",
+      "42"
+    ],
+    "to": [
+      "any"
+    ],
+    "sign_by_sector": {},
+    "allocation": "by_instrument_yields"
+  },
+  "61301": {
+    "label": "Interest received (IMA)",
+    "class": "Interest",
+    "from": [
+      "any"
+    ],
+    "to": [
+      "15",
+      "10",
+      "11",
+      "21",
+      "31",
+      "26",
+      "70",
+      "76",
+      "65",
+      "63",
+      "56",
+      "55",
+      "48",
+      "68",
+      "57",
+      "22",
+      "34",
+      "54",
+      "51",
+      "66",
+      "40",
+      "41",
+      "42"
+    ],
+    "sign_by_sector": {},
+    "allocation": "by_instrument_yields"
+  },
+  "69011": {
+    "label": "Personal interest payments",
+    "class": "InterestHouseholds",
+    "from": [
+      "15"
+    ],
+    "to": [
+      "any"
+    ],
+    "sign_by_sector": {
+      "15": -1
+    },
+    "allocation": "by_instrument_yields_household"
+  },
+  "69012": {
+    "label": "Personal current transfer payments to rest of the world",
+    "class": "TransfersToROW",
+    "from": [
+      "15"
+    ],
+    "to": [
+      "26"
+    ],
+    "sign_by_sector": {
+      "15": -1,
+      "26": 1
+    },
+    "allocation": "exact"
+  },
+  "62100": {
+    "label": "Personal current taxes",
+    "class": "TaxesPersonal",
+    "from": [
+      "15"
+    ],
+    "to": [
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {
+      "15": -1,
+      "31": 1,
+      "21": 1
+    },
+    "allocation": "exact"
+  },
+  "62200": {
+    "label": "Current taxes on income; wealth; etc. (IMA)",
+    "class": "TaxesOnIncomeEtc",
+    "from": [
+      "10",
+      "11",
+      "70",
+      "76",
+      "66",
+      "65",
+      "63",
+      "56",
+      "55",
+      "48",
+      "68",
+      "54",
+      "51",
+      "57",
+      "22",
+      "34"
+    ],
+    "to": [
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {
+      "31": 1,
+      "21": 1
+    },
+    "allocation": "shares_by_taxpaid"
+  },
+  "62310": {
+    "label": "Taxes on corporate income",
+    "class": "TaxesCorporateIncome",
+    "from": [
+      "10"
+    ],
+    "to": [
+      "31"
+    ],
+    "sign_by_sector": {
+      "10": -1,
+      "31": 1
+    },
+    "allocation": "exact"
+  },
+  "62400": {
+    "label": "Taxes on production and imports, receivable",
+    "class": "TaxesProdImports",
+    "from": [
+      "10",
+      "11"
+    ],
+    "to": [
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {
+      "31": 1,
+      "21": 1
+    },
+    "allocation": "shares_by_sector_output"
+  },
+  "62401": {
+    "label": "Taxes on production and imports less subsidies, payable",
+    "class": "TaxesProdImportsNet",
+    "from": [
+      "10",
+      "11"
+    ],
+    "to": [
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {
+      "10": -1,
+      "11": -1
+    },
+    "allocation": "mirror_62400"
+  },
+  "64010": {
+    "label": "Employers' social contributions paid (IMA)",
+    "class": "SocialContributions",
+    "from": [
+      "10",
+      "11",
+      "21",
+      "31"
+    ],
+    "to": [
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {
+      "10": -1,
+      "11": -1,
+      "21": -1,
+      "31": -1
+    },
+    "allocation": "by_statutes"
+  },
+  "64011": {
+    "label": "Employers' social contributions received (IMA)",
+    "class": "SocialContributions",
+    "from": [
+      "10",
+      "11",
+      "21",
+      "31"
+    ],
+    "to": [
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {
+      "31": 1,
+      "21": 1
+    },
+    "allocation": "mirror_64010"
+  },
+  "64041": {
+    "label": "Social benefits received",
+    "class": "SocialBenefits",
+    "from": [
+      "31",
+      "21"
+    ],
+    "to": [
+      "15"
+    ],
+    "sign_by_sector": {
+      "31": -1,
+      "21": -1,
+      "15": 1
+    },
+    "allocation": "exact"
+  },
+  "66000": {
+    "label": "Contributions for government social insurance paid",
+    "class": "SocialInsuranceContrib",
+    "from": [
+      "15",
+      "10",
+      "11"
+    ],
+    "to": [
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {
+      "15": -1,
+      "10": -1,
+      "11": -1,
+      "31": 1,
+      "21": 1
+    },
+    "allocation": "exact_or_proxy"
+  },
+  "66010": {
+    "label": "Contributions for government social insurance received",
+    "class": "SocialInsuranceContrib",
+    "from": [
+      "15",
+      "10",
+      "11"
+    ],
+    "to": [
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {
+      "31": 1,
+      "21": 1
+    },
+    "allocation": "mirror_66000"
+  },
+  "64030": {
+    "label": "Other current transfers paid",
+    "class": "TransfersOther",
+    "from": [
+      "31",
+      "21"
+    ],
+    "to": [
+      "15"
+    ],
+    "sign_by_sector": {
+      "31": -1,
+      "21": -1,
+      "15": 1
+    },
+    "allocation": "exact"
+  },
+  "64031": {
+    "label": "Other current transfers received",
+    "class": "TransfersOther",
+    "from": [
+      "31",
+      "21"
+    ],
+    "to": [
+      "15"
+    ],
+    "sign_by_sector": {
+      "15": 1
+    },
+    "allocation": "mirror_64030"
+  },
+  "64032": {
+    "label": "Other current transfers received (duplicate code slot)",
+    "class": "TransfersOther",
+    "from": [
+      "macro"
+    ],
+    "to": [
+      "macro"
+    ],
+    "sign_by_sector": {},
+    "allocation": "informational"
+  },
+  "64033": {
+    "label": "Other current transfers received (duplicate code slot)",
+    "class": "TransfersOther",
+    "from": [
+      "macro"
+    ],
+    "to": [
+      "macro"
+    ],
+    "sign_by_sector": {},
+    "allocation": "informational"
+  },
+  "64051": {
+    "label": "Personal current transfer receipts",
+    "class": "TransfersToHouseholds",
+    "from": [
+      "31",
+      "21"
+    ],
+    "to": [
+      "15"
+    ],
+    "sign_by_sector": {
+      "15": 1
+    },
+    "allocation": "mirror_64030"
+  },
+  "69000": {
+    "label": "Current expenditures/outlays",
+    "class": "GovtCurrentOutlays",
+    "from": [
+      "31",
+      "21"
+    ],
+    "to": [
+      "10",
+      "11",
+      "15"
+    ],
+    "sign_by_sector": {
+      "31": -1,
+      "21": -1
+    },
+    "allocation": "shares_by_counterparty"
+  },
+  "69030": {
+    "label": "Imports/exports (net presentation)",
+    "class": "ExternalTrade",
+    "from": [
+      "26"
+    ],
+    "to": [
+      "10",
+      "11",
+      "15"
+    ],
+    "sign_by_sector": {},
+    "allocation": "external_accounts"
+  },
+  "69040": {
+    "label": "Income payments to the U.S.",
+    "class": "ExternalIncome",
+    "from": [
+      "26"
+    ],
+    "to": [
+      "15",
+      "10",
+      "11",
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {},
+    "allocation": "external_accounts"
+  },
+  "69041": {
+    "label": "Income receipts from the U.S.",
+    "class": "ExternalIncome",
+    "from": [
+      "15",
+      "10",
+      "11",
+      "31",
+      "21"
+    ],
+    "to": [
+      "26"
+    ],
+    "sign_by_sector": {},
+    "allocation": "external_accounts"
+  },
+  "69050": {
+    "label": "Foreign income to U.S.",
+    "class": "ExternalIncome",
+    "from": [
+      "26"
+    ],
+    "to": [
+      "15",
+      "10",
+      "11",
+      "31",
+      "21"
+    ],
+    "sign_by_sector": {},
+    "allocation": "external_accounts"
+  },
+  "60000": {
+    "label": "Balance on current account (net saving)",
+    "class": "SavingBalance",
+    "from": [
+      "macro"
+    ],
+    "to": [
+      "macro"
+    ],
+    "sign_by_sector": {},
+    "allocation": "balancing"
+  },
+  "60001": {
+    "label": "Gross saving",
+    "class": "Saving",
+    "from": [
+      "macro"
+    ],
+    "to": [
+      "macro"
+    ],
+    "sign_by_sector": {},
+    "allocation": "balancing"
+  },
+  "60060": {
+    "label": "Net saving",
+    "class": "Saving",
+    "from": [
+      "macro"
+    ],
+    "to": [
+      "macro"
+    ],
+    "sign_by_sector": {},
+    "allocation": "balancing"
+  },
+  "60063": {
+    "label": "Net saving less net capital transfers paid",
+    "class": "SavingAdjusted",
+    "from": [
+      "macro"
+    ],
+    "to": [
+      "macro"
+    ],
+    "sign_by_sector": {},
+    "allocation": "balancing"
+  },
+  "60070": {
+    "label": "Personal saving",
+    "class": "SavingHouseholds",
+    "from": [
+      "15"
+    ],
+    "to": [
+      "15"
+    ],
+    "sign_by_sector": {},
+    "allocation": "balancing"
+  },
+  "70050": {
+    "label": "Statistical discrepancy",
+    "class": "StatisticalAdjustment",
+    "from": [
+      "macro"
+    ],
+    "to": [
+      "macro"
+    ],
+    "sign_by_sector": {},
+    "allocation": "residual"
+  },
+  "70059": {
+    "label": "GDP statistical discrepancy",
+    "class": "StatisticalAdjustment",
+    "from": [
+      "macro"
+    ],
+    "to": [
+      "macro"
+    ],
+    "sign_by_sector": {},
+    "allocation": "residual"
+  }
+}

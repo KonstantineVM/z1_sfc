@@ -1,0 +1,4335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema targetNamespace="http://www.federalreserve.gov/structure/compact/Z1_Z1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.federalreserve.gov/structure/compact/Z1_Z1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:frb="http://www.federalreserve.gov/structure/compact/common">
+ <xs:import namespace="http://www.federalreserve.gov/structure/compact/common" schemaLocation="frb_common.xsd" />
+ <xs:element name="Series" type="SeriesType" substitutionGroup="frb:Series" />
+ <xs:complexType name="SeriesType">
+  <xs:complexContent>
+   <xs:extension base="frb:SeriesType">
+    <xs:attribute name="SERIES_PREFIX" type="CL_SERIES_PREFIX" use="required" />
+    <xs:attribute name="SERIES_SECTOR" type="CL_SERIES_SECTOR" use="required" />
+    <xs:attribute name="SERIES_INSTRUMENT" type="CL_SERIES_INSTRUMENT" use="required" />
+    <xs:attribute name="SERIES_TYPE" type="CL_SERIES_TYPE" use="required" />
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:simpleType name="CL_SERIES_PREFIX">
+  <xs:restriction base="xs:string">
+   <xs:enumeration value="FV">
+    <xs:annotation>
+     <xs:documentation>Other changes in volume</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="FI">
+    <xs:annotation>
+     <xs:documentation>Index</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="PC">
+    <xs:annotation>
+     <xs:documentation>Percent change in index</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="FA">
+    <xs:annotation>
+     <xs:documentation>Transactions, SA</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="FU">
+    <xs:annotation>
+     <xs:documentation>Transactions, NSA</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="FL">
+    <xs:annotation>
+     <xs:documentation>Levels, NSA</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="LA">
+    <xs:annotation>
+     <xs:documentation>Levels, SA</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="LM">
+    <xs:annotation>
+     <xs:documentation>Market value levels, NSA</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="FR">
+    <xs:annotation>
+     <xs:documentation>Revaluation</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="FC">
+    <xs:annotation>
+     <xs:documentation>Change in levels, NSA</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="FS">
+    <xs:annotation>
+     <xs:documentation>Seasonals</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="FG">
+    <xs:annotation>
+     <xs:documentation>Growth rates, SA</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+  </xs:restriction>
+ </xs:simpleType>
+ <xs:simpleType name="CL_SERIES_SECTOR">
+  <xs:restriction base="xs:string">
+   <xs:enumeration value="01">
+    <xs:annotation>
+     <xs:documentation>Financial soundness indicators
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="07">
+    <xs:annotation>
+     <xs:documentation>Interest rates and price indexes
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="08">
+    <xs:annotation>
+     <xs:documentation>Gross domestic product (GDP)/national income
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="09">
+    <xs:annotation>
+     <xs:documentation>Corporate business
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="10">
+    <xs:annotation>
+     <xs:documentation>Nonfinancial corporate business 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="11">
+    <xs:annotation>
+     <xs:documentation>Nonfinancial noncorporate business 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="12">
+    <xs:annotation>
+     <xs:documentation>Equity real estate investment trusts
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="13">
+    <xs:annotation>
+     <xs:documentation>Farm business 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="14">
+    <xs:annotation>
+     <xs:documentation>Nonfinancial business (S11)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="15">
+    <xs:annotation>
+     <xs:documentation>Households and nonprofit organizations (S14+S15)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="16">
+    <xs:annotation>
+     <xs:documentation>Nonprofit organizations
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="17">
+    <xs:annotation>
+     <xs:documentation>Personal sector
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="18">
+    <xs:annotation>
+     <xs:documentation>Corporate farm business
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="19">
+    <xs:annotation>
+     <xs:documentation>Households 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="21">
+    <xs:annotation>
+     <xs:documentation>State and local governments (S1312+S1313)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="22">
+    <xs:annotation>
+     <xs:documentation>State and local government employee retirement funds 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="23">
+    <xs:annotation>
+     <xs:documentation>Noncorporate farm business
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="26">
+    <xs:annotation>
+     <xs:documentation>Rest of the world (S2)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="27">
+    <xs:annotation>
+     <xs:documentation>International banking facilities of U.S.-chartered depository institutions
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="28">
+    <xs:annotation>
+     <xs:documentation>International banking facilities of foreign banking offices in U.S.
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31">
+    <xs:annotation>
+     <xs:documentation>Federal government (S1311)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34">
+    <xs:annotation>
+     <xs:documentation>Federal government retirement funds 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="35">
+    <xs:annotation>
+     <xs:documentation>Federal old-age and survivors insurance and disability insurance program
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="36">
+    <xs:annotation>
+     <xs:documentation>General government (S13)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="37">
+    <xs:annotation>
+     <xs:documentation>General government (consolidated) (S13)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="38">
+    <xs:annotation>
+     <xs:documentation>Domestic nonfinancial sectors
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="39">
+    <xs:annotation>
+     <xs:documentation>Nonfinancial sectors
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40">
+    <xs:annotation>
+     <xs:documentation>Government-sponsored enterprises (GSEs)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41">
+    <xs:annotation>
+     <xs:documentation>Agency- and GSE-backed mortgage pools
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="42">
+    <xs:annotation>
+     <xs:documentation>GSEs and agency- and GSE-backed mortgage pools
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="43">
+    <xs:annotation>
+     <xs:documentation>Securitization corporations
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="45">
+    <xs:annotation>
+     <xs:documentation>Business development companies
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="47">
+    <xs:annotation>
+     <xs:documentation>Credit unions 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="48">
+    <xs:annotation>
+     <xs:documentation>Mutual funds and exchange-traded funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="49">
+    <xs:annotation>
+     <xs:documentation>Real estate investment trusts and closed-end funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50">
+    <xs:annotation>
+     <xs:documentation>Other financial business
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="51">
+    <xs:annotation>
+     <xs:documentation>Property-casualty insurance companies 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="52">
+    <xs:annotation>
+     <xs:documentation>Insurance companies (S128)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="53">
+    <xs:annotation>
+     <xs:documentation>Closed-end and exchange-traded funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="54">
+    <xs:annotation>
+     <xs:documentation>Life insurance companies 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="55">
+    <xs:annotation>
+     <xs:documentation>Closed-end funds 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="56">
+    <xs:annotation>
+     <xs:documentation>Exchange-traded funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="57">
+    <xs:annotation>
+     <xs:documentation>Private pension funds 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="58">
+    <xs:annotation>
+     <xs:documentation>Insurance companies and pension funds (S128+S129)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="59">
+    <xs:annotation>
+     <xs:documentation>Pension funds (S129)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60">
+    <xs:annotation>
+     <xs:documentation>Other financial intermediaries except insurance companies, pension funds, financial auxiliaries and captive financial institutions and money lenders (S125)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61">
+    <xs:annotation>
+     <xs:documentation>Finance companies
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="62">
+    <xs:annotation>
+     <xs:documentation>Hedge funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="63">
+    <xs:annotation>
+     <xs:documentation>Money market funds (S123)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64">
+    <xs:annotation>
+     <xs:documentation>Mortgage real estate investment trusts
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="65">
+    <xs:annotation>
+     <xs:documentation>Mutual funds 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="66">
+    <xs:annotation>
+     <xs:documentation>Security brokers and dealers 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="67">
+    <xs:annotation>
+     <xs:documentation>Issuers of asset-backed securities
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="68">
+    <xs:annotation>
+     <xs:documentation>Investment funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69">
+    <xs:annotation>
+     <xs:documentation>Non-MMF investment funds (S124)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="70">
+    <xs:annotation>
+     <xs:documentation>Private depository institutions (S122)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="71">
+    <xs:annotation>
+     <xs:documentation>Monetary authority (S121)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="73">
+    <xs:annotation>
+     <xs:documentation>Holding companies
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="74">
+    <xs:annotation>
+     <xs:documentation>Banks in U.S.-affiliated areas 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="75">
+    <xs:annotation>
+     <xs:documentation>Foreign banking offices in U.S. 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="76">
+    <xs:annotation>
+     <xs:documentation>U.S.-chartered depository institutions
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="77">
+    <xs:annotation>
+     <xs:documentation>Captive financial institutions and money lenders (S127)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="78">
+    <xs:annotation>
+     <xs:documentation>Private depository institutions and money market funds (S122+S123)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="79">
+    <xs:annotation>
+     <xs:documentation>Domestic financial sectors (S12)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="80">
+    <xs:annotation>
+     <xs:documentation>Other financial intermediaries except insurance companies and pension funds (S125+S126+S127)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="81">
+    <xs:annotation>
+     <xs:documentation>Other financial corporations (S124+S125+S126+S127)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="82">
+    <xs:annotation>
+     <xs:documentation>Domestic business
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="83">
+    <xs:annotation>
+     <xs:documentation>Private domestic sectors
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="84">
+    <xs:annotation>
+     <xs:documentation>Monetary authority, private depository institutions, and money market funds (S121+S122+S123)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="85">
+    <xs:annotation>
+     <xs:documentation>Other financial corporations and money market funds (S123+S124+S125+S126+S127)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="86">
+    <xs:annotation>
+     <xs:documentation>Money market funds, mutual funds, and exchange-traded funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="87">
+    <xs:annotation>
+     <xs:documentation>Other financial corporations, money market funds, insurance companies, and pension funds (S123+S124+S125+S126+S127+S128+S129)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="88">
+    <xs:annotation>
+     <xs:documentation>All domestic sectors (S1)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="89">
+    <xs:annotation>
+     <xs:documentation>All sectors
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="90">
+    <xs:annotation>
+     <xs:documentation>Instrument discrepancies
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="91">
+    <xs:annotation>
+     <xs:documentation>Other financial corporations and insurance companies and pension funds (S124+S125+S126+S127+S128+S129)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+  </xs:restriction>
+ </xs:simpleType>
+ <xs:simpleType name="CL_SERIES_INSTRUMENT">
+  <xs:restriction base="xs:string">
+   <xs:enumeration value="00000">
+    <xs:annotation>
+     <xs:documentation>Unemployment rate (quarterly average)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="00002">
+    <xs:annotation>
+     <xs:documentation>Financial soundness indicators
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="00003">
+    <xs:annotation>
+     <xs:documentation>Financial soundness indicators
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20000">
+    <xs:annotation>
+     <xs:documentation>Total assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20001">
+    <xs:annotation>
+     <xs:documentation>Total assets at historical cost
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20003">
+    <xs:annotation>
+     <xs:documentation>Total funded assets including social security
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20006">
+    <xs:annotation>
+     <xs:documentation>Total financial and nonfinancial assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20100">
+    <xs:annotation>
+     <xs:documentation>Nonfinancial assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20101">
+    <xs:annotation>
+     <xs:documentation>Nonfinancial assets at historical cost
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20104">
+    <xs:annotation>
+     <xs:documentation>Market value estimate of nonfinancial assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20107">
+    <xs:annotation>
+     <xs:documentation>Revaluation of nonfinancial assets adjusted to exclude disaster-related losses (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20500">
+    <xs:annotation>
+     <xs:documentation>Federal funds and security repurchase agreements; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20507">
+    <xs:annotation>
+     <xs:documentation>Federal funds and security repurchase agreements due from U.S.-chartered depository institutions; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20508">
+    <xs:annotation>
+     <xs:documentation>Federal funds and security repurchase agreements due from non-depository private institutions; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20510">
+    <xs:annotation>
+     <xs:documentation>Security repurchase agreements; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20511">
+    <xs:annotation>
+     <xs:documentation>Over-night security repurchase agreements; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20520">
+    <xs:annotation>
+     <xs:documentation>Federal funds; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20900">
+    <xs:annotation>
+     <xs:documentation>Net worth
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20901">
+    <xs:annotation>
+     <xs:documentation>Net worth at historical cost
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="20902">
+    <xs:annotation>
+     <xs:documentation>Proprietors' equity in noncorporate business
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="21000">
+    <xs:annotation>
+     <xs:documentation>Total liabilities and net worth (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="21500">
+    <xs:annotation>
+     <xs:documentation>Federal funds and security repurchase agreements; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="21507">
+    <xs:annotation>
+     <xs:documentation>Federal funds and security repurchase agreements due to U.S.-chartered depository institutions; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="21508">
+    <xs:annotation>
+     <xs:documentation>Federal funds and security repurchase agreements due to non-depository private institutions; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="21510">
+    <xs:annotation>
+     <xs:documentation>Security repurchase agreements; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="21511">
+    <xs:annotation>
+     <xs:documentation>Over-night security repurchase agreements; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="21520">
+    <xs:annotation>
+     <xs:documentation>Federal funds; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="24510">
+    <xs:annotation>
+     <xs:documentation>Security repurchase agreements held by U.S. reinsurers
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30110">
+    <xs:annotation>
+     <xs:documentation>U.S. official reserve assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30111">
+    <xs:annotation>
+     <xs:documentation>Monetary gold and SDRs holdings; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30112">
+    <xs:annotation>
+     <xs:documentation>Monetary gold; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30113">
+    <xs:annotation>
+     <xs:documentation>Special drawing rights (SDRs) holdings; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30114">
+    <xs:annotation>
+     <xs:documentation>Reserve position in IMF (net); asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30115">
+    <xs:annotation>
+     <xs:documentation>Official foreign currency holdings; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30120">
+    <xs:annotation>
+     <xs:documentation>Treasury currency; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30130">
+    <xs:annotation>
+     <xs:documentation>Depository institution reserves; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30140">
+    <xs:annotation>
+     <xs:documentation>SDR certificates issued by the federal government; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30200">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits and currency; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30207">
+    <xs:annotation>
+     <xs:documentation>Transaction deposits due from depository institutions in the U.S.; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30220">
+    <xs:annotation>
+     <xs:documentation>Cash items in process of collection; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30230">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits due to the federal goverment; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30250">
+    <xs:annotation>
+     <xs:documentation>Currency; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30270">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30280">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits due to state and local governments; asset 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30292">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits due to private domestic sectors; asset 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30300">
+    <xs:annotation>
+     <xs:documentation>Total time and savings deposits; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30302">
+    <xs:annotation>
+     <xs:documentation>Other deposits including time and savings deposits; asset (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30303">
+    <xs:annotation>
+     <xs:documentation>Negotiable certificates of deposit; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30304">
+    <xs:annotation>
+     <xs:documentation>Transferable deposits; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30305">
+    <xs:annotation>
+     <xs:documentation>Other deposits; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30340">
+    <xs:annotation>
+     <xs:documentation>Money market fund shares; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30343">
+    <xs:annotation>
+     <xs:documentation>Variable annuity money market fund shares; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30390">
+    <xs:annotation>
+     <xs:documentation>Cash and cash equivalents
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30400">
+    <xs:annotation>
+     <xs:documentation>Life insurance reserves; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30500">
+    <xs:annotation>
+     <xs:documentation>Pension entitlements; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30520">
+    <xs:annotation>
+     <xs:documentation>Insurance, pension and standardized guarantee schemes; asset (F6)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30521">
+    <xs:annotation>
+     <xs:documentation>Non-life insurance technical reserves; asset (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30522">
+    <xs:annotation>
+     <xs:documentation>Life insurance and annuity entitlements; asset (F62)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30523">
+    <xs:annotation>
+     <xs:documentation>Pension entitlements; asset (F63)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30525">
+    <xs:annotation>
+     <xs:documentation>Entitlements to non-pension benefits; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30610">
+    <xs:annotation>
+     <xs:documentation>Total U.S. government securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30611">
+    <xs:annotation>
+     <xs:documentation>Treasury securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30612">
+    <xs:annotation>
+     <xs:documentation>NCUA share insurance capitalization deposit; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30613">
+    <xs:annotation>
+     <xs:documentation>Nonmarketable Treasury securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30614">
+    <xs:annotation>
+     <xs:documentation>Agency issued commercial CMOs and other structured MBS; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30615">
+    <xs:annotation>
+     <xs:documentation>Agency-issued commercial mortgage pass-through securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30616">
+    <xs:annotation>
+     <xs:documentation>Agency issued residential CMOs and other structured MBS; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30617">
+    <xs:annotation>
+     <xs:documentation>Agency- and GSE-backed securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30618">
+    <xs:annotation>
+     <xs:documentation>Agency-issued residential mortgage pass-through securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30619">
+    <xs:annotation>
+     <xs:documentation>Agency mortgage-backed securities and other asset-backed agency- and GSE-backed securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30620">
+    <xs:annotation>
+     <xs:documentation>Municipal securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30621">
+    <xs:annotation>
+     <xs:documentation>Sallie Mae academic facilities financing to public institutions; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30622">
+    <xs:annotation>
+     <xs:documentation>Sallie Mae warehousing advances to public institutions; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30630">
+    <xs:annotation>
+     <xs:documentation>Corporate and foreign bonds; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30631">
+    <xs:annotation>
+     <xs:documentation>Corporate bonds issued by Netherlands Antillean Financial subsidiaries of U.S. corporations; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30632">
+    <xs:annotation>
+     <xs:documentation>Foreign corporate bonds; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30636">
+    <xs:annotation>
+     <xs:documentation>Mortgage-backed securities and other asset-backed bonds; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30637">
+    <xs:annotation>
+     <xs:documentation>Corporate bonds issued by commercial banking under TARP; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30638">
+    <xs:annotation>
+     <xs:documentation>Domestic corporate bonds; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30640">
+    <xs:annotation>
+     <xs:documentation>Corporate equities and mutual fund shares; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30641">
+    <xs:annotation>
+     <xs:documentation>Corporate equities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30642">
+    <xs:annotation>
+     <xs:documentation>Mutual fund shares; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30643">
+    <xs:annotation>
+     <xs:documentation>Variable annuity mutual fund shares; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30644">
+    <xs:annotation>
+     <xs:documentation>Directly and indirectly held corporate equities; asset 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30646">
+    <xs:annotation>
+     <xs:documentation>Domestic corporate equities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30648">
+    <xs:annotation>
+     <xs:documentation>Foreign corporate equities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30649">
+    <xs:annotation>
+     <xs:documentation>Capital losses calculated by the Treasury Department; asset  
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30650">
+    <xs:annotation>
+     <xs:documentation>Total mortgages; asset (F42)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30651">
+    <xs:annotation>
+     <xs:documentation>One-to-four family mortgages, including home equity loans and construction loans on one-to-four family homes; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30652">
+    <xs:annotation>
+     <xs:documentation>Home equity lines of credit; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30653">
+    <xs:annotation>
+     <xs:documentation>One-to-four family mortgages secured by junior liens; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30654">
+    <xs:annotation>
+     <xs:documentation>Multifamily residential mortgages; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30655">
+    <xs:annotation>
+     <xs:documentation>Commercial mortgages; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30656">
+    <xs:annotation>
+     <xs:documentation>Farm mortgages; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30657">
+    <xs:annotation>
+     <xs:documentation>Private residential mortgage-backed securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30658">
+    <xs:annotation>
+     <xs:documentation>Commercial mortgages; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30659">
+    <xs:annotation>
+     <xs:documentation>Private commercial mortgage-backed securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30660">
+    <xs:annotation>
+     <xs:documentation>Consumer credit; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30661">
+    <xs:annotation>
+     <xs:documentation>Revolving consumer credit; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30662">
+    <xs:annotation>
+     <xs:documentation>Non-revolving consumer credit; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30663">
+    <xs:annotation>
+     <xs:documentation>Consumer leases; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30664">
+    <xs:annotation>
+     <xs:documentation>Consumer credit, auto loans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30665">
+    <xs:annotation>
+     <xs:documentation>Revolving consumer credit, other than credit cards; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30666">
+    <xs:annotation>
+     <xs:documentation>Consumer loans adjustment for Banc One reclassification
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30667">
+    <xs:annotation>
+     <xs:documentation>Loans to individuals; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30670">
+    <xs:annotation>
+     <xs:documentation>Cash or margin accounts at brokers and dealers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30680">
+    <xs:annotation>
+     <xs:documentation>Bank loans not elsewhere classified; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30681">
+    <xs:annotation>
+     <xs:documentation>Commercial and industrial loans and leases; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30682">
+    <xs:annotation>
+     <xs:documentation>Other bank loans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30684">
+    <xs:annotation>
+     <xs:documentation>Bank loans not elsewhere classified to rest of the world; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30685">
+    <xs:annotation>
+     <xs:documentation>Bank loans not elsewhere classified to other financial business; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30686">
+    <xs:annotation>
+     <xs:documentation>Bank loans not elsewhere classified to brokers and dealers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30687">
+    <xs:annotation>
+     <xs:documentation>Loans to depository institutions; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30688">
+    <xs:annotation>
+     <xs:documentation>Loans through Federal Reserve funding, credit, and liquidity facilities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30689">
+    <xs:annotation>
+     <xs:documentation>Loans to other financial business COVID-19 funding, credit, and liquidity facilities
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30690">
+    <xs:annotation>
+     <xs:documentation>Other loans and advances; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30691">
+    <xs:annotation>
+     <xs:documentation>Open market paper; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30692">
+    <xs:annotation>
+     <xs:documentation>U.S. government loans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30693">
+    <xs:annotation>
+     <xs:documentation>Government-sponsored enterprise (GSE) loans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30694">
+    <xs:annotation>
+     <xs:documentation>Policy loans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30695">
+    <xs:annotation>
+     <xs:documentation>Nonfinancial business loans, excluding U.S. government and GSE loans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30696">
+    <xs:annotation>
+     <xs:documentation>Bankers' acceptances; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30697">
+    <xs:annotation>
+     <xs:documentation>Customers' liability on acceptances outstanding; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30698">
+    <xs:annotation>
+     <xs:documentation>Syndicated loans to nonfinancial corporate business; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30699">
+    <xs:annotation>
+     <xs:documentation>Open market paper and other loans and advances; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30700">
+    <xs:annotation>
+     <xs:documentation>Trade receivables; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30702">
+    <xs:annotation>
+     <xs:documentation>Receivable for claims from non-U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30703">
+    <xs:annotation>
+     <xs:documentation>Trade credit due from federal government; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30706">
+    <xs:annotation>
+     <xs:documentation>Receivables due from other brokers and dealers and clearing organizations; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30711">
+    <xs:annotation>
+     <xs:documentation>Receivable for claims from U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30713">
+    <xs:annotation>
+     <xs:documentation>Receivable for claims from U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30714">
+    <xs:annotation>
+     <xs:documentation>Receivable for claims from non-U.S. unaffiliated reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30715">
+    <xs:annotation>
+     <xs:documentation>Receivable for claims from non-U.S. affiliated reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30716">
+    <xs:annotation>
+     <xs:documentation>Receivable for claims from non-U.S. captive reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30720">
+    <xs:annotation>
+     <xs:documentation>Paycheck Protection Program receivables due from federal government; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30730">
+    <xs:annotation>
+     <xs:documentation>Claims of pension fund on sponsor; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30740">
+    <xs:annotation>
+     <xs:documentation>Pension fund contributions receivable; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30750">
+    <xs:annotation>
+     <xs:documentation>Trade receivables net of trade payables; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30760">
+    <xs:annotation>
+     <xs:documentation>Insurance receivables due from property-casualty insurance companies; asset (F61)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30770">
+    <xs:annotation>
+     <xs:documentation>Deferred and unpaid life insurance premiums; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30780">
+    <xs:annotation>
+     <xs:documentation>Taxes receivable; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30810">
+    <xs:annotation>
+     <xs:documentation>Equity and investment fund shares; asset (F5)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30811">
+    <xs:annotation>
+     <xs:documentation>Equity and investment fund shares excluding mutual fund shares and money market fund shares; asset (F51)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30812">
+    <xs:annotation>
+     <xs:documentation>Mutual fund and money market fund shares; asset (F52)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30900">
+    <xs:annotation>
+     <xs:documentation>Total miscellaneous assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30905">
+    <xs:annotation>
+     <xs:documentation>Funding agreements backing securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30910">
+    <xs:annotation>
+     <xs:documentation>Private foreign deposits; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30911">
+    <xs:annotation>
+     <xs:documentation>Nonofficial foreign currencies; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30917">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions due from domestic affiliates; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30918">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions due from domestic and foreign affiliates; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30920">
+    <xs:annotation>
+     <xs:documentation>Direct investment; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30921">
+    <xs:annotation>
+     <xs:documentation>Foreign direct investment in U.S.: Equity; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30922">
+    <xs:annotation>
+     <xs:documentation>Foreign direct investment in U.S.: Reinvested earnings; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30923">
+    <xs:annotation>
+     <xs:documentation>Foreign direct investment in U.S.: Intercompany accounts; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30924">
+    <xs:annotation>
+     <xs:documentation>Equity in government-sponsored enterprises (GSEs); asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30926">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions due from foreign affiliates; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30928">
+    <xs:annotation>
+     <xs:documentation>U.S. equity in IRBD, etc.
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30929">
+    <xs:annotation>
+     <xs:documentation>Private equity
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30930">
+    <xs:annotation>
+     <xs:documentation>Unidentified miscellaneous assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30940">
+    <xs:annotation>
+     <xs:documentation>Equity investment in subsidiaries; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30941">
+    <xs:annotation>
+     <xs:documentation>Equity investment in own subsidiaries by nonfinancial corporations; asset 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30942">
+    <xs:annotation>
+     <xs:documentation>Exchange Stabilization Fund Economic Recovery Programs equity investment; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30943">
+    <xs:annotation>
+     <xs:documentation>Equity investment through the Public-Private Investment Program (PPIP); asset 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30945">
+    <xs:annotation>
+     <xs:documentation>Equity investment in own subsidiaries by other financial business; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30946">
+    <xs:annotation>
+     <xs:documentation>Equity investment in affiliates; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30947">
+    <xs:annotation>
+     <xs:documentation>Other investment in affiliates; asset 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30949">
+    <xs:annotation>
+     <xs:documentation>Miscellaneous other equity; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30950">
+    <xs:annotation>
+     <xs:documentation>Unallocated insurance contracts; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30951">
+    <xs:annotation>
+     <xs:documentation>Other insurance reserves; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30953">
+    <xs:annotation>
+     <xs:documentation>Unallocated insurance contracts, defined contribution pension plans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30954">
+    <xs:annotation>
+     <xs:documentation>Unallocated insurance contracts, defined benefit pension plans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30955">
+    <xs:annotation>
+     <xs:documentation>Unallocated insurance contracts, defined contribution pension plans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30956">
+    <xs:annotation>
+     <xs:documentation>Unallocated insurance contracts, defined contribution pension plans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30960">
+    <xs:annotation>
+     <xs:documentation>Other accounts receivable; asset (F8)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30961">
+    <xs:annotation>
+     <xs:documentation>Miscellaneous and taxes receivable; asset (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30962">
+    <xs:annotation>
+     <xs:documentation>Trade credits and advances; asset (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30980">
+    <xs:annotation>
+     <xs:documentation>Financial derivatives; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30990">
+    <xs:annotation>
+     <xs:documentation>Other financial assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="30994">
+    <xs:annotation>
+     <xs:documentation>Other financial assets, excluding indirectly held equity
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31110">
+    <xs:annotation>
+     <xs:documentation>U.S. official reserve assets; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31113">
+    <xs:annotation>
+     <xs:documentation>SDR allocations; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31114">
+    <xs:annotation>
+     <xs:documentation>Reserve position in IMF (net); liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31115">
+    <xs:annotation>
+     <xs:documentation>Official foreign currency holdings; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31120">
+    <xs:annotation>
+     <xs:documentation>Treasury currency; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31130">
+    <xs:annotation>
+     <xs:documentation>Depository institution reserves; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31200">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits and currency; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31207">
+    <xs:annotation>
+     <xs:documentation>Transaction deposits due to depository institutions in the U.S.; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31226">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits due to rest of world; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31230">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits due to the federal government; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31240">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits due to government-sponsored enterprises; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31250">
+    <xs:annotation>
+     <xs:documentation>Currency; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31260">
+    <xs:annotation>
+     <xs:documentation>Total transaction accounts; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31270">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31280">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits due to state and local governments; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31290">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits due to others; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31292">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits due to private domestic sectors; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31299">
+    <xs:annotation>
+     <xs:documentation>Special cash items bias correction for deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31300">
+    <xs:annotation>
+     <xs:documentation>Total time and savings deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31302">
+    <xs:annotation>
+     <xs:documentation>Other deposits including time and savings deposits; liabilty (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31303">
+    <xs:annotation>
+     <xs:documentation>Negotiable certificates of deposit; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31304">
+    <xs:annotation>
+     <xs:documentation>Transferable deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31305">
+    <xs:annotation>
+     <xs:documentation>Other deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31307">
+    <xs:annotation>
+     <xs:documentation>Nontransaction deposits due to depository institutions in the U.S.; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31310">
+    <xs:annotation>
+     <xs:documentation>Small time and savings deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31315">
+    <xs:annotation>
+     <xs:documentation>IRA and Keoghs; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31350">
+    <xs:annotation>
+     <xs:documentation>Large time deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31352">
+    <xs:annotation>
+     <xs:documentation>Large time deposits due to rest of the world; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31360">
+    <xs:annotation>
+     <xs:documentation>Total nontransaction deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31391">
+    <xs:annotation>
+     <xs:documentation>Uninsured checkable and time and savings deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31400">
+    <xs:annotation>
+     <xs:documentation>Life insurance reserves; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31411">
+    <xs:annotation>
+     <xs:documentation>Life insurance reserve credit from U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31412">
+    <xs:annotation>
+     <xs:documentation>Life insurance reserve credit from U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31413">
+    <xs:annotation>
+     <xs:documentation>Life insurance reserve credit from U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31414">
+    <xs:annotation>
+     <xs:documentation>Life insurance reserve credit from non-U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31415">
+    <xs:annotation>
+     <xs:documentation>Life insurance reserve credit from non-U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31416">
+    <xs:annotation>
+     <xs:documentation>Life insurance reserve credit from non-U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31417">
+    <xs:annotation>
+     <xs:documentation>Assumed life insurance reserve credit from non-U.S. unaffiliated insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31418">
+    <xs:annotation>
+     <xs:documentation>Assumed life insurance reserve credit from non-U.S. other affiliated insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31419">
+    <xs:annotation>
+     <xs:documentation>Assumed life insurance reserve credit from non-U.S. insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31421">
+    <xs:annotation>
+     <xs:documentation>Accident and health reserve credit from U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31422">
+    <xs:annotation>
+     <xs:documentation>Accident and health reserve credit from U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31423">
+    <xs:annotation>
+     <xs:documentation>Accident and health reserve credit from U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31424">
+    <xs:annotation>
+     <xs:documentation>Accident and health reserve credit from non-U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31425">
+    <xs:annotation>
+     <xs:documentation>Accident and health reserve credit from non-U.S. other affiliated reinsurers; liability 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31426">
+    <xs:annotation>
+     <xs:documentation>Accident and health reserve credit from non-U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31461">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance life insurance reserve from U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31462">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance life insurance reserve from U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31463">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance life insurance reserve from U.S. captive reinsurers; liability 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31464">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance life insurance reserve from non-U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31465">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance life insurance reserve from non-U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31466">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance life insurance reserve from non-U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31467">
+    <xs:annotation>
+     <xs:documentation>Assumed modified coinsurance life insurance reserve from non-U.S. unaffiliated insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31468">
+    <xs:annotation>
+     <xs:documentation>Assumed modified coinsurance life insurance reserve from non-U.S. other affiliated insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31471">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance accident and health reserve from U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31472">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance accident and health reserve from U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31473">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance accident and health reserve from U.S. captive reinsurers; liability 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31474">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance accident and health reserve from non-U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31475">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance accident and health reserve from non-U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31476">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance accident and health reserve from non-U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31500">
+    <xs:annotation>
+     <xs:documentation>Pension entitlements; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31502">
+    <xs:annotation>
+     <xs:documentation>Individual annuity reserves; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31511">
+    <xs:annotation>
+     <xs:documentation>Pension entitlement reserve credit from U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31512">
+    <xs:annotation>
+     <xs:documentation>Pension entitlement reserve credit from U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31513">
+    <xs:annotation>
+     <xs:documentation>Pension entitlement reserve credit from U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31514">
+    <xs:annotation>
+     <xs:documentation>Pension entitlement reserve credit from non-U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31515">
+    <xs:annotation>
+     <xs:documentation>Pension entitlement reserve credit from non-U.S. other affiliated reinsurers; liability 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31516">
+    <xs:annotation>
+     <xs:documentation>Pension entitlement reserve credit from non-U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31517">
+    <xs:annotation>
+     <xs:documentation>Assumed pension entitlement reserve credit from non-U.S. unaffiliated insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31518">
+    <xs:annotation>
+     <xs:documentation>Assumed pension entitlement reserve credit from non-U.S. other affiliated insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31519">
+    <xs:annotation>
+     <xs:documentation>Assumed pension entitlement reserve credit from non-U.S. insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31520">
+    <xs:annotation>
+     <xs:documentation>Insurance, pension and standardized guarantee schemes; liability (F6)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31521">
+    <xs:annotation>
+     <xs:documentation>Non-life insurance technical reserves; liability (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31522">
+    <xs:annotation>
+     <xs:documentation>Life insurance and annuity entitlements; liability (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31523">
+    <xs:annotation>
+     <xs:documentation>Pension entitlements; liability (F63)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31540">
+    <xs:annotation>
+     <xs:documentation>Life insurance reserves and pension entitlements; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31550">
+    <xs:annotation>
+     <xs:documentation>Prepayment of insurance premiums and reserves for outstanding claims; liability (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31561">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance pension entitlement reserve from U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31562">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance pension entitlement reserve from U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31563">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance pension entitlement reserve from U.S. captive reinsurers; liability 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31564">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance pension entitlement reserve from non-U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31565">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance pension entitlement reserve from non-U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31566">
+    <xs:annotation>
+     <xs:documentation>Modified coinsurance pension entitlement reserve from non-U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31567">
+    <xs:annotation>
+     <xs:documentation>Assumed modified coinsurance reserve from non-U.S. unaffiliated insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31568">
+    <xs:annotation>
+     <xs:documentation>Assumed modified coinsurance reserve from non-U.S. other affiliated insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31610">
+    <xs:annotation>
+     <xs:documentation>Total U.S. government securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31611">
+    <xs:annotation>
+     <xs:documentation>Treasury securities, excluding U.S. savings bonds; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31612">
+    <xs:annotation>
+     <xs:documentation>Marketable Treasury securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31613">
+    <xs:annotation>
+     <xs:documentation>Nonmarketable Treasury securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31614">
+    <xs:annotation>
+     <xs:documentation>U.S. savings securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31617">
+    <xs:annotation>
+     <xs:documentation>Agency- and GSE-backed securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31620">
+    <xs:annotation>
+     <xs:documentation>Municipal securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31622">
+    <xs:annotation>
+     <xs:documentation>Long-term municipal securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31623">
+    <xs:annotation>
+     <xs:documentation>Corporate bonds and municipal securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31624">
+    <xs:annotation>
+     <xs:documentation>Short-term municipal securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31627">
+    <xs:annotation>
+     <xs:documentation>Municipal bond offering for refunding; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31630">
+    <xs:annotation>
+     <xs:documentation>Corporate and foreign bonds; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31633">
+    <xs:annotation>
+     <xs:documentation>Other borrowed money; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31634">
+    <xs:annotation>
+     <xs:documentation>Subordinated notes and debentures; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31635">
+    <xs:annotation>
+     <xs:documentation>Corporate and foreign bonds issued by investment banks; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31636">
+    <xs:annotation>
+     <xs:documentation>Private collateralized mortgage obligations (CMOs); liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31640">
+    <xs:annotation>
+     <xs:documentation>Corporate equities and mutual fund shares; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31641">
+    <xs:annotation>
+     <xs:documentation>Corporate equities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31642">
+    <xs:annotation>
+     <xs:documentation>Mutual fund shares; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31650">
+    <xs:annotation>
+     <xs:documentation>Total mortgages; liability (F42)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31651">
+    <xs:annotation>
+     <xs:documentation>One-to-four family mortgages; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31652">
+    <xs:annotation>
+     <xs:documentation>Commercial, multifamily, and farm mortgages; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31654">
+    <xs:annotation>
+     <xs:documentation>Multifamily residential mortgages; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31655">
+    <xs:annotation>
+     <xs:documentation>Commercial mortgages; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31656">
+    <xs:annotation>
+     <xs:documentation>Farm mortgages; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31657">
+    <xs:annotation>
+     <xs:documentation>Mortgage-backed bonds; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31658">
+    <xs:annotation>
+     <xs:documentation>Commercial mortgages and bank loans n.e.c; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31660">
+    <xs:annotation>
+     <xs:documentation>Consumer credit; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31661">
+    <xs:annotation>
+     <xs:documentation>Revolving consumer credit; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31662">
+    <xs:annotation>
+     <xs:documentation>Non-revolving consumer credit; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31664">
+    <xs:annotation>
+     <xs:documentation>Consumer credit, automobile loans; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31668">
+    <xs:annotation>
+     <xs:documentation>Non-revolving consumer credit; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31670">
+    <xs:annotation>
+     <xs:documentation>Payable to customers and non-customers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31680">
+    <xs:annotation>
+     <xs:documentation>Bank loans not elsewhere classified; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31684">
+    <xs:annotation>
+     <xs:documentation>Bank loans not elsewhere classified to rest of the world; liability 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31687">
+    <xs:annotation>
+     <xs:documentation>Loans to depository institutions; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31690">
+    <xs:annotation>
+     <xs:documentation>Other loans and advances; liability 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31691">
+    <xs:annotation>
+     <xs:documentation>Open market paper; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31692">
+    <xs:annotation>
+     <xs:documentation>U.S. government loans; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31693">
+    <xs:annotation>
+     <xs:documentation>Government-sponsored enterprise (GSE) loans; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31694">
+    <xs:annotation>
+     <xs:documentation>Policy loans; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31695">
+    <xs:annotation>
+     <xs:documentation>Nonfinancial business loans, excluding U.S. government and GSE loans; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31696">
+    <xs:annotation>
+     <xs:documentation>Bankers' Acceptances; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31697">
+    <xs:annotation>
+     <xs:documentation>Customers' liability on acceptances outstanding; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31698">
+    <xs:annotation>
+     <xs:documentation>Syndicated loans; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31699">
+    <xs:annotation>
+     <xs:documentation>Open market paper and other loans and advances; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31700">
+    <xs:annotation>
+     <xs:documentation>Trade payables; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31702">
+    <xs:annotation>
+     <xs:documentation>Trade payables to non-U.S. reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31706">
+    <xs:annotation>
+     <xs:documentation>Payables due to other brokers and dealers and clearing organizations; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31711">
+    <xs:annotation>
+     <xs:documentation>Funds withheld from U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31713">
+    <xs:annotation>
+     <xs:documentation>Funds withheld from U.S. reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31714">
+    <xs:annotation>
+     <xs:documentation>Funds withheld from non-U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31715">
+    <xs:annotation>
+     <xs:documentation>Funds withheld from non-U.S. other affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31716">
+    <xs:annotation>
+     <xs:documentation>Funds withheld from non-U.S. captive reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31720">
+    <xs:annotation>
+     <xs:documentation>Paycheck Protection Program payables; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31721">
+    <xs:annotation>
+     <xs:documentation>Payable for reinsurance to U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31723">
+    <xs:annotation>
+     <xs:documentation>Payable for reinsurance to U.S. residual market reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31724">
+    <xs:annotation>
+     <xs:documentation>Payable for reinsurance to non-U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31725">
+    <xs:annotation>
+     <xs:documentation>Payable for reinsurance to non-U.S. affiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31730">
+    <xs:annotation>
+     <xs:documentation>Claims of pension fund on sponsor; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31760">
+    <xs:annotation>
+     <xs:documentation>Policy payables; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31761">
+    <xs:annotation>
+     <xs:documentation>Policy payables from U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31762">
+    <xs:annotation>
+     <xs:documentation>Policy payables from U.S. affiliated reinsurers;  liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31763">
+    <xs:annotation>
+     <xs:documentation>Policy payables from U.S. residual market reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31764">
+    <xs:annotation>
+     <xs:documentation>Policy payables from non-U.S. unaffiliated reinsurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31765">
+    <xs:annotation>
+     <xs:documentation>Policy payables from non-U.S. affiliated reinsurers; liability 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31767">
+    <xs:annotation>
+     <xs:documentation>Assumed policy payables from non-U.S. unaffiliated insurers; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31768">
+    <xs:annotation>
+     <xs:documentation>Assumed policy payables from non-U.S. affiliated insurers; liability 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31780">
+    <xs:annotation>
+     <xs:documentation>Taxes payables; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31810">
+    <xs:annotation>
+     <xs:documentation>Equity and investment fund shares; liability (F5)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31811">
+    <xs:annotation>
+     <xs:documentation>Equity and investment fund shares excluding mutual fund shares and money market fund shares; liability (F51)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31812">
+    <xs:annotation>
+     <xs:documentation>Mutual fund and money market fund shares; liability (F52)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31900">
+    <xs:annotation>
+     <xs:documentation>Total miscellaneous liabilities
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31905">
+    <xs:annotation>
+     <xs:documentation>Funding agreements backing securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31910">
+    <xs:annotation>
+     <xs:documentation>U.S. private deposits; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31911">
+    <xs:annotation>
+     <xs:documentation>Nonofficial U.S. currencies; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31917">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions due to domestic affiliates; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31918">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions due to domestic and foreign affiliates; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31920">
+    <xs:annotation>
+     <xs:documentation>Direct investment; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31921">
+    <xs:annotation>
+     <xs:documentation>U.S. direct investment abroad: equity; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31922">
+    <xs:annotation>
+     <xs:documentation>U.S. direct investment abroad: Reinvested earnings; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31923">
+    <xs:annotation>
+     <xs:documentation>U.S. direct investment abroad: Intercompany accounts; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31924">
+    <xs:annotation>
+     <xs:documentation>Equity in government-sponsored enterprises (GSEs); liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31926">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions due to foreign affiliates; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31930">
+    <xs:annotation>
+     <xs:documentation>Unidentified miscellaneous liabilities
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31940">
+    <xs:annotation>
+     <xs:documentation>Equity investment by parent companies; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31942">
+    <xs:annotation>
+     <xs:documentation>Exchange Stabilization Fund Economic Recovery Programs equity investment; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31943">
+    <xs:annotation>
+     <xs:documentation>Equity investment through the Public-Private Investment Program (PPIP); liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31945">
+    <xs:annotation>
+     <xs:documentation>Equity investment by other financial business; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31946">
+    <xs:annotation>
+     <xs:documentation>Equity investment from affiliates; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31947">
+    <xs:annotation>
+     <xs:documentation>Other investment from affiliates; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31949">
+    <xs:annotation>
+     <xs:documentation>Miscellaneous other equity; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31950">
+    <xs:annotation>
+     <xs:documentation>Other insurance reserves; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31951">
+    <xs:annotation>
+     <xs:documentation>Health care funds; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31952">
+    <xs:annotation>
+     <xs:documentation>Policy divident accumulation; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31953">
+    <xs:annotation>
+     <xs:documentation>Policy and contract claims; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31960">
+    <xs:annotation>
+     <xs:documentation>Other accounts payable; liability (F8)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31961">
+    <xs:annotation>
+     <xs:documentation>Miscellaneous and taxes payable; libility (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31962">
+    <xs:annotation>
+     <xs:documentation>Trade credits and advances; liability (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31970">
+    <xs:annotation>
+     <xs:documentation>Deposits at Federal Home Loan Banks; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31980">
+    <xs:annotation>
+     <xs:documentation>Financial derivatives; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="31990">
+    <xs:annotation>
+     <xs:documentation>Other liabilities
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32000">
+    <xs:annotation>
+     <xs:documentation>Securities lending; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32200">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in checkable deposits and currency of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32340">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in money market fund shares of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32611">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in Treasury securities of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32617">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in agency- and GSE-backed securities of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32620">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in municipal securities of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32632">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in foreign bonds of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32636">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in mortgage-backed securities and other asset-backed bonds of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32638">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in corporate bonds, excluding MBS and ABS, of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32641">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in corporate equities of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32642">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in mutual fund shares of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32650">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in mortgages of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32691">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in commercial paper of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="32900">
+    <xs:annotation>
+     <xs:documentation>Reinvestment in miscellaneous assets of cash collateral received for securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="33611">
+    <xs:annotation>
+     <xs:documentation>Treasury securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="33617">
+    <xs:annotation>
+     <xs:documentation>Agency- and GSE-backed securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="33620">
+    <xs:annotation>
+     <xs:documentation>Municipal securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="33630">
+    <xs:annotation>
+     <xs:documentation>Corporate and foreign bonds lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="33632">
+    <xs:annotation>
+     <xs:documentation>Foreign bonds lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="33638">
+    <xs:annotation>
+     <xs:documentation>Corporate bonds lent, asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="33641">
+    <xs:annotation>
+     <xs:documentation>Corporate equities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34200">
+    <xs:annotation>
+     <xs:documentation>Checkable deposits and currency held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34340">
+    <xs:annotation>
+     <xs:documentation>Money market fund shares held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34611">
+    <xs:annotation>
+     <xs:documentation>Treasury securities held by U.S. reinsurers
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34617">
+    <xs:annotation>
+     <xs:documentation>Agency- and GSE-backed securities held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34620">
+    <xs:annotation>
+     <xs:documentation>Municipal securities held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34630">
+    <xs:annotation>
+     <xs:documentation>Corporate and foreign bonds held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34632">
+    <xs:annotation>
+     <xs:documentation>Foreign bonds held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34636">
+    <xs:annotation>
+     <xs:documentation>Mortgage-backed securities and other asset-backed bonds held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34638">
+    <xs:annotation>
+     <xs:documentation>Domestic corporate bonds held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34640">
+    <xs:annotation>
+     <xs:documentation>Corporate equities and mutual fund shares held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34642">
+    <xs:annotation>
+     <xs:documentation>Mutual fund shares held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34650">
+    <xs:annotation>
+     <xs:documentation>Mortgages held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34651">
+    <xs:annotation>
+     <xs:documentation>One-to-four family mortgages held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34654">
+    <xs:annotation>
+     <xs:documentation>Multifamily residential mortgages held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34655">
+    <xs:annotation>
+     <xs:documentation>Commercial mortgages held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34656">
+    <xs:annotation>
+     <xs:documentation>Farm mortgages held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="34691">
+    <xs:annotation>
+     <xs:documentation>Commercial paper held by U.S. reinsurers; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40000">
+    <xs:annotation>
+     <xs:documentation>Total currency and deposits; asset (F2)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40010">
+    <xs:annotation>
+     <xs:documentation>Liquid assets (broad measure)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40011">
+    <xs:annotation>
+     <xs:documentation>Liquid assets (core measure) (FSIs)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40040">
+    <xs:annotation>
+     <xs:documentation>Debt securities and loans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40100">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40122">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions due from U.S. banks; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40160">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions with banks in foreign countries; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40162">
+    <xs:annotation>
+     <xs:documentation>Deposits at foreign banks; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40210">
+    <xs:annotation>
+     <xs:documentation>Municipal and corporate bonds, corporate equities and mutual fund shares; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40220">
+    <xs:annotation>
+     <xs:documentation>Debt securities; asset (F3)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40221">
+    <xs:annotation>
+     <xs:documentation>Debt securities issued by domestic sectors; asset 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40222">
+    <xs:annotation>
+     <xs:documentation>Debt securities, excluding nonmarketable Treasury securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40223">
+    <xs:annotation>
+     <xs:documentation>Directly and indirectly held debt securities; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40224">
+    <xs:annotation>
+     <xs:documentation>Short-term debt securities; asset (F31)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40226">
+    <xs:annotation>
+     <xs:documentation>Long-term debt securities; asset (F32)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40230">
+    <xs:annotation>
+     <xs:documentation>Loans; asset (F4)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40232">
+    <xs:annotation>
+     <xs:documentation>Assets in 529 plans
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40350">
+    <xs:annotation>
+     <xs:documentation>Total loans including security repurchase agreements and federal funds; asset (F4)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40351">
+    <xs:annotation>
+     <xs:documentation>Rest of the world; loans to U.S. private depository institutions; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40355">
+    <xs:annotation>
+     <xs:documentation>Federal funds, repurchase agreements, and gross loans and leases exluding loans to state and local governments; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40356">
+    <xs:annotation>
+     <xs:documentation>Total loans adjusted to FOF basis; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40357">
+    <xs:annotation>
+     <xs:documentation>Total loans, including security repurchase agreements and federal funds, to U.S. commercial banks; asset 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40410">
+    <xs:annotation>
+     <xs:documentation>Short-term loans including repurchase agreements; asset (F41)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40420">
+    <xs:annotation>
+     <xs:documentation>Long-term loans; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40900">
+    <xs:annotation>
+     <xs:documentation>Total financial assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40901">
+    <xs:annotation>
+     <xs:documentation>Total assets (QFR input)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40902">
+    <xs:annotation>
+     <xs:documentation>Total assets 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40904">
+    <xs:annotation>
+     <xs:documentation>Total assets (balance sheet)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40905">
+    <xs:annotation>
+     <xs:documentation>Total financial assets (variable annuities) 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40906">
+    <xs:annotation>
+     <xs:documentation>Total assets (balance sheet)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40907">
+    <xs:annotation>
+     <xs:documentation>Total assets (Call Report)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40912">
+    <xs:annotation>
+     <xs:documentation>Total assets in municipal funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40913">
+    <xs:annotation>
+     <xs:documentation>Total assets in taxable bond funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40914">
+    <xs:annotation>
+     <xs:documentation>Total assets in hybrid funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40916">
+    <xs:annotation>
+     <xs:documentation>Total assets in domestic equity funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40917">
+    <xs:annotation>
+     <xs:documentation>Total assets in other funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40923">
+    <xs:annotation>
+     <xs:documentation>Total assets in world bond funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="40926">
+    <xs:annotation>
+     <xs:documentation>Total assets in world equity funds
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41000">
+    <xs:annotation>
+     <xs:documentation>Total currency and deposits; liability (F2)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41020">
+    <xs:annotation>
+     <xs:documentation>Debt securities, loans, and equity; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41040">
+    <xs:annotation>
+     <xs:documentation>Debt securities and loans; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41041">
+    <xs:annotation>
+     <xs:documentation>Financial obligations and debt service ratios
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41049">
+    <xs:annotation>
+     <xs:documentation>Debt securities and loans excluding certain items; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41100">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41120">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions with U.S. banking; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41122">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions due to U.S. banks; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41160">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions with banks in foreign countries; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41162">
+    <xs:annotation>
+     <xs:documentation>Interbank transactions with foreign affiliates including deposits at foreign banks; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41200">
+    <xs:annotation>
+     <xs:documentation>Securities and mortgages; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41220">
+    <xs:annotation>
+     <xs:documentation>Debt securities; liability (F3)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41222">
+    <xs:annotation>
+     <xs:documentation>Marketable debt securities; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41224">
+    <xs:annotation>
+     <xs:documentation>Short-term debt securities; liability (F31)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41226">
+    <xs:annotation>
+     <xs:documentation>Long-term debt securities; liability (F32)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41230">
+    <xs:annotation>
+     <xs:documentation>Loans; liability (F4)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41350">
+    <xs:annotation>
+     <xs:documentation>Total loans including security repurchase agreements; liability (F4)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41351">
+    <xs:annotation>
+     <xs:documentation>Other borrowed money; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41400">
+    <xs:annotation>
+     <xs:documentation>Short-term debt; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41410">
+    <xs:annotation>
+     <xs:documentation>Short-term loans including security repurchase agreements; liability (F41)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41420">
+    <xs:annotation>
+     <xs:documentation>Long-term loans; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41500">
+    <xs:annotation>
+     <xs:documentation>Total short-term liabilities
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41600">
+    <xs:annotation>
+     <xs:documentation>Total securities sold short; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41611">
+    <xs:annotation>
+     <xs:documentation>Treasury securities sold short; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41617">
+    <xs:annotation>
+     <xs:documentation>Agency- and GSE-backed securities sold short; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41641">
+    <xs:annotation>
+     <xs:documentation>Corporate equity securities sold short; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41662">
+    <xs:annotation>
+     <xs:documentation>Municipal securities sold short; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41663">
+    <xs:annotation>
+     <xs:documentation>Corporate and foreign bond securities sold short; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41669">
+    <xs:annotation>
+     <xs:documentation>Commercial paper securities sold short; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41693">
+    <xs:annotation>
+     <xs:documentation>Derivatives, commodities, and other miscellaneous sold short; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41900">
+    <xs:annotation>
+     <xs:documentation>Total liabilities
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41902">
+    <xs:annotation>
+     <xs:documentation>Total liabilities (Call Report)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41903">
+    <xs:annotation>
+     <xs:documentation>Changes in entitlements due to other changes in volume (OECD)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41904">
+    <xs:annotation>
+     <xs:documentation>Short-term liabilities
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41906">
+    <xs:annotation>
+     <xs:documentation>Long-term liabilities
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41940">
+    <xs:annotation>
+     <xs:documentation>Total liabilities and equity
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="41990">
+    <xs:annotation>
+     <xs:documentation>Debt other than home mortgages and consumer credit; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="43900">
+    <xs:annotation>
+     <xs:documentation>Total securities lent; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="44900">
+    <xs:annotation>
+     <xs:documentation>Invested assets of U.S. reinsurers 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50000">
+    <xs:annotation>
+     <xs:documentation>Net lending (+) or borrowing (-) (financial account)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50007">
+    <xs:annotation>
+     <xs:documentation>Net lending (+) or borrowing (-) (financial account)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50009">
+    <xs:annotation>
+     <xs:documentation>Net lending (+) or borrowing (-) (capital account) 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50053">
+    <xs:annotation>
+     <xs:documentation>Financing gap
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50100">
+    <xs:annotation>
+     <xs:documentation>Land at market value
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50101">
+    <xs:annotation>
+     <xs:documentation>Vacant land
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50107">
+    <xs:annotation>
+     <xs:documentation>Land with structures on it at book value
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50110">
+    <xs:annotation>
+     <xs:documentation>Consumer durable goods expenditures
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50120">
+    <xs:annotation>
+     <xs:documentation>Gross fixed investment, residential structures and equipment
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50121">
+    <xs:annotation>
+     <xs:documentation>Mobile homes
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50122">
+    <xs:annotation>
+     <xs:documentation>Residential equipment
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50126">
+    <xs:annotation>
+     <xs:documentation>Residential structures
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50128">
+    <xs:annotation>
+     <xs:documentation>Residential structures and equipment
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50130">
+    <xs:annotation>
+     <xs:documentation>Gross fixed investment, nonresidential structures, equipment, and intellectual property products
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50131">
+    <xs:annotation>
+     <xs:documentation>Fixed assets, book value
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50132">
+    <xs:annotation>
+     <xs:documentation>Nonresidential equipment, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50133">
+    <xs:annotation>
+     <xs:documentation>Nonresidential software, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50134">
+    <xs:annotation>
+     <xs:documentation>Nonresidential research and development, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50135">
+    <xs:annotation>
+     <xs:documentation>Nonresidential entertainment, literary, and artistic originals, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50136">
+    <xs:annotation>
+     <xs:documentation>Nonresidential structures, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50137">
+    <xs:annotation>
+     <xs:documentation>Nonresidential intellectual property products, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50138">
+    <xs:annotation>
+     <xs:documentation>Nonresidential structures, equipment, and intellectual property products, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50139">
+    <xs:annotation>
+     <xs:documentation>Nonresidential structures, equipment, and intellectual property products (residual diff. between NIPA and fixed asset accounts)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50140">
+    <xs:annotation>
+     <xs:documentation>Foreign direct investment in U.S. real estate; asset
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50147">
+    <xs:annotation>
+     <xs:documentation>Total residential and nonresidential structures excluding disaster related losses on structures 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50150">
+    <xs:annotation>
+     <xs:documentation>Structures, equipment, and intellectual property products
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50151">
+    <xs:annotation>
+     <xs:documentation>Total fixed capital (SOI)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50152">
+    <xs:annotation>
+     <xs:documentation>Equipment, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50156">
+    <xs:annotation>
+     <xs:documentation>Structures (residential and nonresidential), current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50157">
+    <xs:annotation>
+     <xs:documentation>Equipment excluding disaster-related losses on equipment
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50158">
+    <xs:annotation>
+     <xs:documentation>Equipment, intellectual property products, and consumer durables, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50159">
+    <xs:annotation>
+     <xs:documentation>Equipment and intellectual property products, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50190">
+    <xs:annotation>
+     <xs:documentation>Gross fixed investment
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50192">
+    <xs:annotation>
+     <xs:documentation>Gross fixed investment, equipment, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50196">
+    <xs:annotation>
+     <xs:documentation>Gross fixed investment, structures, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50198">
+    <xs:annotation>
+     <xs:documentation>Gross fixed investment, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50199">
+    <xs:annotation>
+     <xs:documentation>Gross fixed investment and inventories
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50200">
+    <xs:annotation>
+     <xs:documentation>Inventories 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50206">
+    <xs:annotation>
+     <xs:documentation>Inventory valuation adjustment (IVA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50327">
+    <xs:annotation>
+     <xs:documentation>Residential real estate excluding disaster-related losses on residential structures 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50337">
+    <xs:annotation>
+     <xs:documentation>Nonresidential real estate excluding disaster-related losses on nonresidential structures 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50350">
+    <xs:annotation>
+     <xs:documentation>Real estate
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50352">
+    <xs:annotation>
+     <xs:documentation>Owner-occupied real estate (SA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50354">
+    <xs:annotation>
+     <xs:documentation>Multi-family real estate (SA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50355">
+    <xs:annotation>
+     <xs:documentation>Commercial real estate (SA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50357">
+    <xs:annotation>
+     <xs:documentation>Real estate excluding disaster-related losses on structures
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50400">
+    <xs:annotation>
+     <xs:documentation>Intangible assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50500">
+    <xs:annotation>
+     <xs:documentation>Capital expenditures
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50509">
+    <xs:annotation>
+     <xs:documentation>Capital formation, net (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50600">
+    <xs:annotation>
+     <xs:documentation>Net investment
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50610">
+    <xs:annotation>
+     <xs:documentation>Net physical investment
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50800">
+    <xs:annotation>
+     <xs:documentation>Equity capital
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50900">
+    <xs:annotation>
+     <xs:documentation>Gross investment
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="50994">
+    <xs:annotation>
+     <xs:documentation>Assets less liabilities excluding directly and indirectly held corporate equities and owner-occupied housing
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="51110">
+    <xs:annotation>
+     <xs:documentation>Consumer durable goods investment
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="51140">
+    <xs:annotation>
+     <xs:documentation>Foreign direct investment in U.S. real estate business; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="51141">
+    <xs:annotation>
+     <xs:documentation>Foreign direct investment in U.S. real estate business: equity; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="51143">
+    <xs:annotation>
+     <xs:documentation>Foreign direct investment in U.S. real estate business: intercompany debt; liability
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="54000">
+    <xs:annotation>
+     <xs:documentation>Capital transfers received
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="54040">
+    <xs:annotation>
+     <xs:documentation>Disaster losses
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="54042">
+    <xs:annotation>
+     <xs:documentation>Disaster losses on residential fixed assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="54043">
+    <xs:annotation>
+     <xs:documentation>Disaster losses on nonresidential fixed assets
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="54100">
+    <xs:annotation>
+     <xs:documentation>Capital transfers paid 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="54200">
+    <xs:annotation>
+     <xs:documentation>Acquisition of nonproduced nonfinancial assets (net)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="54300">
+    <xs:annotation>
+     <xs:documentation>Capital account transactions (net)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="54400">
+    <xs:annotation>
+     <xs:documentation>Net capital transfers paid
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60000">
+    <xs:annotation>
+     <xs:documentation>Balance on current account (net saving)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60001">
+    <xs:annotation>
+     <xs:documentation>Gross saving 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60060">
+    <xs:annotation>
+     <xs:documentation>Net saving
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60063">
+    <xs:annotation>
+     <xs:documentation>Net saving less net capital transfers paid
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60064">
+    <xs:annotation>
+     <xs:documentation>Undistributed corporate profits
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60070">
+    <xs:annotation>
+     <xs:documentation>Personal saving
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60100">
+    <xs:annotation>
+     <xs:documentation>National income/personal income
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60101">
+    <xs:annotation>
+     <xs:documentation>Current receipts, NIPA basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60120">
+    <xs:annotation>
+     <xs:documentation>Disposable income, net
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60200">
+    <xs:annotation>
+     <xs:documentation>Wages and salaries paid (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60201">
+    <xs:annotation>
+     <xs:documentation>Wages and salaries received (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60250">
+    <xs:annotation>
+     <xs:documentation>Compensation of employees paid
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60251">
+    <xs:annotation>
+     <xs:documentation>Compensation of employees received 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60300">
+    <xs:annotation>
+     <xs:documentation>Revenue from sales of goods and services, excluding indirect sales taxes (FSIs)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60600">
+    <xs:annotation>
+     <xs:documentation>Corporate profits
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="60613">
+    <xs:annotation>
+     <xs:documentation>Deficit/surplus
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61100">
+    <xs:annotation>
+     <xs:documentation>Income
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61101">
+    <xs:annotation>
+     <xs:documentation>Net income, before extraordinary items and taxes (FSIs)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61102">
+    <xs:annotation>
+     <xs:documentation>Other income, net (FSIs)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61103">
+    <xs:annotation>
+     <xs:documentation>Net income after taxes (FSIs)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61104">
+    <xs:annotation>
+     <xs:documentation>Retained earnings (FSIs)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61111">
+    <xs:annotation>
+     <xs:documentation>Proprietors' income with IVA and CCAdj
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61120">
+    <xs:annotation>
+     <xs:documentation>Rents paid (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61121">
+    <xs:annotation>
+     <xs:documentation>Rents received (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61200">
+    <xs:annotation>
+     <xs:documentation>Distributed income of corporations, paid (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61201">
+    <xs:annotation>
+     <xs:documentation>Distributed income of corporations, received (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61210">
+    <xs:annotation>
+     <xs:documentation>Dividends paid (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61211">
+    <xs:annotation>
+     <xs:documentation>Dividends received (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61220">
+    <xs:annotation>
+     <xs:documentation>Withdrawals from income of quasi-corporations, paid (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61221">
+    <xs:annotation>
+     <xs:documentation>Withdrawals from income of quasi-corporations, received (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61300">
+    <xs:annotation>
+     <xs:documentation>Interest paid (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61301">
+    <xs:annotation>
+     <xs:documentation>Interest received (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61400">
+    <xs:annotation>
+     <xs:documentation>Net national income/balance of primary incomes, net (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61500">
+    <xs:annotation>
+     <xs:documentation>Uses of property income (paid) (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="61501">
+    <xs:annotation>
+     <xs:documentation>Property income (received) (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="62000">
+    <xs:annotation>
+     <xs:documentation>Cost of sales (FSIs)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="62100">
+    <xs:annotation>
+     <xs:documentation>Personal current taxes
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="62200">
+    <xs:annotation>
+     <xs:documentation>Current taxes on income; wealth; etc. (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="62310">
+    <xs:annotation>
+     <xs:documentation>Taxes on corporate income
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="62331">
+    <xs:annotation>
+     <xs:documentation>Business tax receipts (MTS)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="62400">
+    <xs:annotation>
+     <xs:documentation>Taxes on production and imports, receivable
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="62401">
+    <xs:annotation>
+     <xs:documentation>Taxes on production and imports less subsidies, payable
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="63000">
+    <xs:annotation>
+     <xs:documentation>Consumption of fixed capital, structures, equipment, and intellectual property products, current cost basis 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="63001">
+    <xs:annotation>
+     <xs:documentation>Consumption of fixed capital, consumer durables
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="63100">
+    <xs:annotation>
+     <xs:documentation>Capital consumption adjustment (CCAdj.)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="63200">
+    <xs:annotation>
+     <xs:documentation>Consumption of fixed capital, residential equipment and structures, current cost basis 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="63300">
+    <xs:annotation>
+     <xs:documentation>Consumption of fixed capital, nonresidential structures, equipment, and intellectual property products, current cost basis
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64001">
+    <xs:annotation>
+     <xs:documentation>Current taxes and transfer payments received
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64002">
+    <xs:annotation>
+     <xs:documentation>Current taxes, contributions for government social insurance, and transfer payments paid
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64010">
+    <xs:annotation>
+     <xs:documentation>Employers' social contributions paid (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64011">
+    <xs:annotation>
+     <xs:documentation>Employers' social contributions received (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64020">
+    <xs:annotation>
+     <xs:documentation>Subsidies
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64021">
+    <xs:annotation>
+     <xs:documentation>Operating surplus, net 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64022">
+    <xs:annotation>
+     <xs:documentation>Non-operating income (QFR)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64030">
+    <xs:annotation>
+     <xs:documentation>Other current transfers paid
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64031">
+    <xs:annotation>
+     <xs:documentation>Other current transfers received
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64032">
+    <xs:annotation>
+     <xs:documentation>Other current transfers received
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64033">
+    <xs:annotation>
+     <xs:documentation>Other current transfers received
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64040">
+    <xs:annotation>
+     <xs:documentation>Social contributions paid
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64041">
+    <xs:annotation>
+     <xs:documentation>Social benefits received
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="64051">
+    <xs:annotation>
+     <xs:documentation>Personal current transfer receipts
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="66000">
+    <xs:annotation>
+     <xs:documentation>Contributions for government social insurance paid
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="66010">
+    <xs:annotation>
+     <xs:documentation>Contributions for government social insurance received
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69000">
+    <xs:annotation>
+     <xs:documentation>Current expenditures/outlays
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69010">
+    <xs:annotation>
+     <xs:documentation>Consumption expenditures
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69011">
+    <xs:annotation>
+     <xs:documentation>Personal interest payments 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69012">
+    <xs:annotation>
+     <xs:documentation>Personal current transfer payments to rest of the world
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69020">
+    <xs:annotation>
+     <xs:documentation>Gross domestic product
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69021">
+    <xs:annotation>
+     <xs:documentation>Gross national product
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69022">
+    <xs:annotation>
+     <xs:documentation>Average of GDP and GDI
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69025">
+    <xs:annotation>
+     <xs:documentation>Gross value added (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69026">
+    <xs:annotation>
+     <xs:documentation>Net value added (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69030">
+    <xs:annotation>
+     <xs:documentation>Imports/exports 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69040">
+    <xs:annotation>
+     <xs:documentation>Income payments to the U.S.
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69041">
+    <xs:annotation>
+     <xs:documentation>Income receipts from the U.S. 
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="69050">
+    <xs:annotation>
+     <xs:documentation>Foreign income to U.S.
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="70050">
+    <xs:annotation>
+     <xs:documentation>Statistical discrepancy
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="70059">
+    <xs:annotation>
+     <xs:documentation>Gross domestic product (GDP); statistical discrepancy
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="80900">
+    <xs:annotation>
+     <xs:documentation>Other volume changes
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="80901">
+    <xs:annotation>
+     <xs:documentation>Total other volume changes (IMA)
+</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+  </xs:restriction>
+ </xs:simpleType>
+ <xs:simpleType name="CL_SERIES_TYPE">
+  <xs:restriction base="xs:string">
+   <xs:enumeration value="0">
+    <xs:annotation>
+     <xs:documentation>Input series with nonzero seasonal factor</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="1">
+    <xs:annotation>
+     <xs:documentation>NIPA series</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="3">
+    <xs:annotation>
+     <xs:documentation>Input series with zero seasonal factor</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="5">
+    <xs:annotation>
+     <xs:documentation>Computed series</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+   <xs:enumeration value="6">
+    <xs:annotation>
+     <xs:documentation>Ratio series</xs:documentation>
+    </xs:annotation>
+   </xs:enumeration>
+  </xs:restriction>
+ </xs:simpleType>
+</xs:schema>

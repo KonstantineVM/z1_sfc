@@ -1,0 +1,4391 @@
+{
+  "00000": {
+    "label": "Unemployment rate (quarterly average)",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "00002": {
+    "label": "Financial soundness indicators",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "00003": {
+    "label": "Financial soundness indicators",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "20000": {
+    "label": "Total assets",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "20001": {
+    "label": "Total assets at historical cost",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "20003": {
+    "label": "Total funded assets including social security",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "20006": {
+    "label": "Total financial and nonfinancial assets",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "20100": {
+    "label": "Nonfinancial assets",
+    "side": "asset",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20101": {
+    "label": "Nonfinancial assets at historical cost",
+    "side": "asset",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20104": {
+    "label": "Market value estimate of nonfinancial assets",
+    "side": "asset",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20107": {
+    "label": "Revaluation of nonfinancial assets adjusted to exclude disaster-related losses (IMA)",
+    "side": "asset",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20500": {
+    "label": "Federal funds and security repurchase agreements; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20507": {
+    "label": "Federal funds and security repurchase agreements due from U.S.-chartered depository institutions; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20508": {
+    "label": "Federal funds and security repurchase agreements due from non-depository private institutions; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20510": {
+    "label": "Security repurchase agreements; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20511": {
+    "label": "Over-night security repurchase agreements; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20520": {
+    "label": "Federal funds; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "20900": {
+    "label": "Net worth",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "20901": {
+    "label": "Net worth at historical cost",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "20902": {
+    "label": "Proprietors' equity in noncorporate business",
+    "side": "macro",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "21000": {
+    "label": "Total liabilities and net worth (IMA)",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "21500": {
+    "label": "Federal funds and security repurchase agreements; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "21507": {
+    "label": "Federal funds and security repurchase agreements due to U.S.-chartered depository institutions; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "21508": {
+    "label": "Federal funds and security repurchase agreements due to non-depository private institutions; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "21510": {
+    "label": "Security repurchase agreements; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "21511": {
+    "label": "Over-night security repurchase agreements; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "21520": {
+    "label": "Federal funds; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "24510": {
+    "label": "Security repurchase agreements held by U.S. reinsurers",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30110": {
+    "label": "U.S. official reserve assets",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30111": {
+    "label": "Monetary gold and SDRs holdings; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30112": {
+    "label": "Monetary gold; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30113": {
+    "label": "Special drawing rights (SDRs) holdings; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30114": {
+    "label": "Reserve position in IMF (net); asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30115": {
+    "label": "Official foreign currency holdings; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30120": {
+    "label": "Treasury currency; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30130": {
+    "label": "Depository institution reserves; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30140": {
+    "label": "SDR certificates issued by the federal government; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30200": {
+    "label": "Checkable deposits and currency; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30207": {
+    "label": "Transaction deposits due from depository institutions in the U.S.; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30220": {
+    "label": "Cash items in process of collection; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30230": {
+    "label": "Checkable deposits due to the federal goverment; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30250": {
+    "label": "Currency; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30270": {
+    "label": "Checkable deposits; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30280": {
+    "label": "Checkable deposits due to state and local governments; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30292": {
+    "label": "Checkable deposits due to private domestic sectors; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30300": {
+    "label": "Total time and savings deposits; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30302": {
+    "label": "Other deposits including time and savings deposits; asset (IMA)",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30303": {
+    "label": "Negotiable certificates of deposit; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30304": {
+    "label": "Transferable deposits; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30305": {
+    "label": "Other deposits; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30340": {
+    "label": "Money market fund shares; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30343": {
+    "label": "Variable annuity money market fund shares; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30390": {
+    "label": "Cash and cash equivalents",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "30400": {
+    "label": "Life insurance reserves; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30500": {
+    "label": "Pension entitlements; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30520": {
+    "label": "Insurance, pension and standardized guarantee schemes; asset (F6)",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30521": {
+    "label": "Non-life insurance technical reserves; asset (IMA)",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30522": {
+    "label": "Life insurance and annuity entitlements; asset (F62)",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30523": {
+    "label": "Pension entitlements; asset (F63)",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30525": {
+    "label": "Entitlements to non-pension benefits; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30610": {
+    "label": "Total U.S. government securities; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30611": {
+    "label": "Treasury securities; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30612": {
+    "label": "NCUA share insurance capitalization deposit; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30613": {
+    "label": "Nonmarketable Treasury securities; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30614": {
+    "label": "Agency issued commercial CMOs and other structured MBS; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30615": {
+    "label": "Agency-issued commercial mortgage pass-through securities; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30616": {
+    "label": "Agency issued residential CMOs and other structured MBS; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30617": {
+    "label": "Agency- and GSE-backed securities; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30618": {
+    "label": "Agency-issued residential mortgage pass-through securities; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30619": {
+    "label": "Agency mortgage-backed securities and other asset-backed agency- and GSE-backed securities; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30620": {
+    "label": "Municipal securities; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30621": {
+    "label": "Sallie Mae academic facilities financing to public institutions; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30622": {
+    "label": "Sallie Mae warehousing advances to public institutions; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30630": {
+    "label": "Corporate and foreign bonds; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30631": {
+    "label": "Corporate bonds issued by Netherlands Antillean Financial subsidiaries of U.S. corporations; asset",
+    "side": "asset",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30632": {
+    "label": "Foreign corporate bonds; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30636": {
+    "label": "Mortgage-backed securities and other asset-backed bonds; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30637": {
+    "label": "Corporate bonds issued by commercial banking under TARP; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30638": {
+    "label": "Domestic corporate bonds; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30640": {
+    "label": "Corporate equities and mutual fund shares; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30641": {
+    "label": "Corporate equities; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30642": {
+    "label": "Mutual fund shares; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30643": {
+    "label": "Variable annuity mutual fund shares; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30644": {
+    "label": "Directly and indirectly held corporate equities; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30646": {
+    "label": "Domestic corporate equities; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30648": {
+    "label": "Foreign corporate equities; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30649": {
+    "label": "Capital losses calculated by the Treasury Department; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30650": {
+    "label": "Total mortgages; asset (F42)",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30651": {
+    "label": "One-to-four family mortgages, including home equity loans and construction loans on one-to-four family homes; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30652": {
+    "label": "Home equity lines of credit; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30653": {
+    "label": "One-to-four family mortgages secured by junior liens; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30654": {
+    "label": "Multifamily residential mortgages; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30655": {
+    "label": "Commercial mortgages; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30656": {
+    "label": "Farm mortgages; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30657": {
+    "label": "Private residential mortgage-backed securities; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30658": {
+    "label": "Commercial mortgages; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30659": {
+    "label": "Private commercial mortgage-backed securities; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30660": {
+    "label": "Consumer credit; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30661": {
+    "label": "Revolving consumer credit; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30662": {
+    "label": "Non-revolving consumer credit; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30663": {
+    "label": "Consumer leases; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30664": {
+    "label": "Consumer credit, auto loans; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30665": {
+    "label": "Revolving consumer credit, other than credit cards; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30666": {
+    "label": "Consumer loans adjustment for Banc One reclassification",
+    "side": "macro",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "30667": {
+    "label": "Loans to individuals; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30670": {
+    "label": "Cash or margin accounts at brokers and dealers; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30680": {
+    "label": "Bank loans not elsewhere classified; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30681": {
+    "label": "Commercial and industrial loans and leases; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30682": {
+    "label": "Other bank loans; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30684": {
+    "label": "Bank loans not elsewhere classified to rest of the world; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30685": {
+    "label": "Bank loans not elsewhere classified to other financial business; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30686": {
+    "label": "Bank loans not elsewhere classified to brokers and dealers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30687": {
+    "label": "Loans to depository institutions; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30688": {
+    "label": "Loans through Federal Reserve funding, credit, and liquidity facilities; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30689": {
+    "label": "Loans to other financial business COVID-19 funding, credit, and liquidity facilities",
+    "side": "macro",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "30690": {
+    "label": "Other loans and advances; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30691": {
+    "label": "Open market paper; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30692": {
+    "label": "U.S. government loans; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30693": {
+    "label": "Government-sponsored enterprise (GSE) loans; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30694": {
+    "label": "Policy loans; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30695": {
+    "label": "Nonfinancial business loans, excluding U.S. government and GSE loans; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30696": {
+    "label": "Bankers' acceptances; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30697": {
+    "label": "Customers' liability on acceptances outstanding; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30698": {
+    "label": "Syndicated loans to nonfinancial corporate business; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30699": {
+    "label": "Open market paper and other loans and advances; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30700": {
+    "label": "Trade receivables; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30702": {
+    "label": "Receivable for claims from non-U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30703": {
+    "label": "Trade credit due from federal government; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30706": {
+    "label": "Receivables due from other brokers and dealers and clearing organizations; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30711": {
+    "label": "Receivable for claims from U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30713": {
+    "label": "Receivable for claims from U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30714": {
+    "label": "Receivable for claims from non-U.S. unaffiliated reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30715": {
+    "label": "Receivable for claims from non-U.S. affiliated reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30716": {
+    "label": "Receivable for claims from non-U.S. captive reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30720": {
+    "label": "Paycheck Protection Program receivables due from federal government; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30730": {
+    "label": "Claims of pension fund on sponsor; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30740": {
+    "label": "Pension fund contributions receivable; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30750": {
+    "label": "Trade receivables net of trade payables; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30760": {
+    "label": "Insurance receivables due from property-casualty insurance companies; asset (F61)",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30770": {
+    "label": "Deferred and unpaid life insurance premiums; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30780": {
+    "label": "Taxes receivable; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30810": {
+    "label": "Equity and investment fund shares; asset (F5)",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30811": {
+    "label": "Equity and investment fund shares excluding mutual fund shares and money market fund shares; asset (F51)",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30812": {
+    "label": "Mutual fund and money market fund shares; asset (F52)",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30900": {
+    "label": "Total miscellaneous assets",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "30905": {
+    "label": "Funding agreements backing securities; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30910": {
+    "label": "Private foreign deposits; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30911": {
+    "label": "Nonofficial foreign currencies; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30917": {
+    "label": "Interbank transactions due from domestic affiliates; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30918": {
+    "label": "Interbank transactions due from domestic and foreign affiliates; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30920": {
+    "label": "Direct investment; asset",
+    "side": "asset",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30921": {
+    "label": "Foreign direct investment in U.S.: Equity; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30922": {
+    "label": "Foreign direct investment in U.S.: Reinvested earnings; asset",
+    "side": "asset",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30923": {
+    "label": "Foreign direct investment in U.S.: Intercompany accounts; asset",
+    "side": "asset",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30924": {
+    "label": "Equity in government-sponsored enterprises (GSEs); asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30926": {
+    "label": "Interbank transactions due from foreign affiliates; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30928": {
+    "label": "U.S. equity in IRBD, etc.",
+    "side": "macro",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "30929": {
+    "label": "Private equity",
+    "side": "macro",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "30930": {
+    "label": "Unidentified miscellaneous assets",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30940": {
+    "label": "Equity investment in subsidiaries; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30941": {
+    "label": "Equity investment in own subsidiaries by nonfinancial corporations; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30942": {
+    "label": "Exchange Stabilization Fund Economic Recovery Programs equity investment; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30943": {
+    "label": "Equity investment through the Public-Private Investment Program (PPIP); asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30945": {
+    "label": "Equity investment in own subsidiaries by other financial business; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30946": {
+    "label": "Equity investment in affiliates; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30947": {
+    "label": "Other investment in affiliates; asset",
+    "side": "asset",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30949": {
+    "label": "Miscellaneous other equity; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30950": {
+    "label": "Unallocated insurance contracts; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30951": {
+    "label": "Other insurance reserves; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30953": {
+    "label": "Unallocated insurance contracts, defined contribution pension plans; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30954": {
+    "label": "Unallocated insurance contracts, defined benefit pension plans; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30955": {
+    "label": "Unallocated insurance contracts, defined contribution pension plans; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30956": {
+    "label": "Unallocated insurance contracts, defined contribution pension plans; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30960": {
+    "label": "Other accounts receivable; asset (F8)",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30961": {
+    "label": "Miscellaneous and taxes receivable; asset (IMA)",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30962": {
+    "label": "Trade credits and advances; asset (IMA)",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30980": {
+    "label": "Financial derivatives; asset",
+    "side": "asset",
+    "class": "Derivatives",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30990": {
+    "label": "Other financial assets",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "30994": {
+    "label": "Other financial assets, excluding indirectly held equity",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "31110": {
+    "label": "U.S. official reserve assets; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31113": {
+    "label": "SDR allocations; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31114": {
+    "label": "Reserve position in IMF (net); liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31115": {
+    "label": "Official foreign currency holdings; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31120": {
+    "label": "Treasury currency; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31130": {
+    "label": "Depository institution reserves; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31200": {
+    "label": "Checkable deposits and currency; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31207": {
+    "label": "Transaction deposits due to depository institutions in the U.S.; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31226": {
+    "label": "Checkable deposits due to rest of world; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31230": {
+    "label": "Checkable deposits due to the federal government; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31240": {
+    "label": "Checkable deposits due to government-sponsored enterprises; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31250": {
+    "label": "Currency; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31260": {
+    "label": "Total transaction accounts; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31270": {
+    "label": "Checkable deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31280": {
+    "label": "Checkable deposits due to state and local governments; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31290": {
+    "label": "Checkable deposits due to others; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31292": {
+    "label": "Checkable deposits due to private domestic sectors; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31299": {
+    "label": "Special cash items bias correction for deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31300": {
+    "label": "Total time and savings deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31302": {
+    "label": "Other deposits including time and savings deposits; liabilty (IMA)",
+    "side": "macro",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "31303": {
+    "label": "Negotiable certificates of deposit; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31304": {
+    "label": "Transferable deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31305": {
+    "label": "Other deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31307": {
+    "label": "Nontransaction deposits due to depository institutions in the U.S.; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31310": {
+    "label": "Small time and savings deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31315": {
+    "label": "IRA and Keoghs; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31350": {
+    "label": "Large time deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31352": {
+    "label": "Large time deposits due to rest of the world; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31360": {
+    "label": "Total nontransaction deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31391": {
+    "label": "Uninsured checkable and time and savings deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31400": {
+    "label": "Life insurance reserves; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31411": {
+    "label": "Life insurance reserve credit from U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31412": {
+    "label": "Life insurance reserve credit from U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31413": {
+    "label": "Life insurance reserve credit from U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31414": {
+    "label": "Life insurance reserve credit from non-U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31415": {
+    "label": "Life insurance reserve credit from non-U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31416": {
+    "label": "Life insurance reserve credit from non-U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31417": {
+    "label": "Assumed life insurance reserve credit from non-U.S. unaffiliated insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31418": {
+    "label": "Assumed life insurance reserve credit from non-U.S. other affiliated insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31419": {
+    "label": "Assumed life insurance reserve credit from non-U.S. insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31421": {
+    "label": "Accident and health reserve credit from U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31422": {
+    "label": "Accident and health reserve credit from U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31423": {
+    "label": "Accident and health reserve credit from U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31424": {
+    "label": "Accident and health reserve credit from non-U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31425": {
+    "label": "Accident and health reserve credit from non-U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31426": {
+    "label": "Accident and health reserve credit from non-U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31461": {
+    "label": "Modified coinsurance life insurance reserve from U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31462": {
+    "label": "Modified coinsurance life insurance reserve from U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31463": {
+    "label": "Modified coinsurance life insurance reserve from U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31464": {
+    "label": "Modified coinsurance life insurance reserve from non-U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31465": {
+    "label": "Modified coinsurance life insurance reserve from non-U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31466": {
+    "label": "Modified coinsurance life insurance reserve from non-U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31467": {
+    "label": "Assumed modified coinsurance life insurance reserve from non-U.S. unaffiliated insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31468": {
+    "label": "Assumed modified coinsurance life insurance reserve from non-U.S. other affiliated insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31471": {
+    "label": "Modified coinsurance accident and health reserve from U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31472": {
+    "label": "Modified coinsurance accident and health reserve from U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31473": {
+    "label": "Modified coinsurance accident and health reserve from U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31474": {
+    "label": "Modified coinsurance accident and health reserve from non-U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31475": {
+    "label": "Modified coinsurance accident and health reserve from non-U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31476": {
+    "label": "Modified coinsurance accident and health reserve from non-U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31500": {
+    "label": "Pension entitlements; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31502": {
+    "label": "Individual annuity reserves; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31511": {
+    "label": "Pension entitlement reserve credit from U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31512": {
+    "label": "Pension entitlement reserve credit from U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31513": {
+    "label": "Pension entitlement reserve credit from U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31514": {
+    "label": "Pension entitlement reserve credit from non-U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31515": {
+    "label": "Pension entitlement reserve credit from non-U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31516": {
+    "label": "Pension entitlement reserve credit from non-U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31517": {
+    "label": "Assumed pension entitlement reserve credit from non-U.S. unaffiliated insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31518": {
+    "label": "Assumed pension entitlement reserve credit from non-U.S. other affiliated insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31519": {
+    "label": "Assumed pension entitlement reserve credit from non-U.S. insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31520": {
+    "label": "Insurance, pension and standardized guarantee schemes; liability (F6)",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31521": {
+    "label": "Non-life insurance technical reserves; liability (IMA)",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31522": {
+    "label": "Life insurance and annuity entitlements; liability (IMA)",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31523": {
+    "label": "Pension entitlements; liability (F63)",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31540": {
+    "label": "Life insurance reserves and pension entitlements; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31550": {
+    "label": "Prepayment of insurance premiums and reserves for outstanding claims; liability (IMA)",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31561": {
+    "label": "Modified coinsurance pension entitlement reserve from U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31562": {
+    "label": "Modified coinsurance pension entitlement reserve from U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31563": {
+    "label": "Modified coinsurance pension entitlement reserve from U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31564": {
+    "label": "Modified coinsurance pension entitlement reserve from non-U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31565": {
+    "label": "Modified coinsurance pension entitlement reserve from non-U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31566": {
+    "label": "Modified coinsurance pension entitlement reserve from non-U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31567": {
+    "label": "Assumed modified coinsurance reserve from non-U.S. unaffiliated insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31568": {
+    "label": "Assumed modified coinsurance reserve from non-U.S. other affiliated insurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31610": {
+    "label": "Total U.S. government securities; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31611": {
+    "label": "Treasury securities, excluding U.S. savings bonds; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31612": {
+    "label": "Marketable Treasury securities; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31613": {
+    "label": "Nonmarketable Treasury securities; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31614": {
+    "label": "U.S. savings securities; liability",
+    "side": "liability",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31617": {
+    "label": "Agency- and GSE-backed securities; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31620": {
+    "label": "Municipal securities; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31622": {
+    "label": "Long-term municipal securities; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31623": {
+    "label": "Corporate bonds and municipal securities; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31624": {
+    "label": "Short-term municipal securities; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31627": {
+    "label": "Municipal bond offering for refunding; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31630": {
+    "label": "Corporate and foreign bonds; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31633": {
+    "label": "Other borrowed money; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31634": {
+    "label": "Subordinated notes and debentures; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31635": {
+    "label": "Corporate and foreign bonds issued by investment banks; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31636": {
+    "label": "Private collateralized mortgage obligations (CMOs); liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31640": {
+    "label": "Corporate equities and mutual fund shares; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31641": {
+    "label": "Corporate equities; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31642": {
+    "label": "Mutual fund shares; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31650": {
+    "label": "Total mortgages; liability (F42)",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31651": {
+    "label": "One-to-four family mortgages; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31652": {
+    "label": "Commercial, multifamily, and farm mortgages; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31654": {
+    "label": "Multifamily residential mortgages; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31655": {
+    "label": "Commercial mortgages; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31656": {
+    "label": "Farm mortgages; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31657": {
+    "label": "Mortgage-backed bonds; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31658": {
+    "label": "Commercial mortgages and bank loans n.e.c; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31660": {
+    "label": "Consumer credit; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31661": {
+    "label": "Revolving consumer credit; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31662": {
+    "label": "Non-revolving consumer credit; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31664": {
+    "label": "Consumer credit, automobile loans; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31668": {
+    "label": "Non-revolving consumer credit; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31670": {
+    "label": "Payable to customers and non-customers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31680": {
+    "label": "Bank loans not elsewhere classified; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31684": {
+    "label": "Bank loans not elsewhere classified to rest of the world; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31687": {
+    "label": "Loans to depository institutions; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31690": {
+    "label": "Other loans and advances; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31691": {
+    "label": "Open market paper; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31692": {
+    "label": "U.S. government loans; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31693": {
+    "label": "Government-sponsored enterprise (GSE) loans; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31694": {
+    "label": "Policy loans; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31695": {
+    "label": "Nonfinancial business loans, excluding U.S. government and GSE loans; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31696": {
+    "label": "Bankers' Acceptances; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31697": {
+    "label": "Customers' liability on acceptances outstanding; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31698": {
+    "label": "Syndicated loans; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31699": {
+    "label": "Open market paper and other loans and advances; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31700": {
+    "label": "Trade payables; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31702": {
+    "label": "Trade payables to non-U.S. reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31706": {
+    "label": "Payables due to other brokers and dealers and clearing organizations; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31711": {
+    "label": "Funds withheld from U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31713": {
+    "label": "Funds withheld from U.S. reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31714": {
+    "label": "Funds withheld from non-U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31715": {
+    "label": "Funds withheld from non-U.S. other affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31716": {
+    "label": "Funds withheld from non-U.S. captive reinsurers; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31720": {
+    "label": "Paycheck Protection Program payables; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31721": {
+    "label": "Payable for reinsurance to U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31723": {
+    "label": "Payable for reinsurance to U.S. residual market reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31724": {
+    "label": "Payable for reinsurance to non-U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31725": {
+    "label": "Payable for reinsurance to non-U.S. affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31730": {
+    "label": "Claims of pension fund on sponsor; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31760": {
+    "label": "Policy payables; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31761": {
+    "label": "Policy payables from U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31762": {
+    "label": "Policy payables from U.S. affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31763": {
+    "label": "Policy payables from U.S. residual market reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31764": {
+    "label": "Policy payables from non-U.S. unaffiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31765": {
+    "label": "Policy payables from non-U.S. affiliated reinsurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31767": {
+    "label": "Assumed policy payables from non-U.S. unaffiliated insurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31768": {
+    "label": "Assumed policy payables from non-U.S. affiliated insurers; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31780": {
+    "label": "Taxes payables; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31810": {
+    "label": "Equity and investment fund shares; liability (F5)",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31811": {
+    "label": "Equity and investment fund shares excluding mutual fund shares and money market fund shares; liability (F51)",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31812": {
+    "label": "Mutual fund and money market fund shares; liability (F52)",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31900": {
+    "label": "Total miscellaneous liabilities",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "31905": {
+    "label": "Funding agreements backing securities; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31910": {
+    "label": "U.S. private deposits; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31911": {
+    "label": "Nonofficial U.S. currencies; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31917": {
+    "label": "Interbank transactions due to domestic affiliates; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31918": {
+    "label": "Interbank transactions due to domestic and foreign affiliates; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31920": {
+    "label": "Direct investment; liability",
+    "side": "liability",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31921": {
+    "label": "U.S. direct investment abroad: equity; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31922": {
+    "label": "U.S. direct investment abroad: Reinvested earnings; liability",
+    "side": "liability",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31923": {
+    "label": "U.S. direct investment abroad: Intercompany accounts; liability",
+    "side": "liability",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31924": {
+    "label": "Equity in government-sponsored enterprises (GSEs); liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31926": {
+    "label": "Interbank transactions due to foreign affiliates; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31930": {
+    "label": "Unidentified miscellaneous liabilities",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "31940": {
+    "label": "Equity investment by parent companies; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31942": {
+    "label": "Exchange Stabilization Fund Economic Recovery Programs equity investment; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31943": {
+    "label": "Equity investment through the Public-Private Investment Program (PPIP); liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31945": {
+    "label": "Equity investment by other financial business; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31946": {
+    "label": "Equity investment from affiliates; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31947": {
+    "label": "Other investment from affiliates; liability",
+    "side": "liability",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31949": {
+    "label": "Miscellaneous other equity; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31950": {
+    "label": "Other insurance reserves; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31951": {
+    "label": "Health care funds; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31952": {
+    "label": "Policy divident accumulation; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31953": {
+    "label": "Policy and contract claims; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31960": {
+    "label": "Other accounts payable; liability (F8)",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31961": {
+    "label": "Miscellaneous and taxes payable; libility (IMA)",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31962": {
+    "label": "Trade credits and advances; liability (IMA)",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31970": {
+    "label": "Deposits at Federal Home Loan Banks; liability",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31980": {
+    "label": "Financial derivatives; liability",
+    "side": "liability",
+    "class": "Derivatives",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "31990": {
+    "label": "Other liabilities",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "32000": {
+    "label": "Securities lending; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "32200": {
+    "label": "Reinvestment in checkable deposits and currency of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32340": {
+    "label": "Reinvestment in money market fund shares of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32611": {
+    "label": "Reinvestment in Treasury securities of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32617": {
+    "label": "Reinvestment in agency- and GSE-backed securities of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32620": {
+    "label": "Reinvestment in municipal securities of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32632": {
+    "label": "Reinvestment in foreign bonds of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32636": {
+    "label": "Reinvestment in mortgage-backed securities and other asset-backed bonds of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32638": {
+    "label": "Reinvestment in corporate bonds, excluding MBS and ABS, of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32641": {
+    "label": "Reinvestment in corporate equities of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32642": {
+    "label": "Reinvestment in mutual fund shares of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32650": {
+    "label": "Reinvestment in mortgages of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32691": {
+    "label": "Reinvestment in commercial paper of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "32900": {
+    "label": "Reinvestment in miscellaneous assets of cash collateral received for securities lent; asset",
+    "side": "asset",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "33611": {
+    "label": "Treasury securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "33617": {
+    "label": "Agency- and GSE-backed securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "33620": {
+    "label": "Municipal securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "33630": {
+    "label": "Corporate and foreign bonds lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "33632": {
+    "label": "Foreign bonds lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "33638": {
+    "label": "Corporate bonds lent, asset",
+    "side": "macro",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "33641": {
+    "label": "Corporate equities lent; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34200": {
+    "label": "Checkable deposits and currency held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34340": {
+    "label": "Money market fund shares held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34611": {
+    "label": "Treasury securities held by U.S. reinsurers",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34617": {
+    "label": "Agency- and GSE-backed securities held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34620": {
+    "label": "Municipal securities held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34630": {
+    "label": "Corporate and foreign bonds held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34632": {
+    "label": "Foreign bonds held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34636": {
+    "label": "Mortgage-backed securities and other asset-backed bonds held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34638": {
+    "label": "Domestic corporate bonds held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34640": {
+    "label": "Corporate equities and mutual fund shares held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34642": {
+    "label": "Mutual fund shares held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34650": {
+    "label": "Mortgages held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34651": {
+    "label": "One-to-four family mortgages held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34654": {
+    "label": "Multifamily residential mortgages held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34655": {
+    "label": "Commercial mortgages held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34656": {
+    "label": "Farm mortgages held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "34691": {
+    "label": "Commercial paper held by U.S. reinsurers; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40000": {
+    "label": "Total currency and deposits; asset (F2)",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40010": {
+    "label": "Liquid assets (broad measure)",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40011": {
+    "label": "Liquid assets (core measure) (FSIs)",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40040": {
+    "label": "Debt securities and loans; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40100": {
+    "label": "Interbank transactions; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40122": {
+    "label": "Interbank transactions due from U.S. banks; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40160": {
+    "label": "Interbank transactions with banks in foreign countries; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40162": {
+    "label": "Deposits at foreign banks; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40210": {
+    "label": "Municipal and corporate bonds, corporate equities and mutual fund shares; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40220": {
+    "label": "Debt securities; asset (F3)",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40221": {
+    "label": "Debt securities issued by domestic sectors; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40222": {
+    "label": "Debt securities, excluding nonmarketable Treasury securities; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40223": {
+    "label": "Directly and indirectly held debt securities; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40224": {
+    "label": "Short-term debt securities; asset (F31)",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40226": {
+    "label": "Long-term debt securities; asset (F32)",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40230": {
+    "label": "Loans; asset (F4)",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40232": {
+    "label": "Assets in 529 plans",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40350": {
+    "label": "Total loans including security repurchase agreements and federal funds; asset (F4)",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40351": {
+    "label": "Rest of the world; loans to U.S. private depository institutions; asset",
+    "side": "asset",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40355": {
+    "label": "Federal funds, repurchase agreements, and gross loans and leases exluding loans to state and local governments; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40356": {
+    "label": "Total loans adjusted to FOF basis; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40357": {
+    "label": "Total loans, including security repurchase agreements and federal funds, to U.S. commercial banks; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40410": {
+    "label": "Short-term loans including repurchase agreements; asset (F41)",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40420": {
+    "label": "Long-term loans; asset",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "40900": {
+    "label": "Total financial assets",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40901": {
+    "label": "Total assets (QFR input)",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40902": {
+    "label": "Total assets",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40904": {
+    "label": "Total assets (balance sheet)",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40905": {
+    "label": "Total financial assets (variable annuities)",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40906": {
+    "label": "Total assets (balance sheet)",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40907": {
+    "label": "Total assets (Call Report)",
+    "side": "macro",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "40912": {
+    "label": "Total assets in municipal funds",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40913": {
+    "label": "Total assets in taxable bond funds",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40914": {
+    "label": "Total assets in hybrid funds",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40916": {
+    "label": "Total assets in domestic equity funds",
+    "side": "macro",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "40917": {
+    "label": "Total assets in other funds",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40923": {
+    "label": "Total assets in world bond funds",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "40926": {
+    "label": "Total assets in world equity funds",
+    "side": "macro",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "41000": {
+    "label": "Total currency and deposits; liability (F2)",
+    "side": "liability",
+    "class": "Deposits",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41020": {
+    "label": "Debt securities, loans, and equity; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41040": {
+    "label": "Debt securities and loans; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41041": {
+    "label": "Financial obligations and debt service ratios",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "41049": {
+    "label": "Debt securities and loans excluding certain items; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41100": {
+    "label": "Interbank transactions; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41120": {
+    "label": "Interbank transactions with U.S. banking; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41122": {
+    "label": "Interbank transactions due to U.S. banks; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41160": {
+    "label": "Interbank transactions with banks in foreign countries; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41162": {
+    "label": "Interbank transactions with foreign affiliates including deposits at foreign banks; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41200": {
+    "label": "Securities and mortgages; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41220": {
+    "label": "Debt securities; liability (F3)",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41222": {
+    "label": "Marketable debt securities; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41224": {
+    "label": "Short-term debt securities; liability (F31)",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41226": {
+    "label": "Long-term debt securities; liability (F32)",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41230": {
+    "label": "Loans; liability (F4)",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41350": {
+    "label": "Total loans including security repurchase agreements; liability (F4)",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41351": {
+    "label": "Other borrowed money; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41400": {
+    "label": "Short-term debt; liability",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41410": {
+    "label": "Short-term loans including security repurchase agreements; liability (F41)",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41420": {
+    "label": "Long-term loans; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41500": {
+    "label": "Total short-term liabilities",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "41600": {
+    "label": "Total securities sold short; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41611": {
+    "label": "Treasury securities sold short; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41617": {
+    "label": "Agency- and GSE-backed securities sold short; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41641": {
+    "label": "Corporate equity securities sold short; liability",
+    "side": "liability",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41662": {
+    "label": "Municipal securities sold short; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41663": {
+    "label": "Corporate and foreign bond securities sold short; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41669": {
+    "label": "Commercial paper securities sold short; liability",
+    "side": "liability",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41693": {
+    "label": "Derivatives, commodities, and other miscellaneous sold short; liability",
+    "side": "liability",
+    "class": "Derivatives",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41900": {
+    "label": "Total liabilities",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "41902": {
+    "label": "Total liabilities (Call Report)",
+    "side": "macro",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "41903": {
+    "label": "Changes in entitlements due to other changes in volume (OECD)",
+    "side": "liability",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "41904": {
+    "label": "Short-term liabilities",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "41906": {
+    "label": "Long-term liabilities",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "41940": {
+    "label": "Total liabilities and equity",
+    "side": "macro",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "41990": {
+    "label": "Debt other than home mortgages and consumer credit; liability",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "43900": {
+    "label": "Total securities lent; asset",
+    "side": "asset",
+    "class": "DebtSecurities",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "44900": {
+    "label": "Invested assets of U.S. reinsurers",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "50000": {
+    "label": "Net lending (+) or borrowing (-) (financial account)",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50007": {
+    "label": "Net lending (+) or borrowing (-) (financial account)",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50009": {
+    "label": "Net lending (+) or borrowing (-) (capital account)",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50053": {
+    "label": "Financing gap",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50100": {
+    "label": "Land at market value",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50101": {
+    "label": "Vacant land",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50107": {
+    "label": "Land with structures on it at book value",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50110": {
+    "label": "Consumer durable goods expenditures",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50120": {
+    "label": "Gross fixed investment, residential structures and equipment",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50121": {
+    "label": "Mobile homes",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50122": {
+    "label": "Residential equipment",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50126": {
+    "label": "Residential structures",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50128": {
+    "label": "Residential structures and equipment",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50130": {
+    "label": "Gross fixed investment, nonresidential structures, equipment, and intellectual property products",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50131": {
+    "label": "Fixed assets, book value",
+    "side": "asset",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "50132": {
+    "label": "Nonresidential equipment, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50133": {
+    "label": "Nonresidential software, current cost basis",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50134": {
+    "label": "Nonresidential research and development, current cost basis",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50135": {
+    "label": "Nonresidential entertainment, literary, and artistic originals, current cost basis",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50136": {
+    "label": "Nonresidential structures, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50137": {
+    "label": "Nonresidential intellectual property products, current cost basis",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50138": {
+    "label": "Nonresidential structures, equipment, and intellectual property products, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50139": {
+    "label": "Nonresidential structures, equipment, and intellectual property products (residual diff. between NIPA and fixed asset accounts)",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50140": {
+    "label": "Foreign direct investment in U.S. real estate; asset",
+    "side": "asset",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "50147": {
+    "label": "Total residential and nonresidential structures excluding disaster related losses on structures",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50150": {
+    "label": "Structures, equipment, and intellectual property products",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50151": {
+    "label": "Total fixed capital (SOI)",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50152": {
+    "label": "Equipment, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50156": {
+    "label": "Structures (residential and nonresidential), current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50157": {
+    "label": "Equipment excluding disaster-related losses on equipment",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50158": {
+    "label": "Equipment, intellectual property products, and consumer durables, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50159": {
+    "label": "Equipment and intellectual property products, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50190": {
+    "label": "Gross fixed investment",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50192": {
+    "label": "Gross fixed investment, equipment, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50196": {
+    "label": "Gross fixed investment, structures, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50198": {
+    "label": "Gross fixed investment, current cost basis",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50199": {
+    "label": "Gross fixed investment and inventories",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50200": {
+    "label": "Inventories",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50206": {
+    "label": "Inventory valuation adjustment (IVA)",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50327": {
+    "label": "Residential real estate excluding disaster-related losses on residential structures",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50337": {
+    "label": "Nonresidential real estate excluding disaster-related losses on nonresidential structures",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50350": {
+    "label": "Real estate",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50352": {
+    "label": "Owner-occupied real estate (SA)",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50354": {
+    "label": "Multi-family real estate (SA)",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50355": {
+    "label": "Commercial real estate (SA)",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50357": {
+    "label": "Real estate excluding disaster-related losses on structures",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "50400": {
+    "label": "Intangible assets",
+    "side": "asset",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "50500": {
+    "label": "Capital expenditures",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50509": {
+    "label": "Capital formation, net (IMA)",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50600": {
+    "label": "Net investment",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50610": {
+    "label": "Net physical investment",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50800": {
+    "label": "Equity capital",
+    "side": "macro",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "n/a"
+  },
+  "50900": {
+    "label": "Gross investment",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "50994": {
+    "label": "Assets less liabilities excluding directly and indirectly held corporate equities and owner-occupied housing",
+    "side": "asset",
+    "class": "Equity",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "51110": {
+    "label": "Consumer durable goods investment",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "51140": {
+    "label": "Foreign direct investment in U.S. real estate business; liability",
+    "side": "liability",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "51141": {
+    "label": "Foreign direct investment in U.S. real estate business: equity; liability",
+    "side": "liability",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "51143": {
+    "label": "Foreign direct investment in U.S. real estate business: intercompany debt; liability",
+    "side": "liability",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "54000": {
+    "label": "Capital transfers received",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "54040": {
+    "label": "Disaster losses",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "54042": {
+    "label": "Disaster losses on residential fixed assets",
+    "side": "asset",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "54043": {
+    "label": "Disaster losses on nonresidential fixed assets",
+    "side": "asset",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "54100": {
+    "label": "Capital transfers paid",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "54200": {
+    "label": "Acquisition of nonproduced nonfinancial assets (net)",
+    "side": "asset",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "54300": {
+    "label": "Capital account transactions (net)",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "54400": {
+    "label": "Net capital transfers paid",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60000": {
+    "label": "Balance on current account (net saving)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60001": {
+    "label": "Gross saving",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60060": {
+    "label": "Net saving",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60063": {
+    "label": "Net saving less net capital transfers paid",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60064": {
+    "label": "Undistributed corporate profits",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60070": {
+    "label": "Personal saving",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60100": {
+    "label": "National income/personal income",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60101": {
+    "label": "Current receipts, NIPA basis",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60120": {
+    "label": "Disposable income, net",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60200": {
+    "label": "Wages and salaries paid (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60201": {
+    "label": "Wages and salaries received (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60250": {
+    "label": "Compensation of employees paid",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60251": {
+    "label": "Compensation of employees received",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60300": {
+    "label": "Revenue from sales of goods and services, excluding indirect sales taxes (FSIs)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60600": {
+    "label": "Corporate profits",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "60613": {
+    "label": "Deficit/surplus",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61100": {
+    "label": "Income",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61101": {
+    "label": "Net income, before extraordinary items and taxes (FSIs)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61102": {
+    "label": "Other income, net (FSIs)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61103": {
+    "label": "Net income after taxes (FSIs)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61104": {
+    "label": "Retained earnings (FSIs)",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61111": {
+    "label": "Proprietors' income with IVA and CCAdj",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61120": {
+    "label": "Rents paid (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61121": {
+    "label": "Rents received (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61200": {
+    "label": "Distributed income of corporations, paid (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61201": {
+    "label": "Distributed income of corporations, received (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61210": {
+    "label": "Dividends paid (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61211": {
+    "label": "Dividends received (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61220": {
+    "label": "Withdrawals from income of quasi-corporations, paid (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61221": {
+    "label": "Withdrawals from income of quasi-corporations, received (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61300": {
+    "label": "Interest paid (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61301": {
+    "label": "Interest received (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61400": {
+    "label": "Net national income/balance of primary incomes, net (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61500": {
+    "label": "Uses of property income (paid) (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "61501": {
+    "label": "Property income (received) (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "62000": {
+    "label": "Cost of sales (FSIs)",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "62100": {
+    "label": "Personal current taxes",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "62200": {
+    "label": "Current taxes on income; wealth; etc. (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "62310": {
+    "label": "Taxes on corporate income",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "62331": {
+    "label": "Business tax receipts (MTS)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "62400": {
+    "label": "Taxes on production and imports, receivable",
+    "side": "asset",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "asset_acq_is_use"
+  },
+  "62401": {
+    "label": "Taxes on production and imports less subsidies, payable",
+    "side": "liability",
+    "class": "Loans",
+    "market_clearing": "financial",
+    "flow_sign": "liability_inc_is_resource"
+  },
+  "63000": {
+    "label": "Consumption of fixed capital, structures, equipment, and intellectual property products, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "63001": {
+    "label": "Consumption of fixed capital, consumer durables",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "63100": {
+    "label": "Capital consumption adjustment (CCAdj.)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "63200": {
+    "label": "Consumption of fixed capital, residential equipment and structures, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "63300": {
+    "label": "Consumption of fixed capital, nonresidential structures, equipment, and intellectual property products, current cost basis",
+    "side": "macro",
+    "class": "NonfinancialAssets",
+    "market_clearing": "real",
+    "flow_sign": "n/a"
+  },
+  "64001": {
+    "label": "Current taxes and transfer payments received",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64002": {
+    "label": "Current taxes, contributions for government social insurance, and transfer payments paid",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64010": {
+    "label": "Employers' social contributions paid (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64011": {
+    "label": "Employers' social contributions received (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64020": {
+    "label": "Subsidies",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64021": {
+    "label": "Operating surplus, net",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64022": {
+    "label": "Non-operating income (QFR)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64030": {
+    "label": "Other current transfers paid",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64031": {
+    "label": "Other current transfers received",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64032": {
+    "label": "Other current transfers received",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64033": {
+    "label": "Other current transfers received",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64040": {
+    "label": "Social contributions paid",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64041": {
+    "label": "Social benefits received",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "64051": {
+    "label": "Personal current transfer receipts",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "66000": {
+    "label": "Contributions for government social insurance paid",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "66010": {
+    "label": "Contributions for government social insurance received",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69000": {
+    "label": "Current expenditures/outlays",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69010": {
+    "label": "Consumption expenditures",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69011": {
+    "label": "Personal interest payments",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69012": {
+    "label": "Personal current transfer payments to rest of the world",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69020": {
+    "label": "Gross domestic product",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69021": {
+    "label": "Gross national product",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69022": {
+    "label": "Average of GDP and GDI",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69025": {
+    "label": "Gross value added (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69026": {
+    "label": "Net value added (IMA)",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69030": {
+    "label": "Imports/exports",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69040": {
+    "label": "Income payments to the U.S.",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69041": {
+    "label": "Income receipts from the U.S.",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "69050": {
+    "label": "Foreign income to U.S.",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "70050": {
+    "label": "Statistical discrepancy",
+    "side": "macro",
+    "class": "Other",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "70059": {
+    "label": "Gross domestic product (GDP); statistical discrepancy",
+    "side": "macro",
+    "class": "IncomeTaxesTransfers",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "80900": {
+    "label": "Other volume changes",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  },
+  "80901": {
+    "label": "Total other volume changes (IMA)",
+    "side": "macro",
+    "class": "MacroAggregate",
+    "market_clearing": "none",
+    "flow_sign": "n/a"
+  }
+}

@@ -11,6 +11,21 @@ from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 
+def pivot_series(df: pd.DataFrame) -> pd.DataFrame:
+    cols = {c.lower() for c in df.columns}
+    if {'series', 'date', 'value'}.issubset(cols):
+        ren = {c: c.lower() for c in df.columns}
+        out = df.rename(columns=ren).copy()
+        out['date'] = pd.to_datetime(out['date'])
+        out['value'] = pd.to_numeric(out['value'], errors='coerce')
+        return out[['series', 'date', 'value']]
+    first = df.columns[0]
+    wide = df.melt(id_vars=[first], var_name='date', value_name='value')
+    wide = wide.rename(columns={first: 'series'})
+    wide['date'] = pd.to_datetime(wide['date'], errors='coerce')
+    wide = wide.dropna(subset=['date'])
+    wide['value'] = pd.to_numeric(wide['value'], errors='coerce')
+    return wide[['series','date','value']]
 
 class DataProcessor:
     """

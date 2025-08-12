@@ -1,0 +1,2510 @@
+{
+  "00000": {
+    "label": "Unemployment rate (quarterly average)",
+    "subgroup": "Other:Misc"
+  },
+  "00002": {
+    "label": "Financial soundness indicators",
+    "subgroup": "Other:Misc"
+  },
+  "00003": {
+    "label": "Financial soundness indicators",
+    "subgroup": "Other:Misc"
+  },
+  "20000": {
+    "label": "Total assets",
+    "subgroup": "Other:Misc"
+  },
+  "20001": {
+    "label": "Total assets at historical cost",
+    "subgroup": "Other:Misc"
+  },
+  "20003": {
+    "label": "Total funded assets including social security",
+    "subgroup": "Other:Misc"
+  },
+  "20006": {
+    "label": "Total financial and nonfinancial assets",
+    "subgroup": "Other:Misc"
+  },
+  "20100": {
+    "label": "Nonfinancial assets",
+    "subgroup": "Other:Misc"
+  },
+  "20101": {
+    "label": "Nonfinancial assets at historical cost",
+    "subgroup": "Other:Misc"
+  },
+  "20104": {
+    "label": "Market value estimate of nonfinancial assets",
+    "subgroup": "Other:Misc"
+  },
+  "20107": {
+    "label": "Revaluation of nonfinancial assets adjusted to exclude disaster-related losses (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "20500": {
+    "label": "Federal funds and security repurchase agreements; asset",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "20507": {
+    "label": "Federal funds and security repurchase agreements due from U.S.-chartered depository institutions; asset",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "20508": {
+    "label": "Federal funds and security repurchase agreements due from non-depository private institutions; asset",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "20510": {
+    "label": "Security repurchase agreements; asset",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "20511": {
+    "label": "Over-night security repurchase agreements; asset",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "20520": {
+    "label": "Federal funds; asset",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "20900": {
+    "label": "Net worth",
+    "subgroup": "Other:Misc"
+  },
+  "20901": {
+    "label": "Net worth at historical cost",
+    "subgroup": "Other:Misc"
+  },
+  "20902": {
+    "label": "Proprietors' equity in noncorporate business",
+    "subgroup": "Equity:Corporate"
+  },
+  "21000": {
+    "label": "Total liabilities and net worth (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "21500": {
+    "label": "Federal funds and security repurchase agreements; liability",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "21507": {
+    "label": "Federal funds and security repurchase agreements due to U.S.-chartered depository institutions; liability",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "21508": {
+    "label": "Federal funds and security repurchase agreements due to non-depository private institutions; liability",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "21510": {
+    "label": "Security repurchase agreements; liability",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "21511": {
+    "label": "Over-night security repurchase agreements; liability",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "21520": {
+    "label": "Federal funds; liability",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "24510": {
+    "label": "Security repurchase agreements held by U.S. reinsurers",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "30110": {
+    "label": "U.S. official reserve assets",
+    "subgroup": "Other:Misc"
+  },
+  "30111": {
+    "label": "Monetary gold and SDRs holdings; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30112": {
+    "label": "Monetary gold; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30113": {
+    "label": "Special drawing rights (SDRs) holdings; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30114": {
+    "label": "Reserve position in IMF (net); asset",
+    "subgroup": "Other:Misc"
+  },
+  "30115": {
+    "label": "Official foreign currency holdings; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30120": {
+    "label": "Treasury currency; asset",
+    "subgroup": "Debt:Treasuries"
+  },
+  "30130": {
+    "label": "Depository institution reserves; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30140": {
+    "label": "SDR certificates issued by the federal government; asset",
+    "subgroup": "Debt:Treasuries"
+  },
+  "30200": {
+    "label": "Checkable deposits and currency; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30207": {
+    "label": "Transaction deposits due from depository institutions in the U.S.; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30220": {
+    "label": "Cash items in process of collection; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30230": {
+    "label": "Checkable deposits due to the federal goverment; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30250": {
+    "label": "Currency; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30270": {
+    "label": "Checkable deposits; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30280": {
+    "label": "Checkable deposits due to state and local governments; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30292": {
+    "label": "Checkable deposits due to private domestic sectors; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30300": {
+    "label": "Total time and savings deposits; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30302": {
+    "label": "Other deposits including time and savings deposits; asset (IMA)",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30303": {
+    "label": "Negotiable certificates of deposit; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30304": {
+    "label": "Transferable deposits; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30305": {
+    "label": "Other deposits; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30340": {
+    "label": "Money market fund shares; asset",
+    "subgroup": "Funds:MMF_Shares"
+  },
+  "30343": {
+    "label": "Variable annuity money market fund shares; asset",
+    "subgroup": "Funds:MMF_Shares"
+  },
+  "30390": {
+    "label": "Cash and cash equivalents",
+    "subgroup": "Other:Misc"
+  },
+  "30400": {
+    "label": "Life insurance reserves; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30500": {
+    "label": "Pension entitlements; asset",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30520": {
+    "label": "Insurance, pension and standardized guarantee schemes; asset (F6)",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30521": {
+    "label": "Non-life insurance technical reserves; asset (IMA)",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30522": {
+    "label": "Life insurance and annuity entitlements; asset (F62)",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30523": {
+    "label": "Pension entitlements; asset (F63)",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30525": {
+    "label": "Entitlements to non-pension benefits; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30610": {
+    "label": "Total U.S. government securities; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30611": {
+    "label": "Treasury securities; asset",
+    "subgroup": "Debt:Treasuries"
+  },
+  "30612": {
+    "label": "NCUA share insurance capitalization deposit; asset",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30613": {
+    "label": "Nonmarketable Treasury securities; asset",
+    "subgroup": "Debt:Treasuries"
+  },
+  "30614": {
+    "label": "Agency issued commercial CMOs and other structured MBS; asset",
+    "subgroup": "Debt:AgenciesGSE"
+  },
+  "30615": {
+    "label": "Agency-issued commercial mortgage pass-through securities; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30616": {
+    "label": "Agency issued residential CMOs and other structured MBS; asset",
+    "subgroup": "Debt:AgenciesGSE"
+  },
+  "30617": {
+    "label": "Agency- and GSE-backed securities; asset",
+    "subgroup": "Debt:AgenciesGSE"
+  },
+  "30618": {
+    "label": "Agency-issued residential mortgage pass-through securities; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30619": {
+    "label": "Agency mortgage-backed securities and other asset-backed agency- and GSE-backed securities; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30620": {
+    "label": "Municipal securities; asset",
+    "subgroup": "Debt:Munis"
+  },
+  "30621": {
+    "label": "Sallie Mae academic facilities financing to public institutions; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30622": {
+    "label": "Sallie Mae warehousing advances to public institutions; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30630": {
+    "label": "Corporate and foreign bonds; asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "30631": {
+    "label": "Corporate bonds issued by Netherlands Antillean Financial subsidiaries of U.S. corporations; asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "30632": {
+    "label": "Foreign corporate bonds; asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "30636": {
+    "label": "Mortgage-backed securities and other asset-backed bonds; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30637": {
+    "label": "Corporate bonds issued by commercial banking under TARP; asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "30638": {
+    "label": "Domestic corporate bonds; asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "30640": {
+    "label": "Corporate equities and mutual fund shares; asset",
+    "subgroup": "Funds:MutualFundShares"
+  },
+  "30641": {
+    "label": "Corporate equities; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30642": {
+    "label": "Mutual fund shares; asset",
+    "subgroup": "Funds:MutualFundShares"
+  },
+  "30643": {
+    "label": "Variable annuity mutual fund shares; asset",
+    "subgroup": "Funds:MutualFundShares"
+  },
+  "30644": {
+    "label": "Directly and indirectly held corporate equities; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30646": {
+    "label": "Domestic corporate equities; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30648": {
+    "label": "Foreign corporate equities; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30649": {
+    "label": "Capital losses calculated by the Treasury Department; asset",
+    "subgroup": "Debt:Treasuries"
+  },
+  "30650": {
+    "label": "Total mortgages; asset (F42)",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30651": {
+    "label": "One-to-four family mortgages, including home equity loans and construction loans on one-to-four family homes; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30652": {
+    "label": "Home equity lines of credit; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30653": {
+    "label": "One-to-four family mortgages secured by junior liens; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30654": {
+    "label": "Multifamily residential mortgages; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30655": {
+    "label": "Commercial mortgages; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30656": {
+    "label": "Farm mortgages; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30657": {
+    "label": "Private residential mortgage-backed securities; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30658": {
+    "label": "Commercial mortgages; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30659": {
+    "label": "Private commercial mortgage-backed securities; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "30660": {
+    "label": "Consumer credit; asset",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "30661": {
+    "label": "Revolving consumer credit; asset",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "30662": {
+    "label": "Non-revolving consumer credit; asset",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "30663": {
+    "label": "Consumer leases; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30664": {
+    "label": "Consumer credit, auto loans; asset",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "30665": {
+    "label": "Revolving consumer credit, other than credit cards; asset",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "30666": {
+    "label": "Consumer loans adjustment for Banc One reclassification",
+    "subgroup": "Other:Misc"
+  },
+  "30667": {
+    "label": "Loans to individuals; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30670": {
+    "label": "Cash or margin accounts at brokers and dealers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30680": {
+    "label": "Bank loans not elsewhere classified; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30681": {
+    "label": "Commercial and industrial loans and leases; asset",
+    "subgroup": "Loans:CommercialIndustrial"
+  },
+  "30682": {
+    "label": "Other bank loans; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30684": {
+    "label": "Bank loans not elsewhere classified to rest of the world; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30685": {
+    "label": "Bank loans not elsewhere classified to other financial business; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30686": {
+    "label": "Bank loans not elsewhere classified to brokers and dealers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30687": {
+    "label": "Loans to depository institutions; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30688": {
+    "label": "Loans through Federal Reserve funding, credit, and liquidity facilities; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30689": {
+    "label": "Loans to other financial business COVID-19 funding, credit, and liquidity facilities",
+    "subgroup": "Other:Misc"
+  },
+  "30690": {
+    "label": "Other loans and advances; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30691": {
+    "label": "Open market paper; asset",
+    "subgroup": "Debt:CommercialPaper"
+  },
+  "30692": {
+    "label": "U.S. government loans; asset",
+    "subgroup": "Loans:GovernmentLoans"
+  },
+  "30693": {
+    "label": "Government-sponsored enterprise (GSE) loans; asset",
+    "subgroup": "Loans:GSELoans"
+  },
+  "30694": {
+    "label": "Policy loans; asset",
+    "subgroup": "Loans:PolicyLoans"
+  },
+  "30695": {
+    "label": "Nonfinancial business loans, excluding U.S. government and GSE loans; asset",
+    "subgroup": "Loans:GSELoans"
+  },
+  "30696": {
+    "label": "Bankers' acceptances; asset",
+    "subgroup": "Debt:BankersAcceptances"
+  },
+  "30697": {
+    "label": "Customers' liability on acceptances outstanding; asset",
+    "subgroup": "Debt:BankersAcceptances"
+  },
+  "30698": {
+    "label": "Syndicated loans to nonfinancial corporate business; asset",
+    "subgroup": "Loans:Syndicated"
+  },
+  "30699": {
+    "label": "Open market paper and other loans and advances; asset",
+    "subgroup": "Debt:CommercialPaper"
+  },
+  "30700": {
+    "label": "Trade receivables; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30702": {
+    "label": "Receivable for claims from non-U.S. reinsurers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30703": {
+    "label": "Trade credit due from federal government; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30706": {
+    "label": "Receivables due from other brokers and dealers and clearing organizations; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30711": {
+    "label": "Receivable for claims from U.S. reinsurers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30713": {
+    "label": "Receivable for claims from U.S. reinsurers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30714": {
+    "label": "Receivable for claims from non-U.S. unaffiliated reinsurers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30715": {
+    "label": "Receivable for claims from non-U.S. affiliated reinsurers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30716": {
+    "label": "Receivable for claims from non-U.S. captive reinsurers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30720": {
+    "label": "Paycheck Protection Program receivables due from federal government; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30730": {
+    "label": "Claims of pension fund on sponsor; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30740": {
+    "label": "Pension fund contributions receivable; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30750": {
+    "label": "Trade receivables net of trade payables; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30760": {
+    "label": "Insurance receivables due from property-casualty insurance companies; asset (F61)",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30770": {
+    "label": "Deferred and unpaid life insurance premiums; asset",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30780": {
+    "label": "Taxes receivable; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30810": {
+    "label": "Equity and investment fund shares; asset (F5)",
+    "subgroup": "Other:Misc"
+  },
+  "30811": {
+    "label": "Equity and investment fund shares excluding mutual fund shares and money market fund shares; asset (F51)",
+    "subgroup": "Funds:MMF_Shares"
+  },
+  "30812": {
+    "label": "Mutual fund and money market fund shares; asset (F52)",
+    "subgroup": "Funds:MMF_Shares"
+  },
+  "30900": {
+    "label": "Total miscellaneous assets",
+    "subgroup": "Other:Misc"
+  },
+  "30905": {
+    "label": "Funding agreements backing securities; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30910": {
+    "label": "Private foreign deposits; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30911": {
+    "label": "Nonofficial foreign currencies; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30917": {
+    "label": "Interbank transactions due from domestic affiliates; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30918": {
+    "label": "Interbank transactions due from domestic and foreign affiliates; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30920": {
+    "label": "Direct investment; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30921": {
+    "label": "Foreign direct investment in U.S.: Equity; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30922": {
+    "label": "Foreign direct investment in U.S.: Reinvested earnings; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30923": {
+    "label": "Foreign direct investment in U.S.: Intercompany accounts; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30924": {
+    "label": "Equity in government-sponsored enterprises (GSEs); asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30926": {
+    "label": "Interbank transactions due from foreign affiliates; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30928": {
+    "label": "U.S. equity in IRBD, etc.",
+    "subgroup": "Equity:Corporate"
+  },
+  "30929": {
+    "label": "Private equity",
+    "subgroup": "Equity:Corporate"
+  },
+  "30930": {
+    "label": "Unidentified miscellaneous assets",
+    "subgroup": "Other:Misc"
+  },
+  "30940": {
+    "label": "Equity investment in subsidiaries; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30941": {
+    "label": "Equity investment in own subsidiaries by nonfinancial corporations; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30942": {
+    "label": "Exchange Stabilization Fund Economic Recovery Programs equity investment; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30943": {
+    "label": "Equity investment through the Public-Private Investment Program (PPIP); asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30945": {
+    "label": "Equity investment in own subsidiaries by other financial business; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30946": {
+    "label": "Equity investment in affiliates; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30947": {
+    "label": "Other investment in affiliates; asset",
+    "subgroup": "Other:Misc"
+  },
+  "30949": {
+    "label": "Miscellaneous other equity; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "30950": {
+    "label": "Unallocated insurance contracts; asset",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30951": {
+    "label": "Other insurance reserves; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "30953": {
+    "label": "Unallocated insurance contracts, defined contribution pension plans; asset",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30954": {
+    "label": "Unallocated insurance contracts, defined benefit pension plans; asset",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30955": {
+    "label": "Unallocated insurance contracts, defined contribution pension plans; asset",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30956": {
+    "label": "Unallocated insurance contracts, defined contribution pension plans; asset",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "30960": {
+    "label": "Other accounts receivable; asset (F8)",
+    "subgroup": "Other:Misc"
+  },
+  "30961": {
+    "label": "Miscellaneous and taxes receivable; asset (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "30962": {
+    "label": "Trade credits and advances; asset (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "30980": {
+    "label": "Financial derivatives; asset",
+    "subgroup": "Derivatives:OTC"
+  },
+  "30990": {
+    "label": "Other financial assets",
+    "subgroup": "Other:Misc"
+  },
+  "30994": {
+    "label": "Other financial assets, excluding indirectly held equity",
+    "subgroup": "Equity:Corporate"
+  },
+  "31110": {
+    "label": "U.S. official reserve assets; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31113": {
+    "label": "SDR allocations; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31114": {
+    "label": "Reserve position in IMF (net); liability",
+    "subgroup": "Other:Misc"
+  },
+  "31115": {
+    "label": "Official foreign currency holdings; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31120": {
+    "label": "Treasury currency; liability",
+    "subgroup": "Debt:Treasuries"
+  },
+  "31130": {
+    "label": "Depository institution reserves; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31200": {
+    "label": "Checkable deposits and currency; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31207": {
+    "label": "Transaction deposits due to depository institutions in the U.S.; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31226": {
+    "label": "Checkable deposits due to rest of world; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31230": {
+    "label": "Checkable deposits due to the federal government; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31240": {
+    "label": "Checkable deposits due to government-sponsored enterprises; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31250": {
+    "label": "Currency; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31260": {
+    "label": "Total transaction accounts; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31270": {
+    "label": "Checkable deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31280": {
+    "label": "Checkable deposits due to state and local governments; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31290": {
+    "label": "Checkable deposits due to others; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31292": {
+    "label": "Checkable deposits due to private domestic sectors; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31299": {
+    "label": "Special cash items bias correction for deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31300": {
+    "label": "Total time and savings deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31302": {
+    "label": "Other deposits including time and savings deposits; liabilty (IMA)",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31303": {
+    "label": "Negotiable certificates of deposit; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31304": {
+    "label": "Transferable deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31305": {
+    "label": "Other deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31307": {
+    "label": "Nontransaction deposits due to depository institutions in the U.S.; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31310": {
+    "label": "Small time and savings deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31315": {
+    "label": "IRA and Keoghs; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31350": {
+    "label": "Large time deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31352": {
+    "label": "Large time deposits due to rest of the world; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31360": {
+    "label": "Total nontransaction deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31391": {
+    "label": "Uninsured checkable and time and savings deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31400": {
+    "label": "Life insurance reserves; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31411": {
+    "label": "Life insurance reserve credit from U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31412": {
+    "label": "Life insurance reserve credit from U.S. other affiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31413": {
+    "label": "Life insurance reserve credit from U.S. captive reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31414": {
+    "label": "Life insurance reserve credit from non-U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31415": {
+    "label": "Life insurance reserve credit from non-U.S. other affiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31416": {
+    "label": "Life insurance reserve credit from non-U.S. captive reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31417": {
+    "label": "Assumed life insurance reserve credit from non-U.S. unaffiliated insurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31418": {
+    "label": "Assumed life insurance reserve credit from non-U.S. other affiliated insurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31419": {
+    "label": "Assumed life insurance reserve credit from non-U.S. insurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31421": {
+    "label": "Accident and health reserve credit from U.S. unaffiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31422": {
+    "label": "Accident and health reserve credit from U.S. other affiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31423": {
+    "label": "Accident and health reserve credit from U.S. captive reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31424": {
+    "label": "Accident and health reserve credit from non-U.S. unaffiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31425": {
+    "label": "Accident and health reserve credit from non-U.S. other affiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31426": {
+    "label": "Accident and health reserve credit from non-U.S. captive reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31461": {
+    "label": "Modified coinsurance life insurance reserve from U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31462": {
+    "label": "Modified coinsurance life insurance reserve from U.S. other affiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31463": {
+    "label": "Modified coinsurance life insurance reserve from U.S. captive reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31464": {
+    "label": "Modified coinsurance life insurance reserve from non-U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31465": {
+    "label": "Modified coinsurance life insurance reserve from non-U.S. other affiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31466": {
+    "label": "Modified coinsurance life insurance reserve from non-U.S. captive reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31467": {
+    "label": "Assumed modified coinsurance life insurance reserve from non-U.S. unaffiliated insurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31468": {
+    "label": "Assumed modified coinsurance life insurance reserve from non-U.S. other affiliated insurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31471": {
+    "label": "Modified coinsurance accident and health reserve from U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31472": {
+    "label": "Modified coinsurance accident and health reserve from U.S. other affiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31473": {
+    "label": "Modified coinsurance accident and health reserve from U.S. captive reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31474": {
+    "label": "Modified coinsurance accident and health reserve from non-U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31475": {
+    "label": "Modified coinsurance accident and health reserve from non-U.S. other affiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31476": {
+    "label": "Modified coinsurance accident and health reserve from non-U.S. captive reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31500": {
+    "label": "Pension entitlements; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31502": {
+    "label": "Individual annuity reserves; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31511": {
+    "label": "Pension entitlement reserve credit from U.S. unaffiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31512": {
+    "label": "Pension entitlement reserve credit from U.S. other affiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31513": {
+    "label": "Pension entitlement reserve credit from U.S. captive reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31514": {
+    "label": "Pension entitlement reserve credit from non-U.S. unaffiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31515": {
+    "label": "Pension entitlement reserve credit from non-U.S. other affiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31516": {
+    "label": "Pension entitlement reserve credit from non-U.S. captive reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31517": {
+    "label": "Assumed pension entitlement reserve credit from non-U.S. unaffiliated insurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31518": {
+    "label": "Assumed pension entitlement reserve credit from non-U.S. other affiliated insurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31519": {
+    "label": "Assumed pension entitlement reserve credit from non-U.S. insurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31520": {
+    "label": "Insurance, pension and standardized guarantee schemes; liability (F6)",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31521": {
+    "label": "Non-life insurance technical reserves; liability (IMA)",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31522": {
+    "label": "Life insurance and annuity entitlements; liability (IMA)",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31523": {
+    "label": "Pension entitlements; liability (F63)",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31540": {
+    "label": "Life insurance reserves and pension entitlements; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31550": {
+    "label": "Prepayment of insurance premiums and reserves for outstanding claims; liability (IMA)",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31561": {
+    "label": "Modified coinsurance pension entitlement reserve from U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31562": {
+    "label": "Modified coinsurance pension entitlement reserve from U.S. other affiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31563": {
+    "label": "Modified coinsurance pension entitlement reserve from U.S. captive reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31564": {
+    "label": "Modified coinsurance pension entitlement reserve from non-U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31565": {
+    "label": "Modified coinsurance pension entitlement reserve from non-U.S. other affiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31566": {
+    "label": "Modified coinsurance pension entitlement reserve from non-U.S. captive reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31567": {
+    "label": "Assumed modified coinsurance reserve from non-U.S. unaffiliated insurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31568": {
+    "label": "Assumed modified coinsurance reserve from non-U.S. other affiliated insurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31610": {
+    "label": "Total U.S. government securities; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31611": {
+    "label": "Treasury securities, excluding U.S. savings bonds; liability",
+    "subgroup": "Debt:Treasuries"
+  },
+  "31612": {
+    "label": "Marketable Treasury securities; liability",
+    "subgroup": "Debt:Treasuries"
+  },
+  "31613": {
+    "label": "Nonmarketable Treasury securities; liability",
+    "subgroup": "Debt:Treasuries"
+  },
+  "31614": {
+    "label": "U.S. savings securities; liability",
+    "subgroup": "Debt:Treasuries"
+  },
+  "31617": {
+    "label": "Agency- and GSE-backed securities; liability",
+    "subgroup": "Debt:AgenciesGSE"
+  },
+  "31620": {
+    "label": "Municipal securities; liability",
+    "subgroup": "Debt:Munis"
+  },
+  "31622": {
+    "label": "Long-term municipal securities; liability",
+    "subgroup": "Debt:Munis"
+  },
+  "31623": {
+    "label": "Corporate bonds and municipal securities; liability",
+    "subgroup": "Debt:Munis"
+  },
+  "31624": {
+    "label": "Short-term municipal securities; liability",
+    "subgroup": "Debt:Munis"
+  },
+  "31627": {
+    "label": "Municipal bond offering for refunding; liability",
+    "subgroup": "Debt:Munis"
+  },
+  "31630": {
+    "label": "Corporate and foreign bonds; liability",
+    "subgroup": "Debt:Corporates"
+  },
+  "31633": {
+    "label": "Other borrowed money; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31634": {
+    "label": "Subordinated notes and debentures; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31635": {
+    "label": "Corporate and foreign bonds issued by investment banks; liability",
+    "subgroup": "Debt:Corporates"
+  },
+  "31636": {
+    "label": "Private collateralized mortgage obligations (CMOs); liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "31640": {
+    "label": "Corporate equities and mutual fund shares; liability",
+    "subgroup": "Funds:MutualFundShares"
+  },
+  "31641": {
+    "label": "Corporate equities; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "31642": {
+    "label": "Mutual fund shares; liability",
+    "subgroup": "Funds:MutualFundShares"
+  },
+  "31650": {
+    "label": "Total mortgages; liability (F42)",
+    "subgroup": "Loans:Mortgages"
+  },
+  "31651": {
+    "label": "One-to-four family mortgages; liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "31652": {
+    "label": "Commercial, multifamily, and farm mortgages; liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "31654": {
+    "label": "Multifamily residential mortgages; liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "31655": {
+    "label": "Commercial mortgages; liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "31656": {
+    "label": "Farm mortgages; liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "31657": {
+    "label": "Mortgage-backed bonds; liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "31658": {
+    "label": "Commercial mortgages and bank loans n.e.c; liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "31660": {
+    "label": "Consumer credit; liability",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "31661": {
+    "label": "Revolving consumer credit; liability",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "31662": {
+    "label": "Non-revolving consumer credit; liability",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "31664": {
+    "label": "Consumer credit, automobile loans; liability",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "31668": {
+    "label": "Non-revolving consumer credit; liability",
+    "subgroup": "Loans:ConsumerCredit"
+  },
+  "31670": {
+    "label": "Payable to customers and non-customers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31680": {
+    "label": "Bank loans not elsewhere classified; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31684": {
+    "label": "Bank loans not elsewhere classified to rest of the world; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31687": {
+    "label": "Loans to depository institutions; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31690": {
+    "label": "Other loans and advances; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31691": {
+    "label": "Open market paper; liability",
+    "subgroup": "Debt:CommercialPaper"
+  },
+  "31692": {
+    "label": "U.S. government loans; liability",
+    "subgroup": "Loans:GovernmentLoans"
+  },
+  "31693": {
+    "label": "Government-sponsored enterprise (GSE) loans; liability",
+    "subgroup": "Loans:GSELoans"
+  },
+  "31694": {
+    "label": "Policy loans; liability",
+    "subgroup": "Loans:PolicyLoans"
+  },
+  "31695": {
+    "label": "Nonfinancial business loans, excluding U.S. government and GSE loans; liability",
+    "subgroup": "Loans:GSELoans"
+  },
+  "31696": {
+    "label": "Bankers' Acceptances; liability",
+    "subgroup": "Debt:BankersAcceptances"
+  },
+  "31697": {
+    "label": "Customers' liability on acceptances outstanding; liability",
+    "subgroup": "Debt:BankersAcceptances"
+  },
+  "31698": {
+    "label": "Syndicated loans; liability",
+    "subgroup": "Loans:Syndicated"
+  },
+  "31699": {
+    "label": "Open market paper and other loans and advances; liability",
+    "subgroup": "Debt:CommercialPaper"
+  },
+  "31700": {
+    "label": "Trade payables; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31702": {
+    "label": "Trade payables to non-U.S. reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31706": {
+    "label": "Payables due to other brokers and dealers and clearing organizations; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31711": {
+    "label": "Funds withheld from U.S. unaffiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31713": {
+    "label": "Funds withheld from U.S. reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31714": {
+    "label": "Funds withheld from non-U.S. unaffiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31715": {
+    "label": "Funds withheld from non-U.S. other affiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31716": {
+    "label": "Funds withheld from non-U.S. captive reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31720": {
+    "label": "Paycheck Protection Program payables; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31721": {
+    "label": "Payable for reinsurance to U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31723": {
+    "label": "Payable for reinsurance to U.S. residual market reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31724": {
+    "label": "Payable for reinsurance to non-U.S. unaffiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31725": {
+    "label": "Payable for reinsurance to non-U.S. affiliated reinsurers; liability",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "31730": {
+    "label": "Claims of pension fund on sponsor; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31760": {
+    "label": "Policy payables; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31761": {
+    "label": "Policy payables from U.S. unaffiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31762": {
+    "label": "Policy payables from U.S. affiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31763": {
+    "label": "Policy payables from U.S. residual market reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31764": {
+    "label": "Policy payables from non-U.S. unaffiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31765": {
+    "label": "Policy payables from non-U.S. affiliated reinsurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31767": {
+    "label": "Assumed policy payables from non-U.S. unaffiliated insurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31768": {
+    "label": "Assumed policy payables from non-U.S. affiliated insurers; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31780": {
+    "label": "Taxes payables; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31810": {
+    "label": "Equity and investment fund shares; liability (F5)",
+    "subgroup": "Other:Misc"
+  },
+  "31811": {
+    "label": "Equity and investment fund shares excluding mutual fund shares and money market fund shares; liability (F51)",
+    "subgroup": "Funds:MMF_Shares"
+  },
+  "31812": {
+    "label": "Mutual fund and money market fund shares; liability (F52)",
+    "subgroup": "Funds:MMF_Shares"
+  },
+  "31900": {
+    "label": "Total miscellaneous liabilities",
+    "subgroup": "Other:Misc"
+  },
+  "31905": {
+    "label": "Funding agreements backing securities; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31910": {
+    "label": "U.S. private deposits; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31911": {
+    "label": "Nonofficial U.S. currencies; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31917": {
+    "label": "Interbank transactions due to domestic affiliates; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31918": {
+    "label": "Interbank transactions due to domestic and foreign affiliates; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31920": {
+    "label": "Direct investment; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31921": {
+    "label": "U.S. direct investment abroad: equity; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "31922": {
+    "label": "U.S. direct investment abroad: Reinvested earnings; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31923": {
+    "label": "U.S. direct investment abroad: Intercompany accounts; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31924": {
+    "label": "Equity in government-sponsored enterprises (GSEs); liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "31926": {
+    "label": "Interbank transactions due to foreign affiliates; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31930": {
+    "label": "Unidentified miscellaneous liabilities",
+    "subgroup": "Other:Misc"
+  },
+  "31940": {
+    "label": "Equity investment by parent companies; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "31942": {
+    "label": "Exchange Stabilization Fund Economic Recovery Programs equity investment; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "31943": {
+    "label": "Equity investment through the Public-Private Investment Program (PPIP); liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "31945": {
+    "label": "Equity investment by other financial business; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "31946": {
+    "label": "Equity investment from affiliates; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "31947": {
+    "label": "Other investment from affiliates; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31949": {
+    "label": "Miscellaneous other equity; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "31950": {
+    "label": "Other insurance reserves; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31951": {
+    "label": "Health care funds; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31952": {
+    "label": "Policy divident accumulation; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31953": {
+    "label": "Policy and contract claims; liability",
+    "subgroup": "Other:Misc"
+  },
+  "31960": {
+    "label": "Other accounts payable; liability (F8)",
+    "subgroup": "Other:Misc"
+  },
+  "31961": {
+    "label": "Miscellaneous and taxes payable; libility (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "31962": {
+    "label": "Trade credits and advances; liability (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "31970": {
+    "label": "Deposits at Federal Home Loan Banks; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "31980": {
+    "label": "Financial derivatives; liability",
+    "subgroup": "Derivatives:OTC"
+  },
+  "31990": {
+    "label": "Other liabilities",
+    "subgroup": "Other:Misc"
+  },
+  "32000": {
+    "label": "Securities lending; liability",
+    "subgroup": "Other:Misc"
+  },
+  "32200": {
+    "label": "Reinvestment in checkable deposits and currency of cash collateral received for securities lent; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "32340": {
+    "label": "Reinvestment in money market fund shares of cash collateral received for securities lent; asset",
+    "subgroup": "Funds:MMF_Shares"
+  },
+  "32611": {
+    "label": "Reinvestment in Treasury securities of cash collateral received for securities lent; asset",
+    "subgroup": "Debt:Treasuries"
+  },
+  "32617": {
+    "label": "Reinvestment in agency- and GSE-backed securities of cash collateral received for securities lent; asset",
+    "subgroup": "Debt:AgenciesGSE"
+  },
+  "32620": {
+    "label": "Reinvestment in municipal securities of cash collateral received for securities lent; asset",
+    "subgroup": "Debt:Munis"
+  },
+  "32632": {
+    "label": "Reinvestment in foreign bonds of cash collateral received for securities lent; asset",
+    "subgroup": "Other:Misc"
+  },
+  "32636": {
+    "label": "Reinvestment in mortgage-backed securities and other asset-backed bonds of cash collateral received for securities lent; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "32638": {
+    "label": "Reinvestment in corporate bonds, excluding MBS and ABS, of cash collateral received for securities lent; asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "32641": {
+    "label": "Reinvestment in corporate equities of cash collateral received for securities lent; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "32642": {
+    "label": "Reinvestment in mutual fund shares of cash collateral received for securities lent; asset",
+    "subgroup": "Funds:MutualFundShares"
+  },
+  "32650": {
+    "label": "Reinvestment in mortgages of cash collateral received for securities lent; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "32691": {
+    "label": "Reinvestment in commercial paper of cash collateral received for securities lent; asset",
+    "subgroup": "Other:Misc"
+  },
+  "32900": {
+    "label": "Reinvestment in miscellaneous assets of cash collateral received for securities lent; asset",
+    "subgroup": "Other:Misc"
+  },
+  "33611": {
+    "label": "Treasury securities lent; asset",
+    "subgroup": "Debt:Treasuries"
+  },
+  "33617": {
+    "label": "Agency- and GSE-backed securities lent; asset",
+    "subgroup": "Debt:AgenciesGSE"
+  },
+  "33620": {
+    "label": "Municipal securities lent; asset",
+    "subgroup": "Debt:Munis"
+  },
+  "33630": {
+    "label": "Corporate and foreign bonds lent; asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "33632": {
+    "label": "Foreign bonds lent; asset",
+    "subgroup": "Other:Misc"
+  },
+  "33638": {
+    "label": "Corporate bonds lent, asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "33641": {
+    "label": "Corporate equities lent; asset",
+    "subgroup": "Equity:Corporate"
+  },
+  "34200": {
+    "label": "Checkable deposits and currency held by U.S. reinsurers; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "34340": {
+    "label": "Money market fund shares held by U.S. reinsurers; asset",
+    "subgroup": "Funds:MMF_Shares"
+  },
+  "34611": {
+    "label": "Treasury securities held by U.S. reinsurers",
+    "subgroup": "Debt:Treasuries"
+  },
+  "34617": {
+    "label": "Agency- and GSE-backed securities held by U.S. reinsurers; asset",
+    "subgroup": "Debt:AgenciesGSE"
+  },
+  "34620": {
+    "label": "Municipal securities held by U.S. reinsurers; asset",
+    "subgroup": "Debt:Munis"
+  },
+  "34630": {
+    "label": "Corporate and foreign bonds held by U.S. reinsurers; asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "34632": {
+    "label": "Foreign bonds held by U.S. reinsurers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "34636": {
+    "label": "Mortgage-backed securities and other asset-backed bonds held by U.S. reinsurers; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "34638": {
+    "label": "Domestic corporate bonds held by U.S. reinsurers; asset",
+    "subgroup": "Debt:Corporates"
+  },
+  "34640": {
+    "label": "Corporate equities and mutual fund shares held by U.S. reinsurers; asset",
+    "subgroup": "Funds:MutualFundShares"
+  },
+  "34642": {
+    "label": "Mutual fund shares held by U.S. reinsurers; asset",
+    "subgroup": "Funds:MutualFundShares"
+  },
+  "34650": {
+    "label": "Mortgages held by U.S. reinsurers; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "34651": {
+    "label": "One-to-four family mortgages held by U.S. reinsurers; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "34654": {
+    "label": "Multifamily residential mortgages held by U.S. reinsurers; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "34655": {
+    "label": "Commercial mortgages held by U.S. reinsurers; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "34656": {
+    "label": "Farm mortgages held by U.S. reinsurers; asset",
+    "subgroup": "Loans:Mortgages"
+  },
+  "34691": {
+    "label": "Commercial paper held by U.S. reinsurers; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40000": {
+    "label": "Total currency and deposits; asset (F2)",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "40010": {
+    "label": "Liquid assets (broad measure)",
+    "subgroup": "Other:Misc"
+  },
+  "40011": {
+    "label": "Liquid assets (core measure) (FSIs)",
+    "subgroup": "Other:Misc"
+  },
+  "40040": {
+    "label": "Debt securities and loans; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40100": {
+    "label": "Interbank transactions; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40122": {
+    "label": "Interbank transactions due from U.S. banks; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40160": {
+    "label": "Interbank transactions with banks in foreign countries; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40162": {
+    "label": "Deposits at foreign banks; asset",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "40210": {
+    "label": "Municipal and corporate bonds, corporate equities and mutual fund shares; asset",
+    "subgroup": "Debt:Munis"
+  },
+  "40220": {
+    "label": "Debt securities; asset (F3)",
+    "subgroup": "Other:Misc"
+  },
+  "40221": {
+    "label": "Debt securities issued by domestic sectors; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40222": {
+    "label": "Debt securities, excluding nonmarketable Treasury securities; asset",
+    "subgroup": "Debt:Treasuries"
+  },
+  "40223": {
+    "label": "Directly and indirectly held debt securities; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40224": {
+    "label": "Short-term debt securities; asset (F31)",
+    "subgroup": "Other:Misc"
+  },
+  "40226": {
+    "label": "Long-term debt securities; asset (F32)",
+    "subgroup": "Other:Misc"
+  },
+  "40230": {
+    "label": "Loans; asset (F4)",
+    "subgroup": "Other:Misc"
+  },
+  "40232": {
+    "label": "Assets in 529 plans",
+    "subgroup": "Other:Misc"
+  },
+  "40350": {
+    "label": "Total loans including security repurchase agreements and federal funds; asset (F4)",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "40351": {
+    "label": "Rest of the world; loans to U.S. private depository institutions; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40355": {
+    "label": "Federal funds, repurchase agreements, and gross loans and leases exluding loans to state and local governments; asset",
+    "subgroup": "Loans:GovernmentLoans"
+  },
+  "40356": {
+    "label": "Total loans adjusted to FOF basis; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40357": {
+    "label": "Total loans, including security repurchase agreements and federal funds, to U.S. commercial banks; asset",
+    "subgroup": "Loans:CommercialIndustrial"
+  },
+  "40410": {
+    "label": "Short-term loans including repurchase agreements; asset (F41)",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "40420": {
+    "label": "Long-term loans; asset",
+    "subgroup": "Other:Misc"
+  },
+  "40900": {
+    "label": "Total financial assets",
+    "subgroup": "Other:Misc"
+  },
+  "40901": {
+    "label": "Total assets (QFR input)",
+    "subgroup": "Other:Misc"
+  },
+  "40902": {
+    "label": "Total assets",
+    "subgroup": "Other:Misc"
+  },
+  "40904": {
+    "label": "Total assets (balance sheet)",
+    "subgroup": "Other:Misc"
+  },
+  "40905": {
+    "label": "Total financial assets (variable annuities)",
+    "subgroup": "Other:Misc"
+  },
+  "40906": {
+    "label": "Total assets (balance sheet)",
+    "subgroup": "Other:Misc"
+  },
+  "40907": {
+    "label": "Total assets (Call Report)",
+    "subgroup": "Other:Misc"
+  },
+  "40912": {
+    "label": "Total assets in municipal funds",
+    "subgroup": "Debt:Munis"
+  },
+  "40913": {
+    "label": "Total assets in taxable bond funds",
+    "subgroup": "Other:Misc"
+  },
+  "40914": {
+    "label": "Total assets in hybrid funds",
+    "subgroup": "Other:Misc"
+  },
+  "40916": {
+    "label": "Total assets in domestic equity funds",
+    "subgroup": "Equity:Corporate"
+  },
+  "40917": {
+    "label": "Total assets in other funds",
+    "subgroup": "Other:Misc"
+  },
+  "40923": {
+    "label": "Total assets in world bond funds",
+    "subgroup": "Other:Misc"
+  },
+  "40926": {
+    "label": "Total assets in world equity funds",
+    "subgroup": "Equity:Corporate"
+  },
+  "41000": {
+    "label": "Total currency and deposits; liability (F2)",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "41020": {
+    "label": "Debt securities, loans, and equity; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "41040": {
+    "label": "Debt securities and loans; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41041": {
+    "label": "Financial obligations and debt service ratios",
+    "subgroup": "Other:Misc"
+  },
+  "41049": {
+    "label": "Debt securities and loans excluding certain items; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41100": {
+    "label": "Interbank transactions; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41120": {
+    "label": "Interbank transactions with U.S. banking; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41122": {
+    "label": "Interbank transactions due to U.S. banks; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41160": {
+    "label": "Interbank transactions with banks in foreign countries; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41162": {
+    "label": "Interbank transactions with foreign affiliates including deposits at foreign banks; liability",
+    "subgroup": "Deposits:RetailWholesale"
+  },
+  "41200": {
+    "label": "Securities and mortgages; liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "41220": {
+    "label": "Debt securities; liability (F3)",
+    "subgroup": "Other:Misc"
+  },
+  "41222": {
+    "label": "Marketable debt securities; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41224": {
+    "label": "Short-term debt securities; liability (F31)",
+    "subgroup": "Other:Misc"
+  },
+  "41226": {
+    "label": "Long-term debt securities; liability (F32)",
+    "subgroup": "Other:Misc"
+  },
+  "41230": {
+    "label": "Loans; liability (F4)",
+    "subgroup": "Other:Misc"
+  },
+  "41350": {
+    "label": "Total loans including security repurchase agreements; liability (F4)",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "41351": {
+    "label": "Other borrowed money; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41400": {
+    "label": "Short-term debt; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41410": {
+    "label": "Short-term loans including security repurchase agreements; liability (F41)",
+    "subgroup": "ReposFedFunds:ShortTerm"
+  },
+  "41420": {
+    "label": "Long-term loans; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41500": {
+    "label": "Total short-term liabilities",
+    "subgroup": "Other:Misc"
+  },
+  "41600": {
+    "label": "Total securities sold short; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41611": {
+    "label": "Treasury securities sold short; liability",
+    "subgroup": "Debt:Treasuries"
+  },
+  "41617": {
+    "label": "Agency- and GSE-backed securities sold short; liability",
+    "subgroup": "Debt:AgenciesGSE"
+  },
+  "41641": {
+    "label": "Corporate equity securities sold short; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "41662": {
+    "label": "Municipal securities sold short; liability",
+    "subgroup": "Debt:Munis"
+  },
+  "41663": {
+    "label": "Corporate and foreign bond securities sold short; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41669": {
+    "label": "Commercial paper securities sold short; liability",
+    "subgroup": "Other:Misc"
+  },
+  "41693": {
+    "label": "Derivatives, commodities, and other miscellaneous sold short; liability",
+    "subgroup": "Derivatives:OTC"
+  },
+  "41900": {
+    "label": "Total liabilities",
+    "subgroup": "Other:Misc"
+  },
+  "41902": {
+    "label": "Total liabilities (Call Report)",
+    "subgroup": "Other:Misc"
+  },
+  "41903": {
+    "label": "Changes in entitlements due to other changes in volume (OECD)",
+    "subgroup": "Other:Misc"
+  },
+  "41904": {
+    "label": "Short-term liabilities",
+    "subgroup": "Other:Misc"
+  },
+  "41906": {
+    "label": "Long-term liabilities",
+    "subgroup": "Other:Misc"
+  },
+  "41940": {
+    "label": "Total liabilities and equity",
+    "subgroup": "Equity:Corporate"
+  },
+  "41990": {
+    "label": "Debt other than home mortgages and consumer credit; liability",
+    "subgroup": "Loans:Mortgages"
+  },
+  "43900": {
+    "label": "Total securities lent; asset",
+    "subgroup": "Other:Misc"
+  },
+  "44900": {
+    "label": "Invested assets of U.S. reinsurers",
+    "subgroup": "Other:Misc"
+  },
+  "50000": {
+    "label": "Net lending (+) or borrowing (-) (financial account)",
+    "subgroup": "Other:Misc"
+  },
+  "50007": {
+    "label": "Net lending (+) or borrowing (-) (financial account)",
+    "subgroup": "Other:Misc"
+  },
+  "50009": {
+    "label": "Net lending (+) or borrowing (-) (capital account)",
+    "subgroup": "Other:Misc"
+  },
+  "50053": {
+    "label": "Financing gap",
+    "subgroup": "Other:Misc"
+  },
+  "50100": {
+    "label": "Land at market value",
+    "subgroup": "Other:Misc"
+  },
+  "50101": {
+    "label": "Vacant land",
+    "subgroup": "Other:Misc"
+  },
+  "50107": {
+    "label": "Land with structures on it at book value",
+    "subgroup": "Other:Misc"
+  },
+  "50110": {
+    "label": "Consumer durable goods expenditures",
+    "subgroup": "Other:Misc"
+  },
+  "50120": {
+    "label": "Gross fixed investment, residential structures and equipment",
+    "subgroup": "Other:Misc"
+  },
+  "50121": {
+    "label": "Mobile homes",
+    "subgroup": "Other:Misc"
+  },
+  "50122": {
+    "label": "Residential equipment",
+    "subgroup": "Other:Misc"
+  },
+  "50126": {
+    "label": "Residential structures",
+    "subgroup": "Other:Misc"
+  },
+  "50128": {
+    "label": "Residential structures and equipment",
+    "subgroup": "Other:Misc"
+  },
+  "50130": {
+    "label": "Gross fixed investment, nonresidential structures, equipment, and intellectual property products",
+    "subgroup": "Other:Misc"
+  },
+  "50131": {
+    "label": "Fixed assets, book value",
+    "subgroup": "Other:Misc"
+  },
+  "50132": {
+    "label": "Nonresidential equipment, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50133": {
+    "label": "Nonresidential software, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50134": {
+    "label": "Nonresidential research and development, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50135": {
+    "label": "Nonresidential entertainment, literary, and artistic originals, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50136": {
+    "label": "Nonresidential structures, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50137": {
+    "label": "Nonresidential intellectual property products, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50138": {
+    "label": "Nonresidential structures, equipment, and intellectual property products, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50139": {
+    "label": "Nonresidential structures, equipment, and intellectual property products (residual diff. between NIPA and fixed asset accounts)",
+    "subgroup": "Other:Misc"
+  },
+  "50140": {
+    "label": "Foreign direct investment in U.S. real estate; asset",
+    "subgroup": "Other:Misc"
+  },
+  "50147": {
+    "label": "Total residential and nonresidential structures excluding disaster related losses on structures",
+    "subgroup": "Other:Misc"
+  },
+  "50150": {
+    "label": "Structures, equipment, and intellectual property products",
+    "subgroup": "Other:Misc"
+  },
+  "50151": {
+    "label": "Total fixed capital (SOI)",
+    "subgroup": "Other:Misc"
+  },
+  "50152": {
+    "label": "Equipment, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50156": {
+    "label": "Structures (residential and nonresidential), current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50157": {
+    "label": "Equipment excluding disaster-related losses on equipment",
+    "subgroup": "Other:Misc"
+  },
+  "50158": {
+    "label": "Equipment, intellectual property products, and consumer durables, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50159": {
+    "label": "Equipment and intellectual property products, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50190": {
+    "label": "Gross fixed investment",
+    "subgroup": "Other:Misc"
+  },
+  "50192": {
+    "label": "Gross fixed investment, equipment, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50196": {
+    "label": "Gross fixed investment, structures, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50198": {
+    "label": "Gross fixed investment, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "50199": {
+    "label": "Gross fixed investment and inventories",
+    "subgroup": "Other:Misc"
+  },
+  "50200": {
+    "label": "Inventories",
+    "subgroup": "Other:Misc"
+  },
+  "50206": {
+    "label": "Inventory valuation adjustment (IVA)",
+    "subgroup": "Other:Misc"
+  },
+  "50327": {
+    "label": "Residential real estate excluding disaster-related losses on residential structures",
+    "subgroup": "Other:Misc"
+  },
+  "50337": {
+    "label": "Nonresidential real estate excluding disaster-related losses on nonresidential structures",
+    "subgroup": "Other:Misc"
+  },
+  "50350": {
+    "label": "Real estate",
+    "subgroup": "Other:Misc"
+  },
+  "50352": {
+    "label": "Owner-occupied real estate (SA)",
+    "subgroup": "Other:Misc"
+  },
+  "50354": {
+    "label": "Multi-family real estate (SA)",
+    "subgroup": "Other:Misc"
+  },
+  "50355": {
+    "label": "Commercial real estate (SA)",
+    "subgroup": "Other:Misc"
+  },
+  "50357": {
+    "label": "Real estate excluding disaster-related losses on structures",
+    "subgroup": "Other:Misc"
+  },
+  "50400": {
+    "label": "Intangible assets",
+    "subgroup": "Other:Misc"
+  },
+  "50500": {
+    "label": "Capital expenditures",
+    "subgroup": "Other:Misc"
+  },
+  "50509": {
+    "label": "Capital formation, net (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "50600": {
+    "label": "Net investment",
+    "subgroup": "Other:Misc"
+  },
+  "50610": {
+    "label": "Net physical investment",
+    "subgroup": "Other:Misc"
+  },
+  "50800": {
+    "label": "Equity capital",
+    "subgroup": "Equity:Corporate"
+  },
+  "50900": {
+    "label": "Gross investment",
+    "subgroup": "Other:Misc"
+  },
+  "50994": {
+    "label": "Assets less liabilities excluding directly and indirectly held corporate equities and owner-occupied housing",
+    "subgroup": "Equity:Corporate"
+  },
+  "51110": {
+    "label": "Consumer durable goods investment",
+    "subgroup": "Other:Misc"
+  },
+  "51140": {
+    "label": "Foreign direct investment in U.S. real estate business; liability",
+    "subgroup": "Other:Misc"
+  },
+  "51141": {
+    "label": "Foreign direct investment in U.S. real estate business: equity; liability",
+    "subgroup": "Equity:Corporate"
+  },
+  "51143": {
+    "label": "Foreign direct investment in U.S. real estate business: intercompany debt; liability",
+    "subgroup": "Other:Misc"
+  },
+  "54000": {
+    "label": "Capital transfers received",
+    "subgroup": "Other:Misc"
+  },
+  "54040": {
+    "label": "Disaster losses",
+    "subgroup": "Other:Misc"
+  },
+  "54042": {
+    "label": "Disaster losses on residential fixed assets",
+    "subgroup": "Other:Misc"
+  },
+  "54043": {
+    "label": "Disaster losses on nonresidential fixed assets",
+    "subgroup": "Other:Misc"
+  },
+  "54100": {
+    "label": "Capital transfers paid",
+    "subgroup": "Other:Misc"
+  },
+  "54200": {
+    "label": "Acquisition of nonproduced nonfinancial assets (net)",
+    "subgroup": "Other:Misc"
+  },
+  "54300": {
+    "label": "Capital account transactions (net)",
+    "subgroup": "Other:Misc"
+  },
+  "54400": {
+    "label": "Net capital transfers paid",
+    "subgroup": "Other:Misc"
+  },
+  "60000": {
+    "label": "Balance on current account (net saving)",
+    "subgroup": "Other:Misc"
+  },
+  "60001": {
+    "label": "Gross saving",
+    "subgroup": "Other:Misc"
+  },
+  "60060": {
+    "label": "Net saving",
+    "subgroup": "Other:Misc"
+  },
+  "60063": {
+    "label": "Net saving less net capital transfers paid",
+    "subgroup": "Other:Misc"
+  },
+  "60064": {
+    "label": "Undistributed corporate profits",
+    "subgroup": "Other:Misc"
+  },
+  "60070": {
+    "label": "Personal saving",
+    "subgroup": "Other:Misc"
+  },
+  "60100": {
+    "label": "National income/personal income",
+    "subgroup": "Other:Misc"
+  },
+  "60101": {
+    "label": "Current receipts, NIPA basis",
+    "subgroup": "Other:Misc"
+  },
+  "60120": {
+    "label": "Disposable income, net",
+    "subgroup": "Other:Misc"
+  },
+  "60200": {
+    "label": "Wages and salaries paid (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "60201": {
+    "label": "Wages and salaries received (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "60250": {
+    "label": "Compensation of employees paid",
+    "subgroup": "Other:Misc"
+  },
+  "60251": {
+    "label": "Compensation of employees received",
+    "subgroup": "Other:Misc"
+  },
+  "60300": {
+    "label": "Revenue from sales of goods and services, excluding indirect sales taxes (FSIs)",
+    "subgroup": "Other:Misc"
+  },
+  "60600": {
+    "label": "Corporate profits",
+    "subgroup": "Other:Misc"
+  },
+  "60613": {
+    "label": "Deficit/surplus",
+    "subgroup": "Other:Misc"
+  },
+  "61100": {
+    "label": "Income",
+    "subgroup": "Other:Misc"
+  },
+  "61101": {
+    "label": "Net income, before extraordinary items and taxes (FSIs)",
+    "subgroup": "Other:Misc"
+  },
+  "61102": {
+    "label": "Other income, net (FSIs)",
+    "subgroup": "Other:Misc"
+  },
+  "61103": {
+    "label": "Net income after taxes (FSIs)",
+    "subgroup": "Other:Misc"
+  },
+  "61104": {
+    "label": "Retained earnings (FSIs)",
+    "subgroup": "Other:Misc"
+  },
+  "61111": {
+    "label": "Proprietors' income with IVA and CCAdj",
+    "subgroup": "Other:Misc"
+  },
+  "61120": {
+    "label": "Rents paid (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61121": {
+    "label": "Rents received (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61200": {
+    "label": "Distributed income of corporations, paid (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61201": {
+    "label": "Distributed income of corporations, received (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61210": {
+    "label": "Dividends paid (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61211": {
+    "label": "Dividends received (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61220": {
+    "label": "Withdrawals from income of quasi-corporations, paid (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61221": {
+    "label": "Withdrawals from income of quasi-corporations, received (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61300": {
+    "label": "Interest paid (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61301": {
+    "label": "Interest received (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61400": {
+    "label": "Net national income/balance of primary incomes, net (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61500": {
+    "label": "Uses of property income (paid) (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "61501": {
+    "label": "Property income (received) (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "62000": {
+    "label": "Cost of sales (FSIs)",
+    "subgroup": "Other:Misc"
+  },
+  "62100": {
+    "label": "Personal current taxes",
+    "subgroup": "Other:Misc"
+  },
+  "62200": {
+    "label": "Current taxes on income; wealth; etc. (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "62310": {
+    "label": "Taxes on corporate income",
+    "subgroup": "Other:Misc"
+  },
+  "62331": {
+    "label": "Business tax receipts (MTS)",
+    "subgroup": "Other:Misc"
+  },
+  "62400": {
+    "label": "Taxes on production and imports, receivable",
+    "subgroup": "Other:Misc"
+  },
+  "62401": {
+    "label": "Taxes on production and imports less subsidies, payable",
+    "subgroup": "Other:Misc"
+  },
+  "63000": {
+    "label": "Consumption of fixed capital, structures, equipment, and intellectual property products, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "63001": {
+    "label": "Consumption of fixed capital, consumer durables",
+    "subgroup": "Other:Misc"
+  },
+  "63100": {
+    "label": "Capital consumption adjustment (CCAdj.)",
+    "subgroup": "Other:Misc"
+  },
+  "63200": {
+    "label": "Consumption of fixed capital, residential equipment and structures, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "63300": {
+    "label": "Consumption of fixed capital, nonresidential structures, equipment, and intellectual property products, current cost basis",
+    "subgroup": "Other:Misc"
+  },
+  "64001": {
+    "label": "Current taxes and transfer payments received",
+    "subgroup": "Other:Misc"
+  },
+  "64002": {
+    "label": "Current taxes, contributions for government social insurance, and transfer payments paid",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "64010": {
+    "label": "Employers' social contributions paid (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "64011": {
+    "label": "Employers' social contributions received (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "64020": {
+    "label": "Subsidies",
+    "subgroup": "Other:Misc"
+  },
+  "64021": {
+    "label": "Operating surplus, net",
+    "subgroup": "Other:Misc"
+  },
+  "64022": {
+    "label": "Non-operating income (QFR)",
+    "subgroup": "Other:Misc"
+  },
+  "64030": {
+    "label": "Other current transfers paid",
+    "subgroup": "Other:Misc"
+  },
+  "64031": {
+    "label": "Other current transfers received",
+    "subgroup": "Other:Misc"
+  },
+  "64032": {
+    "label": "Other current transfers received",
+    "subgroup": "Other:Misc"
+  },
+  "64033": {
+    "label": "Other current transfers received",
+    "subgroup": "Other:Misc"
+  },
+  "64040": {
+    "label": "Social contributions paid",
+    "subgroup": "Other:Misc"
+  },
+  "64041": {
+    "label": "Social benefits received",
+    "subgroup": "Other:Misc"
+  },
+  "64051": {
+    "label": "Personal current transfer receipts",
+    "subgroup": "Other:Misc"
+  },
+  "66000": {
+    "label": "Contributions for government social insurance paid",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "66010": {
+    "label": "Contributions for government social insurance received",
+    "subgroup": "InsurancePension:Entitlements"
+  },
+  "69000": {
+    "label": "Current expenditures/outlays",
+    "subgroup": "Other:Misc"
+  },
+  "69010": {
+    "label": "Consumption expenditures",
+    "subgroup": "Other:Misc"
+  },
+  "69011": {
+    "label": "Personal interest payments",
+    "subgroup": "Other:Misc"
+  },
+  "69012": {
+    "label": "Personal current transfer payments to rest of the world",
+    "subgroup": "Other:Misc"
+  },
+  "69020": {
+    "label": "Gross domestic product",
+    "subgroup": "Other:Misc"
+  },
+  "69021": {
+    "label": "Gross national product",
+    "subgroup": "Other:Misc"
+  },
+  "69022": {
+    "label": "Average of GDP and GDI",
+    "subgroup": "Other:Misc"
+  },
+  "69025": {
+    "label": "Gross value added (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "69026": {
+    "label": "Net value added (IMA)",
+    "subgroup": "Other:Misc"
+  },
+  "69030": {
+    "label": "Imports/exports",
+    "subgroup": "Other:Misc"
+  },
+  "69040": {
+    "label": "Income payments to the U.S.",
+    "subgroup": "Other:Misc"
+  },
+  "69041": {
+    "label": "Income receipts from the U.S.",
+    "subgroup": "Other:Misc"
+  },
+  "69050": {
+    "label": "Foreign income to U.S.",
+    "subgroup": "Other:Misc"
+  },
+  "70050": {
+    "label": "Statistical discrepancy",
+    "subgroup": "Other:Misc"
+  },
+  "70059": {
+    "label": "Gross domestic product (GDP); statistical discrepancy",
+    "subgroup": "Other:Misc"
+  },
+  "80900": {
+    "label": "Other volume changes",
+    "subgroup": "Other:Misc"
+  },
+  "80901": {
+    "label": "Total other volume changes (IMA)",
+    "subgroup": "Other:Misc"
+  }
+}

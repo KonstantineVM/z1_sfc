@@ -1,0 +1,382 @@
+- code: '01'
+  name: Financial soundness indicators
+  short: Financial soundness indicators
+  group: Other
+  sna: null
+- code: '07'
+  name: Interest rates and price indexes
+  short: Interest rates & price indexes
+  group: Other
+  sna: null
+- code: 08
+  name: Gross domestic product (GDP)/national income
+  short: Gross domestic product (GDP)/national…
+  group: Other
+  sna: null
+- code: 09
+  name: Corporate business
+  short: Corporate business
+  group: Nonfinancial Business
+  sna: null
+- code: '10'
+  name: Nonfinancial corporate business
+  short: Nonfinancial corporate business
+  group: Nonfinancial Business
+  sna: null
+- code: '11'
+  name: Nonfinancial noncorporate business
+  short: Nonfinancial noncorporate business
+  group: Nonfinancial Business
+  sna: null
+- code: '12'
+  name: Equity real estate investment trusts
+  short: Equity real estate investment trusts
+  group: Other
+  sna: null
+- code: '13'
+  name: Farm business
+  short: Farm business
+  group: Nonfinancial Business
+  sna: null
+- code: '14'
+  name: Nonfinancial business
+  short: Nonfinancial business
+  group: Nonfinancial Business
+  sna: S11
+- code: '15'
+  name: Households and nonprofit organizations
+  short: Households & nonprofit organizations
+  group: Households/NPISH
+  sna: S14+S15
+- code: '16'
+  name: Nonprofit organizations
+  short: Nonprofit organizations
+  group: Other
+  sna: null
+- code: '17'
+  name: Personal sector
+  short: Personal sector
+  group: Households/NPISH
+  sna: null
+- code: '18'
+  name: Corporate farm business
+  short: Corporate farm business
+  group: Nonfinancial Business
+  sna: null
+- code: '19'
+  name: Households
+  short: Households
+  group: Households/NPISH
+  sna: null
+- code: '21'
+  name: State and local governments
+  short: State & local governments
+  group: Government
+  sna: S1312+S1313
+- code: '22'
+  name: State and local government employee retirement funds
+  short: State & local government employee…
+  group: Government
+  sna: null
+- code: '23'
+  name: Noncorporate farm business
+  short: Noncorporate farm business
+  group: Nonfinancial Business
+  sna: null
+- code: '26'
+  name: Rest of the world
+  short: Rest of the world
+  group: ROW
+  sna: S2
+- code: '27'
+  name: International banking facilities of U.S.-chartered depository institutions
+  short: International banking facilities of…
+  group: Financial
+  sna: null
+- code: '28'
+  name: International banking facilities of foreign banking offices in U.S.
+  short: International banking facilities of…
+  group: Financial
+  sna: null
+- code: '31'
+  name: Federal government
+  short: Federal government
+  group: Government
+  sna: S1311
+- code: '34'
+  name: Federal government retirement funds
+  short: Federal government retirement funds
+  group: Government
+  sna: null
+- code: '35'
+  name: Federal old-age and survivors insurance and disability insurance program
+  short: Federal old-age & survivors insurance &…
+  group: Financial
+  sna: null
+- code: '36'
+  name: General government
+  short: General government
+  group: Government
+  sna: S13
+- code: '37'
+  name: General government (consolidated)
+  short: General government (consolidated)
+  group: Government
+  sna: S13
+- code: '38'
+  name: Domestic nonfinancial sectors
+  short: Domestic nonfinancial sectors
+  group: Nonfinancial Business
+  sna: null
+- code: '39'
+  name: Nonfinancial sectors
+  short: Nonfinancial sectors
+  group: Nonfinancial Business
+  sna: null
+- code: '40'
+  name: Government-sponsored enterprises (GSEs)
+  short: Government-sponsored enterprises (GSEs)
+  group: Government
+  sna: null
+- code: '41'
+  name: Agency- and GSE-backed mortgage pools
+  short: Agency- & GSE-backed mortgage pools
+  group: Financial
+  sna: null
+- code: '42'
+  name: GSEs and agency- and GSE-backed mortgage pools
+  short: GSEs & agency- & GSE-backed mortgage…
+  group: Financial
+  sna: null
+- code: '43'
+  name: Securitization corporations
+  short: Securitization corporations
+  group: Financial
+  sna: null
+- code: '45'
+  name: Business development companies
+  short: Business development companies
+  group: Other
+  sna: null
+- code: '47'
+  name: Credit unions
+  short: Credit unions
+  group: Other
+  sna: null
+- code: '48'
+  name: Mutual funds and exchange-traded funds
+  short: Mutual funds & exchange-traded funds
+  group: Financial
+  sna: null
+- code: '49'
+  name: Real estate investment trusts and closed-end funds
+  short: Real estate investment trusts & closed-…
+  group: Financial
+  sna: null
+- code: '50'
+  name: Other financial business
+  short: Other financial business
+  group: Other
+  sna: null
+- code: '51'
+  name: Property-casualty insurance companies
+  short: Property-casualty insurance companies
+  group: Financial
+  sna: null
+- code: '52'
+  name: Insurance companies
+  short: Insurance companies
+  group: Financial
+  sna: S128
+- code: '53'
+  name: Closed-end and exchange-traded funds
+  short: Closed-end & exchange-traded funds
+  group: Financial
+  sna: null
+- code: '54'
+  name: Life insurance companies
+  short: Life insurance companies
+  group: Financial
+  sna: null
+- code: '55'
+  name: Closed-end funds
+  short: Closed-end funds
+  group: Financial
+  sna: null
+- code: '56'
+  name: Exchange-traded funds
+  short: Exchange-traded funds
+  group: Financial
+  sna: null
+- code: '57'
+  name: Private pension funds
+  short: Private pension funds
+  group: Financial
+  sna: null
+- code: '58'
+  name: Insurance companies and pension funds
+  short: Insurance companies & pension funds
+  group: Financial
+  sna: S128+S129
+- code: '59'
+  name: Pension funds
+  short: Pension funds
+  group: Financial
+  sna: S129
+- code: '60'
+  name: Other financial intermediaries except insurance companies, pension funds,
+    financial auxiliaries and captive financial institutions and money lenders
+  short: Other financial intermediaries except…
+  group: Financial
+  sna: S125
+- code: '61'
+  name: Finance companies
+  short: Finance companies
+  group: Financial
+  sna: null
+- code: '62'
+  name: Hedge funds
+  short: Hedge funds
+  group: Financial
+  sna: null
+- code: '63'
+  name: Money market funds
+  short: Money market funds
+  group: Financial
+  sna: S123
+- code: '64'
+  name: Mortgage real estate investment trusts
+  short: Mortgage real estate investment trusts
+  group: Other
+  sna: null
+- code: '65'
+  name: Mutual funds
+  short: Mutual funds
+  group: Financial
+  sna: null
+- code: '66'
+  name: Security brokers and dealers
+  short: Security brokers & dealers
+  group: Financial
+  sna: null
+- code: '67'
+  name: Issuers of asset-backed securities
+  short: Issuers of asset-backed securities
+  group: Other
+  sna: null
+- code: '68'
+  name: Investment funds
+  short: Investment funds
+  group: Financial
+  sna: null
+- code: '69'
+  name: Non-MMF investment funds
+  short: Non-MMF investment funds
+  group: Financial
+  sna: S124
+- code: '70'
+  name: Private depository institutions
+  short: Private depository institutions
+  group: Financial
+  sna: S122
+- code: '71'
+  name: Monetary authority
+  short: Monetary authority
+  group: Financial
+  sna: S121
+- code: '73'
+  name: Holding companies
+  short: Holding companies
+  group: Financial
+  sna: null
+- code: '74'
+  name: Banks in U.S.-affiliated areas
+  short: Banks in U.S.-affiliated areas
+  group: Other
+  sna: null
+- code: '75'
+  name: Foreign banking offices in U.S.
+  short: Foreign banking offices in U.S.
+  group: Financial
+  sna: null
+- code: '76'
+  name: U.S.-chartered depository institutions
+  short: U.S.-chartered depository institutions
+  group: Financial
+  sna: null
+- code: '77'
+  name: Captive financial institutions and money lenders
+  short: Captive financial institutions & money…
+  group: Other
+  sna: S127
+- code: '78'
+  name: Private depository institutions and money market funds
+  short: Private depository institutions & money…
+  group: Financial
+  sna: S122+S123
+- code: '79'
+  name: Domestic financial sectors
+  short: Domestic financial sectors
+  group: Aggregate/Consolidated
+  sna: S12
+- code: '80'
+  name: Other financial intermediaries except insurance companies and pension funds
+  short: Other financial intermediaries except…
+  group: Financial
+  sna: S125+S126+S127
+- code: '81'
+  name: Other financial corporations
+  short: Other financial corporations
+  group: Aggregate/Consolidated
+  sna: S124+S125+S126+S127
+- code: '82'
+  name: Domestic business
+  short: Domestic business
+  group: Nonfinancial Business
+  sna: null
+- code: '83'
+  name: Private domestic sectors
+  short: Private domestic sectors
+  group: Aggregate/Consolidated
+  sna: null
+- code: '84'
+  name: Monetary authority, private depository institutions, and money market funds
+  short: Monetary authority, private depository…
+  group: Financial
+  sna: S121+S122+S123
+- code: '85'
+  name: Other financial corporations and money market funds
+  short: Other financial corporations & money…
+  group: Financial
+  sna: S123+S124+S125+S126+S127
+- code: '86'
+  name: Money market funds, mutual funds, and exchange-traded funds
+  short: Money market funds, mutual funds, &…
+  group: Financial
+  sna: null
+- code: '87'
+  name: Other financial corporations, money market funds, insurance companies, and
+    pension funds
+  short: Other financial corporations, money…
+  group: Financial
+  sna: S123+S124+S125+S126+S127+S128+S129
+- code: '88'
+  name: All domestic sectors
+  short: All domestic sectors
+  group: Aggregate/Consolidated
+  sna: S1
+- code: '89'
+  name: All sectors
+  short: All sectors
+  group: Aggregate/Consolidated
+  sna: null
+- code: '90'
+  name: Instrument discrepancies
+  short: Instrument discrepancies
+  group: Discrepancy
+  sna: null
+- code: '91'
+  name: Other financial corporations and insurance companies and pension funds
+  short: Other financial corporations &…
+  group: Financial
+  sna: S124+S125+S126+S127+S128+S129
