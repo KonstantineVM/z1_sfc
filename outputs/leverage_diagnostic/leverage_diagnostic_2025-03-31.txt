@@ -1,0 +1,92 @@
+======================================================================
+LEVERAGE CALCULATION DIAGNOSTIC REPORT
+Date: 2025-03-31
+======================================================================
+
+DATA STRUCTURE
+----------------------------------------
+Balance sheet shape: (277, 66)
+Index type: int64
+Number of instruments: 277
+Number of sectors: 66
+
+
+INSTRUMENT MAPPING
+----------------------------------------
+Instruments in map: 627
+
+
+LEVERAGE CALCULATIONS
+----------------------------------------
+Sectors with valid leverage: 10/10
+Average leverage: 96.4%
+Maximum leverage: 100.0%
+
+
+DETAILED RESULTS
+----------------------------------------
+
+Sector 10:
+  Liabilities (positive): $1,762,942,288
+  Assets (negative): $143,839,554
+  Leverage: 92.5%
+  L/A Ratio: 1225.6%
+
+Sector 11:
+  Liabilities (positive): $350,710,988
+  Assets (negative): $19,018,607
+  Leverage: 94.9%
+  L/A Ratio: 1844.0%
+
+Sector 15:
+  Liabilities (positive): $2,235,474,165
+  Assets (negative): $0
+  Leverage: 100.0%
+  L/A Ratio: nan%
+
+Sector 70:
+  Liabilities (positive): $389,457,332
+  Assets (negative): $1,245,278
+  Leverage: 99.7%
+  L/A Ratio: 31274.7%
+
+Sector 40:
+  Liabilities (positive): $133,985,601
+  Assets (negative): $0
+  Leverage: 100.0%
+  L/A Ratio: nan%
+
+Sector 14:
+  Liabilities (positive): $698,892,866
+  Assets (negative): $88,334,912
+  Leverage: 88.8%
+  L/A Ratio: 791.2%
+
+Sector 26:
+  Liabilities (positive): $693,557,617
+  Assets (negative): $150,831
+  Leverage: 100.0%
+  L/A Ratio: 459824.3%
+
+Sector 79:
+  Liabilities (positive): $1,884,785,880
+  Assets (negative): $6,425,238
+  Leverage: 99.7%
+  L/A Ratio: 29334.1%
+
+Sector 31:
+  Liabilities (positive): $425,722,574
+  Assets (negative): $54,819,602
+  Leverage: 88.6%
+  L/A Ratio: 776.6%
+
+Sector 58:
+  Liabilities (positive): $554,413,105
+  Assets (negative): $1,843,446
+  Leverage: 99.7%
+  L/A Ratio: 30074.8%
+
+
+RECOMMENDATIONS
+----------------------------------------
+⚠️ CRITICAL: Average leverage exceeds 50%

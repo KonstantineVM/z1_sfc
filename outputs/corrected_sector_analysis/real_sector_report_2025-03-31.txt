@@ -1,0 +1,78 @@
+======================================================================
+REAL SECTOR ANALYSIS REPORT
+Date: 2025-03-31
+======================================================================
+
+EXECUTIVE SUMMARY
+----------------------------------------
+Critical Risk Sectors: 4
+High Risk Sectors: 16
+Average Leverage (Top 10): 70.3%
+
+
+DETAILED FINDINGS
+----------------------------------------
+
+1. SYSTEMICALLY IMPORTANT SECTORS:
+
+10: Nonfinancial Corporate Business
+  Risk Level: CRITICAL
+  Systemic Score: 0.769
+  Size: 16.0% of economy
+  Leverage: 39.7%
+
+79: Insurance Companies
+  Risk Level: CRITICAL
+  Systemic Score: 0.710
+  Size: 15.9% of economy
+  Leverage: 46.1%
+
+31: Private Pension Funds
+  Risk Level: CRITICAL
+  Systemic Score: 0.640
+  Size: 4.0% of economy
+  Leverage: 64.6%
+
+15: Households and Nonprofit Organizations
+  Risk Level: CRITICAL
+  Systemic Score: 0.617
+  Size: 18.8% of economy
+  Leverage: 12.6%
+
+26: Foreign Banking Offices in U.S.
+  Risk Level: HIGH
+  Systemic Score: 0.591
+  Size: 5.8% of economy
+  Leverage: 44.2%
+
+2. HIGHEST LEVERAGE SECTORS:
+
+41: Savings Institutions
+  Leverage Ratio: 100.0%
+  Total Debt: $3,080,260M
+
+43: Property-Casualty Insurance
+  Leverage Ratio: 100.0%
+  Total Debt: $35,457,610M
+
+42: Credit Unions
+  Leverage Ratio: 75.3%
+  Total Debt: $76,269,104M
+
+71: Foreign Banking Offices in U.S.
+  Leverage Ratio: 67.4%
+  Total Debt: $62,306,722M
+
+31: Private Pension Funds
+  Leverage Ratio: 64.6%
+  Total Debt: $274,943,903M
+
+
+RECOMMENDATIONS
+----------------------------------------
+
+• IMMEDIATE ACTION REQUIRED for critical sectors
+
+• Multiple high-risk sectors indicate systemic stress
+
+• System-wide deleveraging may be necessary

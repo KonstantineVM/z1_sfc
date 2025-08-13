@@ -1,0 +1,55 @@
+======================================================================
+TIME SERIES ANALYSIS REPORT
+Generated: 2025-08-12 22:50:24
+Period: 2000 - 2025
+======================================================================
+
+DATA COVERAGE
+----------------------------------------
+Quarters analyzed: 101
+First quarter: 2000-03-31
+Last quarter: 2025-03-31
+
+
+TREND ANALYSIS
+----------------------------------------
+
+Nonfinancial Corporate:
+  Start (2000): 93.7%
+  End (2025): 92.5%
+  Change: -1.3%
+
+Households:
+  Start (2000): 100.0%
+  End (2025): 100.0%
+  Change: +0.0%
+
+U.S. Banks:
+  Start (2000): 99.9%
+  End (2025): 99.7%
+  Change: -0.2%
+
+Insurance:
+  Start (2000): 99.6%
+  End (2025): 99.7%
+  Change: +0.1%
+
+
+CURRENT STATUS
+----------------------------------------
+Date: 2025-03-31
+
+Critical Sector Leverage:
+  U.S. Banks: 99.7% (CRITICAL)
+  Insurance: 99.7% (CRITICAL)
+  Pension Funds: 88.6% (CRITICAL)
+  Nonfinancial Corporate: 92.5% (CRITICAL)
+  Households: 100.0% (CRITICAL)
+
+
+RISK ASSESSMENT
+----------------------------------------
+Critical Risk Sectors (>50% leverage): 12
+High Risk Sectors (>30% leverage): 0
+
+⚠️ MULTIPLE CRITICAL SECTORS - SYSTEMIC CRISIS LIKELY

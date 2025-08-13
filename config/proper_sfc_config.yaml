@@ -29,7 +29,7 @@ sfc:
   base_dir: ./data/fed_data
   cache_dir: ./data/cache
   output_dir: ./outputs
-  date: 2024-12-31
+  date: 1965-12-31
 
   instrument_map: mappings/instrument_map.json
   flow_map: mappings/flow_map_expanded.json

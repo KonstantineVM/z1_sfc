@@ -1,0 +1,37 @@
+======================================================================
+SFC CRISIS DETECTION - HISTORICAL VALIDATION REPORT
+Generated: 2025-08-12 19:18:01
+======================================================================
+
+CURRENT STATUS
+----------------------------------------
+Date: 2025-03-31
+Enhanced Crisis Score: 0.505
+Original Composite Score: 0.427
+Historical Percentile: 63.5%
+
+
+MODEL VALIDATION PERFORMANCE
+----------------------------------------
+Optimal Threshold: 0.600
+Detection Rate: 37.5%
+Recessions Tested: 8
+
+Detection Results:
+  ✗ 1970 Recession
+  ✗ 1973-75 Oil Crisis
+  ✓ 1980 Recession
+  ✓ 1981-82 Double Dip
+  ✓ 1990-91 S&L Crisis
+  ✗ 2001 Dot-Com Bust
+  ✗ 2008 Financial Crisis
+  ✗ 2020 COVID Recession
+
+
+HISTORICAL COMPARISON
+----------------------------------------
+
+
+RISK ASSESSMENT
+----------------------------------------
+ELEVATED RISK - Enhanced monitoring needed

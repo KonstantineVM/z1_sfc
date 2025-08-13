@@ -1,0 +1,38 @@
+# Instrument class to role tags mapping
+# Role tags used by analyzer: debt, loan, liquid, st_liability, equity, derivative
+
+# Liquid instruments
+currency: [liquid]
+deposits: [liquid]
+mmf_shares: [liquid]
+reserves: [liquid]
+repo_asset: [liquid]
+cash: [liquid]
+
+# Loan instruments
+mortgage_loans: [debt, loan]
+consumer_loans: [debt, loan]
+business_loans: [debt, loan]
+bank_loans: [debt, loan]
+
+# Debt securities
+corporate_bonds: [debt]
+treasury_securities: [debt]
+agency_mbs: [debt]
+municipal_bonds: [debt]
+
+# Short-term liabilities
+trade_payables: [st_liability, debt]
+taxes_payable: [st_liability, debt]
+commercial_paper: [st_liability, debt]
+repo_liability: [st_liability]
+
+# Equity instruments
+corporate_equity: [equity]
+mutual_fund_shares: [equity]
+
+# Derivatives
+derivatives: [derivative]
+options: [derivative]
+swaps: [derivative]
+futures: [derivative]

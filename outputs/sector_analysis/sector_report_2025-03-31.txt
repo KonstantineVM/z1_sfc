@@ -1,0 +1,117 @@
+======================================================================
+SECTOR DECOMPOSITION ANALYSIS REPORT
+Date: 2025-03-31
+======================================================================
+
+TOP 10 SECTORS BY SIZE
+----------------------------------------
+
+88: All Domestic Sectors
+  Size: $3,444,565,995M (15.2%)
+  Assets: $41,783,798M
+  Liabilities: $3,402,782,197M
+
+89: All Sectors
+  Size: $2,484,274,623M (11.0%)
+  Assets: $0M
+  Liabilities: $2,484,274,623M
+
+15: Households and Nonprofit Organizations
+  Size: $2,235,474,165M (9.9%)
+  Assets: $0M
+  Liabilities: $2,235,474,165M
+
+10: Nonfinancial Corporate Business
+  Size: $1,906,781,842M (8.4%)
+  Assets: $143,839,554M
+  Liabilities: $1,762,942,288M
+
+79: Insurance Companies
+  Size: $1,891,211,118M (8.3%)
+  Assets: $6,425,238M
+  Liabilities: $1,884,785,880M
+
+38: Federal Government DB Retirement Funds
+  Size: $914,837,445M (4.0%)
+  Assets: $0M
+  Liabilities: $914,837,445M
+
+14: Private Depository Institutions
+  Size: $787,227,778M (3.5%)
+  Assets: $88,334,912M
+  Liabilities: $698,892,866M
+
+26: Foreign Banking Offices in U.S.
+  Size: $693,708,448M (3.1%)
+  Assets: $150,831M
+  Liabilities: $693,557,617M
+
+87: Domestic Financial Sectors
+  Size: $585,622,756M (2.6%)
+  Assets: $0M
+  Liabilities: $585,622,756M
+
+58: Funding Corporations
+  Size: $556,256,551M (2.5%)
+  Assets: $1,843,446M
+  Liabilities: $554,413,105M
+
+
+SYSTEMIC RISK ASSESSMENT
+----------------------------------------
+
+15: Households and Nonprofit Organizations
+  Risk Level: LOW
+  Systemic Score: 0.068
+  Leverage: 0.0%
+
+89: All Sectors
+  Risk Level: LOW
+  Systemic Score: 0.051
+  Leverage: 0.0%
+
+38: Federal Government DB Retirement Funds
+  Risk Level: LOW
+  Systemic Score: 0.018
+  Leverage: 0.0%
+
+87: Domestic Financial Sectors
+  Risk Level: LOW
+  Systemic Score: 0.013
+  Leverage: 0.0%
+
+88: All Domestic Sectors
+  Risk Level: LOW
+  Systemic Score: nan
+  Leverage: nan%
+
+10: Nonfinancial Corporate Business
+  Risk Level: LOW
+  Systemic Score: nan
+  Leverage: nan%
+
+79: Insurance Companies
+  Risk Level: LOW
+  Systemic Score: nan
+  Leverage: nan%
+
+14: Private Depository Institutions
+  Risk Level: LOW
+  Systemic Score: nan
+  Leverage: nan%
+
+26: Foreign Banking Offices in U.S.
+  Risk Level: LOW
+  Systemic Score: nan
+  Leverage: nan%
+
+58: Funding Corporations
+  Risk Level: LOW
+  Systemic Score: nan
+  Leverage: nan%
+
+
+KEY FINDINGS
+----------------------------------------
+
+• System Concentration: Top 3 sectors = 36.0%
