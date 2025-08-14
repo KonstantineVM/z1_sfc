@@ -385,35 +385,43 @@ class FWTWDataLoader:
         ]
         
 
+REQUIRED_COLUMNS = {
+    "date", "holder_sector", "issuer_sector", "instrument_code", "level"
+}
+
+def normalize_fwtw_schema(df):
+    """
+    Ensure FWTW columns match Z1 conventions.
+    """
+    # Define the renaming map
+    rename = {
+        "Date": "date",
+        "Holder Code": "holder_sector",    # This should work!
+        "Issuer Code": "issuer_sector",    # This should work!
+        "Instrument Code": "instrument_code",  # This should work!
+        "Level": "level",
+        # Keep other columns as-is
+        "Holder Name": "holder_name",
+        "Issuer Name": "issuer_name",
+        "Instrument Name": "instrument_name"
+    }
+    
+    # Apply renaming
+    df = df.rename(columns=rename)
+    
+    # NOW check for required columns AFTER renaming
     REQUIRED_COLUMNS = {
         "date", "holder_sector", "issuer_sector", "instrument_code", "level"
     }
-
-    def normalize_fwtw_schema(df):
-        """
-        Ensure FWTW columns match Z1 conventions used by the mapper:
-        - date: quarterly period (datetime or 'YYYYQn' string)
-        - holder_sector: '15', '70', ...
-        - issuer_sector: '10', '31', ...
-        - instrument_code: '30641', '20500', ...
-        - level: numeric (positions)
-        """
-        rename = {
-            "Date": "date",
-            "holder": "holder_sector",
-            "issuer": "issuer_sector",
-            "instrument": "instrument_code",
-            "value": "level",
-            "Level": "level",
-        }
-        df = df.rename(columns=rename)
-        missing = REQUIRED_COLUMNS - set(df.columns)
-        if missing:
-            raise ValueError(f"FWTW missing columns: {sorted(missing)}")
-        # Coerce types
-        df["holder_sector"] = df["holder_sector"].astype(str).str.zfill(2)
-        df["issuer_sector"] = df["issuer_sector"].astype(str).str.zfill(2)
-        df["instrument_code"] = df["instrument_code"].astype(str).str.zfill(5)
-        df["level"] = df["level"].astype(float)
-        return df
+    missing = REQUIRED_COLUMNS - set(df.columns)
+    if missing:
+        raise ValueError(f"FWTW missing columns: {sorted(missing)}")
+    
+    # Ensure proper formatting
+    df["holder_sector"] = df["holder_sector"].astype(str).str.zfill(2)
+    df["issuer_sector"] = df["issuer_sector"].astype(str).str.zfill(2)
+    df["instrument_code"] = df["instrument_code"].astype(str).str.zfill(5)
+    df["level"] = df["level"].astype(float)
+    
+    return df
         

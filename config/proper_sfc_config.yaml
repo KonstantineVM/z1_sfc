@@ -29,16 +29,22 @@ sfc:
   base_dir: ./data/fed_data
   cache_dir: ./data/cache
   output_dir: ./outputs
-  date: 1965-12-31
+  date: 2024-03-31
 
   instrument_map: mappings/instrument_map.json
   flow_map: mappings/flow_map_expanded.json
 
   # mode-specific
-  fwtw: data/fwtw_levels.csv
+  fwtw: data/fwtw/fwtw_bilateral_positions.parquet
   graph_spec: graphs/graph_adjacency_spec.json
   instrument_group_map: mappings/instrument_group_map.json
   graph_spec_refined: graphs/graph_adjacency_spec_refined.json
+  
+  # FWTW options
+  fwtw_options:
+    force_download: false    # Force fresh download
+    save_local: true         # Save downloaded data locally
+    use_ras: true           # Apply RAS balancing  
 
 # Run mode configurations
 run_modes:
